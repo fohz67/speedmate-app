@@ -53,9 +53,9 @@ const AccountScreen = () => {
                     placeholder="Nickname"
                     placeholderTextColor="#c7c7c7"
                 />
-                <Text style={styles.normal}>Age</Text>
-                <View style={styles.flex}>
-                    <Text style={styles.normal}>{age}</Text>
+                <Text style={styles.subHeading}>Age</Text>
+                <View style={styles.ageSliderContainer}>
+                    <Text style={styles.label}>{age}</Text>
                     <Slider
                         style={styles.slider}
                         minimumValue={0}
@@ -69,7 +69,7 @@ const AccountScreen = () => {
 
             <View style={styles.section}>
                 <Text style={styles.heading}>Vehicle</Text>
-                <Text style={styles.normal}>Type</Text>
+                <Text style={styles.subHeading}>Type</Text>
                 <View style={styles.vehicleTypeContainer}>
                     {vehicleTypes.map((type) => (
                         <TouchableOpacity
@@ -121,15 +121,17 @@ const AccountScreen = () => {
 };
 
 const styles = StyleSheet.create({
+    ageSliderContainer: {
+        alignItems: 'center',
+        display: 'flex',
+        flexDirection: 'row',
+        gap: 10,
+        marginHorizontal: 5,
+    },
     container: {
         alignItems: 'center',
         flexGrow: 1,
         padding: 20,
-    },
-    flex: {
-        display: 'flex',
-        flexDirection: 'row',
-        gap: 10,
     },
     heading: {
         fontSize: 22,
@@ -147,11 +149,8 @@ const styles = StyleSheet.create({
         shadowRadius: 15,
         width: '100%',
     },
-    normal: {
+    label: {
         fontSize: 16,
-        fontWeight: 'semibold',
-        marginBottom: 10,
-        marginTop: 10,
     },
     profileImage: {
         alignSelf: 'center',
@@ -169,9 +168,6 @@ const styles = StyleSheet.create({
         backgroundColor: 'black',
     },
     slider: {
-        marginTop: 10,
-        alignSelf: 'center',
-        marginBottom: 10,
         width: '90%',
     },
     statBox: {
@@ -199,6 +195,11 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'space-between',
     },
+    subHeading: {
+        fontSize: 16,
+        fontWeight: 'semibold',
+        marginTop: 10,
+    },
     vehicleTypeButton: {
         backgroundColor: 'white',
         borderRadius: 10,
@@ -221,6 +222,7 @@ const styles = StyleSheet.create({
         color: 'black',
     },
     vehicleTypeContainer: {
+        marginTop: 10,
         flexDirection: 'row',
         flexWrap: 'wrap',
         marginBottom: 10,
