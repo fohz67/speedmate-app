@@ -24,8 +24,8 @@ const getTabBarIcon = (route, focused, color, size) => {
 
 const screenOptions = ({route}) => ({
     tabBarIcon: ({focused, color, size}) => getTabBarIcon(route, focused, color, size),
-    tabBarActiveTintColor: '#9c1eff',
-    tabBarInactiveTintColor: '#c9b7d7',
+    tabBarActiveTintColor: 'black',
+    tabBarInactiveTintColor: 'gray',
 });
 
 const TabNavigator = () => {

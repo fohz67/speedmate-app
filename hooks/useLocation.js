@@ -13,7 +13,7 @@ const useLocation = () => {
             }
 
             await Location.watchPositionAsync(
-                {accuracy: Location.Accuracy.High, timeInterval: 1000, distanceInterval: 20},
+                {accuracy: Location.Accuracy.High, timeInterval: 1000, distanceInterval: 1},
                 (location) => {
                     setSpeed(location.coords.speed);
                 }
