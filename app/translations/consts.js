@@ -1,20 +1,25 @@
 import {useTranslation} from "react-i18next";
 
 const languages = ['en', 'fr'];
-const icons = [
-    [
-        require('../../assets/house-fill.png'),
-        require('../../assets/house-outline.png')
-    ],
-    [
-        require('../../assets/user-outline.png'),
-        require('../../assets/user-outline.png')
-    ],
-    [
-        require('../../assets/settings-outline.png'),
-        require('../../assets/settings-outline.png')
-    ]
-];
+
+const useIcons = () => {
+    const {t} = useTranslation();
+
+    return {
+        [t('home')]: {
+            active: require('../../assets/house-fill.png'),
+            inactive: require('../../assets/house-outline.png')
+        },
+        [t('account')]: {
+            active: require('../../assets/user-fill.png'),
+            inactive: require('../../assets/user-outline.png')
+        },
+        [t('settings')]: {
+            active: require('../../assets/settings-fill.png'),
+            inactive: require('../../assets/settings-outline.png')
+        }
+    };
+}
 
 const useConsts = () => {
     const {t} = useTranslation();
@@ -56,4 +61,4 @@ const useConsts = () => {
     };
 };
 
-export {useConsts, languages, icons};
+export {useConsts, languages, useIcons};

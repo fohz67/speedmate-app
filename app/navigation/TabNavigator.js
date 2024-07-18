@@ -6,19 +6,21 @@ import {Image} from 'react-native';
 import AccountScreen from '../screens/AccountScreen';
 import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import {icons} from '../translations/consts';
+import {useIcons} from '../translations/consts';
 
 const Tab = createBottomTabNavigator();
 
-const getTabBarIcon = (route, focused, color, size, routeIndex) => {
-    const icon = icons[routeIndex][Number(focused)];
-    return <Image source={icon.default} style={{width: size, height: size, tintColor: color}}/>;
+const getTabBarIcon = (route, focused, color, size) => {
+    const {t} = useTranslation();
+    const icons = useIcons();
+    const icon = focused ? icons[route.name].active : icons[route.name].inactive;
+
+    return <Image source={icon} style={{width: size, height: size, tintColor: color}}/>;
 };
 
 const screenOptions = ({route}) => ({
     tabBarIcon: ({focused, color, size}) => {
-        const routeIndex = route.state ? route.state.index : 0;
-        return getTabBarIcon(route, focused, color, size, routeIndex);
+        return getTabBarIcon(route, focused, color, size);
     },
     tabBarActiveTintColor: 'black',
     tabBarInactiveTintColor: 'gray',
