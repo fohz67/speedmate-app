@@ -1,5 +1,5 @@
 import React from 'react';
-import {I18nextProvider, useTranslation} from 'react-i18next';
+import {useTranslation} from 'react-i18next';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import MyCustomDropdownList from '../custom/MyCustomDropdownList';
 import MyCustomSeparator from '../custom/MyCustomSeparator';
@@ -8,7 +8,6 @@ import MyCustomSwitch from '../custom/MyCustomSwitch';
 import MyCustomTitle from '../custom/MyCustomTitle';
 import useSettings from '../hooks/useSettings';
 import {useConsts} from "../translations/consts";
-import i18n from '../translations/i18n';
 
 const SettingsScreen = () => {
     const {t} = useTranslation();
@@ -28,84 +27,82 @@ const SettingsScreen = () => {
     } = useSettings();
 
     return (
-        <I18nextProvider i18n={i18n}>
-            <ScrollView contentContainerStyle={styles.container}>
-                <View style={styles.section}>
-                    <MyCustomTitle label={t('speedometer')}/>
-                    <MyCustomDropdownList
-                        label={t('unit')}
-                        options={consts.units}
-                        selected={unit}
-                        func={updateUnit}
-                    />
-                    <MyCustomSeparator/>
-                    <MyCustomSlider
-                        label={t('maxSpeed')}
-                        value={maxSpeed}
-                        func={updateMaxSpeed}
-                        min={50}
-                        max={450}
-                        step={5}
-                    />
-                    <MyCustomSeparator/>
-                    <MyCustomSwitch
-                        label={t('showGPSAccuracy')}
-                        value={showGPSAccuracy}
-                        func={updateShowGPSAccuracy}
-                    />
-                    <MyCustomSeparator/>
-                    <MyCustomSwitch
-                        label={t('smoothNeedleAnimation')}
-                        value={smoothNeedleAnimation}
-                        func={updateSmoothNeedleAnimation}
-                    />
-                    <MyCustomSeparator/>
-                    <MyCustomDropdownList
-                        label={t('temperatureUnit')}
-                        options={consts.temperatureUnits}
-                        selected={temperatureUnit}
-                        func={updateTemperatureUnit}
-                    />
-                    <MyCustomSeparator/>
-                    <MyCustomSwitch
-                        label={t('autoStartTrip')}
-                        value={autoStartTrip}
-                        func={updateAutoStartTrip}
-                    />
-                    <MyCustomSeparator/>
-                    <MyCustomDropdownList
-                        label={t('speedometerSide')}
-                        options={consts.speedometerSides}
-                        selected={speedometerSide}
-                        func={updateSpeedometerSide}
-                    />
-                </View>
+        <ScrollView contentContainerStyle={styles.container}>
+            <View style={styles.section}>
+                <MyCustomTitle label={t('speedometer')}/>
+                <MyCustomDropdownList
+                    label={t('unit')}
+                    options={consts.units}
+                    selected={unit}
+                    func={updateUnit}
+                />
+                <MyCustomSeparator/>
+                <MyCustomSlider
+                    label={t('maxSpeed')}
+                    value={maxSpeed}
+                    func={updateMaxSpeed}
+                    min={50}
+                    max={450}
+                    step={5}
+                />
+                <MyCustomSeparator/>
+                <MyCustomSwitch
+                    label={t('showGPSAccuracy')}
+                    value={showGPSAccuracy}
+                    func={updateShowGPSAccuracy}
+                />
+                <MyCustomSeparator/>
+                <MyCustomSwitch
+                    label={t('smoothNeedleAnimation')}
+                    value={smoothNeedleAnimation}
+                    func={updateSmoothNeedleAnimation}
+                />
+                <MyCustomSeparator/>
+                <MyCustomDropdownList
+                    label={t('temperatureUnit')}
+                    options={consts.temperatureUnits}
+                    selected={temperatureUnit}
+                    func={updateTemperatureUnit}
+                />
+                <MyCustomSeparator/>
+                <MyCustomSwitch
+                    label={t('autoStartTrip')}
+                    value={autoStartTrip}
+                    func={updateAutoStartTrip}
+                />
+                <MyCustomSeparator/>
+                <MyCustomDropdownList
+                    label={t('speedometerSide')}
+                    options={consts.speedometerSides}
+                    selected={speedometerSide}
+                    func={updateSpeedometerSide}
+                />
+            </View>
 
-                <View style={styles.section}>
-                    <MyCustomTitle label="Application"/>
-                    <MyCustomDropdownList
-                        label={t('orientationLock')}
-                        options={consts.orientationLocks}
-                        selected={orientationLock}
-                        func={updateOrientationLock}
-                    />
-                    <MyCustomSeparator/>
-                    <MyCustomDropdownList
-                        label={t('appAppearance')}
-                        options={consts.appAppearances}
-                        selected={appAppearance}
-                        func={updateAppAppearance}
-                    />
-                    <MyCustomSeparator/>
-                    <MyCustomDropdownList
-                        label={t('language')}
-                        options={consts.languages}
-                        selected={language}
-                        func={updateLanguage}
-                    />
-                </View>
-            </ScrollView>
-        </I18nextProvider>
+            <View style={styles.section}>
+                <MyCustomTitle label="Application"/>
+                <MyCustomDropdownList
+                    label={t('orientationLock')}
+                    options={consts.orientationLocks}
+                    selected={orientationLock}
+                    func={updateOrientationLock}
+                />
+                <MyCustomSeparator/>
+                <MyCustomDropdownList
+                    label={t('appAppearance')}
+                    options={consts.appAppearances}
+                    selected={appAppearance}
+                    func={updateAppAppearance}
+                />
+                <MyCustomSeparator/>
+                <MyCustomDropdownList
+                    label={t('language')}
+                    options={consts.languages}
+                    selected={language}
+                    func={updateLanguage}
+                />
+            </View>
+        </ScrollView>
     );
 };
 
