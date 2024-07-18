@@ -7,11 +7,12 @@ import MyCustomSlider from '../custom/MyCustomSlider';
 import MyCustomSwitch from '../custom/MyCustomSwitch';
 import MyCustomTitle from '../custom/MyCustomTitle';
 import useSettings from '../hooks/useSettings';
-import consts from '../strings/consts';
+import {useConsts} from "../translations/consts";
 import i18n from '../translations/i18n';
 
 const SettingsScreen = () => {
     const {t} = useTranslation();
+    const consts = useConsts();
 
     const {
         unit, updateUnit,

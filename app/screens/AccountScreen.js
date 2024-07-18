@@ -8,11 +8,12 @@ import MyCustomSlider from '../custom/MyCustomSlider';
 import MyCustomTitle from '../custom/MyCustomTitle';
 import useUserData from '../hooks/useAccount';
 import useStatistics from '../hooks/useStatistics';
-import consts from '../strings/consts';
+import {useConsts} from "../translations/consts";
 import i18n from '../translations/i18n';
 
 const AccountScreen = () => {
     const {t} = useTranslation();
+    const consts = useConsts();
 
     const {
         profileImage, updateImage,

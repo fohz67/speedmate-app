@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect, useState} from 'react';
-import consts from '../strings/consts';
+import {languages} from '../translations/consts';
 import i18n from '../translations/i18n'
 import saveItem from './useDeviceStorage';
 
@@ -111,7 +111,7 @@ const useSettings = () => {
         if (value !== null) {
             setLanguage(value);
             await saveItem('language', value);
-            i18n.changeLanguage(consts.languagesTypes[value]);
+            i18n.changeLanguage(languages[value]);
         }
     };
 
