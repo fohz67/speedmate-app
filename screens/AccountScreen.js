@@ -1,9 +1,12 @@
 import React from 'react';
-import {Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import useUserData from '../hooks/useAccount';
 import useStatistics from '../hooks/useStatistics';
 import MyCustomSlider from "../custom/MyCustomSlider";
-import MyCustomButtonsList from "../custom/MyCustomButtonsList";
+import MyCustomTitle from "../custom/MyCustomTitle";
+import MyCustomBox from "../custom/MyCustomBox";
+import MyCustomInput from "../custom/MyCustomInput";
+import MyCustomDropdownList from "../custom/MyCustomDropdownList";
 
 const vehicleTypes = ['Car', 'Motorbike', 'Electric Scooter', 'Scooter', 'Bike'];
 
@@ -21,10 +24,6 @@ const AccountScreen = () => {
 
     const {kilometers, timeSpent} = useStatistics();
 
-    const handleChange = (updateFunc) => (value) => {
-        updateFunc(value);
-    };
-
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <TouchableOpacity onPress={setImage}>
@@ -32,73 +31,65 @@ const AccountScreen = () => {
             </TouchableOpacity>
 
             <View style={styles.section}>
-                <Text style={styles.heading}>You</Text>
-                <TextInput
-                    style={styles.input}
+                <MyCustomTitle label="You"/>
+                <MyCustomInput
                     value={firstName}
-                    onChangeText={handleChange(setFirstName)}
+                    func={setFirstName}
                     placeholder="First Name"
-                    placeholderTextColor="#c7c7c7"
                 />
-                <TextInput
-                    style={styles.input}
+                <MyCustomInput
                     value={lastName}
-                    onChangeText={handleChange(setLastName)}
+                    func={setLastName}
                     placeholder="Last Name"
-                    placeholderTextColor="#c7c7c7"
-                />
-                <TextInput
-                    style={styles.input}
-                    value={nickname}
-                    onChangeText={handleChange(setNickname)}
-                    placeholder="Nickname"
-                    placeholderTextColor="#c7c7c7"
                 />
                 <MyCustomSlider
                     label="Age"
                     value={age}
-                    onValueChange={handleChange(setAge)}
-                    min={0}
+                    func={setAge}
+                    min={1}
                     max={100}
                     step={1}
                 />
+                <MyCustomInput
+                    value={nickname}
+                    func={setNickname}
+                    placeholder="Nickname"
+                />
             </View>
 
             <View style={styles.section}>
-                <Text style={styles.heading}>Vehicle</Text>
-                <MyCustomButtonsList
+                <MyCustomTitle label="Vehicle"/>
+                <MyCustomDropdownList
                     label="Type"
                     options={vehicleTypes}
-                    selectedValue={vehicleType}
-                    onSelect={handleChange(setVehicleType)}
+                    selected={vehicleType}
+                    func={setVehicleType}
                 />
-                <TextInput
-                    style={styles.input}
+                <MyCustomInput
                     value={vehicle}
-                    onChangeText={handleChange(setVehicle)}
+                    onChangeText={setVehicle}
                     placeholder="Vehicle"
-                    placeholderTextColor="#c7c7c7"
                 />
-                <TextInput
-                    style={styles.input}
+                <MyCustomInput
                     value={model}
-                    onChangeText={handleChange(setModel)}
+                    onChangeText={setModel}
                     placeholder="Model"
-                    placeholderTextColor="#c7c7c7"
                 />
             </View>
 
             <View style={styles.section}>
-                <Text style={styles.heading}>Statistics</Text>
+                <MyCustomTitle label="Statistics"/>
                 <View style={styles.statsContainer}>
-                    <View style={styles.statBox}>
-                        <Text style={styles.statLabel}>Odometer</Text>
-                        <Text style={styles.statValue}>{kilometers} km</Text>
-                    </View>
-                    <View style={styles.statBox}>
-                        <Text style={styles.statLabel}>Time Spent</Text>
-                        <Text style={styles.statValue}>{timeSpent} hours</Text>
-                    </View>
+                    <MyCustomBox
+                        label="Odometer"
+                        value={kilometers}
+                        unit="km"
+                    />
+                    <MyCustomBox
+                        label="Time Spent"
+                        value={timeSpent}
+                        unit="hours"
+                    />
                 </View>
             </View>
         </ScrollView>
@@ -111,56 +102,15 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         padding: 20,
     },
-    element: {
-        fontSize: 16,
-        fontWeight: 'semibold',
-        marginTop: 10,
-    },
-    heading: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        marginBottom: 10,
-    },
-    input: {
-        backgroundColor: 'white',
-        borderRadius: 10,
-        marginBottom: 10,
-        padding: 15,
-        shadowColor: 'black',
-        shadowOpacity: 0.03,
-        shadowRadius: 15,
-        width: '100%',
-    },
     profileImage: {
         alignSelf: 'center',
         borderRadius: 50,
         height: 100,
-        marginBottom: 20,
-        marginTop: 20,
+        marginTop: 15,
         width: 100,
     },
     section: {
-        marginBottom: 20,
         width: '100%',
-    },
-    statBox: {
-        alignItems: 'center',
-        backgroundColor: 'white',
-        borderRadius: 15,
-        marginBottom: 10,
-        padding: 20,
-        shadowColor: 'black',
-        shadowOpacity: 0.03,
-        shadowRadius: 15,
-        width: '48%',
-    },
-    statLabel: {
-        fontSize: 14,
-        marginBottom: 5,
-    },
-    statValue: {
-        fontSize: 24,
-        fontWeight: 'bold',
     },
     statsContainer: {
         flexDirection: 'row',

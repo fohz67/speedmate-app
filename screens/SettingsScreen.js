@@ -1,7 +1,8 @@
 import React from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, View} from 'react-native';
 import useSettings from '../hooks/useSettings';
 import MyCustomButtonsList from "../custom/MyCustomButtonsList";
+import MyCustomTitle from "../custom/MyCustomTitle";
 
 const units = ['Km/h', 'MPH', 'Kn'];
 
@@ -19,19 +20,15 @@ const SettingsScreen = () => {
         language, setLanguage,
     } = useSettings();
 
-    const handleChange = (updateFunc) => (value) => {
-        updateFunc(value);
-    };
-
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <View style={styles.section}>
-                <Text style={styles.heading}>Speedometer</Text>
-                <Text style={styles.element}>Unit</Text>
+                <MyCustomTitle label="Speedometer"/>
                 <MyCustomButtonsList
+                    label="Unit"
                     options={units}
-                    selectedValue={unit}
-                    onSelect={handleChange(setUnit())}
+                    selected={unit}
+                    func={setUnit}
                 />
             </View>
         </ScrollView>
@@ -47,25 +44,8 @@ const styles = StyleSheet.create({
     element: {
         fontSize: 16,
         fontWeight: 'semibold',
-        marginTop: 10,
-    },
-    heading: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        marginBottom: 10,
-    },
-    input: {
-        backgroundColor: 'white',
-        borderRadius: 10,
-        marginBottom: 10,
-        padding: 15,
-        shadowColor: 'black',
-        shadowOpacity: 0.03,
-        shadowRadius: 15,
-        width: '100%',
     },
     section: {
-        marginBottom: 20,
         width: '100%',
     }
 });
