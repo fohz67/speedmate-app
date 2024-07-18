@@ -3,8 +3,11 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import useSettings from '../hooks/useSettings';
 import MyCustomButtonsList from "../custom/MyCustomButtonsList";
 import MyCustomTitle from "../custom/MyCustomTitle";
+import MyCustomSlider from "../custom/MyCustomSlider";
+import MyCustomSwitch from "../custom/MyCustomSwitch";
 
 const units = ['Km/h', 'MPH', 'Kn'];
+const orientationLocks = ['Auto', 'Vertical', 'Horizontal'];
 
 const SettingsScreen = () => {
     const {
@@ -29,6 +32,25 @@ const SettingsScreen = () => {
                     options={units}
                     selected={unit}
                     func={setUnit}
+                />
+                <MyCustomSlider
+                    label="Max Speed"
+                    value={maxSpeed}
+                    func={setMaxSpeed}
+                    min={50}
+                    max={450}
+                    step={15}
+                />
+                <MyCustomButtonsList
+                    label="Orientation Lock"
+                    options={orientationLocks}
+                    selected={orientationLock}
+                    func={setOrientationLock}
+                />
+                <MyCustomSwitch
+                    label="Show GPS Accuracy"
+                    value={showGPSAccuracy}
+                    func={setShowGPSAccuracy}
                 />
             </View>
         </ScrollView>
