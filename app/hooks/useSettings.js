@@ -1,17 +1,20 @@
-import {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useEffect, useState} from 'react';
+import consts from '../strings/consts';
+import i18n from '../translations/i18n'
+import saveItem from './useDeviceStorage';
 
 const useSettings = () => {
-    const [unit, setUnit] = useState('Km/h');
+    const [unit, setUnit] = useState(0);
     const [maxSpeed, setMaxSpeed] = useState(100);
-    const [orientationLock, setOrientationLock] = useState('Automatic');
+    const [orientationLock, setOrientationLock] = useState(0);
     const [showGPSAccuracy, setShowGPSAccuracy] = useState(false);
     const [smoothNeedleAnimation, setSmoothNeedleAnimation] = useState(false);
-    const [temperatureUnit, setTemperatureUnit] = useState('C');
+    const [temperatureUnit, setTemperatureUnit] = useState(0);
     const [autoStartTrip, setAutoStartTrip] = useState(false);
-    const [appAppearance, setAppAppearance] = useState('Automatic');
-    const [speedometerSide, setSpeedometerSide] = useState('Right');
-    const [language, setLanguage] = useState('English');
+    const [appAppearance, setAppAppearance] = useState(0);
+    const [speedometerSide, setSpeedometerSide] = useState(0);
+    const [language, setLanguage] = useState(0);
 
     useEffect(() => {
         const loadSettings = async () => {
@@ -26,38 +29,32 @@ const useSettings = () => {
             const storedSpeedometerSide = await AsyncStorage.getItem('speedometerSide');
             const storedLanguage = await AsyncStorage.getItem('language');
 
-            setUnit(storedUnit || 'Km/h');
+            setUnit(Number(storedUnit) || 0);
             setMaxSpeed(Number(storedMaxSpeed) || 100);
-            setOrientationLock(storedOrientationLock || 'Automatic');
+            setOrientationLock(Number(storedOrientationLock) || 0);
             setShowGPSAccuracy(storedShowGPSAccuracy === 'true');
             setSmoothNeedleAnimation(storedSmoothNeedleAnimation === 'true');
-            setTemperatureUnit(storedTemperatureUnit || 'C');
+            setTemperatureUnit(Number(storedTemperatureUnit) || 0);
             setAutoStartTrip(storedAutoStartTrip === 'true');
-            setAppAppearance(storedAppAppearance || 'Automatic');
-            setSpeedometerSide(storedSpeedometerSide || 'Right');
-            setLanguage(storedLanguage || 'English');
+            setAppAppearance(Number(storedAppAppearance) || 0);
+            setSpeedometerSide(Number(storedSpeedometerSide) || 0);
+            setLanguage(Number(storedLanguage) || 0);
         };
 
         loadSettings();
     }, []);
 
-    const saveItem = async (key, value) => {
-        if (value !== null) {
-            await AsyncStorage.setItem(key, value);
-        }
-    };
-
     const updateUnit = async (value) => {
         if (value !== null) {
             setUnit(value);
-            await saveItem('unit', String(value));
+            await saveItem('unit', value);
         }
     };
 
     const updateMaxSpeed = async (value) => {
         if (value !== null) {
             setMaxSpeed(value);
-            await saveItem('maxSpeed', String(value));
+            await saveItem('maxSpeed', value);
         }
     };
 
@@ -71,14 +68,14 @@ const useSettings = () => {
     const updateShowGPSAccuracy = async (value) => {
         if (value !== null) {
             setShowGPSAccuracy(value);
-            await saveItem('showGPSAccuracy', String(value));
+            await saveItem('showGPSAccuracy', value);
         }
     };
 
     const updateSmoothNeedleAnimation = async (value) => {
         if (value !== null) {
             setSmoothNeedleAnimation(value);
-            await saveItem('smoothNeedleAnimation', String(value));
+            await saveItem('smoothNeedleAnimation', value);
         }
     };
 
@@ -92,7 +89,7 @@ const useSettings = () => {
     const updateAutoStartTrip = async (value) => {
         if (value !== null) {
             setAutoStartTrip(value);
-            await saveItem('autoStartTrip', String(value));
+            await saveItem('autoStartTrip', value);
         }
     };
 
@@ -114,30 +111,31 @@ const useSettings = () => {
         if (value !== null) {
             setLanguage(value);
             await saveItem('language', value);
+            i18n.changeLanguage(consts.languagesTypes[value]);
         }
     };
 
     return {
         unit,
-        setUnit: updateUnit,
+        updateUnit,
         maxSpeed,
-        setMaxSpeed: updateMaxSpeed,
+        updateMaxSpeed,
         orientationLock,
-        setOrientationLock: updateOrientationLock,
+        updateOrientationLock,
         showGPSAccuracy,
-        setShowGPSAccuracy: updateShowGPSAccuracy,
+        updateShowGPSAccuracy,
         smoothNeedleAnimation,
-        setSmoothNeedleAnimation: updateSmoothNeedleAnimation,
+        updateSmoothNeedleAnimation,
         temperatureUnit,
-        setTemperatureUnit: updateTemperatureUnit,
+        updateTemperatureUnit,
         autoStartTrip,
-        setAutoStartTrip: updateAutoStartTrip,
+        updateAutoStartTrip,
         appAppearance,
-        setAppAppearance: updateAppAppearance,
+        updateAppAppearance,
         speedometerSide,
-        setSpeedometerSide: updateSpeedometerSide,
+        updateSpeedometerSide,
         language,
-        setLanguage: updateLanguage,
+        updateLanguage,
     };
 };
 

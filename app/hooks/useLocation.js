@@ -1,5 +1,5 @@
-import {useEffect, useState} from 'react';
 import * as Location from 'expo-location';
+import {useEffect, useState} from 'react';
 
 const useLocation = () => {
     const [speed, setSpeed] = useState(0);
@@ -8,7 +8,7 @@ const useLocation = () => {
         (async () => {
             let {status} = await Location.requestForegroundPermissionsAsync();
             if (status !== 'granted') {
-                console.log('Permission to access location was denied');
+                alert('Permission to access useLocation was denied');
                 return;
             }
 

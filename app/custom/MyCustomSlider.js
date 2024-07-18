@@ -1,6 +1,6 @@
+import Slider from '@react-native-community/slider';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import Slider from '@react-native-community/slider';
 
 const MyCustomSlider = ({label, value, func, min, max, step}) => {
     return (

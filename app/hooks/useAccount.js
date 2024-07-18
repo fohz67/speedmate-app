@@ -1,9 +1,10 @@
-import {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as ImagePicker from 'expo-image-picker';
+import {useEffect, useState} from 'react';
+import saveItem from './useDeviceStorage';
 
 const useAccount = () => {
-    const [profileImage, setProfileImage] = useState(require('../assets/default-picture.png'));
+    const [profileImage, setProfileImage] = useState(require('../../assets/default-picture.png'));
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [nickname, setNickname] = useState('');
@@ -37,12 +38,6 @@ const useAccount = () => {
 
         loadUserData();
     }, []);
-
-    const saveItem = async (key, value) => {
-        if (value !== null) {
-            await AsyncStorage.setItem(key, value);
-        }
-    };
 
     const updateProfileImage = async (value) => {
         if (value !== null) {
@@ -94,7 +89,7 @@ const useAccount = () => {
     const updateAge = async (value) => {
         if (value !== null) {
             setAge(value);
-            await saveItem('age', String(value));
+            await saveItem('age', value);
         }
     };
 
@@ -121,21 +116,21 @@ const useAccount = () => {
 
     return {
         profileImage,
-        setImage: updateImage,
+        updateImage,
         firstName,
-        setFirstName: updateFirstName,
+        updateFirstName,
         lastName,
-        setLastName: updateLastName,
+        updateLastName,
         nickname,
-        setNickname: updateNickname,
+        updateNickname,
         age,
-        setAge: updateAge,
+        updateAge,
         vehicleType,
-        setVehicleType: updateVehicleType,
+        updateVehicleType,
         vehicle,
-        setVehicle: updateVehicle,
+        updateVehicle,
         model,
-        setModel: updateModel,
+        updateModel,
     };
 };
 

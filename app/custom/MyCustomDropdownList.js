@@ -3,10 +3,14 @@ import {StyleSheet, Text, View} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 
 const MyCustomDropdownList = ({label, options, selected, func}) => {
-    const pickerItems = options.map(option => ({
+    const pickerItems = options.map((option, index) => ({
         label: option,
-        value: option
+        value: index
     }));
+
+    const getOptionByIndex = (index) => {
+        return options[index];
+    };
 
     return (
         <View style={styles.container}>

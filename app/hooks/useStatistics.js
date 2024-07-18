@@ -1,5 +1,6 @@
-import {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useEffect, useState} from 'react';
+import saveItem from './useDeviceStorage';
 
 const useStatistics = () => {
     const [kilometers, setKilometers] = useState(0);
@@ -17,18 +18,18 @@ const useStatistics = () => {
         loadStatistics();
     }, []);
 
-    const saveItem = async (key, value) => {
-        await AsyncStorage.setItem(key, value.toString());
-    };
-
     const updateKilometers = async (km) => {
-        setKilometers(km);
-        await saveItem('kilometers', km);
+        if (value !== null) {
+            setKilometers(km);
+            await saveItem('kilometers', km);
+        }
     };
 
     const updateTimeSpent = async (time) => {
-        setTimeSpent(time);
-        await saveItem('timeSpent', time);
+        if (value !== null) {
+            setTimeSpent(time);
+            await saveItem('timeSpent', time);
+        }
     };
 
     return {
