@@ -2,7 +2,7 @@ import {useEffect, useState} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as ImagePicker from 'expo-image-picker';
 
-const useUserData = () => {
+const useAccount = () => {
     const [profileImage, setProfileImage] = useState(require('../assets/default-picture.png'));
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -18,7 +18,7 @@ const useUserData = () => {
             const storedFirstName = await AsyncStorage.getItem('firstName');
             const storedLastName = await AsyncStorage.getItem('lastName');
             const storedNickname = await AsyncStorage.getItem('nickname');
-            const storedAge = Number(await AsyncStorage.getItem('age'));
+            const storedAge = await AsyncStorage.getItem('age');
             const storedVehicleType = await AsyncStorage.getItem('vehicleType');
             const storedVehicle = await AsyncStorage.getItem('vehicle');
             const storedModel = await AsyncStorage.getItem('model');
@@ -29,7 +29,7 @@ const useUserData = () => {
             setFirstName(storedFirstName || '');
             setLastName(storedLastName || '');
             setNickname(storedNickname || '');
-            setAge(storedAge || 0);
+            setAge(Number(storedAge) || 0);
             setVehicleType(storedVehicleType || '');
             setVehicle(storedVehicle || '');
             setModel(storedModel || '');
@@ -44,14 +44,14 @@ const useUserData = () => {
         }
     };
 
-    const updateProfileImage = async (imageUri) => {
-        if (imageUri) {
-            setProfileImage({uri: imageUri});
-            await saveItem('profileImage', imageUri);
+    const updateProfileImage = async (value) => {
+        if (value !== null) {
+            setProfileImage({uri: value});
+            await saveItem('profileImage', value);
         }
     };
 
-    const pickImage = async () => {
+    const updateImage = async () => {
         const {status} = await ImagePicker.requestMediaLibraryPermissionsAsync();
         if (status !== 'granted') {
             alert('Sorry, we need camera roll permissions to make this work!');
@@ -65,64 +65,78 @@ const useUserData = () => {
             quality: 1,
         });
 
-        if (!result.cancelled) {
+        if (!result.cancelled && result.uri) {
             await updateProfileImage(result.uri);
         }
     };
 
-    const updateFirstName = async (name) => {
-        setFirstName(name);
-        await saveItem('firstName', name);
+    const updateFirstName = async (value) => {
+        if (value !== null) {
+            setFirstName(value);
+            await saveItem('firstName', value);
+        }
     };
 
-    const updateLastName = async (name) => {
-        setLastName(name);
-        await saveItem('lastName', name);
+    const updateLastName = async (value) => {
+        if (value !== null) {
+            setLastName(value);
+            await saveItem('lastName', value);
+        }
     };
 
-    const updateNickname = async (name) => {
-        setNickname(name);
-        await saveItem('nickname', name);
+    const updateNickname = async (value) => {
+        if (value !== null) {
+            setNickname(value);
+            await saveItem('nickname', value);
+        }
     };
 
-    const updateAge = async (name) => {
-        setAge(name);
-        await saveItem('age', String(name));
+    const updateAge = async (value) => {
+        if (value !== null) {
+            setAge(value);
+            await saveItem('age', String(value));
+        }
     };
 
-    const updateVehicleType = async (name) => {
-        setVehicleType(name);
-        await saveItem('vehicleType', name);
+    const updateVehicleType = async (value) => {
+        if (value !== null) {
+            setVehicleType(value);
+            await saveItem('vehicleType', value);
+        }
     };
 
-    const updateVehicle = async (vehicle) => {
-        setVehicle(vehicle);
-        await saveItem('vehicle', vehicle);
+    const updateVehicle = async (value) => {
+        if (value !== null) {
+            setVehicle(value);
+            await saveItem('vehicle', value);
+        }
     };
 
-    const updateModel = async (model) => {
-        setModel(model);
-        await saveItem('model', model);
+    const updateModel = async (value) => {
+        if (value !== null) {
+            setModel(value);
+            await saveItem('model', value);
+        }
     };
 
     return {
         profileImage,
-        pickImage,
+        setImage: updateImage,
         firstName,
-        updateFirstName,
+        setFirstName: updateFirstName,
         lastName,
-        updateLastName,
+        setLastName: updateLastName,
         nickname,
-        updateNickname,
+        setNickname: updateNickname,
         age,
-        updateAge,
+        setAge: updateAge,
         vehicleType,
-        updateVehicleType,
+        setVehicleType: updateVehicleType,
         vehicle,
-        updateVehicle,
+        setVehicle: updateVehicle,
         model,
-        updateModel,
+        setModel: updateModel,
     };
 };
 
-export default useUserData;
+export default useAccount;

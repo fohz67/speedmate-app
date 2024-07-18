@@ -1,21 +1,22 @@
 import React from 'react';
 import {Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
-import useUserData from '../hooks/useUserData';
+import useUserData from '../hooks/useAccount';
 import useStatistics from '../hooks/useStatistics';
-import Slider from '@react-native-community/slider';
+import MyCustomSlider from "../custom/MyCustomSlider";
+import MyCustomButtonsList from "../custom/MyCustomButtonsList";
 
 const vehicleTypes = ['Car', 'Motorbike', 'Electric Scooter', 'Scooter', 'Bike'];
 
 const AccountScreen = () => {
     const {
-        profileImage, pickImage,
-        firstName, updateFirstName,
-        lastName, updateLastName,
-        nickname, updateNickname,
-        age, updateAge,
-        vehicleType, updateVehicleType,
-        vehicle, updateVehicle,
-        model, updateModel
+        profileImage, setImage,
+        firstName, setFirstName,
+        lastName, setLastName,
+        nickname, setNickname,
+        age, setAge,
+        vehicleType, setVehicleType,
+        vehicle, setVehicle,
+        model, setModel
     } = useUserData();
 
     const {kilometers, timeSpent} = useStatistics();
@@ -26,7 +27,7 @@ const AccountScreen = () => {
 
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            <TouchableOpacity onPress={pickImage}>
+            <TouchableOpacity onPress={setImage}>
                 <Image source={profileImage} style={styles.profileImage}/>
             </TouchableOpacity>
 
@@ -35,69 +36,53 @@ const AccountScreen = () => {
                 <TextInput
                     style={styles.input}
                     value={firstName}
-                    onChangeText={handleChange(updateFirstName)}
+                    onChangeText={handleChange(setFirstName)}
                     placeholder="First Name"
                     placeholderTextColor="#c7c7c7"
                 />
                 <TextInput
                     style={styles.input}
                     value={lastName}
-                    onChangeText={handleChange(updateLastName)}
+                    onChangeText={handleChange(setLastName)}
                     placeholder="Last Name"
                     placeholderTextColor="#c7c7c7"
                 />
                 <TextInput
                     style={styles.input}
                     value={nickname}
-                    onChangeText={handleChange(updateNickname)}
+                    onChangeText={handleChange(setNickname)}
                     placeholder="Nickname"
                     placeholderTextColor="#c7c7c7"
                 />
-                <Text style={styles.subHeading}>Age</Text>
-                <View style={styles.ageSliderContainer}>
-                    <Text style={styles.label}>{age}</Text>
-                    <Slider
-                        style={styles.slider}
-                        minimumValue={0}
-                        maximumValue={100}
-                        step={1}
-                        value={age}
-                        onValueChange={handleChange(updateAge)}
-                    />
-                </View>
+                <MyCustomSlider
+                    label="Age"
+                    value={age}
+                    onValueChange={handleChange(setAge)}
+                    min={0}
+                    max={100}
+                    step={1}
+                />
             </View>
 
             <View style={styles.section}>
                 <Text style={styles.heading}>Vehicle</Text>
-                <Text style={styles.subHeading}>Type</Text>
-                <View style={styles.vehicleTypeContainer}>
-                    {vehicleTypes.map((type) => (
-                        <TouchableOpacity
-                            key={type}
-                            style={[
-                                styles.vehicleTypeButton,
-                                vehicleType === type && styles.selectedVehicleTypeButton
-                            ]}
-                            onPress={() => handleChange(updateVehicleType)(type)}
-                        >
-                            <Text style={[
-                                styles.vehicleTypeButtonText,
-                                vehicleType === type ? styles.vehicleTypeButtonTextSelected : styles.vehicleTypeButtonTextUnselected
-                            ]}>{type}</Text>
-                        </TouchableOpacity>
-                    ))}
-                </View>
+                <MyCustomButtonsList
+                    label="Type"
+                    options={vehicleTypes}
+                    selectedValue={vehicleType}
+                    onSelect={handleChange(setVehicleType)}
+                />
                 <TextInput
                     style={styles.input}
                     value={vehicle}
-                    onChangeText={handleChange(updateVehicle)}
+                    onChangeText={handleChange(setVehicle)}
                     placeholder="Vehicle"
                     placeholderTextColor="#c7c7c7"
                 />
                 <TextInput
                     style={styles.input}
                     value={model}
-                    onChangeText={handleChange(updateModel)}
+                    onChangeText={handleChange(setModel)}
                     placeholder="Model"
                     placeholderTextColor="#c7c7c7"
                 />
@@ -121,17 +106,15 @@ const AccountScreen = () => {
 };
 
 const styles = StyleSheet.create({
-    ageSliderContainer: {
-        alignItems: 'center',
-        display: 'flex',
-        flexDirection: 'row',
-        gap: 10,
-        marginHorizontal: 5,
-    },
     container: {
         alignItems: 'center',
         flexGrow: 1,
         padding: 20,
+    },
+    element: {
+        fontSize: 16,
+        fontWeight: 'semibold',
+        marginTop: 10,
     },
     heading: {
         fontSize: 22,
@@ -144,13 +127,9 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         padding: 15,
         shadowColor: 'black',
-        shadowOffset: 0,
         shadowOpacity: 0.03,
         shadowRadius: 15,
         width: '100%',
-    },
-    label: {
-        fontSize: 16,
     },
     profileImage: {
         alignSelf: 'center',
@@ -164,12 +143,6 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         width: '100%',
     },
-    selectedVehicleTypeButton: {
-        backgroundColor: 'black',
-    },
-    slider: {
-        width: '90%',
-    },
     statBox: {
         alignItems: 'center',
         backgroundColor: 'white',
@@ -177,7 +150,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         padding: 20,
         shadowColor: 'black',
-        shadowOffset: 0,
         shadowOpacity: 0.03,
         shadowRadius: 15,
         width: '48%',
@@ -194,38 +166,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
-    },
-    subHeading: {
-        fontSize: 16,
-        fontWeight: 'semibold',
-        marginTop: 10,
-    },
-    vehicleTypeButton: {
-        backgroundColor: 'white',
-        borderRadius: 10,
-        marginBottom: 10,
-        marginRight: 10,
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        shadowColor: 'black',
-        shadowOffset: 0,
-        shadowOpacity: 0.03,
-        shadowRadius: 15,
-    },
-    vehicleTypeButtonText: {
-        fontSize: 16,
-    },
-    vehicleTypeButtonTextSelected: {
-        color: 'white',
-    },
-    vehicleTypeButtonTextUnselected: {
-        color: 'black',
-    },
-    vehicleTypeContainer: {
-        marginTop: 10,
-        flexDirection: 'row',
-        flexWrap: 'wrap',
-        marginBottom: 10,
     },
 });
 
