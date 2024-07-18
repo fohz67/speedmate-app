@@ -9,9 +9,9 @@ const MyCustomDropdownList = ({label, options, selected, func}) => {
     }));
 
     return (
-        <View style={styles.view}>
+        <View style={styles.container}>
             <Text style={styles.label}>{label}</Text>
-            <View style={styles.container}>
+            <View style={styles.picker}>
                 <RNPickerSelect
                     onValueChange={(value) => func(value)}
                     items={pickerItems}
@@ -27,7 +27,11 @@ const MyCustomDropdownList = ({label, options, selected, func}) => {
 
 const styles = StyleSheet.create({
     container: {
-        position: 'relative',
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginLeft: 5,
+        marginTop: 10,
     },
     icon: {
         position: 'absolute',
@@ -38,10 +42,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginRight: 10,
     },
-    view: {
-        alignItems: 'center',
-        flexDirection: 'row',
-        marginTop: 10,
+    picker: {
+        position: 'relative',
     }
 });
 

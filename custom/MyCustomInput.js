@@ -3,7 +3,7 @@ import {StyleSheet, TextInput, View} from 'react-native';
 
 const MyCustomInput = ({value, func, placeholder}) => {
     return (
-        <View style={styles.view}>
+        <View style={styles.container}>
             <TextInput
                 style={styles.input}
                 value={value}
@@ -16,6 +16,9 @@ const MyCustomInput = ({value, func, placeholder}) => {
 };
 
 const styles = StyleSheet.create({
+    container: {
+        marginTop: 10,
+    },
     input: {
         backgroundColor: 'white',
         borderRadius: 10,
@@ -25,9 +28,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.03,
         shadowRadius: 15,
         width: '100%',
-    },
-    view: {
-        marginTop: 10,
     },
 });
 

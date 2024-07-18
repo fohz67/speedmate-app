@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginHorizontal: 5,
-        marginVertical: 10,
+        marginLeft: 5,
+        marginTop: 10,
     },
     label: {
         fontSize: 16,

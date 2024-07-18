@@ -4,7 +4,7 @@ import Slider from '@react-native-community/slider';
 
 const MyCustomSlider = ({label, value, func, min, max, step}) => {
     return (
-        <View style={styles.view}>
+        <View style={styles.container}>
             <Text style={styles.text}>{label}: {value}</Text>
             <Slider
                 style={styles.slider}
@@ -26,10 +26,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginRight: 10,
     },
-    view: {
+    container: {
         alignItems: 'center',
         flexDirection: 'row',
-        marginHorizontal: 5,
+        marginLeft: 5,
         marginTop: 10,
     },
 });
