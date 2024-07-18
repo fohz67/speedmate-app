@@ -1,6 +1,7 @@
 import Slider from '@react-native-community/slider';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {useTheme} from "../ThemeContext";
 
 const MyCustomSlider = ({label, value, func, min, max, step}) => {
     const theme = useTheme();

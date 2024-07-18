@@ -9,6 +9,7 @@ import MyCustomTitle from '../custom/MyCustomTitle';
 import useUserData from '../hooks/useAccount';
 import {useConsts} from "../hooks/useConsts";
 import useStatistics from '../hooks/useStatistics';
+import {useTheme} from "../ThemeContext";
 
 const AccountScreen = () => {
     const {t} = useTranslation();

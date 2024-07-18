@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
+import {useTheme} from "../ThemeContext";
 
 const MyCustomDropdownList = ({label, options, selected, func}) => {
     const theme = useTheme();

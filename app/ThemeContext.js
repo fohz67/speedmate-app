@@ -1,5 +1,5 @@
-import useSettings from 'hooks/useSettings';
 import React, {createContext, useContext, useEffect, useState} from 'react';
+import useSettings from './hooks/useSettings';
 
 const ThemeContext = createContext();
 

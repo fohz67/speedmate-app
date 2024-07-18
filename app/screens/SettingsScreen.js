@@ -8,6 +8,7 @@ import MyCustomSwitch from '../custom/MyCustomSwitch';
 import MyCustomTitle from '../custom/MyCustomTitle';
 import {useConsts} from "../hooks/useConsts";
 import useSettings from '../hooks/useSettings';
+import {useTheme} from "../ThemeContext";
 
 const SettingsScreen = () => {
     const {t} = useTranslation();

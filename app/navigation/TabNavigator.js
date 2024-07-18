@@ -7,6 +7,7 @@ import {useIcons} from '../hooks/useConsts';
 import AccountScreen from '../screens/AccountScreen';
 import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
+import {useTheme} from "../ThemeContext";
 
 const Tab = createBottomTabNavigator();
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Switch, Text, View} from 'react-native';
+import {useTheme} from "../ThemeContext";
 
 const MyCustomSwitch = ({label, value, func}) => {
     const theme = useTheme();

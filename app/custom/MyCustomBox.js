@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {useTheme} from "../ThemeContext";
 
 const MyCustomBox = ({label, value, unit}) => {
     const theme = useTheme();
