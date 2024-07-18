@@ -1,11 +1,8 @@
 import React from 'react';
 import {StyleSheet, Switch, Text, View} from 'react-native';
-import useSettings from "../hooks/useSettings";
-import useTheme from "../hooks/useTheme";
 
 const MyCustomSwitch = ({label, value, func}) => {
-    const {appAppearance} = useSettings();
-    const theme = useTheme(appAppearance);
+    const theme = useTheme();
 
     return (
         <View style={styles.container}>

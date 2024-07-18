@@ -111,7 +111,7 @@ const useSettings = () => {
         if (value !== null) {
             setLanguage(value);
             await saveItem('language', value);
-            i18n.changeLanguage(languages[value]);
+            await i18n.changeLanguage(languages[value]);
         }
     };
 

@@ -11,20 +11,23 @@ import SettingsScreen from '../screens/SettingsScreen';
 const Tab = createBottomTabNavigator();
 
 const getTabBarIcon = (route, focused, color, size) => {
-    const {t} = useTranslation();
     const icons = useIcons();
     const icon = focused ? icons[route.name].active : icons[route.name].inactive;
 
     return <Image source={icon} style={{width: size, height: size, tintColor: color}}/>;
 };
 
-const screenOptions = ({route}) => ({
-    tabBarIcon: ({focused, color, size}) => {
-        return getTabBarIcon(route, focused, color, size);
-    },
-    tabBarActiveTintColor: 'black',
-    tabBarInactiveTintColor: 'gray',
-});
+const screenOptions = ({route}) => {
+    const theme = useTheme();
+
+    return ({
+        tabBarIcon: ({focused, color, size}) => {
+            return getTabBarIcon(route, focused, color, size);
+        },
+        tabBarActiveTintColor: theme.selectedTab,
+        tabBarInactiveTintColor: theme.unselectedTab,
+    });
+}
 
 const TabNavigator = () => {
     const {t} = useTranslation();

@@ -1,11 +1,8 @@
 import React from 'react';
 import {StyleSheet, TextInput, View} from 'react-native';
-import useSettings from "../hooks/useSettings";
-import useTheme from "../hooks/useTheme";
 
 const MyCustomInput = ({value, func, placeholder}) => {
-    const {appAppearance} = useSettings();
-    const theme = useTheme(appAppearance);
+    const theme = useTheme();
 
     return (
         <View style={styles.container}>

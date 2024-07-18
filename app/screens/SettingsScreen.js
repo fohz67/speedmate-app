@@ -8,7 +8,6 @@ import MyCustomSwitch from '../custom/MyCustomSwitch';
 import MyCustomTitle from '../custom/MyCustomTitle';
 import {useConsts} from "../hooks/useConsts";
 import useSettings from '../hooks/useSettings';
-import useTheme from '../hooks/useTheme';
 
 const SettingsScreen = () => {
     const {t} = useTranslation();
@@ -27,7 +26,7 @@ const SettingsScreen = () => {
         language, updateLanguage,
     } = useSettings();
 
-    const theme = useTheme(appAppearance);
+    const theme = useTheme();
 
     return (
         <ScrollView contentContainerStyle={[styles.container, {backgroundColor: theme.background}]}>

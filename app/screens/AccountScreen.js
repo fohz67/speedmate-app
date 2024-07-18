@@ -8,9 +8,7 @@ import MyCustomSlider from '../custom/MyCustomSlider';
 import MyCustomTitle from '../custom/MyCustomTitle';
 import useUserData from '../hooks/useAccount';
 import {useConsts} from "../hooks/useConsts";
-import useSettings from "../hooks/useSettings";
 import useStatistics from '../hooks/useStatistics';
-import useTheme from "../hooks/useTheme";
 
 const AccountScreen = () => {
     const {t} = useTranslation();
@@ -32,8 +30,7 @@ const AccountScreen = () => {
         timeSpent
     } = useStatistics();
 
-    const {appAppearance} = useSettings();
-    const theme = useTheme(appAppearance);
+    const theme = useTheme();
 
     return (
         <ScrollView contentContainerStyle={[styles.container, {backgroundColor: theme.background}]}>
