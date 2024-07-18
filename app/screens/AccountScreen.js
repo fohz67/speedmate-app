@@ -7,8 +7,10 @@ import MyCustomInput from '../custom/MyCustomInput';
 import MyCustomSlider from '../custom/MyCustomSlider';
 import MyCustomTitle from '../custom/MyCustomTitle';
 import useUserData from '../hooks/useAccount';
+import {useConsts} from "../hooks/useConsts";
+import useSettings from "../hooks/useSettings";
 import useStatistics from '../hooks/useStatistics';
-import {useConsts} from "../translations/consts";
+import useTheme from "../hooks/useTheme";
 
 const AccountScreen = () => {
     const {t} = useTranslation();
@@ -25,10 +27,16 @@ const AccountScreen = () => {
         model, updateModel
     } = useUserData();
 
-    const {kilometers, timeSpent} = useStatistics();
+    const {
+        kilometers,
+        timeSpent
+    } = useStatistics();
+
+    const {appAppearance} = useSettings();
+    const theme = useTheme(appAppearance);
 
     return (
-        <ScrollView contentContainerStyle={styles.container}>
+        <ScrollView contentContainerStyle={[styles.container, {backgroundColor: theme.background}]}>
             <TouchableOpacity onPress={updateImage}>
                 <Image source={profileImage} style={styles.profileImage}/>
             </TouchableOpacity>

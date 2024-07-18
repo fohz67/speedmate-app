@@ -1,10 +1,15 @@
 import React from 'react';
 import {StyleSheet, Switch, Text, View} from 'react-native';
+import useSettings from "../hooks/useSettings";
+import useTheme from "../hooks/useTheme";
 
 const MyCustomSwitch = ({label, value, func}) => {
+    const {appAppearance} = useSettings();
+    const theme = useTheme(appAppearance);
+
     return (
         <View style={styles.container}>
-            <Text style={styles.label}>{label}</Text>
+            <Text style={[styles.text, {color: theme.text}]}>{label}</Text>
             <Switch
                 onValueChange={func}
                 value={value}
@@ -21,7 +26,7 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         marginTop: 10,
     },
-    label: {
+    text: {
         fontSize: 16,
     },
 });

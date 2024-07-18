@@ -1,11 +1,16 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import useSettings from "../hooks/useSettings";
+import useTheme from "../hooks/useTheme";
 
 const MyCustomBox = ({label, value, unit}) => {
+    const {appAppearance} = useSettings();
+    const theme = useTheme(appAppearance);
+
     return (
-        <View style={styles.box}>
-            <Text style={styles.label}>{label}</Text>
-            <Text style={styles.value}>{value}{unit ? unit + ' ' : ''}</Text>
+        <View style={[styles.box, {backgroundColor: theme.inputBackground}]}>
+            <Text style={[styles.label, {color: theme.text}]}>{label}</Text>
+            <Text style={[styles.value, {color: theme.text}]}>{value}{unit ? unit + ' ' : ''}</Text>
         </View>
     );
 };
@@ -13,7 +18,6 @@ const MyCustomBox = ({label, value, unit}) => {
 const styles = StyleSheet.create({
     box: {
         alignItems: 'center',
-        backgroundColor: 'white',
         borderRadius: 15,
         marginTop: 10,
         padding: 20,

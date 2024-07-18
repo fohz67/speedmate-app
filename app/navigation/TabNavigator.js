@@ -3,10 +3,10 @@ import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Image} from 'react-native';
+import {useIcons} from '../hooks/useConsts';
 import AccountScreen from '../screens/AccountScreen';
 import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import {useIcons} from '../translations/consts';
 
 const Tab = createBottomTabNavigator();
 

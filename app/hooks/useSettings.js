@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect, useState} from 'react';
-import {languages} from '../translations/consts';
 import i18n from '../translations/i18n'
+import {languages} from './useConsts';
 import saveItem from './useDeviceStorage';
 
 const useSettings = () => {

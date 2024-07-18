@@ -6,8 +6,9 @@ import MyCustomSeparator from '../custom/MyCustomSeparator';
 import MyCustomSlider from '../custom/MyCustomSlider';
 import MyCustomSwitch from '../custom/MyCustomSwitch';
 import MyCustomTitle from '../custom/MyCustomTitle';
+import {useConsts} from "../hooks/useConsts";
 import useSettings from '../hooks/useSettings';
-import {useConsts} from "../translations/consts";
+import useTheme from '../hooks/useTheme';
 
 const SettingsScreen = () => {
     const {t} = useTranslation();
@@ -26,8 +27,10 @@ const SettingsScreen = () => {
         language, updateLanguage,
     } = useSettings();
 
+    const theme = useTheme(appAppearance);
+
     return (
-        <ScrollView contentContainerStyle={styles.container}>
+        <ScrollView contentContainerStyle={[styles.container, {backgroundColor: theme.background}]}>
             <View style={styles.section}>
                 <MyCustomTitle label={t('speedometer')}/>
                 <MyCustomDropdownList
