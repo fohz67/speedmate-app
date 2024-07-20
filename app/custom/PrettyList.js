@@ -1,11 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
-import {useTheme} from "../ThemeContext";
+import theme from '../theme';
 
-const MyCustomDropdownList = ({label, options, selected, func}) => {
-    const theme = useTheme();
-
+const PrettyList = ({label, options, selected, func}) => {
     const pickerItems = options.map((option, index) => ({
         label: option,
         value: index
@@ -13,26 +11,38 @@ const MyCustomDropdownList = ({label, options, selected, func}) => {
 
     const pickerStyles = StyleSheet.create({
         inputAndroid: {
-            backgroundColor: theme.inputBackground,
+            backgroundColor: theme.default.input.background,
+            borderColor: theme.default.input.border,
             borderRadius: 10,
-            color: theme.text,
+            borderStyle: 'solid',
+            borderWidth: 1,
+            color: theme.default.input.text,
             fontSize: 16,
             paddingHorizontal: 15,
             paddingVertical: 10,
+            shadowColor: theme.default.app.shadow,
+            shadowOpacity: 0.5,
+            shadowRadius: 15,
         },
         inputIOS: {
-            backgroundColor: theme.inputBackground,
-            borderRadius: 10,
-            color: theme.text,
+            backgroundColor: theme.default.input.background,
+            borderColor: theme.default.input.border,
+            borderRadius: 12,
+            borderStyle: 'solid',
+            borderWidth: 1,
+            color: theme.default.input.text,
             fontSize: 16,
             paddingHorizontal: 15,
             paddingVertical: 10,
+            shadowColor: theme.default.app.shadow,
+            shadowOpacity: 0.5,
+            shadowRadius: 15,
         }
     });
 
     return (
         <View style={styles.container}>
-            <Text style={[styles.label, {color: theme.text}]}>{label}</Text>
+            <Text style={styles.label}>{label}</Text>
             <View style={styles.picker}>
                 <RNPickerSelect
                     onValueChange={(value) => func(value)}
@@ -61,7 +71,8 @@ const styles = StyleSheet.create({
         top: 10,
     },
     label: {
-        fontSize: 16,
+        color: theme.default.app.text,
+        fontSize: 17,
         marginRight: 10,
     },
     picker: {
@@ -69,4 +80,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default MyCustomDropdownList;
+export default PrettyList;

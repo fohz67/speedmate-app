@@ -3,42 +3,73 @@ import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Image} from 'react-native';
-import {useIcons} from '../hooks/useConsts';
+import {navigation} from '../hooks/useOptions';
 import AccountScreen from '../screens/AccountScreen';
 import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import {useTheme} from "../ThemeContext";
+import theme from "../theme";
 
 const Tab = createBottomTabNavigator();
 
-const getTabBarIcon = (route, focused, color, size) => {
-    const icons = useIcons();
-    const icon = focused ? icons[route.name].active : icons[route.name].inactive;
+const getTabBarIcon = (index, focused, color, size) => {
+    const icon = focused ? navigation[index].active : navigation[index].inactive;
 
-    return <Image source={icon} style={{width: size, height: size, tintColor: color}}/>;
+    return (
+        <Image source={icon} style={{width: size, height: size, tintColor: color}}/>
+    );
 };
 
 const screenOptions = ({route}) => {
-    const theme = useTheme();
+    const index = route.params?.index;
 
-    return ({
-        tabBarIcon: ({focused, color, size}) => {
-            return getTabBarIcon(route, focused, color, size);
+    return {
+        tabBarIcon: ({focused, color, size}) => getTabBarIcon(index, focused, color, size),
+        tabBarShowLabel: false,
+        tabBarActiveTintColor: theme.default.navigation.selected,
+        tabBarInactiveTintColor: theme.default.navigation.unselected,
+        tabBarStyle: {
+            backgroundColor: theme.default.navigation.background,
+            borderBottomWidth: 0,
+            borderColor: theme.default.navigation.border,
+            borderTopColor: theme.default.navigation.border,
+            borderTopEndRadius: 20,
+            borderTopStartRadius: 20,
+            borderTopWidth: 1,
+            borderWidth: 1,
+            elevation: 0,
+            height: 90,
+            overflow: 'hidden',
+            position: 'absolute',
+            shadowOpacity: 0,
         },
-        tabBarActiveTintColor: theme.selectedTab,
-        tabBarInactiveTintColor: theme.unselectedTab,
-    });
-}
+    };
+};
 
 const TabNavigator = () => {
     const {t} = useTranslation();
 
     return (
         <NavigationContainer>
-            <Tab.Navigator initialRouteName={t('home')} screenOptions={screenOptions}>
-                <Tab.Screen name={t('home')} component={HomeScreen}/>
-                <Tab.Screen name={t('account')} component={AccountScreen}/>
-                <Tab.Screen name={t('settings')} component={SettingsScreen}/>
+            <Tab.Navigator
+                initialRouteName={t('home')}
+                screenOptions={screenOptions}
+                sceneContainerStyle={{backgroundColor: theme.default.app.background}}
+            >
+                <Tab.Screen
+                    name={t('home')}
+                    component={HomeScreen}
+                    initialParams={{index: 0}}
+                />
+                <Tab.Screen
+                    name={t('account')}
+                    component={AccountScreen}
+                    initialParams={{index: 1}}
+                />
+                <Tab.Screen
+                    name={t('settings')}
+                    component={SettingsScreen}
+                    initialParams={{index: 2}}
+                />
             </Tab.Navigator>
         </NavigationContainer>
     );

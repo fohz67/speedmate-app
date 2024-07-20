@@ -1,13 +1,12 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {useTheme} from "../ThemeContext";
+import theme from '../theme';
 
-const MyCustomTitle = ({label}) => {
-    const theme = useTheme();
+const PrettyTitle = ({label}) => {
 
     return (
         <View style={styles.container}>
-            <Text style={[styles.title, {color: theme.title}]}>{label}</Text>
+            <Text style={styles.title}>{label}</Text>
         </View>
     );
 };
@@ -17,9 +16,10 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     title: {
+        color: theme.default.app.title,
         fontSize: 22,
         fontWeight: 'bold',
     }
 });
 
-export default MyCustomTitle;
+export default PrettyTitle;

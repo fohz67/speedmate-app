@@ -1,13 +1,12 @@
 import React from 'react';
 import {StyleSheet, Switch, Text, View} from 'react-native';
-import {useTheme} from "../ThemeContext";
+import theme from '../theme';
 
-const MyCustomSwitch = ({label, value, func}) => {
-    const theme = useTheme();
+const PrettySwitch = ({label, value, func}) => {
 
     return (
         <View style={styles.container}>
-            <Text style={[styles.text, {color: theme.text}]}>{label}</Text>
+            <Text style={styles.text}>{label}</Text>
             <Switch
                 onValueChange={func}
                 value={value}
@@ -25,8 +24,9 @@ const styles = StyleSheet.create({
         marginTop: 10,
     },
     text: {
+        color: theme.default.app.text,
         fontSize: 16,
     },
 });
 
-export default MyCustomSwitch;
+export default PrettySwitch;

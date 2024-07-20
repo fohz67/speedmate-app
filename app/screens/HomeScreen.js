@@ -1,38 +1,29 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Arc, Background, Marks, Needle, Progress} from "react-native-cool-speedometer";
+import {Arc, Progress} from "react-native-cool-speedometer";
 import Speedometer from "react-native-cool-speedometer/dist/Speedometer";
 import useLocation from '../hooks/useLocation';
 import useSettings from "../hooks/useSettings";
+import theme from '../theme';
 
 const HomeScreen = () => {
     const speed = useLocation();
-
-    const {
-        unit, updateUnit,
-        maxSpeed, updateMaxSpeed,
-        orientationLock, updateOrientationLock,
-        showGPSAccuracy, updateShowGPSAccuracy,
-        smoothNeedleAnimation, updateSmoothNeedleAnimation,
-        temperatureUnit, updateTemperatureUnit,
-        autoStartTrip, updateAutoStartTrip,
-        appAppearance, updateAppAppearance,
-        speedometerSide, updateSpeedometerSide,
-        language, updateLanguage,
-    } = useSettings();
+    const {maxSpeed} = useSettings();
 
     return (
         <View style={styles.container}>
             <Speedometer
-                value={150}
-                max={maxSpeed}
-                accentColor='black'
+                value={speed + 15}
+                max={maxSpeed + 30}
+                angle={360}
+                lineCap="round"
+                accentColor={theme.default.speedometer.line}
             >
-                <Background color='red'/>
-                <Arc/>
-                <Needle/>
-                <Progress/>
-                <Marks/>
+                <Arc
+                    arcWidth={40}
+                    color={theme.default.speedometer.arc}
+                />
+                <Progress arcWidth={40}/>
             </Speedometer>
         </View>
     );
@@ -41,7 +32,6 @@ const HomeScreen = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
     },
 });

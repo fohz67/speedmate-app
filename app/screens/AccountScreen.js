@@ -1,19 +1,18 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Image, ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
-import MyCustomBox from '../custom/MyCustomBox';
-import MyCustomDropdownList from '../custom/MyCustomDropdownList';
-import MyCustomInput from '../custom/MyCustomInput';
-import MyCustomSlider from '../custom/MyCustomSlider';
-import MyCustomTitle from '../custom/MyCustomTitle';
+import PrettyBox from '../custom/PrettyBox';
+import PrettyInput from '../custom/PrettyInput';
+import PrettyList from '../custom/PrettyList';
+import PrettySlider from '../custom/PrettySlider';
+import PrettyTitle from '../custom/PrettyTitle';
 import useUserData from '../hooks/useAccount';
-import {useConsts} from "../hooks/useConsts";
+import {useOptions} from "../hooks/useOptions";
 import useStatistics from '../hooks/useStatistics';
-import {useTheme} from "../ThemeContext";
 
 const AccountScreen = () => {
     const {t} = useTranslation();
-    const consts = useConsts();
+    const consts = useOptions();
 
     const {
         profileImage, updateImage,
@@ -31,27 +30,25 @@ const AccountScreen = () => {
         timeSpent
     } = useStatistics();
 
-    const theme = useTheme();
-
     return (
-        <ScrollView contentContainerStyle={[styles.container, {backgroundColor: theme.background}]}>
+        <ScrollView contentContainerStyle={styles.container}>
             <TouchableOpacity onPress={updateImage}>
                 <Image source={profileImage} style={styles.profileImage}/>
             </TouchableOpacity>
 
             <View style={styles.section}>
-                <MyCustomTitle label={t('you')}/>
-                <MyCustomInput
+                <PrettyTitle label={t('you')}/>
+                <PrettyInput
                     value={firstName}
                     func={updateFirstName}
                     placeholder={t('firstName')}
                 />
-                <MyCustomInput
+                <PrettyInput
                     value={lastName}
                     func={updateLastName}
                     placeholder={t('lastName')}
                 />
-                <MyCustomSlider
+                <PrettySlider
                     label={t('age')}
                     value={age}
                     func={updateAge}
@@ -59,7 +56,7 @@ const AccountScreen = () => {
                     max={100}
                     step={1}
                 />
-                <MyCustomInput
+                <PrettyInput
                     value={nickname}
                     func={updateNickname}
                     placeholder={t('nickname')}
@@ -67,19 +64,19 @@ const AccountScreen = () => {
             </View>
 
             <View style={styles.section}>
-                <MyCustomTitle label={t('vehicle')}/>
-                <MyCustomDropdownList
+                <PrettyTitle label={t('vehicle')}/>
+                <PrettyList
                     label={t('type')}
                     options={consts.vehicleTypes}
                     selected={vehicleType}
                     func={updateVehicleType}
                 />
-                <MyCustomInput
+                <PrettyInput
                     value={vehicle}
                     onChangeText={updateVehicle}
                     placeholder={t('vehicle')}
                 />
-                <MyCustomInput
+                <PrettyInput
                     value={model}
                     onChangeText={updateModel}
                     placeholder={t('model')}
@@ -87,14 +84,14 @@ const AccountScreen = () => {
             </View>
 
             <View style={styles.section}>
-                <MyCustomTitle label={t('statistics')}/>
+                <PrettyTitle label={t('statistics')}/>
                 <View style={styles.statsContainer}>
-                    <MyCustomBox
+                    <PrettyBox
                         label={t('odometer')}
                         value={kilometers}
                         unit="km"
                     />
-                    <MyCustomBox
+                    <PrettyBox
                         label={t('timeSpent')}
                         value={timeSpent}
                         unit="hours"

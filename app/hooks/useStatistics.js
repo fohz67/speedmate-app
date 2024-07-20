@@ -1,34 +1,34 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useEffect, useState} from 'react';
-import saveItem from './useDeviceStorage';
+import deviceSave from '../storage';
 
 const useStatistics = () => {
     const [kilometers, setKilometers] = useState(0);
     const [timeSpent, setTimeSpent] = useState(0);
 
     useEffect(() => {
-        const loadStatistics = async () => {
-            const kilometers = await AsyncStorage.getItem('kilometers');
-            const timeSpent = await AsyncStorage.getItem('timeSpent');
-
-            setKilometers(kilometers ? parseFloat(kilometers) : 0);
-            setTimeSpent(timeSpent ? parseFloat(timeSpent) : 0);
-        };
-
         loadStatistics();
     }, []);
 
-    const updateKilometers = async (km) => {
+    const loadStatistics = async () => {
+        const kilometers = await AsyncStorage.getItem('kilometers');
+        const timeSpent = await AsyncStorage.getItem('timeSpent');
+
+        setKilometers(kilometers ? parseFloat(kilometers) : 0);
+        setTimeSpent(timeSpent ? parseFloat(timeSpent) : 0);
+    };
+
+    const updateKilometers = async (value) => {
         if (value !== null) {
-            setKilometers(km);
-            await saveItem('kilometers', km);
+            setKilometers(value);
+            await deviceSave('kilometers', value);
         }
     };
 
-    const updateTimeSpent = async (time) => {
+    const updateTimeSpent = async (value) => {
         if (value !== null) {
-            setTimeSpent(time);
-            await saveItem('timeSpent', time);
+            setTimeSpent(value);
+            await deviceSave('timeSpent', value);
         }
     };
 

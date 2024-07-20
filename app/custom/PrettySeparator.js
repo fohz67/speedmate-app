@@ -1,20 +1,21 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import {useTheme} from "../ThemeContext";
+import theme from '../theme';
 
 const MyCustomTitle = () => {
-    const theme = useTheme();
 
     return (
-        <View style={[styles.separator, {backgroundColor: theme.separator, borderColor: theme.separator}]}></View>
+        <View style={styles.separator}></View>
     );
 };
 
 const styles = StyleSheet.create({
     separator: {
-        marginTop: 15,
-        marginBottom: 5,
+        backgroundColor: theme.default.app.separator.color,
+        borderColor: theme.default.app.separator,
         borderWidth: 0.5,
+        marginBottom: 5,
+        marginTop: 15,
     }
 });
 
