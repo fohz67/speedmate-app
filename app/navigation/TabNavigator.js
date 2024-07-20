@@ -2,7 +2,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
-import {Image} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import {navigation} from '../hooks/useOptions';
 import AccountScreen from '../screens/AccountScreen';
 import HomeScreen from '../screens/HomeScreen';
@@ -39,7 +39,6 @@ const screenOptions = ({route}) => {
             elevation: 0,
             height: 90,
             overflow: 'hidden',
-            position: 'absolute',
             shadowOpacity: 0,
         },
     };
@@ -49,30 +48,39 @@ const TabNavigator = () => {
     const {t} = useTranslation();
 
     return (
-        <NavigationContainer>
-            <Tab.Navigator
-                initialRouteName={t('home')}
-                screenOptions={screenOptions}
-                sceneContainerStyle={{backgroundColor: theme.default.app.background}}
-            >
-                <Tab.Screen
-                    name={t('home')}
-                    component={HomeScreen}
-                    initialParams={{index: 0}}
-                />
-                <Tab.Screen
-                    name={t('account')}
-                    component={AccountScreen}
-                    initialParams={{index: 1}}
-                />
-                <Tab.Screen
-                    name={t('settings')}
-                    component={SettingsScreen}
-                    initialParams={{index: 2}}
-                />
-            </Tab.Navigator>
-        </NavigationContainer>
+        <View style={styles.container}>
+            <NavigationContainer>
+                <Tab.Navigator
+                    initialRouteName={t('home')}
+                    screenOptions={screenOptions}
+                    sceneContainerStyle={{backgroundColor: theme.default.app.background}}
+                >
+                    <Tab.Screen
+                        name={t('home')}
+                        component={HomeScreen}
+                        initialParams={{index: 0}}
+                    />
+                    <Tab.Screen
+                        name={t('account')}
+                        component={AccountScreen}
+                        initialParams={{index: 1}}
+                    />
+                    <Tab.Screen
+                        name={t('settings')}
+                        component={SettingsScreen}
+                        initialParams={{index: 2}}
+                    />
+                </Tab.Navigator>
+            </NavigationContainer>
+        </View>
     );
 };
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: theme.default.app.background,
+    },
+});
 
 export default TabNavigator;
