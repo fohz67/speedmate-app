@@ -3,7 +3,6 @@ import {StyleSheet, View} from 'react-native';
 import theme from '../theme';
 
 const MyCustomTitle = () => {
-
     return (
         <View style={styles.separator}></View>
     );

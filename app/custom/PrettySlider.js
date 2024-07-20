@@ -4,7 +4,6 @@ import {StyleSheet, Text, View} from 'react-native';
 import theme from '../theme';
 
 const PrettySlider = ({label, value, func, min, max, step}) => {
-
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{label}: {value}</Text>

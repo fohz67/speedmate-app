@@ -3,7 +3,6 @@ import {StyleSheet, Text, View} from 'react-native';
 import theme from '../theme';
 
 const PrettyTitle = ({label}) => {
-
     return (
         <View style={styles.container}>
             <Text style={styles.title}>{label}</Text>

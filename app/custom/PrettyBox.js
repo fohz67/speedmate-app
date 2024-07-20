@@ -3,7 +3,6 @@ import {StyleSheet, Text, View} from 'react-native';
 import theme from "../theme";
 
 const PrettyBox = ({label, value, unit}) => {
-
     return (
         <View style={styles.box}>
             <Text style={styles.label}>{label}</Text>

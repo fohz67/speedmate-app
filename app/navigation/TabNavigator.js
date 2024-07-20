@@ -15,7 +15,7 @@ const getTabBarIcon = (index, focused, color, size) => {
     const icon = focused ? navigation[index].active : navigation[index].inactive;
 
     return (
-        <Image source={icon} style={{width: size, height: size, tintColor: color}}/>
+        <Image source={icon} style={{width: size + 3, height: size + 3, tintColor: color}}/>
     );
 };
 
@@ -23,10 +23,26 @@ const screenOptions = ({route}) => {
     const index = route.params?.index;
 
     return {
-        tabBarIcon: ({focused, color, size}) => getTabBarIcon(index, focused, color, size),
-        tabBarShowLabel: false,
+        headerShown: true,
+        headerStyle: {
+            backgroundColor: theme.default.header.background,
+            borderBottomWidth: 0,
+            elevation: 0,
+            height: 130,
+            shadowOpacity: 0,
+        },
+        headerTintColor: theme.default.header.tint,
+        headerTitleAlign: 'left',
+        headerTitleStyle: {
+            fontSize: 30,
+            marginLeft: 20,
+            fontWeight: 'bold',
+            textAlign: 'left',
+        },
         tabBarActiveTintColor: theme.default.navigation.selected,
+        tabBarIcon: ({focused, color, size}) => getTabBarIcon(index, focused, color, size),
         tabBarInactiveTintColor: theme.default.navigation.unselected,
+        tabBarShowLabel: false,
         tabBarStyle: {
             backgroundColor: theme.default.navigation.background,
             borderBottomWidth: 0,

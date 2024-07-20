@@ -3,7 +3,6 @@ import {StyleSheet, Switch, Text, View} from 'react-native';
 import theme from '../theme';
 
 const PrettySwitch = ({label, value, func}) => {
-
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{label}</Text>

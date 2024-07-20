@@ -3,7 +3,6 @@ import {StyleSheet, TextInput, View} from 'react-native';
 import theme from '../theme';
 
 const PrettyInput = ({value, func, placeholder}) => {
-
     return (
         <View style={styles.container}>
             <TextInput

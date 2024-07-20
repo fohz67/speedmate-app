@@ -9,6 +9,10 @@ const theme = {
             text: 'white',
             title: 'white',
         },
+        header: {
+            background: '#000c18',
+            tint: '#ffffff',
+        },
         input: {
             background: '#00152a',
             border: 'rgba(0,118,255,0.6)',
@@ -16,8 +20,8 @@ const theme = {
             text: '#ffffff',
         },
         navigation: {
-            background: '#000e1a',
-            border: 'rgba(0,118,255,0.6)',
+            background: '#000c18',
+            border: 'transparent',
             selected: '#0076ffff',
             unselected: 'rgba(255,255,255,0.3)',
         },
