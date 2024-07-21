@@ -26,8 +26,8 @@ const theme = {
             unselected: 'rgba(255,255,255,0.3)',
         },
         speedometer: {
-            arc: 'red',
-            line: 'blue',
+            arc: '#002849',
+            line: '#0076ffff',
         }
     }
 };
