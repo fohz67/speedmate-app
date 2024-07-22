@@ -12,11 +12,13 @@ const PrettyTitle = ({label}) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 30,
+        marginTop: 60,
+        marginBottom: 10,
     },
     title: {
         color: theme.default.app.title,
-        fontSize: 22,
+        fontFamily: 'Universo-Black',
+        fontSize: 20,
         fontWeight: 'bold',
     }
 });

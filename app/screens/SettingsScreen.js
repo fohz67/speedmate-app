@@ -10,7 +10,7 @@ import useSettings from '../hooks/useSettings';
 
 const SettingsScreen = () => {
     const {t} = useTranslation();
-    const consts = useOptions();
+    const options = useOptions();
 
     const {
         unit, updateUnit,
@@ -25,7 +25,7 @@ const SettingsScreen = () => {
                 <PrettyTitle label={t('speedometer')}/>
                 <PrettyList
                     label={t('unit')}
-                    options={consts.units}
+                    options={options.units}
                     selected={unit}
                     func={updateUnit}
                 />
@@ -43,7 +43,7 @@ const SettingsScreen = () => {
                 <PrettyTitle label="Application"/>
                 <PrettyList
                     label={t('language')}
-                    options={consts.languages}
+                    options={options.languages}
                     selected={language}
                     func={updateLanguage}
                 />

@@ -12,7 +12,7 @@ import useStatistics from '../hooks/useStatistics';
 
 const AccountScreen = () => {
     const {t} = useTranslation();
-    const consts = useOptions();
+    const options = useOptions();
 
     const {
         profileImage, updateImage,
@@ -67,7 +67,7 @@ const AccountScreen = () => {
                 <PrettyTitle label={t('vehicle')}/>
                 <PrettyList
                     label={t('type')}
-                    options={consts.vehicleTypes}
+                    options={options.vehicleTypes}
                     selected={vehicleType}
                     func={updateVehicleType}
                 />

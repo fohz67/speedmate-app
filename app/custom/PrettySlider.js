@@ -23,15 +23,17 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         flexDirection: 'row',
+        marginBottom: 3,
         marginLeft: 5,
-        marginTop: 10,
+        marginTop: 13,
     },
     slider: {
         flex: 1,
     },
     text: {
         color: theme.default.app.text,
-        fontSize: 16,
+        fontFamily: 'Universo-Regular',
+        fontSize: 14,
         marginRight: 10,
     },
 });

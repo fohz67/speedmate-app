@@ -4,7 +4,7 @@ const theme = {
             background: '#000c18',
             label: 'gray',
             separator: '#1c2533',
-            shadow: 'rgba(0,118,255,0.17)',
+            shadow: 'rgba(0,0,0,0)',
             subtitle: 'white',
             text: 'white',
             title: 'white',
@@ -27,7 +27,7 @@ const theme = {
         },
         speedometer: {
             arc: '#002849',
-            line: '#0076ffff',
+            line: '#0077ff',
         }
     }
 };

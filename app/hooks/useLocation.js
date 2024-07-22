@@ -26,7 +26,16 @@ const useLocation = () => {
         await Location.watchPositionAsync(options, (location) => setSpeed(location.coords.speed));
     }
 
-    return speed;
+    const updateSpeed = async (value) => {
+        if (value !== null) {
+            setSpeed(value);
+        }
+    }
+
+    return {
+        speed,
+        updateSpeed,
+    };
 };
 
 export default useLocation;

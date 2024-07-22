@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: theme.default.input.background,
         borderColor: theme.default.input.border,
-        borderRadius: 20,
+        borderRadius: 10,
         borderStyle: 'solid',
         borderWidth: 1,
         marginTop: 10,
@@ -28,12 +28,14 @@ const styles = StyleSheet.create({
     },
     label: {
         color: theme.default.input.text,
-        fontSize: 15,
-        marginBottom: 5,
+        fontFamily: 'Universo-Regular',
+        fontSize: 12,
+        marginBottom: 8,
     },
     value: {
         color: theme.default.input.text,
-        fontSize: 24,
+        fontFamily: 'Universo-Black',
+        fontSize: 20,
         fontWeight: 'bold',
     },
 });

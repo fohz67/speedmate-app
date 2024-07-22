@@ -35,6 +35,7 @@ const screenOptions = ({route}) => {
         headerTitleAlign: 'left',
         headerTitleStyle: {
             fontSize: 30,
+            fontFamily: 'Universo-Black',
             marginLeft: 20,
             fontWeight: 'bold',
             textAlign: 'left',
