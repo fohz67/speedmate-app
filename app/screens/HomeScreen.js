@@ -16,6 +16,12 @@ const HomeScreen = () => {
 
     const {
         speed,
+        altitude,
+        distance,
+        maxSpeed: rideMaxSpeed,
+        averageSpeed,
+        timeRide,
+        timeAtZero,
         updateSpeed,
     } = useLocation();
 
@@ -26,6 +32,18 @@ const HomeScreen = () => {
 
     return (
         <View style={styles.container}>
+            <View style={styles.infoContainer}>
+                <View style={styles.infoColumn}>
+                    <Text style={styles.infoText}>Average Speed: {averageSpeed.toFixed(1)} {options.units[unit]}</Text>
+                    <Text style={styles.infoText}>Max Speed: {rideMaxSpeed.toFixed(1)} {options.units[unit]}</Text>
+                    <Text style={styles.infoText}>Distance: {distance.toFixed(2)} km</Text>
+                </View>
+                <View style={styles.infoColumn}>
+                    <Text style={styles.infoText}>Altitude: {altitude.toFixed(1)} m</Text>
+                    <Text style={styles.infoText}>Time Ride: {timeRide} min</Text>
+                    <Text style={styles.infoText}>Time at 0 km/h: {timeAtZero} min</Text>
+                </View>
+            </View>
             <View style={styles.speedometerContainer}>
                 <Speedometer
                     value={speed + 10}
@@ -67,6 +85,20 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         flex: 1,
+    },
+    infoContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginVertical: 20,
+        width: '80%',
+    },
+    infoColumn: {
+        flex: 1,
+    },
+    infoText: {
+        color: theme.default.app.text,
+        fontSize: 16,
+        marginVertical: 5,
     },
     rectangle: {
         backgroundColor: theme.default.app.background,
