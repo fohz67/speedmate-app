@@ -72,8 +72,21 @@ const useLocation = () => {
 
     const startTimer = () => {
         timerRef.current = setInterval(() => {
-            setTimeRide(calculateTimeRide(speed));
-            setTimeAtZero(calculateTimeAtZero(speed));
+            setTimeRide((prevTimeRide) => {
+                if (Math.floor(speed) > 0) {
+                    speedSumRef.current += speed;
+                    setAverageSpeed(speedSumRef.current / (prevTimeRide + 1));
+                    return prevTimeRide + 1;
+                }
+                return prevTimeRide;
+            });
+
+            setTimeAtZero((prevTimeAtZero) => {
+                if (Math.floor(speed) === 0) {
+                    return prevTimeAtZero + 1;
+                }
+                return prevTimeAtZero;
+            });
         }, 1000);
     };
 
@@ -90,25 +103,6 @@ const useLocation = () => {
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
         return earthRadius * c;
-    };
-
-    const calculateTimeRide = (speed) => {
-        if (Math.floor(speed) > 0) {
-            speedSumRef.current += speed;
-            setAverageSpeed(speedSumRef.current / (prevTimeRide + 1));
-
-            return prevTimeRide + 1;
-        }
-
-        return prevTimeRide;
-    };
-
-    const calculateTimeAtZero = (speed) => {
-        if (Math.floor(speed) <= 0) {
-            return prevTimeAtZero + 1;
-        }
-
-        return prevTimeAtZero;
     };
 
     const formatTime = (seconds) => {
