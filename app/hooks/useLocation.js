@@ -44,6 +44,8 @@ const useLocation = () => {
                 longitude
             } = location.coords;
 
+            setAltitude(altitude);
+
             if (Math.floor(speed) <= 0) {
                 return;
             }

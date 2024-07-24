@@ -101,14 +101,16 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     infoColumn: {
+        alignItems: 'center',
         flex: 1,
         justifyContent: 'flex-start',
     },
     infoContainer: {
+        alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
+        marginHorizontal: 25,
         marginTop: 40,
-        width: '80%',
     },
     infoLabel: {
         color: theme.default.stats.label,
@@ -126,6 +128,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Universo-Regular',
         fontSize: 18,
         marginVertical: 5,
+        textTransform: 'uppercase',
     },
     infoValue: {
         color: theme.default.stats.value,
