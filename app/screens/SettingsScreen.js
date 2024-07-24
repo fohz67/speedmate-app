@@ -13,10 +13,12 @@ const SettingsScreen = () => {
     const options = useOptions();
 
     const {
-        unit, updateUnit,
-        maxSpeed, updateMaxSpeed,
-        appAppearance, updateAppAppearance,
-        language, updateLanguage,
+        unit,
+        updateUnit,
+        maxSpeed,
+        updateMaxSpeed,
+        language,
+        updateLanguage,
     } = useSettings();
 
     return (

@@ -28,6 +28,11 @@ const theme = {
         speedometer: {
             arc: '#002849',
             line: '#0077ff',
+        },
+        stats: {
+            label: '#0076ffff',
+            value: '#ffffff',
+            text: 'rgba(255,255,255,0.52)',
         }
     }
 };

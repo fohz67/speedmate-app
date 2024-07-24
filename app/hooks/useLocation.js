@@ -11,7 +11,7 @@ const useLocation = () => {
     const [timeAtZero, setTimeAtZero] = useState(0);
     const [prevLocation, setPrevLocation] = useState(null);
 
-    const speedSumRef = useRef(0);
+    const speedRef = useRef(0);
     const timerRef = useRef(null);
 
     useEffect(() => {
@@ -74,15 +74,15 @@ const useLocation = () => {
         timerRef.current = setInterval(() => {
             setTimeRide((prevTimeRide) => {
                 if (Math.floor(speed) > 0) {
-                    speedSumRef.current += speed;
-                    setAverageSpeed(speedSumRef.current / (prevTimeRide + 1));
+                    speedRef.current += speed;
+                    setAverageSpeed(speedRef.current / (prevTimeRide + 1));
                     return prevTimeRide + 1;
                 }
                 return prevTimeRide;
             });
 
             setTimeAtZero((prevTimeAtZero) => {
-                if (Math.floor(speed) === 0) {
+                if (Math.floor(speed) <= 0) {
                     return prevTimeAtZero + 1;
                 }
                 return prevTimeAtZero;
@@ -123,7 +123,6 @@ const useLocation = () => {
         averageSpeed,
         timeRide: formatTime(timeRide),
         timeAtZero: formatTime(timeAtZero),
-        updateSpeed: setSpeed,
     };
 };
 

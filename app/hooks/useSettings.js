@@ -6,7 +6,7 @@ import {languages} from './useOptions';
 
 const useSettings = () => {
     const [unit, setUnit] = useState(0);
-    const [maxSpeed, setMaxSpeed] = useState(100);
+    const [maxSpeedometerValue, setMaxSpeedometerValue] = useState(100);
     const [appAppearance, setAppAppearance] = useState(0);
     const [language, setLanguage] = useState(0);
     const [speedometerLineCap, setSpeedometerLineCap] = useState(0);
@@ -18,14 +18,14 @@ const useSettings = () => {
 
     const loadSettings = async () => {
         const storedUnit = await AsyncStorage.getItem('unit');
-        const storedMaxSpeed = await AsyncStorage.getItem('maxSpeed');
+        const storedMaxSpeedometerValue = await AsyncStorage.getItem('maxSpeedometerValue');
         const storedAppAppearance = await AsyncStorage.getItem('appAppearance');
         const storedLanguage = await AsyncStorage.getItem('language');
         const storedSpeedometerLineCap = await AsyncStorage.getItem('speedometerLineCap');
         const storedSpeedometerWidth = await AsyncStorage.getItem('speedometerWidth');
 
         setUnit(Number(storedUnit) || 0);
-        setMaxSpeed(Number(storedMaxSpeed) || 100);
+        setMaxSpeedometerValue(Number(storedMaxSpeedometerValue) || 100);
         setAppAppearance(Number(storedAppAppearance) || 0);
         setLanguage(Number(storedLanguage) || 0);
         setSpeedometerLineCap(Number(storedSpeedometerLineCap) || 0);
@@ -39,10 +39,10 @@ const useSettings = () => {
         }
     };
 
-    const updateMaxSpeed = async (value) => {
+    const updateMaxSpeedometerValue = async (value) => {
         if (value !== null) {
-            setMaxSpeed(value);
-            await deviceSave('maxSpeed', value);
+            setMaxSpeedometerValue(value);
+            await deviceSave('maxSpeedometerValue', value);
         }
     };
 
@@ -79,8 +79,8 @@ const useSettings = () => {
     return {
         unit,
         updateUnit,
-        maxSpeed,
-        updateMaxSpeed,
+        maxSpeedometerValue,
+        updateMaxSpeedometerValue,
         appAppearance,
         updateAppAppearance,
         language,
