@@ -39,7 +39,7 @@ const HomeScreen = () => {
                         arcWidth="5"
                         color={theme.default.speedometer.arc}
                     />
-                    <Progress arcWidth={lineWidth}/>
+                    <Progress arcWidth="5"/>
                 </Speedometer>
                 <View style={[
                     styles.rectangle, {
