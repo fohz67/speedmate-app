@@ -6,7 +6,7 @@ import deviceSave from '../storage';
 
 const useSettings = () => {
     const [unit, setUnit] = useState(0);
-    const [maxSpeedometerValue, setMaxSpeedometerValue] = useState(100);
+    const [speedometerMaxValue, setSpeedometerMaxValue] = useState(100);
     const [language, setLanguage] = useState(0);
 
     useEffect(() => {
@@ -15,11 +15,11 @@ const useSettings = () => {
 
     const loadSettings = async () => {
         const storedUnit = await AsyncStorage.getItem('unit');
-        const storedMaxSpeedometerValue = await AsyncStorage.getItem('maxSpeedometerValue');
+        const storedSpeedometerMaxValue = await AsyncStorage.getItem('speedometerMaxValue');
         const storedLanguage = await AsyncStorage.getItem('language');
 
         setUnit(Number(storedUnit) || 0);
-        setMaxSpeedometerValue(Number(storedMaxSpeedometerValue) || 100);
+        setSpeedometerMaxValue(Number(storedSpeedometerMaxValue) || 100);
         setLanguage(Number(storedLanguage) || 0);
     }
 
@@ -30,10 +30,10 @@ const useSettings = () => {
         }
     };
 
-    const updateMaxSpeedometerValue = async (value) => {
+    const updateSpeedometerMaxValue = async (value) => {
         if (value !== null) {
-            await deviceSave('maxSpeedometerValue', value);
-            setMaxSpeedometerValue(value);
+            await deviceSave('speedometerMaxValue', value);
+            setSpeedometerMaxValue(value);
         }
     };
 
@@ -48,8 +48,8 @@ const useSettings = () => {
     return {
         unit,
         updateUnit,
-        maxSpeedometerValue,
-        updateMaxSpeedometerValue,
+        speedometerMaxValue,
+        updateSpeedometerMaxValue,
         language,
         updateLanguage
     };

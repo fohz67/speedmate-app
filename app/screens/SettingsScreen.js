@@ -15,8 +15,8 @@ const SettingsScreen = () => {
     const {
         unit,
         updateUnit,
-        maxSpeedometerValue,
-        updateMaxSpeedometerValue,
+        speedometerMaxValue,
+        updateSpeedometerMaxValue,
         language,
         updateLanguage,
     } = useSettings();
@@ -34,8 +34,8 @@ const SettingsScreen = () => {
                 <MyCustomSeparator/>
                 <PrettySlider
                     label={t('maxSpeed')}
-                    value={maxSpeedometerValue}
-                    func={updateMaxSpeedometerValue}
+                    value={speedometerMaxValue}
+                    func={updateSpeedometerMaxValue}
                     min={50}
                     max={450}
                     step={5}

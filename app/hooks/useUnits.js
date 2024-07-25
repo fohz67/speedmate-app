@@ -5,17 +5,20 @@ const useUnits = () => {
     const {t} = useTranslation();
     const {unit} = useSettings();
 
-    return unit === 0
-        ? {
+    const data = [
+        {
             speed: t('kmh'),
             distance: t('km'),
             altitude: t('m'),
-        }
-        : {
+        },
+        {
             speed: t('mph'),
             distance: t('mi'),
             altitude: t('ft'),
-        };
+        }
+    ]
+
+    return data[unit];
 };
 
 export default useUnits;

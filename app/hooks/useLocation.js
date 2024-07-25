@@ -12,8 +12,6 @@ const useLocation = () => {
     const [averageSpeed, setAverageSpeed] = useState(0);
     const [timeRide, setTimeRide] = useState(0);
     const [timeAtZero, setTimeAtZero] = useState(0);
-    const [prevLocation, setPrevLocation] = useState(null);
-    const [error, setError] = useState(null);
 
     const speedRef = useRef(0);
     const distanceRef = useRef(distance);

@@ -15,19 +15,27 @@ const AccountScreen = () => {
     const options = useOptions();
 
     const {
-        profileImage, updateImage,
-        firstName, updateFirstName,
-        lastName, updateLastName,
-        nickname, updateNickname,
-        age, updateAge,
-        vehicleType, updateVehicleType,
-        vehicle, updateVehicle,
-        model, updateModel
+        profileImage,
+        updateImage,
+        firstName,
+        updateFirstName,
+        lastName,
+        updateLastName,
+        nickname,
+        updateNickname,
+        age,
+        updateAge,
+        vehicleType,
+        updateVehicleType,
+        vehicle,
+        updateVehicle,
+        model,
+        updateModel
     } = useUserData();
 
     const {
-        kilometers,
-        timeSpent
+        odo,
+        time
     } = useStatistics();
 
     return (
@@ -89,12 +97,12 @@ const AccountScreen = () => {
                 <View style={styles.statsContainer}>
                     <PrettyBox
                         label={t('odometer')}
-                        value={kilometers}
+                        value={odo}
                         unit="km"
                     />
                     <PrettyBox
-                        label={t('timeSpent')}
-                        value={timeSpent}
+                        label={t('time')}
+                        value={time}
                         unit="hours"
                     />
                 </View>

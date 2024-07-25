@@ -11,8 +11,8 @@ import theme from '../theme';
 
 const HomeScreen = () => {
     const {t} = useTranslation();
+    const {speedometerMaxValue} = useSettings();
     const units = useUnits();
-    const {maxSpeedometerValue} = useSettings();
 
     const {
         speed,
@@ -29,7 +29,7 @@ const HomeScreen = () => {
             <View style={styles.speedometerContainer}>
                 <Speedometer
                     value={speed + 10}
-                    max={maxSpeedometerValue + 20}
+                    max={speedometerMaxValue + 20}
                     width={speedometerWidth}
                     height={speedometerWidth}
                     angle={360}
@@ -41,6 +41,7 @@ const HomeScreen = () => {
                     />
                     <Progress arcWidth="5"/>
                 </Speedometer>
+
                 <View style={[
                     styles.rectangle, {
                         bottom: -speedometerWidth / 1.3,
@@ -48,6 +49,7 @@ const HomeScreen = () => {
                         width: speedometerWidth
                     }
                 ]}/>
+
                 <Text style={styles.speedometerSpeed}>{Math.floor(speed)}</Text>
                 <Text style={styles.speedometerUnit}>{units.speed}</Text>
             </View>
@@ -58,27 +60,32 @@ const HomeScreen = () => {
                         <Text style={styles.infoValue}>{Math.floor(averageSpeed)}</Text>
                         <Text style={styles.infoLabel}>{units.speed}</Text>
                     </View>
+
                     <Text style={styles.infoText}>{t('distance')}</Text>
                     <View style={styles.infoLabelContainer}>
                         <Text style={styles.infoValue}>{distance.toFixed(2)}</Text>
                         <Text style={styles.infoLabel}>{units.distance}</Text>
                     </View>
+
                     <Text style={styles.infoText}>{t('pauseTime')}</Text>
                     <View style={styles.infoLabelContainer}>
                         <Text style={styles.infoValueTime}>{timeAtZero}</Text>
                     </View>
                 </View>
+
                 <View style={styles.infoColumn}>
                     <Text style={styles.infoText}>{t('maxSpeedC')}</Text>
                     <View style={styles.infoLabelContainer}>
                         <Text style={styles.infoValue}>{Math.floor(maxSpeed)}</Text>
                         <Text style={styles.infoLabel}>{units.speed}</Text>
                     </View>
+
                     <Text style={styles.infoText}>{t('altitude')}</Text>
                     <View style={styles.infoLabelContainer}>
                         <Text style={styles.infoValue}>{Math.floor(altitude)}</Text>
                         <Text style={styles.infoLabel}>{units.altitude}</Text>
                     </View>
+
                     <Text style={styles.infoText}>{t('timeRide')}</Text>
                     <View style={styles.infoLabelContainer}>
                         <Text style={styles.infoValueTime}>{timeRide}</Text>

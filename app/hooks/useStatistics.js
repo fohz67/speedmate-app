@@ -3,40 +3,40 @@ import {useEffect, useState} from 'react';
 import deviceSave from '../storage';
 
 const useStatistics = () => {
-    const [kilometers, setKilometers] = useState(0);
-    const [timeSpent, setTimeSpent] = useState(0);
+    const [odo, setOdo] = useState(0);
+    const [storedTime, setTimeSpent] = useState(0);
 
     useEffect(() => {
         loadStatistics();
     }, []);
 
     const loadStatistics = async () => {
-        const kilometers = await AsyncStorage.getItem('kilometers');
-        const timeSpent = await AsyncStorage.getItem('timeSpent');
+        const storedOdo = await AsyncStorage.getItem('odo');
+        const storedTime = await AsyncStorage.getItem('time');
 
-        setKilometers(kilometers ? parseFloat(kilometers) : 0);
-        setTimeSpent(timeSpent ? parseFloat(timeSpent) : 0);
+        setOdo(storedOdo ? parseFloat(storedOdo) : 0);
+        setTimeSpent(storedTime ? parseFloat(storedTime) : 0);
     };
 
-    const updateKilometers = async (value) => {
+    const updateOdo = async (value) => {
         if (value !== null) {
-            setKilometers(value);
-            await deviceSave('kilometers', value);
+            setOdo(value);
+            await deviceSave('odo', value);
         }
     };
 
-    const updateTimeSpent = async (value) => {
+    const updateTime = async (value) => {
         if (value !== null) {
             setTimeSpent(value);
-            await deviceSave('timeSpent', value);
+            await deviceSave('storedTime', value);
         }
     };
 
     return {
-        kilometers,
-        updateKilometers,
-        timeSpent,
-        updateTimeSpent,
+        odo,
+        updateOdo,
+        storedTime,
+        updateTime,
     };
 };
 
