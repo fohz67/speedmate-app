@@ -1,4 +1,8 @@
+import {Dimensions} from "react-native";
+
 const languages = ['en', 'fr'];
+
+const speedometerWidth = Dimensions.get('window').width - 80
 
 const navigation = [
     {
@@ -18,4 +22,5 @@ const navigation = [
 export {
     languages,
     navigation,
+    speedometerWidth
 }
