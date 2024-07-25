@@ -7,7 +7,7 @@ import PrettyList from '../custom/PrettyList';
 import PrettySlider from '../custom/PrettySlider';
 import PrettyTitle from '../custom/PrettyTitle';
 import useUserData from '../hooks/useAccount';
-import {useOptions} from "../hooks/useOptions";
+import useOptions from "../hooks/useOptions";
 import useStatistics from '../hooks/useStatistics';
 
 const AccountScreen = () => {

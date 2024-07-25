@@ -5,7 +5,7 @@ import PrettyList from '../custom/PrettyList';
 import MyCustomSeparator from '../custom/PrettySeparator';
 import PrettySlider from "../custom/PrettySlider";
 import PrettyTitle from '../custom/PrettyTitle';
-import {useOptions} from "../hooks/useOptions";
+import useOptions from "../hooks/useOptions";
 import useSettings from '../hooks/useSettings';
 
 const SettingsScreen = () => {
@@ -15,8 +15,8 @@ const SettingsScreen = () => {
     const {
         unit,
         updateUnit,
-        maxSpeed,
-        updateMaxSpeed,
+        maxSpeedometerValue,
+        updateMaxSpeedometerValue,
         language,
         updateLanguage,
     } = useSettings();
@@ -27,15 +27,15 @@ const SettingsScreen = () => {
                 <PrettyTitle label={t('speedometer')}/>
                 <PrettyList
                     label={t('unit')}
-                    options={options.units}
+                    options={options.unitsSettings}
                     selected={unit}
                     func={updateUnit}
                 />
                 <MyCustomSeparator/>
                 <PrettySlider
                     label={t('maxSpeed')}
-                    value={maxSpeed}
-                    func={updateMaxSpeed}
+                    value={maxSpeedometerValue}
+                    func={updateMaxSpeedometerValue}
                     min={50}
                     max={450}
                     step={5}

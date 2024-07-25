@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Image, StyleSheet, View} from 'react-native';
-import {navigation} from '../hooks/useOptions';
+import {navigation} from '../constants';
 import AccountScreen from '../screens/AccountScreen';
 import HomeScreen from '../screens/HomeScreen';
 import SettingsScreen from '../screens/SettingsScreen';
@@ -14,9 +14,8 @@ const Tab = createBottomTabNavigator();
 const getTabBarIcon = (index, focused, color, size) => {
     const icon = focused ? navigation[index].active : navigation[index].inactive;
 
-    return (
-        <Image source={icon} style={{width: size + 3, height: size + 3, tintColor: color}}/>
-    );
+    return <Image source={icon}
+                  style={{width: size + 3, height: size + 3, tintColor: color}}/>;
 };
 
 const screenOptions = ({route}) => {

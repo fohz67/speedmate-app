@@ -1,17 +1,21 @@
 import React from 'react';
+import {useTranslation} from "react-i18next";
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import {Arc, Progress} from 'react-native-cool-speedometer';
 import Speedometer from 'react-native-cool-speedometer/dist/Speedometer';
 import useLocation from '../hooks/useLocation';
-import {useOptions} from '../hooks/useOptions';
-import useSettings from '../hooks/useSettings';
+import useSettings from "../hooks/useSettings";
+import useUnits from '../hooks/useUnits';
 import theme from '../theme';
 
 const HomeScreen = () => {
     const speedometerWidth = Dimensions.get('window').width - 80;
     const lineWidth = 5;
 
-    const options = useOptions();
+    const {t} = useTranslation();
+    const {maxSpeedometerValue} = useSettings();
+    const units = useUnits();
+
     const {
         speed,
         altitude,
@@ -19,12 +23,8 @@ const HomeScreen = () => {
         maxSpeed,
         averageSpeed,
         timeRide,
-        timeAtZero,
+        timeAtZero
     } = useLocation();
-    const {
-        unit,
-        maxSpeedometerValue
-    } = useSettings();
 
     return (
         <View style={styles.container}>
@@ -51,41 +51,41 @@ const HomeScreen = () => {
                     }
                 ]}/>
                 <Text style={styles.speedometerSpeed}>{Math.floor(speed)}</Text>
-                <Text style={styles.speedometerUnit}>{options.units[unit]}</Text>
+                <Text style={styles.speedometerUnit}>{units.speed}</Text>
             </View>
             <View style={styles.infoContainer}>
                 <View style={styles.infoColumn}>
-                    <Text style={styles.infoText}>Avg. Speed</Text>
+                    <Text style={styles.infoText}>{t('avgSpeed')}</Text>
                     <View style={styles.infoLabelContainer}>
                         <Text style={styles.infoValue}>{Math.floor(averageSpeed)}</Text>
-                        <Text style={styles.infoLabel}>{options.units[unit]}</Text>
+                        <Text style={styles.infoLabel}>{units.speed}</Text>
                     </View>
 
-                    <Text style={styles.infoText}>Distance</Text>
+                    <Text style={styles.infoText}>{t('distance')}</Text>
                     <View style={styles.infoLabelContainer}>
                         <Text style={styles.infoValue}>{distance.toFixed(2)}</Text>
-                        <Text style={styles.infoLabel}>km</Text>
+                        <Text style={styles.infoLabel}>{units.distance}</Text>
                     </View>
 
-                    <Text style={styles.infoText}>Pause Time</Text>
+                    <Text style={styles.infoText}>{t('pauseTime')}</Text>
                     <View style={styles.infoLabelContainer}>
                         <Text style={styles.infoValueTime}>{timeAtZero}</Text>
                     </View>
                 </View>
                 <View style={styles.infoColumn}>
-                    <Text style={styles.infoText}>Max Speed</Text>
+                    <Text style={styles.infoText}>{t('maxSpeedC')}</Text>
                     <View style={styles.infoLabelContainer}>
                         <Text style={styles.infoValue}>{Math.floor(maxSpeed)}</Text>
-                        <Text style={styles.infoLabel}>{options.units[unit]}</Text>
+                        <Text style={styles.infoLabel}>{units.speed}</Text>
                     </View>
 
-                    <Text style={styles.infoText}>Altitude</Text>
+                    <Text style={styles.infoText}>{t('altitude')}</Text>
                     <View style={styles.infoLabelContainer}>
                         <Text style={styles.infoValue}>{Math.floor(altitude)}</Text>
-                        <Text style={styles.infoLabel}>m</Text>
+                        <Text style={styles.infoLabel}>{units.altitude}</Text>
                     </View>
 
-                    <Text style={styles.infoText}>Ride Time</Text>
+                    <Text style={styles.infoText}>{t('timeRide')}</Text>
                     <View style={styles.infoLabelContainer}>
                         <Text style={styles.infoValueTime}>{timeRide}</Text>
                     </View>
