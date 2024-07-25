@@ -33,7 +33,8 @@ const AccountScreen = () => {
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <TouchableOpacity onPress={updateImage}>
-                <Image source={profileImage} style={styles.profileImage}/>
+                <Image source={profileImage}
+                       style={styles.profileImage}/>
             </TouchableOpacity>
 
             <View style={styles.section}>
