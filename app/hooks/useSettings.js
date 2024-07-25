@@ -25,23 +25,23 @@ const useSettings = () => {
 
     const updateUnit = async (value) => {
         if (value !== null) {
-            await deviceSave('unit', value);
             setUnit(value);
+            await deviceSave('unit', value);
         }
     };
 
     const updateSpeedometerMaxValue = async (value) => {
         if (value !== null) {
-            await deviceSave('speedometerMaxValue', value);
             setSpeedometerMaxValue(value);
+            await deviceSave('speedometerMaxValue', value);
         }
     };
 
     const updateLanguage = async (value) => {
         if (value !== null) {
+            setLanguage(value);
             await deviceSave('language', value);
             await i18n.changeLanguage(languages[value]);
-            setLanguage(value);
         }
     };
 
