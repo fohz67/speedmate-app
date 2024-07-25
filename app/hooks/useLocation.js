@@ -1,5 +1,5 @@
 import * as Location from 'expo-location';
-import {useEffect, useRef, useState} from 'react';
+import {useCallback, useEffect, useRef, useState} from 'react';
 import useSettings from '../hooks/useSettings';
 
 const useLocation = () => {
@@ -13,47 +13,62 @@ const useLocation = () => {
     const [timeRide, setTimeRide] = useState(0);
     const [timeAtZero, setTimeAtZero] = useState(0);
     const [prevLocation, setPrevLocation] = useState(null);
+    const [error, setError] = useState(null);
 
     const speedRef = useRef(0);
+    const distanceRef = useRef(distance);
+    const lastTimeRef = useRef(Date.now());
     const timerRef = useRef(null);
 
     useEffect(() => {
-        getLocationUpdates();
-        startTimer();
+        const requestLocationPermission = async () => {
+            const {status} = await Location.requestForegroundPermissionsAsync();
 
-        return () => clearInterval(timerRef.current);
-    }, []);
+            if (status !== 'granted') {
+                console.log('Permission to access location was denied');
+                alert('Permission to access location was denied');
+                setError('Permission denied');
 
-    const getLocationUpdates = async () => {
-        let {status} = await Location.requestForegroundPermissionsAsync();
+                return false;
+            }
 
-        if (status !== 'granted') {
-            console.log('Permission to access location was denied');
-            alert('Permission to access location was denied');
-            return;
-        }
-
-        const options = {
-            accuracy: Location.Accuracy.High,
-            timeInterval: 1000,
-            distanceInterval: 1,
+            return true;
         };
 
-        await Location.watchPositionAsync(options, (location) => {
+        const startLocationTracking = async () => {
+            const hasPermission = await requestLocationPermission();
+
+            if (!hasPermission) {
+                return;
+            }
+
+            const options = {
+                accuracy: Location.Accuracy.High,
+                timeInterval: 1000,
+                distanceInterval: 1,
+            };
+
+            return await Location.watchPositionAsync(options, handleLocationUpdate);
+        };
+
+        const handleLocationUpdate = (location) => {
             const {
-                speed,
+                speed: locationSpeed,
                 altitude,
                 latitude,
                 longitude
             } = location.coords;
 
-            setAltitude(convertAltitude(altitude));
+            const convertedSpeed = convertSpeed(locationSpeed);
+            const convertedAltitude = convertAltitude(altitude);
 
-            if (speed > 0) {
-                setSpeed(convertSpeed(speed));
+            setAltitude(convertedAltitude);
 
-                if (speed > maxSpeed) {
-                    setMaxSpeed(speed);
+            if (locationSpeed > 0) {
+                setSpeed(convertedSpeed);
+
+                if (convertedSpeed > maxSpeed) {
+                    setMaxSpeed(convertedSpeed);
                 }
 
                 if (prevLocation) {
@@ -64,65 +79,75 @@ const useLocation = () => {
                         longitude
                     );
 
-                    setDistance(prevDistance => prevDistance + distanceIncrement);
+                    distanceRef.current += distanceIncrement;
+                    setDistance(distanceRef.current);
                 }
 
                 setPrevLocation({latitude, longitude});
+            } else {
+                setPrevLocation(prevLocation ? {...prevLocation} : null);
             }
-        });
-    };
+        };
 
-    const startTimer = () => {
-        timerRef.current = setInterval(() => {
-            setTimeRide(prevTimeRide => {
+        const startTimer = () => {
+            timerRef.current = setInterval(() => {
+                const now = Date.now();
+                const deltaTime = (now - lastTimeRef.current) / 1000;
+
+                lastTimeRef.current = now;
+
                 if (speed > 0) {
-                    speedRef.current += speed;
-                    setAverageSpeed(speedRef.current / (prevTimeRide + 1));
-                    return prevTimeRide + 1;
+                    setTimeRide(prevTimeRide => prevTimeRide + deltaTime);
+                    speedRef.current += speed * deltaTime;
+                    setAverageSpeed(speedRef.current / (timeRide + deltaTime));
+                    setTimeAtZero(0);
+                } else {
+                    setTimeAtZero(prevTimeAtZero => prevTimeAtZero + deltaTime);
                 }
+            }, 1000);
+        };
 
-                return prevTimeRide;
-            });
+        const cleanup = (subscription) => {
+            if (timerRef.current) {
+                clearInterval(timerRef.current);
+            }
+            if (subscription) {
+                subscription.remove();
+            }
+        };
 
-            setTimeAtZero(prevTimeAtZero => {
-                if (speed <= 0) {
-                    return prevTimeAtZero + 1;
-                }
+        (async () => {
+            const subscription = await startLocationTracking();
+            startTimer();
 
-                return prevTimeAtZero;
-            });
-        }, 1000);
-    };
+            return () => cleanup(subscription);
+        })();
+    }, [unit]);
 
-    const calculateDistance = (lat1, lon1, lat2, lon2) => {
+    const calculateDistance = useCallback((lat1, lon1, lat2, lon2) => {
         const toRad = angle => angle * (Math.PI / 180);
 
         const deltaLat = toRad(lat2 - lat1);
         const deltaLon = toRad(lon2 - lon1);
-        const a =
-            Math.sin(deltaLat / 2) ** 2 +
-            Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-            Math.sin(deltaLon / 2) ** 2;
+        const a = Math.sin(deltaLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(deltaLon / 2) ** 2;
         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-        const distanceInMeters = 6371 * c * 1000;
+        return convertDistance(6371 * c * 1000);
+    }, [unit]);
 
-        return convertDistance(distanceInMeters);
-    };
-
-    const convertDistance = distanceInMeters => {
+    const convertDistance = useCallback(distanceInMeters => {
         return unit === 1 ? distanceInMeters * 0.000621371 : distanceInMeters / 1000;
-    };
+    }, [unit]);
 
-    const convertAltitude = altitudeInMeters => {
+    const convertAltitude = useCallback(altitudeInMeters => {
         return unit === 1 ? altitudeInMeters * 3.28084 : altitudeInMeters;
-    };
+    }, [unit]);
 
-    const convertSpeed = speedInMetersPerSecond => {
+    const convertSpeed = useCallback(speedInMetersPerSecond => {
         const speedInKmh = speedInMetersPerSecond * 3.6;
 
         return unit === 1 ? speedInKmh * 0.621371 : speedInKmh;
-    };
+    }, [unit]);
 
     const formatTime = seconds => {
         const padZero = num => num.toString().padStart(2, '0');
@@ -140,8 +165,9 @@ const useLocation = () => {
         distance: convertDistance(distance),
         maxSpeed: convertSpeed(maxSpeed),
         averageSpeed: convertSpeed(averageSpeed),
-        timeRide: formatTime(timeRide),
-        timeAtZero: formatTime(timeAtZero),
+        timeRide: formatTime(Math.floor(timeRide)),
+        timeAtZero: formatTime(Math.floor(timeAtZero)),
+        error
     };
 };
 
