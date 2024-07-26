@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "SpeedMate",
-    "slug": "SpeedMate",
+    "name": "speed-mate",
+    "slug": "speed-mate",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,26 +12,16 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "com.fohz.SpeedMate"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      },
-      "package": "com.fohz.SpeedMate"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      "expo-font"
-    ],
-    "extra": {
-      "eas": {
-        "projectId": "52d70a71-553b-45e9-afdd-42ae9b95a8a5"
-      }
     }
   }
 }
