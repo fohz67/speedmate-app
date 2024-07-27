@@ -3,7 +3,7 @@ const Colors = {
         app: {
             background: '#000c18',
             label: 'gray',
-            separator: '#1c2533',
+            separator: '#0b1925',
             shadow: 'rgba(0,0,0,0)',
             subtitle: 'white',
             text: 'white',

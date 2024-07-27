@@ -13,7 +13,8 @@ const styles = StyleSheet.create({
     separator: {
         backgroundColor: Colors.default.app.separator,
         borderColor: Colors.default.app.separator,
-        borderWidth: normalize(0.5),
+        borderWidth: normalize(1),
+        borderRadius: normalize(0.5),
         marginBottom: normalize(5),
         marginTop: normalize(15),
     }

@@ -6,6 +6,7 @@ import GlobalTitle from '../components/global/GlobalTitle';
 import SettingsDropDownList from '../components/settings/SettingsDropDownList';
 import SettingsSlider from "../components/settings/SettingsSlider";
 import useOptions from "../hooks/useOptions";
+import normalize from "../normalize";
 import {useSettingsContext} from '../SettingsContext';
 
 const SettingsScreen = () => {
@@ -27,12 +28,14 @@ const SettingsScreen = () => {
         <ScrollView contentContainerStyle={styles.container}>
             <View style={styles.section}>
                 <GlobalTitle label={t('speedometer')}/>
+
                 <SettingsDropDownList
                     label={t('unit')}
                     options={options.units}
                     selected={unit}
                     func={updateUnit}
                 />
+
                 <MyCustomSeparator/>
                 <SettingsSlider
                     label={t('maxSpeed')}
@@ -42,6 +45,8 @@ const SettingsScreen = () => {
                     max={450}
                     step={5}
                 />
+
+                <MyCustomSeparator/>
                 <SettingsSlider
                     label={t('arcWidth')}
                     value={arcWidth}
@@ -53,6 +58,7 @@ const SettingsScreen = () => {
             </View>
             <View style={styles.section}>
                 <GlobalTitle label="Application"/>
+
                 <SettingsDropDownList
                     label={t('language')}
                     options={options.languages}
@@ -68,11 +74,8 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         flexGrow: 1,
-        padding: 20,
-    },
-    element: {
-        fontSize: 16,
-        fontWeight: 'semibold',
+        top: normalize(-10),
+        paddingHorizontal: normalize(30),
     },
     section: {
         width: '100%',

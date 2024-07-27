@@ -1,11 +1,12 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
+import {useTranslation} from "react-i18next";
 import {Image, StyleSheet, View} from 'react-native';
 import Colors from "../assets/theme/colors";
 import normalize from "../normalize";
 import GPSScreen from '../screens/GPSScreen';
 import ProfileScreen from '../screens/ProfileScreen';
-import Settings from '../screens/SettingsScreen';
+import SettingsScreen from '../screens/SettingsScreen';
 import {SettingsProvider} from "../SettingsContext";
 
 const icons = {
@@ -42,13 +43,15 @@ const screenOptions = ({route}) => ({
     headerTintColor: Colors.default.header.tint,
     headerTitleAlign: 'left',
     headerTitleStyle: {
-        fontSize: normalize(30),
         fontFamily: 'Universo-Black',
-        marginLeft: normalize(20),
+        fontSize: normalize(30),
         fontWeight: 'bold',
+        marginTop: normalize(20),
+        marginLeft: normalize(20),
         textAlign: 'left',
     },
     tabBarActiveTintColor: Colors.default.navigation.selected,
+    tabBarIcon: ({focused, color, size}) => getTabBarIcon(route.name, focused, color, size),
     tabBarInactiveTintColor: Colors.default.navigation.unselected,
     tabBarShowLabel: false,
     tabBarStyle: {
@@ -65,10 +68,11 @@ const screenOptions = ({route}) => ({
         overflow: 'hidden',
         shadowOpacity: 0,
     },
-    tabBarIcon: ({focused, color, size}) => getTabBarIcon(route.name, focused, color, size),
 });
 
 const TabNavigator = () => {
+    const {t} = useTranslation();
+
     return (
         <View style={styles.container}>
             <SettingsProvider>
@@ -80,14 +84,17 @@ const TabNavigator = () => {
                     <Tab.Screen
                         name="GPS"
                         component={GPSScreen}
+                        options={{headerTitle: t('gps')}}
                     />
                     <Tab.Screen
                         name="Profile"
                         component={ProfileScreen}
+                        options={{headerTitle: t('profile')}}
                     />
                     <Tab.Screen
                         name="Settings"
-                        component={Settings}
+                        component={SettingsScreen}
+                        options={{headerTitle: t('settings')}}
                     />
                 </Tab.Navigator>
             </SettingsProvider>
