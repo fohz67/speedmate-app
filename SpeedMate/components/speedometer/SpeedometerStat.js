@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
     value: {
         color: Colors.default.stats.value,
         fontFamily: 'Universo-Black',
-        fontSize: normalize(35),
+        fontSize: normalize(30),
     },
     valueContainer: {
         alignItems: 'baseline',

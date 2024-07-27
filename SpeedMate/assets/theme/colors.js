@@ -3,7 +3,7 @@ const Colors = {
         app: {
             background: '#000c18',
             label: 'gray',
-            separator: '#0b1925',
+            separator: '#0d1827',
             shadow: 'rgba(0,0,0,0)',
             subtitle: 'white',
             text: 'white',
@@ -32,7 +32,7 @@ const Colors = {
         stats: {
             label: '#0076ffff',
             value: '#ffffff',
-            text: 'rgba(255,255,255,0.35)',
+            text: '#1c314a',
         }
     }
 };
