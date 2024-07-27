@@ -5,8 +5,7 @@ import Speedometer from 'react-native-cool-speedometer/dist/Speedometer';
 import Colors from '../../assets/theme/colors';
 import normalize from "../../normalize";
 
-const SpeedometerView = () => {
-    const speed = 67;
+const SpeedometerView = ({speed}) => {
     const maxSpeed = 100;
     const unit = 0;
     const units = ["Km/h", "Mph"];
