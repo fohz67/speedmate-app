@@ -1,9 +1,9 @@
 import {useTranslation} from "react-i18next";
+import {useSettingsContext} from "../SettingsContext";
 
 const useUnits = () => {
     const {t} = useTranslation();
-
-    const unit = 0;
+    const {unit} = useSettingsContext();
 
     return [
         {

@@ -6,6 +6,7 @@ import normalize from "../normalize";
 import GPS from '../screens/GPS';
 import Profile from '../screens/Profile';
 import Settings from '../screens/Settings';
+import {SettingsProvider} from "../SettingsContext";
 
 const icons = {
     GPS: {
@@ -70,24 +71,26 @@ const screenOptions = ({route}) => ({
 const TabNavigator = () => {
     return (
         <View style={styles.container}>
-            <Tab.Navigator
-                initialRouteName="GPS"
-                screenOptions={screenOptions}
-                sceneContainerStyle={styles.navigatorScene}
-            >
-                <Tab.Screen
-                    name="GPS"
-                    component={GPS}
-                />
-                <Tab.Screen
-                    name="Profile"
-                    component={Profile}
-                />
-                <Tab.Screen
-                    name="Settings"
-                    component={Settings}
-                />
-            </Tab.Navigator>
+            <SettingsProvider>
+                <Tab.Navigator
+                    initialRouteName="GPS"
+                    screenOptions={screenOptions}
+                    sceneContainerStyle={styles.navigatorScene}
+                >
+                    <Tab.Screen
+                        name="GPS"
+                        component={GPS}
+                    />
+                    <Tab.Screen
+                        name="Profile"
+                        component={Profile}
+                    />
+                    <Tab.Screen
+                        name="Settings"
+                        component={Settings}
+                    />
+                </Tab.Navigator>
+            </SettingsProvider>
         </View>
     );
 };
