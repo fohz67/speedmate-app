@@ -1,10 +1,10 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
-import SpeedometerPanel from "../components/gps/SpeedometerPanel";
-import SpeedometerView from "../components/gps/SpeedometerView";
+import SpeedometerPanel from "../components/speedometer/SpeedometerPanel";
+import SpeedometerView from "../components/speedometer/SpeedometerView";
 import useGPS from "../hooks/useGPS";
 
-export default function GPS() {
+export default function GPSScreen() {
     const {
         speed,
         altitude,

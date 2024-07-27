@@ -6,8 +6,8 @@ const SETTINGS_DATA = {
         key: 'language',
         default: 0,
     },
-    SPEEDOMETER_MAX_SPEED: {
-        key: 'speedometerMaxSpeed',
+    SPEEDOMETER_MAX_VALUE: {
+        key: 'speedometerMaxValue',
         default: 200,
     },
     ARC_WIDTH: {
@@ -22,7 +22,7 @@ const SETTINGS_DATA = {
 
 const useSettings = () => {
     const [language, setLanguage] = useState(SETTINGS_DATA.LANGUAGE.default);
-    const [speedometerMaxSpeed, setSpeedometerMaxSpeed] = useState(SETTINGS_DATA.SPEEDOMETER_MAX_SPEED.default);
+    const [speedometerMaxValue, setSpeedometerMaxValue] = useState(SETTINGS_DATA.SPEEDOMETER_MAX_VALUE.default);
     const [arcWidth, setArcWidth] = useState(SETTINGS_DATA.ARC_WIDTH.default);
     const [unit, setUnit] = useState(SETTINGS_DATA.UNIT.default);
 
@@ -30,12 +30,12 @@ const useSettings = () => {
         const loadSettings = async () => {
             try {
                 const storedLanguage = await AsyncStorage.getItem(SETTINGS_DATA.LANGUAGE.key);
-                const storedSpeedometerMaxSpeed = await AsyncStorage.getItem(SETTINGS_DATA.SPEEDOMETER_MAX_SPEED.key);
+                const storedSpeedometerMaxValue = await AsyncStorage.getItem(SETTINGS_DATA.SPEEDOMETER_MAX_VALUE.key);
                 const storedArcWidth = await AsyncStorage.getItem(SETTINGS_DATA.ARC_WIDTH.key);
                 const storedUnit = await AsyncStorage.getItem(SETTINGS_DATA.UNIT.key);
 
                 setLanguage(storedLanguage ? parseInt(storedLanguage, 10) : SETTINGS_DATA.LANGUAGE.default);
-                setSpeedometerMaxSpeed(storedSpeedometerMaxSpeed ? parseInt(storedSpeedometerMaxSpeed, 10) : SETTINGS_DATA.SPEEDOMETER_MAX_SPEED.default);
+                setSpeedometerMaxValue(storedSpeedometerMaxValue ? parseInt(storedSpeedometerMaxValue, 10) : SETTINGS_DATA.SPEEDOMETER_MAX_VALUE.default);
                 setArcWidth(storedArcWidth ? parseInt(storedArcWidth, 10) : SETTINGS_DATA.ARC_WIDTH.default);
                 setUnit(storedUnit ? parseInt(storedUnit, 10) : SETTINGS_DATA.UNIT.default);
             } catch (error) {
@@ -55,10 +55,10 @@ const useSettings = () => {
         }
     };
 
-    const updateSpeedometerMaxSpeed = async (newSpeedometerMaxSpeed) => {
+    const updateSpeedometerMaxValue = async (newSpeedometerMaxValue) => {
         try {
-            setSpeedometerMaxSpeed(newSpeedometerMaxSpeed);
-            await AsyncStorage.setItem(SETTINGS_DATA.SPEEDOMETER_MAX_SPEED.key, newSpeedometerMaxSpeed.toString());
+            setSpeedometerMaxValue(newSpeedometerMaxValue);
+            await AsyncStorage.setItem(SETTINGS_DATA.SPEEDOMETER_MAX_VALUE.key, newSpeedometerMaxValue.toString());
         } catch (error) {
             console.error('Failed to save speedometer max speed setting to AsyncStorage:', error);
         }
@@ -84,11 +84,11 @@ const useSettings = () => {
 
     return {
         language,
-        speedometerMaxSpeed,
+        speedometerMaxValue,
         arcWidth,
         unit,
         updateLanguage,
-        updateSpeedometerMaxSpeed,
+        updateSpeedometerMaxValue,
         updateArcWidth,
         updateUnit,
     };

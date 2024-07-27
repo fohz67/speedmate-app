@@ -3,9 +3,9 @@ import React from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import Colors from "../assets/theme/colors";
 import normalize from "../normalize";
-import GPS from '../screens/GPS';
-import Profile from '../screens/Profile';
-import Settings from '../screens/Settings';
+import GPSScreen from '../screens/GPSScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+import Settings from '../screens/SettingsScreen';
 import {SettingsProvider} from "../SettingsContext";
 
 const icons = {
@@ -73,17 +73,17 @@ const TabNavigator = () => {
         <View style={styles.container}>
             <SettingsProvider>
                 <Tab.Navigator
-                    initialRouteName="GPS"
+                    initialRouteName="GPSScreen"
                     screenOptions={screenOptions}
                     sceneContainerStyle={styles.navigatorScene}
                 >
                     <Tab.Screen
                         name="GPS"
-                        component={GPS}
+                        component={GPSScreen}
                     />
                     <Tab.Screen
                         name="Profile"
-                        component={Profile}
+                        component={ProfileScreen}
                     />
                     <Tab.Screen
                         name="Settings"
