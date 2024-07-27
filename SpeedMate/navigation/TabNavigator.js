@@ -1,6 +1,6 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
-import {Image, StyleSheet} from 'react-native';
+import {Image, StyleSheet, View} from 'react-native';
 import Colors from "../assets/theme/colors";
 import normalize from "../normalize";
 import GPS from '../screens/GPS';
@@ -69,31 +69,37 @@ const screenOptions = ({route}) => ({
 
 const TabNavigator = () => {
     return (
-        <Tab.Navigator
-            initialRouteName="GPS"
-            screenOptions={screenOptions}
-            sceneContainerStyle={styles.navigatorScene}
-        >
-            <Tab.Screen
-                name="GPS"
-                component={GPS}
-            />
-            <Tab.Screen
-                name="Profile"
-                component={Profile}
-            />
-            <Tab.Screen
-                name="Settings"
-                component={Settings}
-            />
-        </Tab.Navigator>
+        <View style={styles.container}>
+            <Tab.Navigator
+                initialRouteName="GPS"
+                screenOptions={screenOptions}
+                sceneContainerStyle={styles.navigatorScene}
+            >
+                <Tab.Screen
+                    name="GPS"
+                    component={GPS}
+                />
+                <Tab.Screen
+                    name="Profile"
+                    component={Profile}
+                />
+                <Tab.Screen
+                    name="Settings"
+                    component={Settings}
+                />
+            </Tab.Navigator>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: Colors.default.app.background,
+        flex: 1,
+    },
     navigatorScene: {
         backgroundColor: Colors.default.app.background
-    }
+    },
 });
 
 export default TabNavigator;
