@@ -6,5 +6,5 @@ export const sleekSpeed = (speed) => {
     if (speed <= 0) {
         return 0;
     }
-    return Math.floor(speed);
+    return speed.toFixed(0);
 };

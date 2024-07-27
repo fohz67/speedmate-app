@@ -10,6 +10,9 @@ export default function GPS() {
         altitude,
         time,
         stopped,
+        averageSpeed,
+        maxSpeed,
+        tripDistance
     } = useGPS();
 
     return (
@@ -17,7 +20,10 @@ export default function GPS() {
             <SpeedometerView speed={speed}/>
             <SpeedometerPanel time={time}
                               stopped={stopped}
-                              altitude={altitude}/>
+                              altitude={altitude}
+                              averageSpeed={averageSpeed}
+                              maxSpeed={maxSpeed}
+                              tripDistance={tripDistance}/>
         </View>
     );
 }

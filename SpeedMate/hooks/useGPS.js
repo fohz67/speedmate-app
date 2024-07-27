@@ -1,5 +1,6 @@
 import * as Location from 'expo-location';
 import {useEffect, useRef, useState} from 'react';
+import {calculateDistance} from '../locationUtils';
 import {convertSpeedToKmh, sleekSpeed} from '../speedUtils';
 import {formatTime} from '../timerUtils';
 
@@ -11,7 +12,9 @@ const useGPS = () => {
     const [totalSpeed, setTotalSpeed] = useState(0);
     const [maxSpeed, setMaxSpeed] = useState(0);
     const [averageSpeed, setAverageSpeed] = useState(0);
+    const [tripDistance, setTripDistance] = useState(0);
 
+    const previousLocation = useRef(null);
     const timeRef = useRef(time);
     const stoppedRef = useRef(stopped);
 
@@ -29,13 +32,30 @@ const useGPS = () => {
                 return;
             }
 
-            await watchPosition(isMounted);
+            await watchPosition();
+        };
+
+        const watchPosition = async () => {
+            await Location.watchPositionAsync(
+                {
+                    accuracy: Location.Accuracy.High,
+                    timeInterval: 1000,
+                    distanceInterval: 1,
+                },
+                (location) => {
+                    if (isMounted) {
+                        updateLocationData(location);
+                    }
+                }
+            );
         };
 
         startLocationUpdates();
 
         const intervalId = setInterval(() => {
-            updateTimers(isMounted, speed);
+            if (isMounted) {
+                updateTimers(speed);
+            }
         }, 1000);
 
         return () => {
@@ -44,21 +64,6 @@ const useGPS = () => {
         };
     }, [speed]);
 
-    const watchPosition = async (isMounted) => {
-        await Location.watchPositionAsync(
-            {
-                accuracy: Location.Accuracy.High,
-                timeInterval: 1000,
-                distanceInterval: 1,
-            },
-            (location) => {
-                if (isMounted) {
-                    updateLocationData(location);
-                }
-            }
-        );
-    };
-
     const updateLocationData = (location) => {
         const speedInKmh = convertSpeedToKmh(location.coords.speed);
         const adjustedSpeed = sleekSpeed(speedInKmh);
@@ -66,28 +71,46 @@ const useGPS = () => {
         setSpeed(adjustedSpeed);
         setAltitude(location.coords.altitude);
 
-        if (adjustedSpeed > maxSpeed) {
-            setMaxSpeed(adjustedSpeed);
-        }
-
-        setTotalSpeed(prevTotalSpeed => {
-            const newTotalSpeed = prevTotalSpeed + adjustedSpeed;
-
-            if (timeRef.current > 0) {
-                setAverageSpeed(newTotalSpeed / timeRef.current);
+        if (adjustedSpeed > 0) {
+            if (adjustedSpeed > maxSpeed) {
+                setMaxSpeed(adjustedSpeed);
             }
 
-            return newTotalSpeed;
-        });
+            setTotalSpeed(prevTotalSpeed => {
+                const newTotalSpeed = prevTotalSpeed + adjustedSpeed;
+
+                if (timeRef.current > 0) {
+                    setAverageSpeed(newTotalSpeed / timeRef.current);
+                }
+
+                return newTotalSpeed;
+            });
+
+            if (previousLocation.current) {
+                const {
+                    latitude: prevLat,
+                    longitude: prevLon
+                } = previousLocation.current;
+
+                const {
+                    latitude: currLat,
+                    longitude: currLon
+                } = location.coords;
+
+                const distance = calculateDistance(prevLat, prevLon, currLat, currLon);
+
+                setTripDistance(prevTripDistance => prevTripDistance + distance);
+            }
+
+            previousLocation.current = location.coords;
+        }
     };
 
-    const updateTimers = (isMounted, currentSpeed) => {
-        if (isMounted) {
-            if (currentSpeed > 0) {
-                setTime((prevTime) => prevTime + 1);
-            } else {
-                setStopped((prevStopped) => prevStopped + 1);
-            }
+    const updateTimers = (currentSpeed) => {
+        if (currentSpeed > 0) {
+            setTime(prevTime => prevTime + 1);
+        } else {
+            setStopped(prevStopped => prevStopped + 1);
         }
     };
 
@@ -98,6 +121,7 @@ const useGPS = () => {
         stopped: formatTime(stoppedRef.current),
         averageSpeed: averageSpeed.toFixed(2),
         maxSpeed,
+        tripDistance: tripDistance.toFixed(2),
     };
 };
 

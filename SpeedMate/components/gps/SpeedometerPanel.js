@@ -5,13 +5,9 @@ import useUnits from "../../hooks/useUnits";
 import normalize from "../../normalize";
 import SpeedometerStat from "./SpeedometerStat";
 
-const SpeedometerPanel = ({time, stopped, altitude}) => {
+const SpeedometerPanel = ({time, stopped, altitude, averageSpeed, maxSpeed, tripDistance}) => {
     const {t} = useTranslation();
     const units = useUnits();
-
-    const averageSpeed = 0;
-    const maxSpeed = 0;
-    const distance = 0;
 
     return (
         <View style={styles.container}>
@@ -24,7 +20,7 @@ const SpeedometerPanel = ({time, stopped, altitude}) => {
                 <SpeedometerStat
                     label={t('distance')}
                     unit={units.distance}
-                    value={distance.toFixed(2)}
+                    value={tripDistance}
                 />
                 <SpeedometerStat
                     label={t('time')}
