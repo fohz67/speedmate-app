@@ -1,11 +1,8 @@
 import * as Location from 'expo-location';
 import {useEffect, useRef, useState} from 'react';
-import {useSettingsContext} from "../SettingsContext";
-import {calculateDistance, formatTime} from '../timeUtils';
+import {calculateDistance} from '../distanceUtils';
 
 const useGPS = () => {
-    const {unit} = useSettingsContext();
-
     const [speed, setSpeed] = useState(0);
     const [altitude, setAltitude] = useState(0);
     const [time, setTime] = useState(0);
@@ -117,8 +114,8 @@ const useGPS = () => {
     return {
         speed,
         altitude: altitude,
-        time: formatTime(timeRef.current),
-        stopped: formatTime(stoppedRef.current),
+        time: timeRef.current,
+        stopped: stoppedRef.current,
         averageSpeed: averageSpeed,
         maxSpeed,
         tripDistance: tripDistance,
