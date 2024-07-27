@@ -1,7 +1,7 @@
 import {Dimensions} from 'react-native';
 
-const baseScreenWidth = 430;
-const baseScreenHeight = 932;
+const baseScreenWidth = 390;
+const baseScreenHeight = 844;
 
 const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
 

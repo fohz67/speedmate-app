@@ -18,31 +18,31 @@ const SpeedometerStat = ({label, unit, value, little}) => {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        marginVertical: normalize(5),
+        marginVertical: normalize(15)
     },
     label: {
         color: Colors.default.stats.text,
         fontFamily: 'Universo-Regular',
         fontSize: normalize(18),
+        marginBottom: normalize(10),
         textTransform: 'uppercase',
     },
     littleValue: {
         color: Colors.default.stats.value,
         fontFamily: 'Universo-Regular',
-        fontSize: normalize(25),
-        marginBottom: normalize(10),
+        fontSize: normalize(27),
     },
     unit: {
         color: Colors.default.stats.label,
         fontFamily: 'Universo-Regular',
         fontSize: normalize(20),
         marginLeft: normalize(5),
+        textTransform: 'capitalize',
     },
     value: {
         color: Colors.default.stats.value,
         fontFamily: 'Universo-Black',
         fontSize: normalize(35),
-        marginBottom: normalize(10),
     },
     valueContainer: {
         alignItems: 'baseline',

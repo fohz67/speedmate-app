@@ -6,7 +6,7 @@ import Colors from '../../assets/theme/colors';
 import normalize from "../../normalize";
 
 const SpeedometerView = () => {
-    const speed = 0;
+    const speed = 67;
     const maxSpeed = 100;
     const unit = 0;
     const units = ["Km/h", "Mph"];
