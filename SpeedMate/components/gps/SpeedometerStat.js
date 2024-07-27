@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     littleValue: {
         color: Colors.default.stats.value,
         fontFamily: 'Universo-Regular',
-        fontSize: normalize(27),
+        fontSize: normalize(25),
     },
     unit: {
         color: Colors.default.stats.label,

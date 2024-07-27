@@ -63,12 +63,12 @@ const styles = StyleSheet.create({
     column: {
         alignItems: 'center',
         flex: 1,
-        marginHorizontal: normalize(15),
         justifyContent: 'flex-start',
     },
     container: {
         alignItems: 'center',
         flexDirection: 'row',
+        marginHorizontal: normalize(20),
         justifyContent: 'space-between',
     },
 });
