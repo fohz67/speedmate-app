@@ -1,0 +1,14 @@
+{
+  "avgSpeed": "Avg. Speed",
+  "maxSpeed": "Max Speed",
+  "distance": "Distance",
+  "altitude": "Altitude",
+  "stopped": "Stopped",
+  "time": "Time",
+  "kph": "kph",
+  "km": "km",
+  "m": "m",
+  "mph": "mph",
+  "mi": "mi",
+  "ft": "ft"
+}

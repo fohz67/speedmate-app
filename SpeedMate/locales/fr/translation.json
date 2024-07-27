@@ -1,0 +1,14 @@
+{
+  "avgSpeed": "Vitesse Moy.",
+  "maxSpeed": "Vitesse Max",
+  "distance": "Distance",
+  "altitude": "Altitude",
+  "stopped": "Arrêté",
+  "time": "Durée",
+  "kph": "km/h",
+  "km": "km",
+  "m": "m",
+  "mph": "mi/h",
+  "mi": "mi",
+  "ft": "pieds"
+}
