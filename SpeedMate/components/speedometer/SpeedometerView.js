@@ -11,7 +11,7 @@ const SpeedometerView = ({speed}) => {
     const width = Dimensions.get('window').width - 80;
     const rectangleBias = 1.3;
 
-    let {
+    const {
         arcWidth,
         speedometerMaxSpeed
     } = useSettingsContext();

@@ -1,10 +1,11 @@
 import * as Location from 'expo-location';
 import {useEffect, useRef, useState} from 'react';
-import {calculateDistance} from '../locationUtils';
-import {convertSpeedToKmh, sleekSpeed} from '../speedUtils';
-import {formatTime} from '../timerUtils';
+import {useSettingsContext} from "../SettingsContext";
+import {calculateDistance, formatTime} from '../timeUtils';
 
 const useGPS = () => {
+    const {unit} = useSettingsContext();
+
     const [speed, setSpeed] = useState(0);
     const [altitude, setAltitude] = useState(0);
     const [time, setTime] = useState(0);
@@ -65,19 +66,18 @@ const useGPS = () => {
     }, [speed]);
 
     const updateLocationData = (location) => {
-        const speedInKmh = convertSpeedToKmh(location.coords.speed);
-        const adjustedSpeed = sleekSpeed(speedInKmh);
+        const locationSpeed = location.coords.speed;
 
-        setSpeed(adjustedSpeed);
+        setSpeed(location.coords.speed);
         setAltitude(location.coords.altitude);
 
-        if (adjustedSpeed > 0) {
-            if (adjustedSpeed > maxSpeed) {
-                setMaxSpeed(adjustedSpeed);
+        if (locationSpeed > 0) {
+            if (locationSpeed > maxSpeed) {
+                setMaxSpeed(locationSpeed);
             }
 
             setTotalSpeed(prevTotalSpeed => {
-                const newTotalSpeed = prevTotalSpeed + adjustedSpeed;
+                const newTotalSpeed = prevTotalSpeed + locationSpeed;
 
                 if (timeRef.current > 0) {
                     setAverageSpeed(newTotalSpeed / timeRef.current);
@@ -116,12 +116,12 @@ const useGPS = () => {
 
     return {
         speed,
-        altitude: altitude.toFixed(0),
+        altitude: altitude,
         time: formatTime(timeRef.current),
         stopped: formatTime(stoppedRef.current),
-        averageSpeed: averageSpeed.toFixed(2),
+        averageSpeed: averageSpeed,
         maxSpeed,
-        tripDistance: tripDistance.toFixed(2),
+        tripDistance: tripDistance,
     };
 };
 
