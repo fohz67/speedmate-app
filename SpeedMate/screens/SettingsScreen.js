@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexGrow: 1,
         top: normalize(-10),
-        paddingHorizontal: normalize(30),
+        paddingHorizontal: normalize(20),
     },
     section: {
         width: '100%',
