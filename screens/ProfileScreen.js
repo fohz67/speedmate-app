@@ -91,12 +91,12 @@ export default function ProfileScreen() {
                 />
                 <SettingsInput
                     value={vehicleBrand}
-                    onChangeText={updateVehicleBrand}
+                    func={updateVehicleBrand}
                     placeholder={t('vehicleBrand')}
                 />
                 <SettingsInput
                     value={vehicleModel}
-                    onChangeText={updateVehicleModel}
+                    func={updateVehicleModel}
                     placeholder={t('vehicleModel')}
                 />
             </View>

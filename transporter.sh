@@ -13,12 +13,12 @@ increment_build_number() {
 
 build_app() {
   echo "Starting build..."
-  eas build --platform ios --profile production -y
+  eas build --platform ios --profile production
 }
 
 submit_app() {
   echo "Submitting build..."
-  eas submit --platform ios -y
+  eas submit --platform ios
 }
 
 increment_build_number
