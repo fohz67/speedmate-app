@@ -11,16 +11,16 @@ import normalizeUtils from "../utils/normalizeUtils";
 
 const icons = {
     GPS: {
-        fill: require("../assets/house-fill.png"),
-        outline: require("../assets/house-outline.png"),
+        fill: require("../assets/ic-house-fill.png"),
+        outline: require("../assets/ic-house-outline.png"),
     },
     Profile: {
-        fill: require("../assets/user-fill.png"),
-        outline: require("../assets/user-outline.png"),
+        fill: require("../assets/ic-user-fill.png"),
+        outline: require("../assets/ic-user-outline.png"),
     },
     Settings: {
-        fill: require("../assets/settings-fill.png"),
-        outline: require("../assets/settings-outline.png"),
+        fill: require("../assets/ic-settings-fill.png"),
+        outline: require("../assets/ic-settings-outline.png"),
     },
 };
 

@@ -1,5 +1,7 @@
-import React, {useState} from 'react';
-import {Button, Modal, StyleSheet, View} from 'react-native';
+import React from 'react';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {normalize} from "react-native-elements";
+import Colors from "../assets/theme/colors";
 import SpeedometerPanel from "../components/speedometer/SpeedometerPanel";
 import SpeedometerView from "../components/speedometer/SpeedometerView";
 import useGPS from "../hooks/useGPS";
@@ -7,11 +9,8 @@ import useTimer from "../hooks/useTimer";
 import {useSettingsContext} from "../SettingsContext";
 import {convertAltitude, convertDistance, convertSpeed} from "../utils/convertUtils";
 import {formatTime} from "../utils/timerUtils";
-import FullScreenPage from './FullScreenPage';
 
-export default function GPSScreen() {
-    const [modalVisible, setModalVisible] = useState(false);
-
+export default function FullScreenPage({onClose}) {
     const {
         speed,
         altitude,
@@ -29,9 +28,13 @@ export default function GPSScreen() {
 
     return (
         <View style={styles.container}>
-            <Button title="Open Full Screen"
-                    onPress={() => setModalVisible(true)}/>
-
+            <TouchableOpacity style={styles.closeButton}
+                              onPress={onClose}>
+                <Image source={require('../assets/ic-cross.png')}
+                       style={styles.closeIcon}
+                       tintColor={Colors.default.app.text}
+                />
+            </TouchableOpacity>
             <SpeedometerView speed={convertSpeed(speed, unit).toFixed(0)}/>
             <SpeedometerPanel time={formatTime(time)}
                               stopped={formatTime(stopped)}
@@ -39,15 +42,6 @@ export default function GPSScreen() {
                               averageSpeed={convertSpeed(averageSpeed, unit).toFixed(0)}
                               maxSpeed={convertSpeed(maxSpeed, unit).toFixed(0)}
                               tripDistance={convertDistance(tripDistance, unit).toFixed(2)}/>
-
-            <Modal
-                visible={modalVisible}
-                animationType="slide"
-                transparent={false}
-                onRequestClose={() => setModalVisible(false)}
-            >
-                <FullScreenPage onClose={() => setModalVisible(false)}/>
-            </Modal>
         </View>
     );
 }
@@ -55,7 +49,19 @@ export default function GPSScreen() {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
+        backgroundColor: Colors.default.app.background,
         flex: 1,
         justifyContent: 'center',
+    },
+    closeButton: {
+        padding: normalize(10),
+        position: 'absolute',
+        left: normalize(20),
+        top: normalize(60),
+        zIndex: 1,
+    },
+    closeIcon: {
+        height: normalize(15),
+        width: normalize(15),
     },
 });

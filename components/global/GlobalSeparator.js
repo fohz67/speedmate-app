@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import Colors from '../../assets/theme/colors';
 import {normalizeUtils} from '../../utils/normalizeUtils';
 
-const MyCustomTitle = () => {
+const GlobalSeparator = () => {
     return (
         <View style={styles.separator}></View>
     );
@@ -20,4 +20,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default MyCustomTitle;
+export default GlobalSeparator;
