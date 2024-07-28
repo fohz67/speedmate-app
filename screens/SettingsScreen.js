@@ -7,7 +7,7 @@ import SettingsDropDownList from '../components/settings/SettingsDropDownList';
 import SettingsSlider from "../components/settings/SettingsSlider";
 import useOptions from "../hooks/useOptions";
 import {useSettingsContext} from '../SettingsContext';
-import normalizeUtils from "../utils/normalizeUtils";
+import normalize from "../utils/normalizeUtils";
 
 const SettingsScreen = () => {
     const {t} = useTranslation();
@@ -74,8 +74,8 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         flexGrow: 1,
-        top: normalizeUtils(-10),
-        paddingHorizontal: normalizeUtils(20),
+        top: normalize(-10),
+        paddingHorizontal: normalize(20),
     },
     section: {
         width: '100%',

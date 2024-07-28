@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Button, Modal, StyleSheet, View} from 'react-native';
+import {Modal, StyleSheet, View} from 'react-native';
 import SpeedometerPanel from "../components/speedometer/SpeedometerPanel";
 import SpeedometerView from "../components/speedometer/SpeedometerView";
 import useGPS from "../hooks/useGPS";
@@ -29,9 +29,6 @@ export default function GPSScreen() {
 
     return (
         <View style={styles.container}>
-            <Button title="Open Full Screen"
-                    onPress={() => setModalVisible(true)}/>
-
             <SpeedometerView speed={convertSpeed(speed, unit).toFixed(0)}/>
             <SpeedometerPanel time={formatTime(time)}
                               stopped={formatTime(stopped)}

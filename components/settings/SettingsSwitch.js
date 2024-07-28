@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Switch, Text, View} from 'react-native';
 import Colors from '../../assets/theme/colors';
-import {normalizeUtils} from '../../utils/normalizeUtils';
+import normalize from '../../utils/normalizeUtils';
 
 const SettingsSwitch = ({label, value, func}) => {
     return (
@@ -20,12 +20,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginLeft: normalizeUtils(5),
-        marginTop: normalizeUtils(10),
+        marginLeft: normalize(5),
+        marginTop: normalize(10),
     },
     text: {
         color: Colors.default.app.text,
-        fontSize: normalizeUtils(16),
+        fontSize: normalize(16),
     },
 });
 

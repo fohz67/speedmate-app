@@ -39,21 +39,21 @@ export default function FullScreenPage({
 }
 
 const styles = StyleSheet.create({
-    container: {
-        alignItems: 'center',
-        backgroundColor: Colors.default.app.background,
-        flex: 1,
-        justifyContent: 'center',
-    },
     closeButton: {
+        left: normalize(20),
         padding: normalize(10),
         position: 'absolute',
-        left: normalize(20),
         top: normalize(60),
         zIndex: 1,
     },
     closeIcon: {
         height: normalize(15),
         width: normalize(15),
+    },
+    container: {
+        alignItems: 'center',
+        backgroundColor: Colors.default.app.background,
+        flex: 1,
+        justifyContent: 'center',
     },
 });

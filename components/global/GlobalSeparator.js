@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Colors from '../../assets/theme/colors';
-import {normalizeUtils} from '../../utils/normalizeUtils';
+import normalize from "../../utils/normalizeUtils";
 
 const GlobalSeparator = () => {
     return (
@@ -13,10 +13,10 @@ const styles = StyleSheet.create({
     separator: {
         backgroundColor: Colors.default.app.separator,
         borderColor: Colors.default.app.separator,
-        borderWidth: normalizeUtils(1),
-        borderRadius: normalizeUtils(0.5),
-        marginBottom: normalizeUtils(5),
-        marginTop: normalizeUtils(15),
+        borderWidth: normalize(1),
+        borderRadius: normalize(0.5),
+        marginBottom: normalize(5),
+        marginTop: normalize(15),
     }
 });
 

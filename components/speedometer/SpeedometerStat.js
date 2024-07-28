@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Colors from '../../assets/theme/colors';
-import normalizeUtils from "../../utils/normalizeUtils";
+import normalize from "../../utils/normalizeUtils";
 
 const SpeedometerStat = ({label, unit, value, little}) => {
     return (
@@ -18,31 +18,31 @@ const SpeedometerStat = ({label, unit, value, little}) => {
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
-        marginVertical: normalizeUtils(15)
+        marginVertical: normalize(15)
     },
     label: {
         color: Colors.default.stats.text,
         fontFamily: 'Universo-Regular',
-        fontSize: normalizeUtils(18),
-        marginBottom: normalizeUtils(10),
+        fontSize: normalize(18),
+        marginBottom: normalize(10),
         textTransform: 'uppercase',
     },
     littleValue: {
         color: Colors.default.stats.value,
         fontFamily: 'Universo-Regular',
-        fontSize: normalizeUtils(25),
+        fontSize: normalize(25),
     },
     unit: {
         color: Colors.default.stats.label,
         fontFamily: 'Universo-Regular',
-        fontSize: normalizeUtils(20),
-        marginLeft: normalizeUtils(5),
+        fontSize: normalize(20),
+        marginLeft: normalize(5),
         textTransform: 'capitalize',
     },
     value: {
         color: Colors.default.stats.value,
         fontFamily: 'Universo-Black',
-        fontSize: normalizeUtils(30),
+        fontSize: normalize(30),
     },
     valueContainer: {
         alignItems: 'baseline',

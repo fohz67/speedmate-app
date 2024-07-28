@@ -1,13 +1,13 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React from 'react';
 import {useTranslation} from "react-i18next";
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import Colors from "../assets/theme/colors";
 import GPSScreen from '../screens/GPSScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import {SettingsProvider} from "../SettingsContext";
-import normalizeUtils from "../utils/normalizeUtils";
+import normalize from "../utils/normalizeUtils";
 
 const icons = {
     GPS: {
@@ -28,7 +28,7 @@ const Tab = createBottomTabNavigator();
 
 const getTabBarIcon = (routeName, focused, color, size) => {
     return <Image source={focused ? icons[routeName].fill : icons[routeName].outline}
-                  style={{width: normalizeUtils(size + 3), height: normalizeUtils(size + 3), tintColor: color}}/>;
+                  style={{width: normalize(size + 3), height: normalize(size + 3), tintColor: color}}/>;
 };
 
 const screenOptions = ({route}) => ({
@@ -37,17 +37,17 @@ const screenOptions = ({route}) => ({
         backgroundColor: Colors.default.header.background,
         borderBottomWidth: 0,
         elevation: 0,
-        height: normalizeUtils(130),
+        height: normalize(130),
         shadowOpacity: 0,
     },
     headerTintColor: Colors.default.header.tint,
     headerTitleAlign: 'left',
     headerTitleStyle: {
         fontFamily: 'Universo-Black',
-        fontSize: normalizeUtils(30),
+        fontSize: normalize(30),
         fontWeight: 'bold',
-        marginTop: normalizeUtils(20),
-        marginLeft: normalizeUtils(20),
+        marginTop: normalize(0),
+        marginLeft: normalize(20),
         textAlign: 'left',
     },
     tabBarActiveTintColor: Colors.default.navigation.selected,
@@ -59,12 +59,12 @@ const screenOptions = ({route}) => ({
         borderBottomWidth: 0,
         borderColor: Colors.default.navigation.border,
         borderTopColor: Colors.default.navigation.border,
-        borderTopEndRadius: normalizeUtils(20),
-        borderTopStartRadius: normalizeUtils(20),
-        borderTopWidth: normalizeUtils(1),
-        borderWidth: normalizeUtils(1),
+        borderTopEndRadius: normalize(20),
+        borderTopStartRadius: normalize(20),
+        borderTopWidth: normalize(1),
+        borderWidth: normalize(1),
         elevation: 0,
-        height: normalizeUtils(90),
+        height: normalize(90),
         overflow: 'hidden',
         shadowOpacity: 0,
     },
@@ -84,7 +84,21 @@ const TabNavigator = () => {
                     <Tab.Screen
                         name="GPS"
                         component={GPSScreen}
-                        options={{headerTitle: t('gps')}}
+                        options={({navigation}) => ({
+                            headerTitle: t('gps'),
+                            headerRight: () => (
+                                <TouchableOpacity
+                                    style={styles.expandButton}
+                                    onPress={() => navigation.navigate('FullScreenPage')}
+                                >
+                                    <Image
+                                        source={require('../assets/ic-expand.png')}
+                                        style={styles.expandIcon}
+                                        tintColor={Colors.default.app.text}
+                                    />
+                                </TouchableOpacity>
+                            ),
+                        })}
                     />
                     <Tab.Screen
                         name="Profile"
@@ -106,6 +120,14 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.default.app.background,
         flex: 1,
+    },
+    expandButton: {
+        marginTop: normalize(5),
+        marginRight: normalize(30),
+    },
+    expandIcon: {
+        width: normalize(25),
+        height: normalize(25),
     },
     navigatorScene: {
         backgroundColor: Colors.default.app.background

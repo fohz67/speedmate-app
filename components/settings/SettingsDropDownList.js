@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import Colors from '../../assets/theme/colors';
-import {normalizeUtils} from '../../utils/normalizeUtils';
+import normalize from '../../utils/normalizeUtils';
 
 const SettingsDropDownList = ({label, options, selected, func}) => {
     const pickerItems = options.map((option, index) => ({
@@ -14,32 +14,32 @@ const SettingsDropDownList = ({label, options, selected, func}) => {
         inputAndroid: {
             backgroundColor: Colors.default.input.background,
             borderColor: Colors.default.input.border,
-            borderRadius: normalizeUtils(10),
+            borderRadius: normalize(10),
             borderStyle: 'solid',
-            borderWidth: normalizeUtils(1),
+            borderWidth: normalize(1),
             color: Colors.default.input.text,
             fontFamily: 'Universo-Bold',
-            fontSize: normalizeUtils(14),
-            paddingHorizontal: normalizeUtils(15),
-            paddingVertical: normalizeUtils(10),
+            fontSize: normalize(14),
+            paddingHorizontal: normalize(15),
+            paddingVertical: normalize(10),
             shadowColor: Colors.default.app.shadow,
-            shadowOpacity: normalizeUtils(0.5),
-            shadowRadius: normalizeUtils(15),
+            shadowOpacity: normalize(0.5),
+            shadowRadius: normalize(15),
         },
         inputIOS: {
             backgroundColor: Colors.default.input.background,
             borderColor: Colors.default.input.border,
-            borderRadius: normalizeUtils(10),
+            borderRadius: normalize(10),
             borderStyle: 'solid',
-            borderWidth: normalizeUtils(1),
+            borderWidth: normalize(1),
             color: Colors.default.input.text,
             fontFamily: 'Universo-Bold',
-            fontSize: normalizeUtils(14),
-            paddingHorizontal: normalizeUtils(15),
-            paddingVertical: normalizeUtils(10),
+            fontSize: normalize(14),
+            paddingHorizontal: normalize(15),
+            paddingVertical: normalize(10),
             shadowColor: Colors.default.app.shadow,
-            shadowOpacity: normalizeUtils(0.5),
-            shadowRadius: normalizeUtils(15),
+            shadowOpacity: normalize(0.5),
+            shadowRadius: normalize(15),
         }
     });
 
@@ -65,15 +65,15 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: normalizeUtils(3),
-        marginLeft: normalizeUtils(5),
-        marginTop: normalizeUtils(13),
+        marginBottom: normalize(3),
+        marginLeft: normalize(5),
+        marginTop: normalize(13),
     },
     label: {
         color: Colors.default.app.text,
         fontFamily: 'Universo-Regular',
-        fontSize: normalizeUtils(14),
-        marginRight: normalizeUtils(10),
+        fontSize: normalize(14),
+        marginRight: normalize(10),
     },
     picker: {
         position: 'relative',
