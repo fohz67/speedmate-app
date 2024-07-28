@@ -29,14 +29,14 @@
   "profile": "Profil",
   "scooter": "Scooter 🛵",
   "settings": "Réglages",
-  "speedometer": "Compteur de Vitesse",
+  "speedometer": "Compteur",
   "statistics": "Statistiques",
   "stopped": "Arrêté",
   "time": "Durée",
   "totalTime": "Temps total",
   "unit": "Unité",
-  "vehicleBrand": "Marque du Véhicule",
-  "vehicleInformation": "Informations sur le Véhicule",
-  "vehicleModel": "Modèle du Véhicule",
-  "vehicleType": "Type de Véhicule"
+  "vehicleBrand": "Marque",
+  "vehicleInformation": "Véhicule",
+  "vehicleModel": "Modèle",
+  "vehicleType": "Type"
 }

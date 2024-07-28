@@ -8,19 +8,10 @@ const useGPS = () => {
 
     const [speed, setSpeed] = useState(0);
     const [altitude, setAltitude] = useState(0);
-    const [time, setTime] = useState(0);
-    const [stopped, setStopped] = useState(0);
-    const [totalSpeed, setTotalSpeed] = useState(0);
     const [maxSpeed, setMaxSpeed] = useState(0);
-    const [averageSpeed, setAverageSpeed] = useState(0);
     const [tripDistance, setTripDistance] = useState(0);
 
     const previousLocation = useRef(null);
-    const timeRef = useRef(time);
-    const stoppedRef = useRef(stopped);
-
-    timeRef.current = time;
-    stoppedRef.current = stopped;
 
     useEffect(() => {
         let isMounted = true;
@@ -53,17 +44,10 @@ const useGPS = () => {
 
         startLocationUpdates();
 
-        const intervalId = setInterval(() => {
-            if (isMounted) {
-                updateTimers(speed);
-            }
-        }, 1000);
-
         return () => {
             isMounted = false;
-            clearInterval(intervalId);
         };
-    }, [speed]);
+    }, []);
 
     const updateLocationData = (location) => {
         const locationSpeed = location.coords.speed;
@@ -102,40 +86,11 @@ const useGPS = () => {
         }
     };
 
-    const updateTimers = () => {
-        if (speed > speedThreshold) {
-            setTime(prevTime => {
-                timeRef.current = prevTime + 1;
-
-                return timeRef.current;
-            });
-
-            setTotalSpeed(prevTotalSpeed => {
-                const newTotalSpeed = prevTotalSpeed + speed;
-
-                if (timeRef.current > 0) {
-                    setAverageSpeed(newTotalSpeed / timeRef.current);
-                }
-
-                return newTotalSpeed;
-            });
-        } else {
-            setStopped(prevStopped => {
-                stoppedRef.current = prevStopped + 1;
-
-                return stoppedRef.current;
-            });
-        }
-    };
-
     return {
-        speed: speed,
-        altitude: altitude,
-        time: timeRef.current,
-        stopped: stoppedRef.current,
-        averageSpeed: averageSpeed,
-        maxSpeed: maxSpeed,
-        tripDistance: tripDistance,
+        speed,
+        altitude,
+        maxSpeed,
+        tripDistance,
     };
 };
 

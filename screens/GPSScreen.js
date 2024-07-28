@@ -3,6 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import SpeedometerPanel from "../components/speedometer/SpeedometerPanel";
 import SpeedometerView from "../components/speedometer/SpeedometerView";
 import useGPS from "../hooks/useGPS";
+import useTimer from "../hooks/useTimer";
 import {useSettingsContext} from "../SettingsContext";
 import {convertAltitude, convertDistance, convertSpeed} from "../utils/convertUtils";
 import {formatTime} from "../utils/timerUtils";
@@ -11,12 +12,15 @@ export default function GPSScreen() {
     const {
         speed,
         altitude,
-        time,
-        stopped,
-        averageSpeed,
         maxSpeed,
         tripDistance
     } = useGPS();
+
+    const {
+        time,
+        stopped,
+        averageSpeed
+    } = useTimer(() => speed);
 
     const {unit} = useSettingsContext();
 
