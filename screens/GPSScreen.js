@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Modal, StyleSheet, View} from 'react-native';
 import SpeedometerPanel from "../components/speedometer/SpeedometerPanel";
 import SpeedometerView from "../components/speedometer/SpeedometerView";
@@ -9,9 +9,7 @@ import {convertAltitude, convertDistance, convertSpeed} from "../utils/convertUt
 import {formatTime} from "../utils/timerUtils";
 import FullScreenPage from './FullScreenPage';
 
-export default function GPSScreen() {
-    const [modalVisible, setModalVisible] = useState(false);
-
+export default function GPSScreen({modalVisible, setModalVisible}) {
     const {
         speed,
         altitude,
