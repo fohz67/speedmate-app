@@ -3,6 +3,9 @@ import {useEffect, useRef, useState} from 'react';
 import {calculateDistance} from '../utils/distanceUtils';
 
 const useGPS = () => {
+    const speedThreshold = 0.2;
+    const accuracyThreshold = 5;
+
     const [speed, setSpeed] = useState(0);
     const [altitude, setAltitude] = useState(0);
     const [time, setTime] = useState(0);
@@ -36,7 +39,7 @@ const useGPS = () => {
         const watchPosition = async () => {
             await Location.watchPositionAsync(
                 {
-                    accuracy: Location.Accuracy.High,
+                    accuracy: Location.Accuracy.Highest,
                     timeInterval: 1000,
                     distanceInterval: 1,
                 },
@@ -64,17 +67,51 @@ const useGPS = () => {
 
     const updateLocationData = (location) => {
         const locationSpeed = location.coords.speed;
+        const locationAccuracy = location.coords.accuracy;
+        const safeSpeed = locationSpeed < 0 ? 0 : locationSpeed;
 
-        setSpeed(location.coords.speed);
-        setAltitude(location.coords.altitude);
+        if (locationAccuracy <= accuracyThreshold) {
+            setSpeed(safeSpeed);
+            setAltitude(location.coords.altitude);
 
-        if (locationSpeed > 0) {
-            if (locationSpeed > maxSpeed) {
-                setMaxSpeed(locationSpeed);
+            if (safeSpeed > speedThreshold) {
+                if (safeSpeed > maxSpeed) {
+                    setMaxSpeed(safeSpeed);
+                }
+
+                if (previousLocation.current) {
+                    const {
+                        latitude: prevLat,
+                        longitude: prevLon
+                    } = previousLocation.current;
+
+                    const {
+                        latitude: currLat,
+                        longitude: currLon
+                    } = location.coords;
+
+                    const distance = calculateDistance(prevLat, prevLon, currLat, currLon);
+
+                    setTripDistance(prevTripDistance => prevTripDistance + distance);
+                }
+
+                previousLocation.current = location.coords;
             }
+        } else {
+            setStopped(0);
+        }
+    };
+
+    const updateTimers = () => {
+        if (speed > speedThreshold) {
+            setTime(prevTime => {
+                timeRef.current = prevTime + 1;
+
+                return timeRef.current;
+            });
 
             setTotalSpeed(prevTotalSpeed => {
-                const newTotalSpeed = prevTotalSpeed + locationSpeed;
+                const newTotalSpeed = prevTotalSpeed + speed;
 
                 if (timeRef.current > 0) {
                     setAverageSpeed(newTotalSpeed / timeRef.current);
@@ -82,32 +119,12 @@ const useGPS = () => {
 
                 return newTotalSpeed;
             });
-
-            if (previousLocation.current) {
-                const {
-                    latitude: prevLat,
-                    longitude: prevLon
-                } = previousLocation.current;
-
-                const {
-                    latitude: currLat,
-                    longitude: currLon
-                } = location.coords;
-
-                const distance = calculateDistance(prevLat, prevLon, currLat, currLon);
-
-                setTripDistance(prevTripDistance => prevTripDistance + distance);
-            }
-
-            previousLocation.current = location.coords;
-        }
-    };
-
-    const updateTimers = (currentSpeed) => {
-        if (currentSpeed > 0) {
-            setTime(prevTime => prevTime + 1);
         } else {
-            setStopped(prevStopped => prevStopped + 1);
+            setStopped(prevStopped => {
+                stoppedRef.current = prevStopped + 1;
+
+                return stoppedRef.current;
+            });
         }
     };
 

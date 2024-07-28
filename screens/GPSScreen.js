@@ -4,8 +4,8 @@ import SpeedometerPanel from "../components/speedometer/SpeedometerPanel";
 import SpeedometerView from "../components/speedometer/SpeedometerView";
 import useGPS from "../hooks/useGPS";
 import {useSettingsContext} from "../SettingsContext";
-import {convertAltitude, convertDistance, convertSpeed} from "../utils/convertorUtils";
-import {formatTime} from "../utils/timeUtils";
+import {convertAltitude, convertDistance, convertSpeed} from "../utils/convertUtils";
+import {formatTime} from "../utils/timerUtils";
 
 export default function GPSScreen() {
     const {
@@ -26,7 +26,7 @@ export default function GPSScreen() {
             <SpeedometerPanel time={formatTime(time)}
                               stopped={formatTime(stopped)}
                               altitude={convertAltitude(altitude, unit).toFixed(0)}
-                              averageSpeed={convertSpeed(averageSpeed, unit).toFixed(2)}
+                              averageSpeed={convertSpeed(averageSpeed, unit).toFixed(0)}
                               maxSpeed={convertSpeed(maxSpeed, unit).toFixed(0)}
                               tripDistance={convertDistance(tripDistance, unit).toFixed(2)}/>
         </View>

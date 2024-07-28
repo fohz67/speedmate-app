@@ -9,7 +9,7 @@ import SettingsSlider from "../components/settings/SettingsSlider";
 import useOptions from "../hooks/useOptions";
 import useUnits from "../hooks/useUnits";
 import {useSettingsContext} from "../SettingsContext";
-import {convertDistance} from "../utils/convertorUtils";
+import {convertDistance} from "../utils/convertUtils";
 import normalizeUtils from "../utils/normalizeUtils";
 
 export default function ProfileScreen() {
