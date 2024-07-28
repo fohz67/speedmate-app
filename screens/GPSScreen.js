@@ -46,7 +46,15 @@ export default function GPSScreen() {
                 transparent={false}
                 onRequestClose={() => setModalVisible(false)}
             >
-                <FullScreenPage onClose={() => setModalVisible(false)}/>
+                <FullScreenPage onClose={() => setModalVisible(false)}
+                                speed={speed}
+                                altitude={altitude}
+                                maxSpeed={maxSpeed}
+                                tripDistance={tripDistance}
+                                time={time}
+                                stopped={stopped}
+                                averageSpeed={averageSpeed}
+                                unit={unit}/>
             </Modal>
         </View>
     );
