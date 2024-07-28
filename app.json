@@ -2,7 +2,7 @@
   "expo": {
     "name": "SpeedMate",
     "slug": "SpeedMate",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -12,13 +12,20 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "buildNumber": "2",
+      "bundleIdentifier": "com.fohz.SpeedMate",
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Nous avons besoin de votre position pour vous fournir des fonctionnalités GPS.",
+        "NSLocationAlwaysUsageDescription": "Nous avons besoin de votre position pour vous fournir des fonctionnalités GPS."
+      },
+      "supportsTablet": false
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -26,6 +33,11 @@
     "plugins": [
       "expo-secure-store",
       "expo-font"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "52d70a71-553b-45e9-afdd-42ae9b95a8a5"
+      }
+    }
   }
 }
