@@ -25,7 +25,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#000c18"
       },
-      "versionCode": 2
+      "versionCode": 2,
+      "package": "com.fohz.SpeedMate"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -38,6 +39,7 @@
       "eas": {
         "projectId": "52d70a71-553b-45e9-afdd-42ae9b95a8a5"
       }
-    }
+    },
+    "owner": "fohz"
   }
 }
