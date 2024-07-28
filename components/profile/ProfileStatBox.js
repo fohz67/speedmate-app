@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Colors from "../../assets/theme/colors";
-import normalize from "../../utils/normalize"
+import normalizeUtils from "../../utils/normalizeUtils"
 
 const ProfileStatBox = ({label, value, unit}) => {
     return (
@@ -17,26 +17,26 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: Colors.default.input.background,
         borderColor: Colors.default.input.border,
-        borderRadius: normalize(10),
+        borderRadius: normalizeUtils(10),
         borderStyle: 'solid',
-        borderWidth: normalize(1),
-        marginTop: normalize(10),
-        padding: normalize(20),
+        borderWidth: normalizeUtils(1),
+        marginTop: normalizeUtils(10),
+        padding: normalizeUtils(20),
         shadowColor: Colors.default.app.shadow,
-        shadowOpacity: normalize(0.5),
-        shadowRadius: normalize(15),
+        shadowOpacity: normalizeUtils(0.5),
+        shadowRadius: normalizeUtils(15),
         width: '48%',
     },
     label: {
         color: Colors.default.input.text,
         fontFamily: 'Universo-Regular',
-        fontSize: normalize(12),
-        marginBottom: normalize(8),
+        fontSize: normalizeUtils(12),
+        marginBottom: normalizeUtils(8),
     },
     value: {
         color: Colors.default.input.text,
         fontFamily: 'Universo-Black',
-        fontSize: normalize(20),
+        fontSize: normalizeUtils(20),
         fontWeight: 'bold',
     },
 });

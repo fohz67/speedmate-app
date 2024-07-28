@@ -9,8 +9,8 @@ import SettingsSlider from "../components/settings/SettingsSlider";
 import useOptions from "../hooks/useOptions";
 import useUnits from "../hooks/useUnits";
 import {useSettingsContext} from "../SettingsContext";
-import {convertDistance} from "../utils/convert";
-import normalize from "../utils/normalize";
+import {convertDistance} from "../utils/convertorUtils";
+import normalizeUtils from "../utils/normalizeUtils";
 
 export default function ProfileScreen() {
     const {t} = useTranslation();
@@ -125,15 +125,15 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         flexGrow: 1,
-        paddingHorizontal: normalize(20),
+        paddingHorizontal: normalizeUtils(20),
     },
     profileImage: {
         alignSelf: 'center',
-        borderRadius: normalize(50),
-        height: normalize(100),
-        marginTop: normalize(40),
-        marginBottom: normalize(-30),
-        width: normalize(100),
+        borderRadius: normalizeUtils(50),
+        height: normalizeUtils(100),
+        marginTop: normalizeUtils(40),
+        marginBottom: normalizeUtils(-30),
+        width: normalizeUtils(100),
     },
     section: {
         width: '100%',

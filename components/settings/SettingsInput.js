@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, TextInput, View} from 'react-native';
 import Colors from '../../assets/theme/colors';
-import {normalize} from '../../utils/normalize';
+import {normalizeUtils} from '../../utils/normalizeUtils';
 
 const SettingsInput = ({value, func, placeholder}) => {
     return (
@@ -19,21 +19,21 @@ const SettingsInput = ({value, func, placeholder}) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: normalize(10),
+        marginTop: normalizeUtils(10),
     },
     input: {
         backgroundColor: Colors.default.input.background,
         borderColor: Colors.default.input.border,
-        borderRadius: normalize(10),
+        borderRadius: normalizeUtils(10),
         borderStyle: 'solid',
-        borderWidth: normalize(1),
+        borderWidth: normalizeUtils(1),
         color: Colors.default.input.text,
         fontFamily: 'Universo-Regular',
-        fontSize: normalize(14),
-        padding: normalize(20),
+        fontSize: normalizeUtils(14),
+        padding: normalizeUtils(20),
         shadowColor: Colors.default.app.shadow,
-        shadowOpacity: normalize(0.5),
-        shadowRadius: normalize(15),
+        shadowOpacity: normalizeUtils(0.5),
+        shadowRadius: normalizeUtils(15),
         width: '100%',
     },
 });

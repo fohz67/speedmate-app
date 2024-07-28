@@ -9,10 +9,10 @@ const scaleWidth = screenWidth / baseScreenWidth;
 
 const maxScale = 1.5;
 
-export const normalize = (size) => {
+export const normalizeUtils = (size) => {
     const scaledSize = Math.round(size * scaleWidth);
 
     return Math.min(scaledSize, size * maxScale);
 };
 
-export default normalize;
+export default normalizeUtils;

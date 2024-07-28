@@ -4,7 +4,7 @@ import SpeedometerPanel from "../components/speedometer/SpeedometerPanel";
 import SpeedometerView from "../components/speedometer/SpeedometerView";
 import useGPS from "../hooks/useGPS";
 import {useSettingsContext} from "../SettingsContext";
-import {convertAltitude, convertDistance, convertSpeed} from "../utils/convert";
+import {convertAltitude, convertDistance, convertSpeed} from "../utils/convertorUtils";
 import {formatTime} from "../utils/timeUtils";
 
 export default function GPSScreen() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Colors from '../../assets/theme/colors';
-import {normalize} from '../../utils/normalize';
+import {normalizeUtils} from '../../utils/normalizeUtils';
 
 const GlobalTitle = ({label}) => {
     return (
@@ -13,13 +13,13 @@ const GlobalTitle = ({label}) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: normalize(60),
-        marginBottom: normalize(10),
+        marginTop: normalizeUtils(60),
+        marginBottom: normalizeUtils(10),
     },
     title: {
         color: Colors.default.app.title,
         fontFamily: 'Universo-Black',
-        fontSize: normalize(20),
+        fontSize: normalizeUtils(20),
         fontWeight: 'bold',
     }
 });

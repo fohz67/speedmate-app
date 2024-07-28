@@ -2,7 +2,7 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {StyleSheet, View} from 'react-native';
 import useUnits from "../../hooks/useUnits";
-import normalize from "../../utils/normalize";
+import normalizeUtils from "../../utils/normalizeUtils";
 import SpeedometerStat from "./SpeedometerStat";
 
 const SpeedometerPanel = ({time, stopped, altitude, averageSpeed, maxSpeed, tripDistance}) => {
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         flexDirection: 'row',
-        marginHorizontal: normalize(20),
+        marginHorizontal: normalizeUtils(20),
         justifyContent: 'space-between',
     },
 });

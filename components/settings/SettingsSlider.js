@@ -2,7 +2,7 @@ import Slider from '@react-native-community/slider';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Colors from '../../assets/theme/colors';
-import {normalize} from '../../utils/normalize';
+import {normalizeUtils} from '../../utils/normalizeUtils';
 
 const SettingsSlider = ({label, value, func, min, max, step}) => {
     return (
@@ -24,9 +24,9 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         flexDirection: 'row',
-        marginBottom: normalize(3),
-        marginLeft: normalize(5),
-        marginTop: normalize(13),
+        marginBottom: normalizeUtils(3),
+        marginLeft: normalizeUtils(5),
+        marginTop: normalizeUtils(13),
     },
     slider: {
         flex: 1,
@@ -34,8 +34,8 @@ const styles = StyleSheet.create({
     text: {
         color: Colors.default.app.text,
         fontFamily: 'Universo-Regular',
-        fontSize: normalize(14),
-        marginRight: normalize(10),
+        fontSize: normalizeUtils(14),
+        marginRight: normalizeUtils(10),
     },
 });
 

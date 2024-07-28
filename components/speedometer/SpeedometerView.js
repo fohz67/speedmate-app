@@ -5,7 +5,7 @@ import Speedometer from 'react-native-cool-speedometer/dist/Speedometer';
 import Colors from '../../assets/theme/colors';
 import useUnits from "../../hooks/useUnits";
 import {useSettingsContext} from "../../SettingsContext";
-import normalize from "../../utils/normalize";
+import normalizeUtils from "../../utils/normalizeUtils";
 
 const SpeedometerView = ({speed}) => {
     const width = Dimensions.get('window').width - 80;
@@ -63,14 +63,14 @@ const styles = StyleSheet.create({
     speed: {
         color: Colors.default.app.text,
         fontFamily: 'Universo-Black',
-        fontSize: normalize(100),
+        fontSize: normalizeUtils(100),
         position: 'absolute',
     },
     unit: {
         bottom: '25%',
         color: Colors.default.app.text,
         fontFamily: 'Universo-Thin',
-        fontSize: normalize(27),
+        fontSize: normalizeUtils(27),
         position: 'absolute',
     }
 });

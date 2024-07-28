@@ -7,7 +7,7 @@ import GPSScreen from '../screens/GPSScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import {SettingsProvider} from "../SettingsContext";
-import normalize from "../utils/normalize";
+import normalizeUtils from "../utils/normalizeUtils";
 
 const icons = {
     GPS: {
@@ -28,7 +28,7 @@ const Tab = createBottomTabNavigator();
 
 const getTabBarIcon = (routeName, focused, color, size) => {
     return <Image source={focused ? icons[routeName].fill : icons[routeName].outline}
-                  style={{width: normalize(size + 3), height: normalize(size + 3), tintColor: color}}/>;
+                  style={{width: normalizeUtils(size + 3), height: normalizeUtils(size + 3), tintColor: color}}/>;
 };
 
 const screenOptions = ({route}) => ({
@@ -37,17 +37,17 @@ const screenOptions = ({route}) => ({
         backgroundColor: Colors.default.header.background,
         borderBottomWidth: 0,
         elevation: 0,
-        height: normalize(130),
+        height: normalizeUtils(130),
         shadowOpacity: 0,
     },
     headerTintColor: Colors.default.header.tint,
     headerTitleAlign: 'left',
     headerTitleStyle: {
         fontFamily: 'Universo-Black',
-        fontSize: normalize(30),
+        fontSize: normalizeUtils(30),
         fontWeight: 'bold',
-        marginTop: normalize(20),
-        marginLeft: normalize(20),
+        marginTop: normalizeUtils(20),
+        marginLeft: normalizeUtils(20),
         textAlign: 'left',
     },
     tabBarActiveTintColor: Colors.default.navigation.selected,
@@ -59,12 +59,12 @@ const screenOptions = ({route}) => ({
         borderBottomWidth: 0,
         borderColor: Colors.default.navigation.border,
         borderTopColor: Colors.default.navigation.border,
-        borderTopEndRadius: normalize(20),
-        borderTopStartRadius: normalize(20),
-        borderTopWidth: normalize(1),
-        borderWidth: normalize(1),
+        borderTopEndRadius: normalizeUtils(20),
+        borderTopStartRadius: normalizeUtils(20),
+        borderTopWidth: normalizeUtils(1),
+        borderWidth: normalizeUtils(1),
         elevation: 0,
-        height: normalize(90),
+        height: normalizeUtils(90),
         overflow: 'hidden',
         shadowOpacity: 0,
     },
