@@ -3,8 +3,8 @@ import {useEffect, useRef, useState} from 'react';
 import {calculateDistance} from '../utils/distanceUtils';
 
 const useGPS = () => {
-    const speedThreshold = 0.2;
-    const accuracyThreshold = 5;
+    const speedThreshold = 0.1;
+    const accuracyThreshold = 10;
 
     const [speed, setSpeed] = useState(0);
     const [altitude, setAltitude] = useState(0);
@@ -98,7 +98,7 @@ const useGPS = () => {
                 previousLocation.current = location.coords;
             }
         } else {
-            setStopped(0);
+            setSpeed(0);
         }
     };
 
@@ -129,12 +129,12 @@ const useGPS = () => {
     };
 
     return {
-        speed,
+        speed: speed,
         altitude: altitude,
         time: timeRef.current,
         stopped: stoppedRef.current,
         averageSpeed: averageSpeed,
-        maxSpeed,
+        maxSpeed: maxSpeed,
         tripDistance: tripDistance,
     };
 };
