@@ -3,7 +3,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Colors} from '../../assets/styles/colors';
 import {normalize} from '../../utils/normalizeUtils';
 
-const GlobalTitle = ({label}) => {
+export const GlobalTitle = ({label}) => {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>{label}</Text>
@@ -13,8 +13,8 @@ const GlobalTitle = ({label}) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: normalize(60),
         marginBottom: normalize(10),
+        marginTop: normalize(60),
     },
     title: {
         color: Colors.categoryTitle,
@@ -23,5 +23,3 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     }
 });
-
-export default GlobalTitle;

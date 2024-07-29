@@ -4,44 +4,18 @@ import RNPickerSelect from 'react-native-picker-select';
 import {Colors} from '../../assets/styles/colors';
 import {normalize} from '../../utils/normalizeUtils';
 
-const SettingsDropDownList = ({label, options, selected, func}) => {
+export const SettingsDropDownList = (
+    {
+        label,
+        options,
+        selected,
+        func
+    }
+) => {
     const pickerItems = options.map((option, index) => ({
         label: option,
         value: index
     }));
-
-    const pickerStyles = StyleSheet.create({
-        inputAndroid: {
-            backgroundColor: Colors.inputBackground,
-            borderColor: Colors.inputBorder,
-            borderRadius: normalize(10),
-            borderStyle: 'solid',
-            borderWidth: normalize(1),
-            color: Colors.inputText,
-            fontFamily: 'Universo-Bold',
-            fontSize: normalize(11),
-            paddingHorizontal: normalize(15),
-            paddingVertical: normalize(10),
-            shadowColor: Colors.shadow,
-            shadowOpacity: normalize(0.5),
-            shadowRadius: normalize(15),
-        },
-        inputIOS: {
-            backgroundColor: Colors.inputBackground,
-            borderColor: Colors.inputBorder,
-            borderRadius: normalize(10),
-            borderStyle: 'solid',
-            borderWidth: normalize(1),
-            color: Colors.inputText,
-            fontFamily: 'Universo-Bold',
-            fontSize: normalize(11),
-            paddingHorizontal: normalize(15),
-            paddingVertical: normalize(10),
-            shadowColor: Colors.shadow,
-            shadowOpacity: normalize(0.5),
-            shadowRadius: normalize(15),
-        }
-    });
 
     return (
         <View style={styles.container}>
@@ -80,4 +54,35 @@ const styles = StyleSheet.create({
     }
 });
 
-export default SettingsDropDownList;
+const pickerStyles = StyleSheet.create({
+    inputAndroid: {
+        backgroundColor: Colors.inputBackground,
+        borderColor: Colors.inputBorder,
+        borderRadius: normalize(10),
+        borderStyle: 'solid',
+        borderWidth: normalize(1),
+        color: Colors.inputText,
+        fontFamily: 'Universo-Bold',
+        fontSize: normalize(11),
+        paddingHorizontal: normalize(15),
+        paddingVertical: normalize(10),
+        shadowColor: Colors.shadow,
+        shadowOpacity: normalize(0.5),
+        shadowRadius: normalize(15),
+    },
+    inputIOS: {
+        backgroundColor: Colors.inputBackground,
+        borderColor: Colors.inputBorder,
+        borderRadius: normalize(10),
+        borderStyle: 'solid',
+        borderWidth: normalize(1),
+        color: Colors.inputText,
+        fontFamily: 'Universo-Bold',
+        fontSize: normalize(11),
+        paddingHorizontal: normalize(15),
+        paddingVertical: normalize(10),
+        shadowColor: Colors.shadow,
+        shadowOpacity: normalize(0.5),
+        shadowRadius: normalize(15),
+    }
+});

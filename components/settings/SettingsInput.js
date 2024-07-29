@@ -3,7 +3,13 @@ import {StyleSheet, TextInput, View} from 'react-native';
 import {Colors} from '../../assets/styles/colors';
 import {normalize} from '../../utils/normalizeUtils';
 
-const SettingsInput = ({value, func, placeholder}) => {
+export const SettingsInput = (
+    {
+        value,
+        func,
+        placeholder
+    }
+) => {
     return (
         <View style={styles.container}>
             <TextInput
@@ -37,5 +43,3 @@ const styles = StyleSheet.create({
         width: '100%',
     },
 });
-
-export default SettingsInput;

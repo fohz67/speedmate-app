@@ -7,13 +7,13 @@ import useUnits from '../../hooks/useUnits';
 import {useSettingsContext} from '../../SettingsContext';
 import {normalize} from '../../utils/normalizeUtils';
 
-const SpeedometerView = ({speed}) => {
+export const SpeedometerView = ({speed}) => {
     const {
         width,
         height
     } = Dimensions.get('window');
 
-    const speedometerWidth = (width < height ? width : height) - 80;
+    const speedometerWidth = (width < height ? width : height) - normalize(80);
     const rectangleBias = 1.3;
 
     const {
@@ -63,7 +63,9 @@ const styles = StyleSheet.create({
     rectangle: {
         backgroundColor: Colors.background,
         position: 'absolute',
-        transform: [{rotate: '45deg'}],
+        transform: [{
+            rotate: '45deg'
+        }],
     },
     speed: {
         color: Colors.speedometerSpeed,
@@ -80,5 +82,3 @@ const styles = StyleSheet.create({
         textTransform: 'uppercase',
     }
 });
-
-export default SpeedometerView;

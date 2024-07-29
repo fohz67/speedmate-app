@@ -3,7 +3,14 @@ import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import {Colors} from '../../assets/styles/colors';
 import {normalize} from '../../utils/normalizeUtils'
 
-const ProfileStatisticsBox = ({label, value, unit, onPress}) => {
+export const ProfileStatisticsBox = (
+    {
+        label,
+        value,
+        unit,
+        onPress
+    }
+) => {
     return (
         <TouchableOpacity style={styles.box}
                           onPress={onPress}>
@@ -41,5 +48,3 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
 });
-
-export default ProfileStatisticsBox;

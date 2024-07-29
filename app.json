@@ -12,7 +12,7 @@
       "backgroundColor": "#000c18"
     },
     "ios": {
-      "buildNumber": "10",
+      "buildNumber": "11",
       "bundleIdentifier": "com.fohz.SpeedMate",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "Nous avons besoin de votre position pour vous fournir des fonctionnalités GPS.",

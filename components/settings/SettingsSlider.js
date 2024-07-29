@@ -4,8 +4,20 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Colors} from '../../assets/styles/colors';
 import {normalize} from '../../utils/normalizeUtils';
 
-const SettingsSlider = ({label, value, func, min, max, step, unit}) => {
-    const finalValue = value.toString() + (unit ? unit : '').toString();
+export const SettingsSlider = (
+    {
+        label,
+        value,
+        func,
+        min,
+        max,
+        step,
+        unit
+    }
+) => {
+    const stringValue = value.toString();
+    const stringUnit = unit ? unit.toString() : '';
+    const finalValue = stringValue + stringUnit;
 
     return (
         <View style={styles.container}>
@@ -13,6 +25,7 @@ const SettingsSlider = ({label, value, func, min, max, step, unit}) => {
                 <Text style={styles.label}>{label}</Text>
                 <Text style={styles.value}>{finalValue}</Text>
             </View>
+
             <Slider
                 style={styles.slider}
                 minimumValue={min}
@@ -54,5 +67,3 @@ const styles = StyleSheet.create({
         textAlign: 'right',
     },
 });
-
-export default SettingsSlider;

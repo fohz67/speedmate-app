@@ -5,7 +5,12 @@ import {Colors} from '../../assets/styles/colors';
 import {convertSecondsToFullTime} from "../../utils/convertUtils";
 import {normalize} from "../../utils/normalizeUtils";
 
-const ProfileTimeModal = ({statStoppedTime, statRideTime}) => {
+export const ProfileTimeModal = (
+    {
+        statStoppedTime,
+        statRideTime
+    }
+) => {
     const {t} = useTranslation();
 
     const fullTime = convertSecondsToFullTime(statStoppedTime + statRideTime);
@@ -127,5 +132,3 @@ const styles = StyleSheet.create({
         fontSize: normalize(14),
     },
 });
-
-export default ProfileTimeModal;

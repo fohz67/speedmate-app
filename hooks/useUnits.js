@@ -2,6 +2,7 @@ import {useTranslation} from 'react-i18next';
 import {useSettingsContext} from '../SettingsContext';
 
 const useUnits = () => {
+    //INFO('useUnits called.');
     const {t} = useTranslation();
     const {unit} = useSettingsContext();
 

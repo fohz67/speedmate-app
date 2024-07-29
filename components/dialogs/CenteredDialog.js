@@ -4,7 +4,17 @@ import {Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Colors} from '../../assets/styles/colors';
 import {normalize} from "../../utils/normalizeUtils";
 
-const CustomDialog = ({visible, title, content, text, intensity, onClose, buttonText}) => {
+export const CustomDialog = (
+    {
+        visible,
+        title,
+        content,
+        text,
+        intensity,
+        onClose,
+        buttonText
+    }
+) => {
     return (
         <Modal
             transparent={true}
@@ -59,15 +69,6 @@ const styles = StyleSheet.create({
         fontFamily: 'Universo-Bold',
         fontSize: normalize(16),
     },
-    viewContent: {
-        justifyContent: 'center',
-    },
-    textContent: {
-        color: Colors.dialogText,
-        fontFamily: 'Universo-Regular',
-        justifyContent: 'center',
-        marginVertical: normalize(40),
-    },
     dialogContainer: {
         alignItems: 'center',
         backgroundColor: Colors.dialogBackground,
@@ -86,12 +87,19 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
     },
+    textContent: {
+        color: Colors.dialogText,
+        fontFamily: 'Universo-Regular',
+        justifyContent: 'center',
+        marginVertical: normalize(40),
+    },
     title: {
         color: Colors.dialogTitle,
         fontFamily: 'Universo-Black',
         fontSize: normalize(22),
         marginTop: normalize(15),
     },
+    viewContent: {
+        justifyContent: 'center',
+    },
 });
-
-export default CustomDialog;

@@ -3,10 +3,18 @@ import {StyleSheet, Text, View} from 'react-native';
 import {Colors} from '../../assets/styles/colors';
 import {normalize} from '../../utils/normalizeUtils';
 
-const SpeedometerStat = ({label, unit, value, little}) => {
+export const SpeedometerStat = (
+    {
+        label,
+        unit,
+        value,
+        little
+    }
+) => {
     return (
         <View style={styles.container}>
             <Text style={styles.label}>{label}</Text>
+
             <View style={styles.valueContainer}>
                 <Text style={little ? styles.littleValue : styles.value}>{value}</Text>
                 <Text style={styles.unit}>{unit}</Text>
@@ -49,5 +57,3 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
 });
-
-export default SpeedometerStat;

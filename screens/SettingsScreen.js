@@ -2,10 +2,10 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {ScrollView, StyleSheet, View} from 'react-native';
 import {Sizes} from "../assets/styles/sizes";
-import GlobalSeparator from '../components/global/GlobalSeparator';
-import GlobalTitle from '../components/global/GlobalTitle';
-import SettingsDropDownList from '../components/settings/SettingsDropDownList';
-import SettingsSlider from '../components/settings/SettingsSlider';
+import {GlobalSeparator} from '../components/global/GlobalSeparator';
+import {GlobalTitle} from '../components/global/GlobalTitle';
+import {SettingsDropDownList} from '../components/settings/SettingsDropDownList';
+import {SettingsSlider} from '../components/settings/SettingsSlider';
 import useOptions from '../hooks/useOptions';
 import useUnits from "../hooks/useUnits";
 import {useSettingsContext} from '../SettingsContext';
@@ -69,8 +69,8 @@ export default function SettingsScreen() {
                     label={t('accuracyThreshold')}
                     value={accuracyThreshold}
                     func={updateAccuracyThreshold}
-                    min={0}
-                    max={20}
+                    min={5}
+                    max={100}
                     step={1}
                     unit={' ' + units.distanceM + (accuracyThreshold > 1 ? 's' : '')}
                 />

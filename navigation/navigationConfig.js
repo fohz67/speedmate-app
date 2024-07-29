@@ -23,7 +23,7 @@ const getTabBarIcon = (routeName, focused, color, size) => {
                   style={{width: normalize(size + 3), height: normalize(size + 3), tintColor: color}}/>;
 };
 
-const screenOptions = ({route}) => ({
+export const screenOptions = ({route}) => ({
     headerShown: true,
     headerStyle: {
         backgroundColor: Colors.headerBarBackground,
@@ -61,5 +61,3 @@ const screenOptions = ({route}) => ({
         shadowOpacity: 0,
     },
 });
-
-export default screenOptions;

@@ -3,7 +3,13 @@ import {StyleSheet, Switch, Text, View} from 'react-native';
 import {Colors} from '../../assets/styles/colors';
 import {normalize} from '../../utils/normalizeUtils';
 
-const SettingsSwitch = ({label, value, func}) => {
+export const SettingsSwitch = (
+    {
+        label,
+        value,
+        func
+    }
+) => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{label}</Text>
@@ -29,5 +35,3 @@ const styles = StyleSheet.create({
         marginLeft: normalize(5),
     },
 });
-
-export default SettingsSwitch;

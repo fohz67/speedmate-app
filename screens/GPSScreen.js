@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {Modal, StyleSheet, View} from 'react-native';
-import SpeedometerPanel from '../components/speedometer/SpeedometerPanel';
-import SpeedometerView from '../components/speedometer/SpeedometerView';
+import {SpeedometerPanel} from '../components/speedometer/SpeedometerPanel';
+import {SpeedometerView} from '../components/speedometer/SpeedometerView';
 import useGPS from '../hooks/useGPS';
 import useTimer from '../hooks/useTimer';
 import {useSettingsContext} from '../SettingsContext';
@@ -17,11 +17,13 @@ export default function GPSScreen({modalVisible, setModalVisible}) {
         tripDistance
     } = useGPS();
 
+    const getSpeed = useCallback(() => speed, [speed]);
+
     const {
         time,
         stopped,
         averageSpeed
-    } = useTimer(() => speed);
+    } = useTimer(getSpeed);
 
     const {unit} = useSettingsContext();
 

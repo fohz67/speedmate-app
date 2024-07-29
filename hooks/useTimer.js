@@ -1,10 +1,11 @@
 import {useEffect, useRef, useState} from 'react';
-import {useSettingsContext} from "../SettingsContext";
+import {useSettingsContext} from '../SettingsContext';
+import {convertMsToKphOrMph} from "../utils/convertUtils";
+import {INFO} from "../utils/logUtils";
 
 const useTimer = (getSpeed) => {
-    const speedThreshold = 0.1;
-
     const {
+        unit,
         statRideTime,
         statStoppedTime,
         updateStatRideTime,
@@ -16,61 +17,52 @@ const useTimer = (getSpeed) => {
     const [totalSpeed, setTotalSpeed] = useState(0);
     const [averageSpeed, setAverageSpeed] = useState(0);
 
-    const timeRef = useRef(time);
-    const stoppedRef = useRef(stopped);
-
-    timeRef.current = time;
-    stoppedRef.current = stopped;
+    const speedRef = useRef(getSpeed());
 
     useEffect(() => {
-        let isMounted = true;
-
-        const intervalId = setInterval(() => {
-            if (isMounted) {
-                const currentSpeed = getSpeed();
-
-                if (currentSpeed > speedThreshold) {
-                    updateStatRideTime(statRideTime + 1);
-
-                    setTime((prevTime) => {
-                        const newTime = prevTime + 1;
-
-                        timeRef.current = newTime;
-
-                        return newTime;
-                    });
-
-                    setTotalSpeed((prevTotalSpeed) => {
-                        const newTotalSpeed = prevTotalSpeed + currentSpeed;
-
-                        setAverageSpeed(newTotalSpeed / timeRef.current);
-
-                        return newTotalSpeed;
-                    });
-                } else {
-                    updateStatStoppedTime(statStoppedTime + 1);
-
-                    setStopped((prevStopped) => {
-                        const newStopped = prevStopped + 1;
-
-                        stoppedRef.current = newStopped;
-
-                        return newStopped;
-                    });
-                }
-            }
-        }, 1000);
-
-        return () => {
-            isMounted = false;
-            clearInterval(intervalId);
-        };
+        INFO('Speed has been updated.');
+        speedRef.current = getSpeed();
     }, [getSpeed]);
 
+    useEffect(() => {
+        //INFO('useTimer hook has been invoked.');
+        let intervalId;
+
+        const updateStats = () => {
+            //INFO('Updating stats...');
+            const protectedSpeed = speedRef.current;
+            const convertedSpeed = convertMsToKphOrMph(speedRef.current, unit);
+
+            if (convertedSpeed >= 1) {
+                //INFO('Speed is ok.');
+                updateStatRideTime(statRideTime + 1);
+                setTime(value => value + 1);
+
+                setTotalSpeed(value => {
+                    const totalSpeed = value + protectedSpeed;
+                    setAverageSpeed(totalSpeed / (time + 1));
+                    //INFO('Total speed updated.');
+                    return totalSpeed;
+                });
+            } else {
+                //INFO('Bad speed.');
+                updateStatStoppedTime(statStoppedTime + 1);
+                setStopped(value => value + 1);
+            }
+        };
+
+        intervalId = setInterval(updateStats, 1000);
+
+        return () => {
+            //INFO('useTimer hook has been destroyed.');
+            clearInterval(intervalId);
+        };
+    }, []);
+
     return {
-        time: timeRef.current,
-        stopped: stoppedRef.current,
-        averageSpeed: averageSpeed,
+        time,
+        stopped,
+        averageSpeed,
     };
 };
 

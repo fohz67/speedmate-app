@@ -8,7 +8,7 @@ import ProfileScreen from '../screens/ProfileScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import {SettingsProvider} from '../SettingsContext';
 import {normalize} from '../utils/normalizeUtils';
-import screenOptions from './navigationConfig';
+import {screenOptions} from './navigationConfig';
 
 const Tab = createBottomTabNavigator();
 

@@ -1,6 +1,7 @@
 import {useTranslation} from 'react-i18next';
 
 const useOptions = () => {
+    //INFO('useOption called.');
     const {t} = useTranslation();
 
     return {

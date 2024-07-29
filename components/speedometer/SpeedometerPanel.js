@@ -3,9 +3,19 @@ import {useTranslation} from 'react-i18next';
 import {StyleSheet, View} from 'react-native';
 import useUnits from '../../hooks/useUnits';
 import {normalize} from '../../utils/normalizeUtils';
-import SpeedometerStat from './SpeedometerStat';
+import {SpeedometerStat} from './SpeedometerStat';
 
-const SpeedometerPanel = ({time, stopped, altitude, averageSpeed, maxSpeed, tripDistance}) => {
+export const SpeedometerPanel = (
+    {
+        time,
+        stopped,
+        altitude,
+        averageSpeed,
+        maxSpeed,
+        tripDistance
+
+    }
+) => {
     const {t} = useTranslation();
     const units = useUnits();
 
@@ -65,5 +75,3 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
 });
-
-export default SpeedometerPanel;

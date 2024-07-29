@@ -1,12 +1,13 @@
 import * as Location from 'expo-location';
 import {useEffect, useRef, useState} from 'react';
 import {useSettingsContext} from "../SettingsContext";
+import {convertMsToKphOrMph} from "../utils/convertUtils";
 import {calculateDistance} from '../utils/distanceUtils';
+import {ERROR} from "../utils/logUtils";
 
 const useGPS = () => {
-    const speedThreshold = 0.1;
-
     const {
+        unit,
         statOdometer,
         updateStatOdometer,
         accuracyThreshold,
@@ -21,12 +22,14 @@ const useGPS = () => {
 
     useEffect(() => {
         let isMounted = true;
+        //INFO('useGPS hook has been invoked and mounted.');
 
         const startLocationUpdates = async () => {
+            //INFO('Requesting location permissions asynchronously...');
             const {status} = await Location.requestForegroundPermissionsAsync();
 
             if (status !== 'granted') {
-                alert('Sorry, we need location permissions to make this work !');
+                ERROR('Location permissions not granted.');
                 return;
             }
 
@@ -34,13 +37,15 @@ const useGPS = () => {
         };
 
         const watchPosition = async () => {
+            //INFO('Calling watch position async function...');
             await Location.watchPositionAsync(
                 {
-                    accuracy: Location.Accuracy.Highest,
+                    accuracy: Location.Accuracy.BestForNavigation,
                     timeInterval: 1000,
                     distanceInterval: 1,
                 },
                 (location) => {
+                    //INFO('Location has been updated.');
                     if (isMounted) {
                         updateLocationData(location);
                     }
@@ -56,41 +61,42 @@ const useGPS = () => {
     }, []);
 
     const updateLocationData = async (location) => {
-        const locationSpeed = location.coords.speed;
-        const locationAccuracy = location.coords.accuracy;
-        const safeSpeed = locationSpeed < 0 ? 0 : locationSpeed;
+        const {
+            speed: rawSpeed,
+            altitude,
+            accuracy,
+            latitude,
+            longitude
+        } = location.coords;
 
-        if (locationAccuracy <= accuracyThreshold) {
-            setSpeed(safeSpeed);
-            setAltitude(location.coords.altitude);
+        const convertedSpeed = convertMsToKphOrMph(rawSpeed, unit);
 
-            if (safeSpeed > speedThreshold) {
-                if (safeSpeed > maxSpeed) {
-                    setMaxSpeed(safeSpeed);
-                }
+        setAltitude(altitude);
 
-                if (previousLocation.current) {
-                    const {
-                        latitude: prevLat,
-                        longitude: prevLon
-                    } = previousLocation.current;
+        if (convertedSpeed >= 1 && accuracy <= accuracyThreshold) {
+            //INFO('Speed and accuracy are ok.');
+            setSpeed(rawSpeed);
+            setMaxSpeed(value => Math.max(value, rawSpeed));
 
-                    const {
-                        latitude: currLat,
-                        longitude: currLon
-                    } = location.coords;
+            if (previousLocation.current) {
+                //INFO('Previous location is ok.');
+                const prevLocation = previousLocation.current;
+                const distance = calculateDistance(
+                    prevLocation.latitude,
+                    prevLocation.longitude,
+                    latitude,
+                    longitude
+                );
 
-                    const distance = calculateDistance(prevLat, prevLon, currLat, currLon);
-                    const odometer = statOdometer + distance;
-
-                    setTripDistance(prevTripDistance => prevTripDistance + distance);
-                    await updateStatOdometer(odometer);
-                }
-
-                previousLocation.current = location.coords;
+                setTripDistance(value => value + distance);
+                await updateStatOdometer(statOdometer + distance);
+                //INFO('Odometer has been updated.');
             }
+
+            previousLocation.current = location.coords;
         } else {
             setSpeed(0);
+            //INFO('Bad speed or accuracy, speed set to 0.');
         }
     };
 
