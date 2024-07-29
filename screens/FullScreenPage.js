@@ -1,7 +1,8 @@
 import * as ScreenOrientation from 'expo-screen-orientation';
 import React, {useEffect, useState} from 'react';
-import {Image, StatusBar, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import Colors from '../assets/theme/colors';
+import {StatusBar, StyleSheet, Text, TouchableWithoutFeedback, View} from 'react-native';
+import {Colors} from '../assets/styles/colors';
+import {Sizes} from "../assets/styles/sizes";
 import SpeedometerPanel from '../components/speedometer/SpeedometerPanel';
 import SpeedometerView from '../components/speedometer/SpeedometerView';
 import {useBatteryPercentage, useCurrentTime} from "../hooks/usePhoneData";
@@ -42,49 +43,35 @@ export default function FullScreenPage({
     }, []);
 
     return (
-        <View style={isPortrait ? styles.portraitContainer : styles.landscapeContainer}
-              onLayout={handleLayout}>
-            <TouchableOpacity style={styles.closeButton}
-                              onPress={onClose}>
-                <Image source={require('../assets/ic-cross.png')}
-                       style={styles.closeIcon}
-                       tintColor={Colors.default.app.text}/>
-            </TouchableOpacity>
+        <TouchableWithoutFeedback onPress={onClose}>
+            <View style={isPortrait ? styles.portraitContainer : styles.landscapeContainer}
+                  onLayout={handleLayout}>
+                <View style={styles.topBar}>
+                    <Text style={styles.topBarText}>{currentTime}</Text>
+                    <Text style={styles.topBarText}>{batteryPercentage}</Text>
+                </View>
 
-            <View style={styles.topBar}>
-                <Text style={styles.topBarText}>{currentTime}</Text>
-                <Text style={styles.topBarText}>{batteryPercentage}</Text>
+                <SpeedometerView speed={convertMsToKphOrMph(speed, unit).toFixed(0)}/>
+
+                <SpeedometerPanel
+                    time={formatTime(time)}
+                    stopped={formatTime(stopped)}
+                    altitude={convertToKmOrFeet(altitude, unit).toFixed(0)}
+                    averageSpeed={convertMsToKphOrMph(averageSpeed, unit).toFixed(0)}
+                    maxSpeed={convertMsToKphOrMph(maxSpeed, unit).toFixed(0)}
+                    tripDistance={convertToKmOrMiles(tripDistance, unit).toFixed(2)}
+                />
             </View>
-
-            <SpeedometerView speed={convertMsToKphOrMph(speed, unit).toFixed(0)}/>
-
-            <SpeedometerPanel
-                time={formatTime(time)}
-                stopped={formatTime(stopped)}
-                altitude={convertToKmOrFeet(altitude, unit).toFixed(0)}
-                averageSpeed={convertMsToKphOrMph(averageSpeed, unit).toFixed(0)}
-                maxSpeed={convertMsToKphOrMph(maxSpeed, unit).toFixed(0)}
-                tripDistance={convertToKmOrMiles(tripDistance, unit).toFixed(2)}
-            />
-        </View>
+        </TouchableWithoutFeedback>
     );
 }
 
 const styles = StyleSheet.create({
-    closeButton: {
-        left: normalize(20),
-        padding: normalize(10),
-        position: 'absolute',
-        top: normalize(60),
-    },
-    closeIcon: {
-        height: normalize(15),
-        width: normalize(15),
-    },
     landscapeContainer: {
         flex: 1,
-        paddingRight: normalize(180),
-        paddingLeft: normalize(250),
+        paddingTop: normalize(Sizes.fullScreenPage_landscapeContainer_paddingTop),
+        paddingRight: normalize(Sizes.fullScreenPage_landscapeContainer_paddingRight),
+        paddingLeft: normalize(Sizes.fullScreenPage_landscapeContainer_paddingLeft),
         flexDirection: 'row',
         backgroundColor: Colors.default.app.background,
         justifyContent: 'center',
@@ -99,14 +86,14 @@ const styles = StyleSheet.create({
     topBar: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        left: normalize(30),
+        left: normalize(Sizes.fullScreenPage_topBar_left),
         position: 'absolute',
-        right: normalize(30),
-        top: normalize(130),
+        right: normalize(Sizes.fullScreenPage_topBar_right),
+        top: normalize(Sizes.fullScreenPage_topBar_top),
     },
     topBarText: {
         color: Colors.default.app.title,
         fontFamily: 'Universo-Bold',
-        fontSize: normalize(16),
+        fontSize: normalize(15),
     },
 });

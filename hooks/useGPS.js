@@ -26,7 +26,7 @@ const useGPS = () => {
             const {status} = await Location.requestForegroundPermissionsAsync();
 
             if (status !== 'granted') {
-                console.log('Permission to access location was denied');
+                alert('Sorry, we need location permissions to make this work !');
                 return;
             }
 

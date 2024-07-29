@@ -2,7 +2,7 @@ import React from 'react';
 import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import {Arc, Progress} from 'react-native-cool-speedometer';
 import Speedometer from 'react-native-cool-speedometer/dist/Speedometer';
-import Colors from '../../assets/theme/colors';
+import {Colors} from '../../assets/styles/colors';
 import useUnits from '../../hooks/useUnits';
 import {useSettingsContext} from '../../SettingsContext';
 import {normalize} from '../../utils/normalizeUtils';

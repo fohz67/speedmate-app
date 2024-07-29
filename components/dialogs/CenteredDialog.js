@@ -1,7 +1,7 @@
 import {BlurView} from 'expo-blur';
 import React from 'react';
 import {Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import Colors from '../../assets/theme/colors';
+import {Colors} from '../../assets/styles/colors';
 import {normalize} from "../../utils/normalizeUtils";
 
 const CustomDialog = ({visible, title, content, text, intensity, onClose, buttonText}) => {

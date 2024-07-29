@@ -1,7 +1,7 @@
 import Slider from '@react-native-community/slider';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import Colors from '../../assets/theme/colors';
+import {Colors} from '../../assets/styles/colors';
 import {normalize} from '../../utils/normalizeUtils';
 
 const SettingsSlider = ({label, value, func, min, max, step, unit}) => {
@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     textContainer: {
         alignItems: 'center',
         flexDirection: 'row',
+        marginBottom: normalize(7),
         justifyContent: 'space-between',
     },
     value: {

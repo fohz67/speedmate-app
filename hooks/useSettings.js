@@ -134,7 +134,7 @@ const useSettings = () => {
                 setStatRideTime(storedStatRideTime ? parseFloat(storedStatRideTime) : settingsData.statRideTime.default);
                 setStatStoppedTime(storedStatStoppedTime ? parseFloat(storedStatStoppedTime) : settingsData.statStoppedTime.default);
             } catch (error) {
-                console.error('Failed to load settings from AsyncStorage:', error);
+                alert('Failed to load settings from AsyncStorage:', error);
             }
         };
 
@@ -147,7 +147,7 @@ const useSettings = () => {
             await AsyncStorage.setItem(settingsData.language.key, newLanguage.toString());
             await i18n.changeLanguage(languages[newLanguage]);
         } catch (error) {
-            console.error('Failed to save language setting to AsyncStorage:', error);
+            alert('Failed to save language setting to AsyncStorage:', error);
         }
     };
 
@@ -156,7 +156,7 @@ const useSettings = () => {
             setSpeedometerMaxValue(newSpeedometerMaxValue);
             await AsyncStorage.setItem(settingsData.speedometerMaxValue.key, newSpeedometerMaxValue.toString());
         } catch (error) {
-            console.error('Failed to save speedometer max speed setting to AsyncStorage:', error);
+            alert('Failed to save speedometer max speed setting to AsyncStorage:', error);
         }
     };
 
@@ -165,7 +165,7 @@ const useSettings = () => {
             setArcWidth(newArcWidth);
             await AsyncStorage.setItem(settingsData.arcWidth.key, newArcWidth.toString());
         } catch (error) {
-            console.error('Failed to save arc width setting to AsyncStorage:', error);
+            alert('Failed to save arc width setting to AsyncStorage:', error);
         }
     };
 
@@ -174,7 +174,7 @@ const useSettings = () => {
             setUnit(newUnit);
             await AsyncStorage.setItem(settingsData.unit.key, newUnit.toString());
         } catch (error) {
-            console.error('Failed to save unit setting to AsyncStorage:', error);
+            alert('Failed to save unit setting to AsyncStorage:', error);
         }
     };
 
@@ -183,7 +183,7 @@ const useSettings = () => {
             setAccuracyThreshold(newAccuracyThreshold);
             await AsyncStorage.setItem(settingsData.accuracyThreshold.key, newAccuracyThreshold.toString());
         } catch (error) {
-            console.error('Failed to save accuracyThreshold setting to AsyncStorage:', error);
+            alert('Failed to save accuracyThreshold setting to AsyncStorage:', error);
         }
     };
 
@@ -192,7 +192,7 @@ const useSettings = () => {
             setProfilePicture(newProfilePicture);
             await AsyncStorage.setItem(settingsData.profilePicture.key, newProfilePicture);
         } catch (error) {
-            console.error('Failed to save profile picture to AsyncStorage:', error);
+            alert('Failed to save profile picture to AsyncStorage:', error);
         }
     };
 
@@ -215,13 +215,7 @@ const useSettings = () => {
 
             if (uri) {
                 await updateProfilePicture(uri);
-            } else {
-                console.error('Image URI is undefined');
             }
-        } else if (result.canceled) {
-            console.log('User canceled image picker');
-        } else {
-            console.error('No image assets found in response');
         }
     };
 
@@ -230,7 +224,7 @@ const useSettings = () => {
             setFirstName(newFirstName);
             await AsyncStorage.setItem(settingsData.firstName.key, newFirstName);
         } catch (error) {
-            console.error('Failed to save first name to AsyncStorage:', error);
+            alert('Failed to save first name to AsyncStorage:', error);
         }
     };
 
@@ -239,7 +233,7 @@ const useSettings = () => {
             setLastName(newLastName);
             await AsyncStorage.setItem(settingsData.lastName.key, newLastName);
         } catch (error) {
-            console.error('Failed to save last name to AsyncStorage:', error);
+            alert('Failed to save last name to AsyncStorage:', error);
         }
     };
 
@@ -248,7 +242,7 @@ const useSettings = () => {
             setNickname(newNickname);
             await AsyncStorage.setItem(settingsData.nickname.key, newNickname);
         } catch (error) {
-            console.error('Failed to save nickname to AsyncStorage:', error);
+            alert('Failed to save nickname to AsyncStorage:', error);
         }
     };
 
@@ -257,7 +251,7 @@ const useSettings = () => {
             setAge(newAge);
             await AsyncStorage.setItem(settingsData.age.key, newAge.toString());
         } catch (error) {
-            console.error('Failed to save age to AsyncStorage:', error);
+            alert('Failed to save age to AsyncStorage:', error);
         }
     };
 
@@ -266,7 +260,7 @@ const useSettings = () => {
             setVehicleType(newVehicleType);
             await AsyncStorage.setItem(settingsData.vehicleType.key, newVehicleType.toString());
         } catch (error) {
-            console.error('Failed to save vehicle type to AsyncStorage:', error);
+            alert('Failed to save vehicle type to AsyncStorage:', error);
         }
     };
 
@@ -275,7 +269,7 @@ const useSettings = () => {
             setVehicleBrand(newVehicleBrand);
             await AsyncStorage.setItem(settingsData.vehicleBrand.key, newVehicleBrand);
         } catch (error) {
-            console.error('Failed to save vehicle brand to AsyncStorage:', error);
+            alert('Failed to save vehicle brand to AsyncStorage:', error);
         }
     };
 
@@ -284,7 +278,7 @@ const useSettings = () => {
             setVehicleModel(newVehicleModel);
             await AsyncStorage.setItem(settingsData.vehicleModel.key, newVehicleModel);
         } catch (error) {
-            console.error('Failed to save vehicle model to AsyncStorage:', error);
+            alert('Failed to save vehicle model to AsyncStorage:', error);
         }
     };
 
@@ -293,7 +287,7 @@ const useSettings = () => {
             setStatOdometer(newStatOdometer);
             await AsyncStorage.setItem(settingsData.statOdometer.key, newStatOdometer.toString());
         } catch (error) {
-            console.error('Failed to save odometer statistic to AsyncStorage:', error);
+            alert('Failed to save odometer statistic to AsyncStorage:', error);
         }
     };
 
@@ -302,7 +296,7 @@ const useSettings = () => {
             setStatTime(newStatTime);
             await AsyncStorage.setItem(settingsData.statTime.key, newStatTime.toString());
         } catch (error) {
-            console.error('Failed to save time statistic to AsyncStorage:', error);
+            alert('Failed to save time statistic to AsyncStorage:', error);
         }
     };
 
@@ -311,7 +305,7 @@ const useSettings = () => {
             setStatRideTime(newStatRideTime);
             await AsyncStorage.setItem(settingsData.statRideTime.key, newStatRideTime.toString());
         } catch (error) {
-            console.error('Failed to save rideTime statistic to AsyncStorage:', error);
+            alert('Failed to save rideTime statistic to AsyncStorage:', error);
         }
     };
 
@@ -320,7 +314,7 @@ const useSettings = () => {
             setStatStoppedTime(newStatStoppedTime);
             await AsyncStorage.setItem(settingsData.statStoppedTime.key, newStatStoppedTime.toString());
         } catch (error) {
-            console.error('Failed to save stoppedTime statistic to AsyncStorage:', error);
+            alert('Failed to save stoppedTime statistic to AsyncStorage:', error);
         }
     };
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import Colors from '../../assets/theme/colors';
+import {Colors} from '../../assets/styles/colors';
 import {normalize} from '../../utils/normalizeUtils'
 
-const ProfileStatBox = ({label, value, unit, onPress}) => {
+const ProfileStatisticsBox = ({label, value, unit, onPress}) => {
     return (
         <TouchableOpacity style={styles.box}
                           onPress={onPress}>
@@ -42,4 +42,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ProfileStatBox;
+export default ProfileStatisticsBox;

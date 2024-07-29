@@ -1,6 +1,7 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {ScrollView, StyleSheet, View} from 'react-native';
+import {Sizes} from "../assets/styles/sizes";
 import GlobalSeparator from '../components/global/GlobalSeparator';
 import GlobalTitle from '../components/global/GlobalTitle';
 import SettingsDropDownList from '../components/settings/SettingsDropDownList';
@@ -92,7 +93,7 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         flexGrow: 1,
-        top: normalize(-20),
+        top: normalize(Sizes.settingsScreen_container_top),
         paddingHorizontal: normalize(20),
         paddingBottom: normalize(30),
     },

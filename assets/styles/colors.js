@@ -1,4 +1,4 @@
-const Colors = {
+export const Colors = {
     default: {
         app: {
             background: '#000c18',
@@ -36,5 +36,3 @@ const Colors = {
         }
     }
 };
-
-export default Colors;

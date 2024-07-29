@@ -1,5 +1,6 @@
 import {Image} from 'react-native';
-import Colors from '../assets/theme/colors';
+import {Colors} from '../assets/styles/colors';
+import {Sizes} from "../assets/styles/sizes";
 import {normalize} from '../utils/normalizeUtils';
 
 const icons = {
@@ -28,7 +29,7 @@ const screenOptions = ({route}) => ({
         backgroundColor: Colors.default.header.background,
         borderBottomWidth: 0,
         elevation: 0,
-        height: normalize(130),
+        height: normalize(Sizes.navigationConfig_headerStyle_height),
         shadowOpacity: 0,
     },
     headerTintColor: Colors.default.header.tint,
@@ -37,8 +38,8 @@ const screenOptions = ({route}) => ({
         fontFamily: 'Universo-Black',
         fontSize: normalize(30),
         fontWeight: 'bold',
-        marginLeft: normalize(20),
-        marginTop: normalize(0),
+        marginLeft: normalize(Sizes.navigationConfig_headerTitleStyle_marginLeft),
+        marginTop: 0,
         textAlign: 'left',
     },
     tabBarActiveTintColor: Colors.default.navigation.selected,

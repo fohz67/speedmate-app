@@ -1,7 +1,7 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {StyleSheet, Text, View} from 'react-native';
-import Colors from '../../assets/theme/colors';
+import {Colors} from '../../assets/styles/colors';
 import {convertSecondsToFullTime} from "../../utils/convertUtils";
 import {normalize} from "../../utils/normalizeUtils";
 

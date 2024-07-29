@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {Image, ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
-import CustomDialog from "../components/dialog/CenteredDialog";
+import {Sizes} from "../assets/styles/sizes";
+import CustomDialog from "../components/dialogs/CenteredDialog";
 import GlobalSeparator from "../components/global/GlobalSeparator";
 import GlobalTitle from '../components/global/GlobalTitle';
-import ProfileStatBox from '../components/profile/ProfileStatBox';
+import ProfileStatisticsBox from '../components/profile/ProfileStatisticsBox';
 import ProfileTimeModal from "../components/profile/ProfileTimeModal";
 import SettingsDropDownList from '../components/settings/SettingsDropDownList';
 import SettingsInput from '../components/settings/SettingsInput';
@@ -120,12 +121,12 @@ export default function ProfileScreen() {
                 <GlobalTitle label={t('statistics')}/>
 
                 <View style={styles.statsContainer}>
-                    <ProfileStatBox
+                    <ProfileStatisticsBox
                         label={t('odometer')}
                         value={convertToKmOrMiles(statOdometer, unit).toFixed(0)}
                         unit={' ' + units.distanceKm}
                     />
-                    <ProfileStatBox
+                    <ProfileStatisticsBox
                         label={t('totalTime')}
                         value={convertSecondsToTime(statStoppedTime + statRideTime)}
                         unit=""
@@ -158,7 +159,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         borderRadius: normalize(50),
         height: normalize(100),
-        marginTop: normalize(20),
+        marginTop: normalize(Sizes.profileScreen_profileImage_top),
         marginBottom: normalize(-30),
         width: normalize(100),
     },
