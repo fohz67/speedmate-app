@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         marginTop: normalize(10),
     },
     text: {
-        color: Colors.default.app.text,
+        color: Colors.defaultText,
         fontSize: normalize(13),
         marginLeft: normalize(5),
     },

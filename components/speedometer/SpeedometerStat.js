@@ -21,26 +21,26 @@ const styles = StyleSheet.create({
         marginVertical: normalize(15)
     },
     label: {
-        color: Colors.default.stats.text,
+        color: Colors.statisticsLabel,
         fontFamily: 'Universo-Regular',
         fontSize: normalize(18),
         marginBottom: normalize(10),
         textTransform: 'uppercase',
     },
     littleValue: {
-        color: Colors.default.stats.value,
+        color: Colors.statisticsValue,
         fontFamily: 'Universo-Regular',
         fontSize: normalize(25),
     },
     unit: {
-        color: Colors.default.stats.label,
+        color: Colors.statisticsUnit,
         fontFamily: 'Universo-Regular',
         fontSize: normalize(20),
         marginLeft: normalize(5),
         textTransform: 'uppercase',
     },
     value: {
-        color: Colors.default.stats.value,
+        color: Colors.statisticsValue,
         fontFamily: 'Universo-Black',
         fontSize: normalize(30),
     },

@@ -3,7 +3,7 @@
     "name": "SpeedMate",
     "slug": "SpeedMate",
     "version": "1.0.5",
-    "orientation": "landscape",
+    "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {

@@ -11,8 +11,8 @@ const GlobalSeparator = () => {
 
 const styles = StyleSheet.create({
     separator: {
-        backgroundColor: Colors.default.app.separator,
-        borderColor: Colors.default.app.separator,
+        backgroundColor: Colors.separatorBackground,
+        borderColor: Colors.separatorBorder,
         borderWidth: normalize(1),
         borderRadius: normalize(0.5),
         marginBottom: normalize(5),

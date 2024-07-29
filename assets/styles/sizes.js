@@ -2,9 +2,9 @@ import {getDeviceType} from "../../utils/deviceUtils";
 
 export const Sizes = [
     {
-        fullScreenPage_topBar_left: 20,
-        fullScreenPage_topBar_right: 20,
-        fullScreenPage_topBar_top: 18,
+        fullScreenPage_topBar_left: 15,
+        fullScreenPage_topBar_right: 15,
+        fullScreenPage_topBar_top: 15,
         navigationConfig_headerStyle_height: 110,
         navigationConfig_headerTitleStyle_marginLeft: 10,
         profileScreen_profileImage_top: 5,

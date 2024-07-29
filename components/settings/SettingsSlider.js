@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         marginTop: normalize(20),
     },
     label: {
-        color: Colors.default.app.text,
+        color: Colors.defaultText,
         fontFamily: 'Universo-Regular',
         fontSize: normalize(13),
         marginLeft: normalize(5),
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     value: {
-        color: Colors.default.app.title,
+        color: Colors.sliderValue,
         fontFamily: 'Universo-Bold',
         fontSize: normalize(15),
         marginRight: normalize(5),

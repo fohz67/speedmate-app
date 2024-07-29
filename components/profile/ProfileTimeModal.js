@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
         marginTop: normalize(30),
     },
     number: {
-        color: Colors.default.app.title,
+        color: Colors.timeModalNumber,
         fontFamily: 'Universo-Black',
         fontSize: normalize(25),
     },
@@ -116,13 +116,13 @@ const styles = StyleSheet.create({
         marginBottom: normalize(30),
     },
     title: {
-        color: Colors.default.app.title,
+        color: Colors.timeModalTitle,
         fontFamily: 'Universo-Regular',
         fontSize: normalize(18),
         marginBottom: normalize(5),
     },
     unit: {
-        color: Colors.default.app.text,
+        color: Colors.timeModalText,
         fontFamily: 'Universo-Regular',
         fontSize: normalize(14),
     },

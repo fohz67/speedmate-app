@@ -11,7 +11,7 @@ const SettingsInput = ({value, func, placeholder}) => {
                 value={value}
                 onChangeText={func}
                 placeholder={placeholder}
-                placeholderTextColor={Colors.default.input.placeholder}
+                placeholderTextColor={Colors.inputPlaceholder}
             />
         </View>
     );
@@ -22,16 +22,16 @@ const styles = StyleSheet.create({
         marginTop: normalize(10),
     },
     input: {
-        backgroundColor: Colors.default.input.background,
-        borderColor: Colors.default.input.border,
+        backgroundColor: Colors.inputBackground,
+        borderColor: Colors.inputBorder,
         borderRadius: normalize(10),
         borderStyle: 'solid',
         borderWidth: normalize(1),
-        color: Colors.default.input.text,
+        color: Colors.inputText,
         fontFamily: 'Universo-Regular',
         fontSize: normalize(12),
         padding: normalize(17),
-        shadowColor: Colors.default.app.shadow,
+        shadowColor: Colors.shadow,
         shadowOpacity: normalize(0.5),
         shadowRadius: normalize(15),
         width: '100%',

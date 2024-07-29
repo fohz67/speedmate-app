@@ -73,14 +73,14 @@ const styles = StyleSheet.create({
         paddingRight: normalize(Sizes.fullScreenPage_landscapeContainer_paddingRight),
         paddingLeft: normalize(Sizes.fullScreenPage_landscapeContainer_paddingLeft),
         flexDirection: 'row',
-        backgroundColor: Colors.default.app.background,
+        backgroundColor: Colors.background,
         justifyContent: 'center',
         alignItems: 'center',
     },
     portraitContainer: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: Colors.default.app.background,
+        backgroundColor: Colors.background,
         justifyContent: 'center',
     },
     topBar: {
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         top: normalize(Sizes.fullScreenPage_topBar_top),
     },
     topBarText: {
-        color: Colors.default.app.title,
+        color: Colors.navigationTitle,
         fontFamily: 'Universo-Bold',
         fontSize: normalize(15),
     },

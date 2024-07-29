@@ -25,7 +25,7 @@ const GPSScreenOptions = (setModalVisible) => {
                 <Image
                     source={require('../assets/ic-expand.png')}
                     style={styles.expandIcon}
-                    tintColor={Colors.default.app.title}
+                    tintColor={Colors.navigationTitle}
                 />
             </TouchableOpacity>
         ),
@@ -69,7 +69,7 @@ const TabNavigator = () => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: Colors.default.app.background,
+        backgroundColor: Colors.background,
         flex: 1,
     },
     expandButton: {
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
         height: normalize(22),
     },
     navigatorScene: {
-        backgroundColor: Colors.default.app.background
+        backgroundColor: Colors.background
     },
 });
 

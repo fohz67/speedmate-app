@@ -31,11 +31,11 @@ const SpeedometerView = ({speed}) => {
                 width={speedometerWidth}
                 height={speedometerWidth}
                 angle={360}
-                accentColor={Colors.default.speedometer.line}
+                accentColor={Colors.speedometerLine}
             >
                 <Arc
                     arcWidth={arcWidth}
-                    color={Colors.default.speedometer.arc}
+                    color={Colors.speedometerArc}
                 />
                 <Progress arcWidth={arcWidth}/>
             </Speedometer>
@@ -61,19 +61,19 @@ const styles = StyleSheet.create({
         position: 'relative',
     },
     rectangle: {
-        backgroundColor: Colors.default.app.background,
+        backgroundColor: Colors.background,
         position: 'absolute',
         transform: [{rotate: '45deg'}],
     },
     speed: {
-        color: Colors.default.speedometer.speed,
+        color: Colors.speedometerSpeed,
         fontFamily: 'Universo-Black',
         fontSize: normalize(110),
         position: 'absolute',
     },
     unit: {
         bottom: '23%',
-        color: Colors.default.speedometer.unit,
+        color: Colors.speedometerUnit,
         fontFamily: 'Universo-Regular',
         fontSize: normalize(27),
         position: 'absolute',

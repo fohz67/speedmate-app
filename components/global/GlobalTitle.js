@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
         marginBottom: normalize(10),
     },
     title: {
-        color: Colors.default.app.title,
+        color: Colors.categoryTitle,
         fontFamily: 'Universo-Black',
         fontSize: normalize(20),
         fontWeight: 'bold',
