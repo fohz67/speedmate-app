@@ -4,7 +4,7 @@ import {Modal, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Colors from '../../assets/theme/colors';
 import {normalize} from "../../utils/normalizeUtils";
 
-const CustomDialog = ({visible, title, content, onClose, buttonText}) => {
+const CustomDialog = ({visible, title, content, text, intensity, onClose, buttonText}) => {
     return (
         <Modal
             transparent={true}
@@ -13,13 +13,20 @@ const CustomDialog = ({visible, title, content, onClose, buttonText}) => {
             onRequestClose={onClose}
         >
             <View style={styles.overlay}>
-                <BlurView intensity={50}
+                <BlurView intensity={intensity}
                           style={styles.blurView}>
                     <View style={styles.dialogContainer}>
                         <Text style={styles.title}>{title}</Text>
-                        <Text style={styles.content}>
-                            {content}
-                        </Text>
+                        {
+                            content ? <View style={styles.viewCcontent}>
+                                {content}
+                            </View> : ''
+                        }
+                        {
+                            text ? <Text style={styles.textContent}>
+                                {text}
+                            </Text> : ''
+                        }
                         <TouchableOpacity style={styles.button}
                                           onPress={onClose}>
                             <Text style={styles.buttonText}>{buttonText}</Text>
@@ -52,7 +59,10 @@ const styles = StyleSheet.create({
         fontFamily: 'Universo-Bold',
         fontSize: normalize(16),
     },
-    content: {
+    viewContent: {
+        justifyContent: 'center',
+    },
+    textContent: {
         color: Colors.default.app.text,
         fontFamily: 'Universo-Regular',
         justifyContent: 'center',

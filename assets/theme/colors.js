@@ -2,11 +2,9 @@ const Colors = {
     default: {
         app: {
             background: '#000c18',
-            label: 'gray',
             separator: '#0d1827',
             shadow: 'rgba(0,0,0,0)',
-            subtitle: 'white',
-            text: 'rgba(255,255,255,0.5)',
+            text: '#91a4bf',
             title: 'white',
         },
         header: {

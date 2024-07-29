@@ -59,7 +59,7 @@ export const convertSecondsToFullTime = (seconds) => {
     const SECONDS_IN_AN_HOUR = SECONDS_IN_A_MINUTE * 60;
     const SECONDS_IN_A_DAY = SECONDS_IN_AN_HOUR * 24;
     const SECONDS_IN_A_WEEK = SECONDS_IN_A_DAY * 7;
-    const SECONDS_IN_A_MONTH = SECONDS_IN_A_DAY * 30; // Rough approximation
+    const SECONDS_IN_A_MONTH = SECONDS_IN_A_DAY * 30;
     const SECONDS_IN_A_YEAR = SECONDS_IN_A_DAY * 365;
 
     const years = Math.floor(seconds / SECONDS_IN_A_YEAR);
@@ -80,11 +80,13 @@ export const convertSecondsToFullTime = (seconds) => {
     const minutes = Math.floor(seconds / SECONDS_IN_A_MINUTE);
     seconds %= SECONDS_IN_A_MINUTE;
 
-    return `${years} Year${years !== 1 ? 's' : ''}\n` +
-        `${months} Month${months !== 1 ? 's' : ''}\n` +
-        `${weeks} Week${weeks !== 1 ? 's' : ''}\n` +
-        `${days} Day${days !== 1 ? 's' : ''}\n` +
-        `${hours} Hour${hours !== 1 ? 's' : ''}\n` +
-        `${minutes} Minute${minutes !== 1 ? 's' : ''}\n` +
-        `${seconds} Second${seconds !== 1 ? 's' : ''}`;
+    return {
+        years,
+        months,
+        weeks,
+        days,
+        hours,
+        minutes,
+        seconds
+    };
 };

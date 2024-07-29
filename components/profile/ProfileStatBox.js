@@ -1,14 +1,15 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity} from 'react-native';
 import Colors from '../../assets/theme/colors';
 import {normalize} from '../../utils/normalizeUtils'
 
-const ProfileStatBox = ({label, value, unit}) => {
+const ProfileStatBox = ({label, value, unit, onPress}) => {
     return (
-        <View style={styles.box}>
+        <TouchableOpacity style={styles.box}
+                          onPress={onPress}>
             <Text style={styles.label}>{label}</Text>
             <Text style={styles.value}>{value}{unit ? unit + ' ' : ''}</Text>
-        </View>
+        </TouchableOpacity>
     );
 };
 
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
     value: {
         color: Colors.default.input.text,
         fontFamily: 'Universo-Black',
-        fontSize: normalize(20),
+        fontSize: normalize(18),
         fontWeight: 'bold',
     },
 });

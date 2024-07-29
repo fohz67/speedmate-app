@@ -1,17 +1,18 @@
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
 import CustomDialog from "../components/dialog/CenteredDialog";
 import GlobalSeparator from "../components/global/GlobalSeparator";
 import GlobalTitle from '../components/global/GlobalTitle';
 import ProfileStatBox from '../components/profile/ProfileStatBox';
+import ProfileTimeModal from "../components/profile/ProfileTimeModal";
 import SettingsDropDownList from '../components/settings/SettingsDropDownList';
 import SettingsInput from '../components/settings/SettingsInput';
 import SettingsSlider from '../components/settings/SettingsSlider';
 import useOptions from '../hooks/useOptions';
 import useUnits from '../hooks/useUnits';
 import {useSettingsContext} from '../SettingsContext';
-import {convertSecondsToFullTime, convertToKmOrMiles} from '../utils/convertUtils';
+import {convertSecondsToTime, convertToKmOrMiles} from '../utils/convertUtils';
 import {normalize} from '../utils/normalizeUtils';
 
 export default function ProfileScreen() {
@@ -121,26 +122,26 @@ export default function ProfileScreen() {
                 <View style={styles.statsContainer}>
                     <ProfileStatBox
                         label={t('odometer')}
-                        value={convertToKmOrMiles(statOdometer, unit)}
-                        unit={units.distanceKm}
+                        value={convertToKmOrMiles(statOdometer, unit).toFixed(0)}
+                        unit={' ' + units.distanceKm}
                     />
-                    <TouchableOpacity
-                        onPress={() => setDialogVisible(true)}>
-                        <ProfileStatBox
-                            label={t('totalTime')}
-                            value={convertSecondsToFullTime(statStoppedTime + statRideTime)}
-                            unit=""
-                        />
-                    </TouchableOpacity>
+                    <ProfileStatBox
+                        label={t('totalTime')}
+                        value={convertSecondsToTime(statStoppedTime + statRideTime)}
+                        unit=""
+                        onPress={() => setDialogVisible(true)}
+                    />
                 </View>
             </View>
 
             <CustomDialog
                 visible={dialogVisible}
-                title="Custom Dialog"
-                content={<Text>This is a custom dialog content.</Text>}
+                title={t('totalTime')}
+                content={<ProfileTimeModal statRideTime={statRideTime}
+                                           statStoppedTime={statStoppedTime}/>}
                 onClose={() => setDialogVisible(false)}
-                buttonText="OK"
+                intensity={50}
+                buttonText={t('ok')}
             />
         </ScrollView>
     );

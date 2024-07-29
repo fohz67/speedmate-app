@@ -19,7 +19,7 @@ const SettingsDropDownList = ({label, options, selected, func}) => {
             borderWidth: normalize(1),
             color: Colors.default.input.text,
             fontFamily: 'Universo-Bold',
-            fontSize: normalize(14),
+            fontSize: normalize(11),
             paddingHorizontal: normalize(15),
             paddingVertical: normalize(10),
             shadowColor: Colors.default.app.shadow,
@@ -34,7 +34,7 @@ const SettingsDropDownList = ({label, options, selected, func}) => {
             borderWidth: normalize(1),
             color: Colors.default.input.text,
             fontFamily: 'Universo-Bold',
-            fontSize: normalize(14),
+            fontSize: normalize(11),
             paddingHorizontal: normalize(15),
             paddingVertical: normalize(10),
             shadowColor: Colors.default.app.shadow,
@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
     label: {
         color: Colors.default.app.text,
         fontFamily: 'Universo-Regular',
-        fontSize: normalize(14),
+        fontSize: normalize(13),
+        marginLeft: normalize(5),
         marginTop: normalize(5),
     },
     picker: {

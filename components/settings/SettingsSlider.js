@@ -27,13 +27,14 @@ const SettingsSlider = ({label, value, func, min, max, step, unit}) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: normalize(20),
         marginBottom: normalize(-5),
+        marginTop: normalize(20),
     },
     label: {
         color: Colors.default.app.text,
         fontFamily: 'Universo-Regular',
-        fontSize: normalize(14),
+        fontSize: normalize(13),
+        marginLeft: normalize(5),
         textAlign: 'left',
     },
     slider: {
@@ -43,12 +44,12 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        marginBottom: normalize(5),
     },
     value: {
         color: Colors.default.app.title,
-        fontFamily: 'Universo-Black',
-        fontSize: normalize(20),
+        fontFamily: 'Universo-Bold',
+        fontSize: normalize(15),
+        marginRight: normalize(5),
         textAlign: 'right',
     },
 });
