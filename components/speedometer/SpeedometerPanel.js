@@ -19,7 +19,7 @@ const SpeedometerPanel = ({time, stopped, altitude, averageSpeed, maxSpeed, trip
                 />
                 <SpeedometerStat
                     label={t('distance')}
-                    unit={units.distance}
+                    unit={units.distanceKm}
                     value={tripDistance}
                 />
                 <SpeedometerStat

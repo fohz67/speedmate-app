@@ -44,6 +44,14 @@ const settingsData = {
         default: 0,
         key: 'statTime',
     },
+    statRideTime: {
+        default: 0,
+        key: 'statRideTime',
+    },
+    statStoppedTime: {
+        default: 0,
+        key: 'statStoppedTime',
+    },
     unit: {
         default: 0,
         key: 'unit',
@@ -61,13 +69,9 @@ const settingsData = {
         key: 'vehicleType',
     },
     accuracyThreshold: {
-        default: 0.2,
+        default: 10,
         key: 'accuracyThreshold',
     },
-    speedThreshold: {
-        default: 10,
-        key: 'speedThreshold',
-    }
 };
 
 const useSettings = () => {
@@ -78,7 +82,6 @@ const useSettings = () => {
     const [arcWidth, setArcWidth] = useState(settingsData.arcWidth.default);
     const [unit, setUnit] = useState(settingsData.unit.default);
     const [accuracyThreshold, setAccuracyThreshold] = useState(settingsData.accuracyThreshold.default);
-    const [speedThreshold, setSpeedThreshold] = useState(settingsData.speedThreshold.default);
     const [profilePicture, setProfilePicture] = useState(settingsData.profilePicture.default);
     const [firstName, setFirstName] = useState(settingsData.firstName.default);
     const [lastName, setLastName] = useState(settingsData.lastName.default);
@@ -89,6 +92,8 @@ const useSettings = () => {
     const [vehicleModel, setVehicleModel] = useState(settingsData.vehicleModel.default);
     const [statOdometer, setStatOdometer] = useState(settingsData.statOdometer.default);
     const [statTime, setStatTime] = useState(settingsData.statTime.default);
+    const [statRideTime, setStatRideTime] = useState(settingsData.statRideTime.default);
+    const [statStoppedTime, setStatStoppedTime] = useState(settingsData.statStoppedTime.default);
 
     useEffect(() => {
         const loadSettings = async () => {
@@ -98,7 +103,6 @@ const useSettings = () => {
                 const storedArcWidth = await AsyncStorage.getItem(settingsData.arcWidth.key);
                 const storedUnit = await AsyncStorage.getItem(settingsData.unit.key);
                 const storedAccuracyThreshold = await AsyncStorage.getItem(settingsData.accuracyThreshold.key);
-                const storedSpeedThreshold = await AsyncStorage.getItem(settingsData.speedThreshold.key);
                 const storedProfilePicture = await AsyncStorage.getItem(settingsData.profilePicture.key);
                 const storedFirstName = await AsyncStorage.getItem(settingsData.firstName.key);
                 const storedLastName = await AsyncStorage.getItem(settingsData.lastName.key);
@@ -109,13 +113,14 @@ const useSettings = () => {
                 const storedVehicleModel = await AsyncStorage.getItem(settingsData.vehicleModel.key);
                 const storedStatOdometer = await AsyncStorage.getItem(settingsData.statOdometer.key);
                 const storedStatTime = await AsyncStorage.getItem(settingsData.statTime.key);
+                const storedStatRideTime = await AsyncStorage.getItem(settingsData.statRideTime.key);
+                const storedStatStoppedTime = await AsyncStorage.getItem(settingsData.statStoppedTime.key);
 
                 setLanguage(storedLanguage ? parseInt(storedLanguage, 10) : settingsData.language.default);
                 setSpeedometerMaxValue(storedSpeedometerMaxValue ? parseInt(storedSpeedometerMaxValue, 10) : settingsData.speedometerMaxValue.default);
                 setArcWidth(storedArcWidth ? parseInt(storedArcWidth, 10) : settingsData.arcWidth.default);
                 setUnit(storedUnit ? parseInt(storedUnit, 10) : settingsData.unit.default);
-                setAccuracyThreshold(storedAccuracyThreshold ? parseInt(storedUnit, 10) : settingsData.accuracyThreshold.default);
-                setSpeedThreshold(storedSpeedThreshold ? parseInt(storedUnit, 10) : settingsData.speedThreshold.default);
+                setAccuracyThreshold(storedAccuracyThreshold ? parseInt(storedAccuracyThreshold, 10) : settingsData.accuracyThreshold.default);
                 setProfilePicture(storedProfilePicture || settingsData.profilePicture.default);
                 setFirstName(storedFirstName || settingsData.firstName.default);
                 setLastName(storedLastName || settingsData.lastName.default);
@@ -126,6 +131,8 @@ const useSettings = () => {
                 setVehicleModel(storedVehicleModel || settingsData.vehicleModel.default);
                 setStatOdometer(storedStatOdometer ? parseFloat(storedStatOdometer) : settingsData.statOdometer.default);
                 setStatTime(storedStatTime ? parseFloat(storedStatTime) : settingsData.statTime.default);
+                setStatRideTime(storedStatRideTime ? parseFloat(storedStatRideTime) : settingsData.statRideTime.default);
+                setStatStoppedTime(storedStatStoppedTime ? parseFloat(storedStatStoppedTime) : settingsData.statStoppedTime.default);
             } catch (error) {
                 console.error('Failed to load settings from AsyncStorage:', error);
             }
@@ -177,15 +184,6 @@ const useSettings = () => {
             await AsyncStorage.setItem(settingsData.accuracyThreshold.key, newAccuracyThreshold.toString());
         } catch (error) {
             console.error('Failed to save accuracyThreshold setting to AsyncStorage:', error);
-        }
-    };
-
-    const updateSpeedThreshold = async (newSpeedThreshold) => {
-        try {
-            setSpeedThreshold(newSpeedThreshold);
-            await AsyncStorage.setItem(settingsData.accuracyThreshold.key, newSpeedThreshold.toString());
-        } catch (error) {
-            console.error('Failed to save speedThreshold setting to AsyncStorage:', error);
         }
     };
 
@@ -308,13 +306,30 @@ const useSettings = () => {
         }
     };
 
+    const updateStatRideTime = async (newStatRideTime) => {
+        try {
+            setStatRideTime(newStatRideTime);
+            await AsyncStorage.setItem(settingsData.statRideTime.key, newStatRideTime.toString());
+        } catch (error) {
+            console.error('Failed to save rideTime statistic to AsyncStorage:', error);
+        }
+    };
+
+    const updateStatStoppedTime = async (newStatStoppedTime) => {
+        try {
+            setStatStoppedTime(newStatStoppedTime);
+            await AsyncStorage.setItem(settingsData.statStoppedTime.key, newStatStoppedTime.toString());
+        } catch (error) {
+            console.error('Failed to save stoppedTime statistic to AsyncStorage:', error);
+        }
+    };
+
     return {
         language,
         speedometerMaxValue,
         arcWidth,
         unit,
         accuracyThreshold,
-        speedThreshold,
         profilePicture,
         firstName,
         lastName,
@@ -325,12 +340,13 @@ const useSettings = () => {
         vehicleModel,
         statOdometer,
         statTime,
+        statRideTime,
+        statStoppedTime,
         updateLanguage,
         updateSpeedometerMaxValue,
         updateArcWidth,
         updateUnit,
         updateAccuracyThreshold,
-        updateSpeedThreshold,
         pickImage,
         updateFirstName,
         updateLastName,
@@ -341,6 +357,8 @@ const useSettings = () => {
         updateVehicleModel,
         updateStatOdometer,
         updateStatTime,
+        updateStatRideTime,
+        updateStatStoppedTime,
     };
 };
 

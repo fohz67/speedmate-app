@@ -1,17 +1,23 @@
-export const convertSpeed = (speed, factor) => {
+export const convertMsToKphOrMph = (value, factor) => {
     const factors = [3.6, 2.23694];
 
-    return speed * factors[factor];
+    return value * factors[factor];
 };
 
-export const convertAltitude = (altitude, factor) => {
+export const convertToKmOrFeet = (value, factor) => {
     const factors = [1, 3.28084];
 
-    return altitude * factors[factor];
+    return value * factors[factor];
 };
 
-export const convertDistance = (distance, factor) => {
+export const convertToKmOrMiles = (value, factor) => {
     const factors = [1, 0.000621371];
 
-    return distance * factors[factor];
+    return value * factors[factor];
 }
+
+export const convertToMetersOrYards = (value, factor) => {
+    const factors = [1, 1.09361];
+
+    return value * factors[factor];
+};

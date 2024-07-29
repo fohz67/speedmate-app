@@ -1,7 +1,15 @@
 import {useEffect, useRef, useState} from 'react';
+import {useSettingsContext} from "../SettingsContext";
 
 const useTimer = (getSpeed) => {
     const speedThreshold = 0.1;
+
+    const {
+        statRideTime,
+        statStoppedTime,
+        updateStatRideTime,
+        updateStatStoppedTime,
+    } = useSettingsContext();
 
     const [time, setTime] = useState(0);
     const [stopped, setStopped] = useState(0);
@@ -22,6 +30,8 @@ const useTimer = (getSpeed) => {
                 const currentSpeed = getSpeed();
 
                 if (currentSpeed > speedThreshold) {
+                    updateStatRideTime(statRideTime + 1);
+
                     setTime((prevTime) => {
                         const newTime = prevTime + 1;
 
@@ -38,6 +48,8 @@ const useTimer = (getSpeed) => {
                         return newTotalSpeed;
                     });
                 } else {
+                    updateStatStoppedTime(statStoppedTime + 1);
+
                     setStopped((prevStopped) => {
                         const newStopped = prevStopped + 1;
 

@@ -5,7 +5,7 @@ import SpeedometerView from '../components/speedometer/SpeedometerView';
 import useGPS from '../hooks/useGPS';
 import useTimer from '../hooks/useTimer';
 import {useSettingsContext} from '../SettingsContext';
-import {convertAltitude, convertDistance, convertSpeed} from '../utils/convertUtils';
+import {convertMsToKphOrMph, convertToKmOrFeet, convertToKmOrMiles} from '../utils/convertUtils';
 import {formatTime} from '../utils/timerUtils';
 import FullScreenPage from './FullScreenPage';
 
@@ -27,14 +27,14 @@ export default function GPSScreen({modalVisible, setModalVisible}) {
 
     return (
         <View style={styles.container}>
-            <SpeedometerView speed={convertSpeed(speed, unit).toFixed(0)}/>
+            <SpeedometerView speed={convertMsToKphOrMph(speed, unit).toFixed(0)}/>
 
             <SpeedometerPanel time={formatTime(time)}
                               stopped={formatTime(stopped)}
-                              altitude={convertAltitude(altitude, unit).toFixed(0)}
-                              averageSpeed={convertSpeed(averageSpeed, unit).toFixed(0)}
-                              maxSpeed={convertSpeed(maxSpeed, unit).toFixed(0)}
-                              tripDistance={convertDistance(tripDistance, unit).toFixed(2)}/>
+                              altitude={convertToKmOrFeet(altitude, unit).toFixed(0)}
+                              averageSpeed={convertMsToKphOrMph(averageSpeed, unit).toFixed(0)}
+                              maxSpeed={convertMsToKphOrMph(maxSpeed, unit).toFixed(0)}
+                              tripDistance={convertToKmOrMiles(tripDistance, unit).toFixed(2)}/>
 
             <Modal
                 visible={modalVisible}

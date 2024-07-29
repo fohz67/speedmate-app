@@ -4,7 +4,7 @@ import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import Colors from '../assets/theme/colors';
 import SpeedometerPanel from '../components/speedometer/SpeedometerPanel';
 import SpeedometerView from '../components/speedometer/SpeedometerView';
-import {convertAltitude, convertDistance, convertSpeed} from '../utils/convertUtils';
+import {convertMsToKphOrMph, convertToKmOrFeet, convertToKmOrMiles} from '../utils/convertUtils';
 import {normalize} from '../utils/normalizeUtils';
 import {formatTime} from '../utils/timerUtils';
 
@@ -45,15 +45,15 @@ export default function FullScreenPage({
                        tintColor={Colors.default.app.text}/>
             </TouchableOpacity>
 
-            <SpeedometerView speed={convertSpeed(speed, unit).toFixed(0)}/>
+            <SpeedometerView speed={convertMsToKphOrMph(speed, unit).toFixed(0)}/>
 
             <SpeedometerPanel
                 time={formatTime(time)}
                 stopped={formatTime(stopped)}
-                altitude={convertAltitude(altitude, unit).toFixed(0)}
-                averageSpeed={convertSpeed(averageSpeed, unit).toFixed(0)}
-                maxSpeed={convertSpeed(maxSpeed, unit).toFixed(0)}
-                tripDistance={convertDistance(tripDistance, unit).toFixed(2)}
+                altitude={convertToKmOrFeet(altitude, unit).toFixed(0)}
+                averageSpeed={convertMsToKphOrMph(averageSpeed, unit).toFixed(0)}
+                maxSpeed={convertMsToKphOrMph(maxSpeed, unit).toFixed(0)}
+                tripDistance={convertToKmOrMiles(tripDistance, unit).toFixed(2)}
             />
         </View>
     );

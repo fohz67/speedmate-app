@@ -10,7 +10,7 @@ import SettingsSlider from '../components/settings/SettingsSlider';
 import useOptions from '../hooks/useOptions';
 import useUnits from '../hooks/useUnits';
 import {useSettingsContext} from '../SettingsContext';
-import {convertDistance} from '../utils/convertUtils';
+import {convertToKmOrMiles} from '../utils/convertUtils';
 import {normalize} from '../utils/normalizeUtils';
 
 export default function ProfileScreen() {
@@ -29,7 +29,8 @@ export default function ProfileScreen() {
         vehicleBrand,
         vehicleModel,
         statOdometer,
-        statTime,
+        statRideTime,
+        statStoppedTime,
         pickImage,
         updateFirstName,
         updateLastName,
@@ -37,9 +38,7 @@ export default function ProfileScreen() {
         updateNickname,
         updateVehicleType,
         updateVehicleBrand,
-        updateVehicleModel,
-        updateStatOdometer,
-        updateStatTime,
+        updateVehicleModel
     } = useSettingsContext();
 
     const photo = profilePicture ? {uri: profilePicture} : require('../assets/default-picture.png');
@@ -118,13 +117,13 @@ export default function ProfileScreen() {
                 <View style={styles.statsContainer}>
                     <ProfileStatBox
                         label={t('odometer')}
-                        value={convertDistance(statOdometer, unit)}
-                        unit={units.distance}
+                        value={convertToKmOrMiles(statOdometer, unit)}
+                        unit={units.distanceKm}
                     />
                     <ProfileStatBox
                         label={t('totalTime')}
-                        value={statTime}
-                        unit='h'
+                        value={statStoppedTime}
+                        unit=""
                     />
                 </View>
             </View>

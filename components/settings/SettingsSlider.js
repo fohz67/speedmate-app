@@ -4,12 +4,14 @@ import {StyleSheet, Text, View} from 'react-native';
 import Colors from '../../assets/theme/colors';
 import {normalize} from '../../utils/normalizeUtils';
 
-const SettingsSlider = ({label, value, func, min, max, step}) => {
+const SettingsSlider = ({label, value, func, min, max, step, unit}) => {
+    const finalValue = value.toString() + (unit ? unit : '').toString();
+
     return (
         <View style={styles.container}>
             <View style={styles.textContainer}>
                 <Text style={styles.label}>{label}</Text>
-                <Text style={styles.value}>{value}</Text>
+                <Text style={styles.value}>{finalValue}</Text>
             </View>
             <Slider
                 style={styles.slider}

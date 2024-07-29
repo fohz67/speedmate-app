@@ -6,26 +6,25 @@ import GlobalTitle from '../components/global/GlobalTitle';
 import SettingsDropDownList from '../components/settings/SettingsDropDownList';
 import SettingsSlider from '../components/settings/SettingsSlider';
 import useOptions from '../hooks/useOptions';
+import useUnits from "../hooks/useUnits";
 import {useSettingsContext} from '../SettingsContext';
-import {convertSpeed} from "../utils/convertUtils";
 import {normalize} from '../utils/normalizeUtils';
 
 export default function SettingsScreen() {
     const {t} = useTranslation();
     const options = useOptions();
+    const units = useUnits();
 
     const {
         language,
         speedometerMaxValue,
         unit,
         accuracyThreshold,
-        speedThreshold,
         arcWidth,
         updateLanguage,
         updateSpeedometerMaxValue,
         updateUnit,
         updateAccuracyThreshold,
-        updateSpeedThreshold,
         updateArcWidth,
     } = useSettingsContext();
 
@@ -49,6 +48,7 @@ export default function SettingsScreen() {
                     min={50}
                     max={450}
                     step={5}
+                    unit={' ' + units.speed}
                 />
 
                 <GlobalSeparator/>
@@ -71,16 +71,7 @@ export default function SettingsScreen() {
                     min={0}
                     max={20}
                     step={1}
-                />
-
-                <GlobalSeparator/>
-                <SettingsSlider
-                    label={t('speedThreshold')}
-                    value={convertSpeed(speedThreshold, unit)}
-                    func={updateSpeedThreshold}
-                    min={0.1}
-                    max={3}
-                    step={0.1}
+                    unit={' ' + units.distanceM + (accuracyThreshold > 1 ? 's' : '')}
                 />
             </View>
             <View style={styles.section}>

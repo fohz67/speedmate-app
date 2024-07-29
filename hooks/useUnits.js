@@ -8,13 +8,15 @@ const useUnits = () => {
     return [
         {
             altitude: t('m'),
-            distance: t('km'),
-            speed: t('kph')
+            distanceKm: t('km'),
+            speed: t('kph'),
+            distanceM: t('meters'),
         },
         {
             altitude: t('ft'),
-            distance: t('mi'),
-            speed: t('mph')
+            distanceKm: t('mi'),
+            speed: t('mph'),
+            distanceM: t('yards'),
         }
     ][unit];
 };

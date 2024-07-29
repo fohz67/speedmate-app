@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Universo-Regular',
         fontSize: normalize(27),
         position: 'absolute',
+        textTransform: 'uppercase',
     }
 });
 

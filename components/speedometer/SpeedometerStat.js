@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Universo-Regular',
         fontSize: normalize(20),
         marginLeft: normalize(5),
-        textTransform: 'capitalize',
+        textTransform: 'uppercase',
     },
     value: {
         color: Colors.default.stats.value,
