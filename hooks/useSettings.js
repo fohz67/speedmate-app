@@ -205,7 +205,6 @@ const useSettings = () => {
     };
 
     const pickImage = async () => {
-        INFO('Requesting library permissions asynchronously...');
         const {status} = await ImagePicker.requestMediaLibraryPermissionsAsync();
 
         if (status !== 'granted') {
@@ -213,7 +212,6 @@ const useSettings = () => {
             return;
         }
 
-        ERROR('Opening image library...');
         let result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
             allowsEditing: true,
@@ -221,7 +219,6 @@ const useSettings = () => {
         });
 
         if (!result.canceled && result.assets && result.assets.length > 0) {
-            ERROR('Result and assets are ok to continue.');
             const uri = result.assets[0].uri;
 
             if (uri) {

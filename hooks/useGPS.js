@@ -22,10 +22,8 @@ const useGPS = () => {
 
     useEffect(() => {
         let isMounted = true;
-        //INFO('useGPS hook has been invoked and mounted.');
 
         const startLocationUpdates = async () => {
-            //INFO('Requesting location permissions asynchronously...');
             const {status} = await Location.requestForegroundPermissionsAsync();
 
             if (status !== 'granted') {
@@ -37,7 +35,6 @@ const useGPS = () => {
         };
 
         const watchPosition = async () => {
-            //INFO('Calling watch position async function...');
             await Location.watchPositionAsync(
                 {
                     accuracy: Location.Accuracy.BestForNavigation,
@@ -45,7 +42,6 @@ const useGPS = () => {
                     distanceInterval: 1,
                 },
                 (location) => {
-                    //INFO('Location has been updated.');
                     if (isMounted) {
                         updateLocationData(location);
                     }
@@ -74,12 +70,10 @@ const useGPS = () => {
         setAltitude(altitude);
 
         if (convertedSpeed >= 1 && accuracy <= accuracyThreshold) {
-            //INFO('Speed and accuracy are ok.');
             setSpeed(rawSpeed);
             setMaxSpeed(value => Math.max(value, rawSpeed));
 
             if (previousLocation.current) {
-                //INFO('Previous location is ok.');
                 const prevLocation = previousLocation.current;
                 const distance = calculateDistance(
                     prevLocation.latitude,
@@ -90,13 +84,11 @@ const useGPS = () => {
 
                 setTripDistance(value => value + distance);
                 await updateStatOdometer(statOdometer + distance);
-                //INFO('Odometer has been updated.');
             }
 
             previousLocation.current = location.coords;
         } else {
             setSpeed(0);
-            //INFO('Bad speed or accuracy, speed set to 0.');
         }
     };
 
