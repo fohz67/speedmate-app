@@ -4,29 +4,21 @@ import i18n from 'i18next';
 import {useEffect, useState} from 'react';
 
 const settingsData = {
+    age: {
+        default: 0,
+        key: 'age',
+    },
     arcWidth: {
         default: 5,
         key: 'arcWidth',
     },
-    language: {
-        default: 0,
-        key: 'language',
-    },
-    speedometerMaxValue: {
-        default: 200,
-        key: 'speedometerMaxValue',
-    },
-    unit: {
-        default: 0,
-        key: 'unit',
-    },
-    profilePicture: {
-        default: '',
-        key: 'profilePicture',
-    },
     firstName: {
         default: '',
         key: 'firstName',
+    },
+    language: {
+        default: 0,
+        key: 'language',
     },
     lastName: {
         default: '',
@@ -36,21 +28,13 @@ const settingsData = {
         default: '',
         key: 'nickname',
     },
-    age: {
-        default: 0,
-        key: 'age',
-    },
-    vehicleType: {
-        default: 0,
-        key: 'vehicleType',
-    },
-    vehicleBrand: {
+    profilePicture: {
         default: '',
-        key: 'vehicleBrand',
+        key: 'profilePicture',
     },
-    vehicleModel: {
-        default: '',
-        key: 'vehicleModel',
+    speedometerMaxValue: {
+        default: 200,
+        key: 'speedometerMaxValue',
     },
     statOdometer: {
         default: 0,
@@ -60,6 +44,30 @@ const settingsData = {
         default: 0,
         key: 'statTime',
     },
+    unit: {
+        default: 0,
+        key: 'unit',
+    },
+    vehicleBrand: {
+        default: '',
+        key: 'vehicleBrand',
+    },
+    vehicleModel: {
+        default: '',
+        key: 'vehicleModel',
+    },
+    vehicleType: {
+        default: 0,
+        key: 'vehicleType',
+    },
+    accuracyThreshold: {
+        default: 0.2,
+        key: 'accuracyThreshold',
+    },
+    speedThreshold: {
+        default: 10,
+        key: 'speedThreshold',
+    }
 };
 
 const useSettings = () => {
@@ -69,6 +77,8 @@ const useSettings = () => {
     const [speedometerMaxValue, setSpeedometerMaxValue] = useState(settingsData.speedometerMaxValue.default);
     const [arcWidth, setArcWidth] = useState(settingsData.arcWidth.default);
     const [unit, setUnit] = useState(settingsData.unit.default);
+    const [accuracyThreshold, setAccuracyThreshold] = useState(settingsData.accuracyThreshold.default);
+    const [speedThreshold, setSpeedThreshold] = useState(settingsData.speedThreshold.default);
     const [profilePicture, setProfilePicture] = useState(settingsData.profilePicture.default);
     const [firstName, setFirstName] = useState(settingsData.firstName.default);
     const [lastName, setLastName] = useState(settingsData.lastName.default);
@@ -87,6 +97,8 @@ const useSettings = () => {
                 const storedSpeedometerMaxValue = await AsyncStorage.getItem(settingsData.speedometerMaxValue.key);
                 const storedArcWidth = await AsyncStorage.getItem(settingsData.arcWidth.key);
                 const storedUnit = await AsyncStorage.getItem(settingsData.unit.key);
+                const storedAccuracyThreshold = await AsyncStorage.getItem(settingsData.accuracyThreshold.key);
+                const storedSpeedThreshold = await AsyncStorage.getItem(settingsData.speedThreshold.key);
                 const storedProfilePicture = await AsyncStorage.getItem(settingsData.profilePicture.key);
                 const storedFirstName = await AsyncStorage.getItem(settingsData.firstName.key);
                 const storedLastName = await AsyncStorage.getItem(settingsData.lastName.key);
@@ -102,6 +114,8 @@ const useSettings = () => {
                 setSpeedometerMaxValue(storedSpeedometerMaxValue ? parseInt(storedSpeedometerMaxValue, 10) : settingsData.speedometerMaxValue.default);
                 setArcWidth(storedArcWidth ? parseInt(storedArcWidth, 10) : settingsData.arcWidth.default);
                 setUnit(storedUnit ? parseInt(storedUnit, 10) : settingsData.unit.default);
+                setAccuracyThreshold(storedAccuracyThreshold ? parseInt(storedUnit, 10) : settingsData.accuracyThreshold.default);
+                setSpeedThreshold(storedSpeedThreshold ? parseInt(storedUnit, 10) : settingsData.speedThreshold.default);
                 setProfilePicture(storedProfilePicture || settingsData.profilePicture.default);
                 setFirstName(storedFirstName || settingsData.firstName.default);
                 setLastName(storedLastName || settingsData.lastName.default);
@@ -154,6 +168,24 @@ const useSettings = () => {
             await AsyncStorage.setItem(settingsData.unit.key, newUnit.toString());
         } catch (error) {
             console.error('Failed to save unit setting to AsyncStorage:', error);
+        }
+    };
+
+    const updateAccuracyThreshold = async (newAccuracyThreshold) => {
+        try {
+            setAccuracyThreshold(newAccuracyThreshold);
+            await AsyncStorage.setItem(settingsData.accuracyThreshold.key, newAccuracyThreshold.toString());
+        } catch (error) {
+            console.error('Failed to save accuracyThreshold setting to AsyncStorage:', error);
+        }
+    };
+
+    const updateSpeedThreshold = async (newSpeedThreshold) => {
+        try {
+            setSpeedThreshold(newSpeedThreshold);
+            await AsyncStorage.setItem(settingsData.accuracyThreshold.key, newSpeedThreshold.toString());
+        } catch (error) {
+            console.error('Failed to save speedThreshold setting to AsyncStorage:', error);
         }
     };
 
@@ -281,6 +313,8 @@ const useSettings = () => {
         speedometerMaxValue,
         arcWidth,
         unit,
+        accuracyThreshold,
+        speedThreshold,
         profilePicture,
         firstName,
         lastName,
@@ -295,6 +329,8 @@ const useSettings = () => {
         updateSpeedometerMaxValue,
         updateArcWidth,
         updateUnit,
+        updateAccuracyThreshold,
+        updateSpeedThreshold,
         pickImage,
         updateFirstName,
         updateLastName,

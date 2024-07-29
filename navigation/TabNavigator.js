@@ -73,12 +73,12 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     expandButton: {
-        marginTop: normalize(5),
+        marginTop: normalize(0),
         marginRight: normalize(30),
     },
     expandIcon: {
-        width: normalize(25),
-        height: normalize(25),
+        width: normalize(22),
+        height: normalize(22),
     },
     navigatorScene: {
         backgroundColor: Colors.default.app.background

@@ -1,12 +1,13 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {ScrollView, StyleSheet, View} from 'react-native';
-import MyCustomSeparator from '../components/global/GlobalSeparator';
+import GlobalSeparator from '../components/global/GlobalSeparator';
 import GlobalTitle from '../components/global/GlobalTitle';
 import SettingsDropDownList from '../components/settings/SettingsDropDownList';
 import SettingsSlider from '../components/settings/SettingsSlider';
 import useOptions from '../hooks/useOptions';
 import {useSettingsContext} from '../SettingsContext';
+import {convertSpeed} from "../utils/convertUtils";
 import {normalize} from '../utils/normalizeUtils';
 
 export default function SettingsScreen() {
@@ -15,13 +16,17 @@ export default function SettingsScreen() {
 
     const {
         language,
-        updateLanguage,
         speedometerMaxValue,
-        updateSpeedometerMaxValue,
         unit,
-        updateUnit,
+        accuracyThreshold,
+        speedThreshold,
         arcWidth,
-        updateArcWidth
+        updateLanguage,
+        updateSpeedometerMaxValue,
+        updateUnit,
+        updateAccuracyThreshold,
+        updateSpeedThreshold,
+        updateArcWidth,
     } = useSettingsContext();
 
     return (
@@ -36,7 +41,7 @@ export default function SettingsScreen() {
                     func={updateUnit}
                 />
 
-                <MyCustomSeparator/>
+                <GlobalSeparator/>
                 <SettingsSlider
                     label={t('maxSpeed')}
                     value={speedometerMaxValue}
@@ -46,7 +51,7 @@ export default function SettingsScreen() {
                     step={5}
                 />
 
-                <MyCustomSeparator/>
+                <GlobalSeparator/>
                 <SettingsSlider
                     label={t('arcWidth')}
                     value={arcWidth}
@@ -57,7 +62,29 @@ export default function SettingsScreen() {
                 />
             </View>
             <View style={styles.section}>
-                <GlobalTitle label='Application'/>
+                <GlobalTitle label={t('gps')}/>
+
+                <SettingsSlider
+                    label={t('accuracyThreshold')}
+                    value={accuracyThreshold}
+                    func={updateAccuracyThreshold}
+                    min={0}
+                    max={20}
+                    step={1}
+                />
+
+                <GlobalSeparator/>
+                <SettingsSlider
+                    label={t('speedThreshold')}
+                    value={convertSpeed(speedThreshold, unit)}
+                    func={updateSpeedThreshold}
+                    min={0.1}
+                    max={3}
+                    step={0.1}
+                />
+            </View>
+            <View style={styles.section}>
+                <GlobalTitle label={t('application')}/>
 
                 <SettingsDropDownList
                     label={t('language')}
@@ -74,8 +101,9 @@ const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         flexGrow: 1,
-        top: normalize(-10),
+        top: normalize(-20),
         paddingHorizontal: normalize(20),
+        paddingBottom: normalize(30),
     },
     section: {
         width: '100%',

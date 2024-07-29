@@ -7,7 +7,10 @@ import {normalize} from '../../utils/normalizeUtils';
 const SettingsSlider = ({label, value, func, min, max, step}) => {
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>{label}: {value}</Text>
+            <View style={styles.textContainer}>
+                <Text style={styles.label}>{label}</Text>
+                <Text style={styles.value}>{value}</Text>
+            </View>
             <Slider
                 style={styles.slider}
                 minimumValue={min}
@@ -22,20 +25,29 @@ const SettingsSlider = ({label, value, func, min, max, step}) => {
 
 const styles = StyleSheet.create({
     container: {
-        alignItems: 'center',
-        flexDirection: 'row',
-        marginBottom: normalize(3),
-        marginLeft: normalize(5),
-        marginTop: normalize(13),
+        marginTop: normalize(20),
+        marginBottom: normalize(-5),
     },
-    slider: {
-        flex: 1,
-    },
-    text: {
+    label: {
         color: Colors.default.app.text,
         fontFamily: 'Universo-Regular',
         fontSize: normalize(14),
-        marginRight: normalize(10),
+        textAlign: 'left',
+    },
+    slider: {
+        width: '100%',
+    },
+    textContainer: {
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: normalize(5),
+    },
+    value: {
+        color: Colors.default.app.title,
+        fontFamily: 'Universo-Black',
+        fontSize: normalize(20),
+        textAlign: 'right',
     },
 });
 

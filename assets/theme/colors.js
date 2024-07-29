@@ -6,7 +6,7 @@ const Colors = {
             separator: '#0d1827',
             shadow: 'rgba(0,0,0,0)',
             subtitle: 'white',
-            text: 'white',
+            text: 'rgba(255,255,255,0.5)',
             title: 'white',
         },
         header: {
@@ -28,6 +28,8 @@ const Colors = {
         speedometer: {
             arc: '#002849',
             line: '#0077ff',
+            speed: 'white',
+            unit: 'rgba(255,255,255,0.2)',
         },
         stats: {
             label: '#0076ffff',

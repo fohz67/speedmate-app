@@ -1,6 +1,7 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Image, ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
+import GlobalSeparator from "../components/global/GlobalSeparator";
 import GlobalTitle from '../components/global/GlobalTitle';
 import ProfileStatBox from '../components/profile/ProfileStatBox';
 import SettingsDropDownList from '../components/settings/SettingsDropDownList';
@@ -60,11 +61,15 @@ export default function ProfileScreen() {
                     func={updateFirstName}
                     placeholder={t('firstName')}
                 />
+
+                <GlobalSeparator/>
                 <SettingsInput
                     value={lastName}
                     func={updateLastName}
                     placeholder={t('lastName')}
                 />
+
+                <GlobalSeparator/>
                 <SettingsSlider
                     label={t('age')}
                     value={age}
@@ -73,6 +78,8 @@ export default function ProfileScreen() {
                     max={100}
                     step={1}
                 />
+
+                <GlobalSeparator/>
                 <SettingsInput
                     value={nickname}
                     func={updateNickname}
@@ -89,11 +96,15 @@ export default function ProfileScreen() {
                     selected={vehicleType}
                     func={updateVehicleType}
                 />
+
+                <GlobalSeparator/>
                 <SettingsInput
                     value={vehicleBrand}
                     func={updateVehicleBrand}
                     placeholder={t('vehicleBrand')}
                 />
+
+                <GlobalSeparator/>
                 <SettingsInput
                     value={vehicleModel}
                     func={updateVehicleModel}
@@ -126,12 +137,13 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexGrow: 1,
         paddingHorizontal: normalize(20),
+        paddingBottom: normalize(30),
     },
     profileImage: {
         alignSelf: 'center',
         borderRadius: normalize(50),
         height: normalize(100),
-        marginTop: normalize(40),
+        marginTop: normalize(20),
         marginBottom: normalize(-30),
         width: normalize(100),
     },

@@ -1,4 +1,5 @@
 {
+  "accuracyThreshold": "GPS Accuracy Threshold",
   "age": "Age",
   "altitude": "Altitude",
   "application": "Application",
@@ -29,6 +30,7 @@
   "profile": "Profile",
   "scooter": "Scooter 🛵",
   "settings": "Settings",
+  "speedThreshold": "Speed Threshold",
   "speedometer": "Speedometer",
   "statistics": "Statistics",
   "stopped": "Stopped",

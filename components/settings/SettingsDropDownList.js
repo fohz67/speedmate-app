@@ -66,14 +66,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         marginBottom: normalize(3),
-        marginLeft: normalize(5),
         marginTop: normalize(13),
     },
     label: {
         color: Colors.default.app.text,
         fontFamily: 'Universo-Regular',
         fontSize: normalize(14),
-        marginRight: normalize(10),
+        marginTop: normalize(5),
     },
     picker: {
         position: 'relative',

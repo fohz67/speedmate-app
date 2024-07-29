@@ -66,15 +66,15 @@ const styles = StyleSheet.create({
         transform: [{rotate: '45deg'}],
     },
     speed: {
-        color: Colors.default.app.text,
+        color: Colors.default.speedometer.speed,
         fontFamily: 'Universo-Black',
-        fontSize: normalize(100),
+        fontSize: normalize(110),
         position: 'absolute',
     },
     unit: {
-        bottom: '25%',
-        color: Colors.default.app.text,
-        fontFamily: 'Universo-Thin',
+        bottom: '23%',
+        color: Colors.default.speedometer.unit,
+        fontFamily: 'Universo-Regular',
         fontSize: normalize(27),
         position: 'absolute',
     }
