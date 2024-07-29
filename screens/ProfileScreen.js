@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
-import {Image, ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import CustomDialog from "../components/dialog/CenteredDialog";
 import GlobalSeparator from "../components/global/GlobalSeparator";
 import GlobalTitle from '../components/global/GlobalTitle';
 import ProfileStatBox from '../components/profile/ProfileStatBox';
@@ -10,11 +11,14 @@ import SettingsSlider from '../components/settings/SettingsSlider';
 import useOptions from '../hooks/useOptions';
 import useUnits from '../hooks/useUnits';
 import {useSettingsContext} from '../SettingsContext';
-import {convertToKmOrMiles} from '../utils/convertUtils';
+import {convertSecondsToFullTime, convertToKmOrMiles} from '../utils/convertUtils';
 import {normalize} from '../utils/normalizeUtils';
 
 export default function ProfileScreen() {
+    const [dialogVisible, setDialogVisible] = useState(false);
+
     const {t} = useTranslation();
+
     const options = useOptions();
     const units = useUnits();
 
@@ -120,13 +124,24 @@ export default function ProfileScreen() {
                         value={convertToKmOrMiles(statOdometer, unit)}
                         unit={units.distanceKm}
                     />
-                    <ProfileStatBox
-                        label={t('totalTime')}
-                        value={statStoppedTime}
-                        unit=""
-                    />
+                    <TouchableOpacity
+                        onPress={() => setDialogVisible(true)}>
+                        <ProfileStatBox
+                            label={t('totalTime')}
+                            value={convertSecondsToFullTime(statStoppedTime + statRideTime)}
+                            unit=""
+                        />
+                    </TouchableOpacity>
                 </View>
             </View>
+
+            <CustomDialog
+                visible={dialogVisible}
+                title="Custom Dialog"
+                content={<Text>This is a custom dialog content.</Text>}
+                onClose={() => setDialogVisible(false)}
+                buttonText="OK"
+            />
         </ScrollView>
     );
 }
