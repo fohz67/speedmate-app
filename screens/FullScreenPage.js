@@ -1,9 +1,10 @@
 import * as ScreenOrientation from 'expo-screen-orientation';
 import React, {useEffect, useState} from 'react';
-import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
+import {Image, StatusBar, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Colors from '../assets/theme/colors';
 import SpeedometerPanel from '../components/speedometer/SpeedometerPanel';
 import SpeedometerView from '../components/speedometer/SpeedometerView';
+import {useBatteryPercentage, useCurrentTime} from "../hooks/usePhoneData";
 import {convertMsToKphOrMph, convertToKmOrFeet, convertToKmOrMiles} from '../utils/convertUtils';
 import {normalize} from '../utils/normalizeUtils';
 import {formatTime} from '../utils/timerUtils';
@@ -21,6 +22,9 @@ export default function FullScreenPage({
                                        }) {
     const [isPortrait, setIsPortrait] = useState(true);
 
+    const currentTime = useCurrentTime();
+    const batteryPercentage = useBatteryPercentage();
+
     const handleLayout = (event) => {
         const {width, height} = event.nativeEvent.layout;
 
@@ -29,9 +33,11 @@ export default function FullScreenPage({
 
     useEffect(() => {
         ScreenOrientation.unlockAsync();
+        StatusBar.setHidden(true, 'fade');
 
         return () => {
             ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT_UP);
+            StatusBar.setHidden(false, 'fade');
         };
     }, []);
 
@@ -44,6 +50,11 @@ export default function FullScreenPage({
                        style={styles.closeIcon}
                        tintColor={Colors.default.app.text}/>
             </TouchableOpacity>
+
+            <View style={styles.topBar}>
+                <Text style={styles.topBarText}>{currentTime}</Text>
+                <Text style={styles.topBarText}>{batteryPercentage}</Text>
+            </View>
 
             <SpeedometerView speed={convertMsToKphOrMph(speed, unit).toFixed(0)}/>
 
@@ -84,5 +95,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: Colors.default.app.background,
         justifyContent: 'center',
+    },
+    topBar: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        left: normalize(30),
+        position: 'absolute',
+        right: normalize(30),
+        top: normalize(130),
+    },
+    topBarText: {
+        color: Colors.default.app.title,
+        fontFamily: 'Universo-Bold',
+        fontSize: normalize(16),
     },
 });

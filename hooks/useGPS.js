@@ -5,11 +5,11 @@ import {calculateDistance} from '../utils/distanceUtils';
 
 const useGPS = () => {
     const speedThreshold = 0.1;
-    const accuracyThreshold = 10;
 
     const {
         statOdometer,
-        updateStatOdometer
+        updateStatOdometer,
+        accuracyThreshold,
     } = useSettingsContext();
 
     const [speed, setSpeed] = useState(0);

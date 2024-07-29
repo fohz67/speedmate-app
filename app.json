@@ -2,7 +2,7 @@
   "expo": {
     "name": "SpeedMate",
     "slug": "SpeedMate",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -12,7 +12,7 @@
       "backgroundColor": "#000c18"
     },
     "ios": {
-      "buildNumber": "7",
+      "buildNumber": "9",
       "bundleIdentifier": "com.fohz.SpeedMate",
       "infoPlist": {
         "NSLocationWhenInUseUsageDescription": "Nous avons besoin de votre position pour vous fournir des fonctionnalités GPS.",

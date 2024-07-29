@@ -25,7 +25,7 @@ const GPSScreenOptions = (setModalVisible) => {
                 <Image
                     source={require('../assets/ic-expand.png')}
                     style={styles.expandIcon}
-                    tintColor={Colors.default.app.text}
+                    tintColor={Colors.default.app.title}
                 />
             </TouchableOpacity>
         ),
