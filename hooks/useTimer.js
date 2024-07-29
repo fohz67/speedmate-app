@@ -24,19 +24,25 @@ const useTimer = (getSpeed) => {
                 if (currentSpeed > speedThreshold) {
                     setTime((prevTime) => {
                         const newTime = prevTime + 1;
+
                         timeRef.current = newTime;
+
                         return newTime;
                     });
 
                     setTotalSpeed((prevTotalSpeed) => {
                         const newTotalSpeed = prevTotalSpeed + currentSpeed;
+
                         setAverageSpeed(newTotalSpeed / timeRef.current);
+
                         return newTotalSpeed;
                     });
                 } else {
                     setStopped((prevStopped) => {
                         const newStopped = prevStopped + 1;
+
                         stoppedRef.current = newStopped;
+
                         return newStopped;
                     });
                 }

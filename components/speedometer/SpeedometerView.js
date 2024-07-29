@@ -3,12 +3,17 @@ import {Dimensions, StyleSheet, Text, View} from 'react-native';
 import {Arc, Progress} from 'react-native-cool-speedometer';
 import Speedometer from 'react-native-cool-speedometer/dist/Speedometer';
 import Colors from '../../assets/theme/colors';
-import useUnits from "../../hooks/useUnits";
-import {useSettingsContext} from "../../SettingsContext";
-import normalize from "../../utils/normalizeUtils";
+import useUnits from '../../hooks/useUnits';
+import {useSettingsContext} from '../../SettingsContext';
+import {normalize} from '../../utils/normalizeUtils';
 
 const SpeedometerView = ({speed}) => {
-    const width = Dimensions.get('window').width - 80;
+    const {
+        width,
+        height
+    } = Dimensions.get('window');
+
+    const speedometerWidth = (width < height ? width : height) - 80;
     const rectangleBias = 1.3;
 
     const {
@@ -23,8 +28,8 @@ const SpeedometerView = ({speed}) => {
             <Speedometer
                 value={speed}
                 max={speedometerMaxSpeed}
-                width={width}
-                height={width}
+                width={speedometerWidth}
+                height={speedometerWidth}
                 angle={360}
                 accentColor={Colors.default.speedometer.line}
             >
@@ -37,9 +42,9 @@ const SpeedometerView = ({speed}) => {
 
             <View style={[
                 styles.rectangle, {
-                    bottom: -width / rectangleBias,
-                    height: width,
-                    width: width
+                    bottom: -speedometerWidth / rectangleBias,
+                    height: speedometerWidth,
+                    width: speedometerWidth
                 }
             ]}/>
 

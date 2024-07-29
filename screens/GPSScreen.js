@@ -1,12 +1,12 @@
 import React from 'react';
 import {Modal, StyleSheet, View} from 'react-native';
-import SpeedometerPanel from "../components/speedometer/SpeedometerPanel";
-import SpeedometerView from "../components/speedometer/SpeedometerView";
-import useGPS from "../hooks/useGPS";
-import useTimer from "../hooks/useTimer";
-import {useSettingsContext} from "../SettingsContext";
-import {convertAltitude, convertDistance, convertSpeed} from "../utils/convertUtils";
-import {formatTime} from "../utils/timerUtils";
+import SpeedometerPanel from '../components/speedometer/SpeedometerPanel';
+import SpeedometerView from '../components/speedometer/SpeedometerView';
+import useGPS from '../hooks/useGPS';
+import useTimer from '../hooks/useTimer';
+import {useSettingsContext} from '../SettingsContext';
+import {convertAltitude, convertDistance, convertSpeed} from '../utils/convertUtils';
+import {formatTime} from '../utils/timerUtils';
 import FullScreenPage from './FullScreenPage';
 
 export default function GPSScreen({modalVisible, setModalVisible}) {
@@ -28,6 +28,7 @@ export default function GPSScreen({modalVisible, setModalVisible}) {
     return (
         <View style={styles.container}>
             <SpeedometerView speed={convertSpeed(speed, unit).toFixed(0)}/>
+
             <SpeedometerPanel time={formatTime(time)}
                               stopped={formatTime(stopped)}
                               altitude={convertAltitude(altitude, unit).toFixed(0)}
@@ -37,7 +38,8 @@ export default function GPSScreen({modalVisible, setModalVisible}) {
 
             <Modal
                 visible={modalVisible}
-                animationType="slide"
+                animationType='slide'
+                supportedOrientations={['portrait', 'landscape']}
                 transparent={false}
                 onRequestClose={() => setModalVisible(false)}
             >

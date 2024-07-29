@@ -4,12 +4,12 @@ import {ScrollView, StyleSheet, View} from 'react-native';
 import MyCustomSeparator from '../components/global/GlobalSeparator';
 import GlobalTitle from '../components/global/GlobalTitle';
 import SettingsDropDownList from '../components/settings/SettingsDropDownList';
-import SettingsSlider from "../components/settings/SettingsSlider";
-import useOptions from "../hooks/useOptions";
+import SettingsSlider from '../components/settings/SettingsSlider';
+import useOptions from '../hooks/useOptions';
 import {useSettingsContext} from '../SettingsContext';
-import normalize from "../utils/normalizeUtils";
+import {normalize} from '../utils/normalizeUtils';
 
-const SettingsScreen = () => {
+export default function SettingsScreen() {
     const {t} = useTranslation();
     const options = useOptions();
 
@@ -57,7 +57,7 @@ const SettingsScreen = () => {
                 />
             </View>
             <View style={styles.section}>
-                <GlobalTitle label="Application"/>
+                <GlobalTitle label='Application'/>
 
                 <SettingsDropDownList
                     label={t('language')}
@@ -81,5 +81,3 @@ const styles = StyleSheet.create({
         width: '100%',
     }
 });
-
-export default SettingsScreen;

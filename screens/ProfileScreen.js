@@ -1,16 +1,16 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {Image, ScrollView, StyleSheet, TouchableOpacity, View} from 'react-native';
-import GlobalTitle from "../components/global/GlobalTitle";
-import ProfileStatBox from "../components/profile/ProfileStatBox";
-import SettingsDropDownList from "../components/settings/SettingsDropDownList";
-import SettingsInput from "../components/settings/SettingsInput";
-import SettingsSlider from "../components/settings/SettingsSlider";
-import useOptions from "../hooks/useOptions";
-import useUnits from "../hooks/useUnits";
-import {useSettingsContext} from "../SettingsContext";
-import {convertDistance} from "../utils/convertUtils";
-import normalize from "../utils/normalizeUtils";
+import GlobalTitle from '../components/global/GlobalTitle';
+import ProfileStatBox from '../components/profile/ProfileStatBox';
+import SettingsDropDownList from '../components/settings/SettingsDropDownList';
+import SettingsInput from '../components/settings/SettingsInput';
+import SettingsSlider from '../components/settings/SettingsSlider';
+import useOptions from '../hooks/useOptions';
+import useUnits from '../hooks/useUnits';
+import {useSettingsContext} from '../SettingsContext';
+import {convertDistance} from '../utils/convertUtils';
+import {normalize} from '../utils/normalizeUtils';
 
 export default function ProfileScreen() {
     const {t} = useTranslation();
@@ -113,7 +113,7 @@ export default function ProfileScreen() {
                     <ProfileStatBox
                         label={t('totalTime')}
                         value={statTime}
-                        unit="h"
+                        unit='h'
                     />
                 </View>
             </View>

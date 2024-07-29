@@ -1,9 +1,9 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {StyleSheet, View} from 'react-native';
-import useUnits from "../../hooks/useUnits";
-import normalize from "../../utils/normalizeUtils";
-import SpeedometerStat from "./SpeedometerStat";
+import useUnits from '../../hooks/useUnits';
+import {normalize} from '../../utils/normalizeUtils';
+import SpeedometerStat from './SpeedometerStat';
 
 const SpeedometerPanel = ({time, stopped, altitude, averageSpeed, maxSpeed, tripDistance}) => {
     const {t} = useTranslation();
@@ -24,7 +24,7 @@ const SpeedometerPanel = ({time, stopped, altitude, averageSpeed, maxSpeed, trip
                 />
                 <SpeedometerStat
                     label={t('time')}
-                    unit=""
+                    unit=''
                     little={true}
                     value={time}
                 />
@@ -43,7 +43,7 @@ const SpeedometerPanel = ({time, stopped, altitude, averageSpeed, maxSpeed, trip
                 />
                 <SpeedometerStat
                     label={t('stopped')}
-                    unit=""
+                    unit=''
                     little={true}
                     value={stopped}
                 />

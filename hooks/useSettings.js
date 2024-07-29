@@ -21,19 +21,19 @@ const settingsData = {
         key: 'unit',
     },
     profilePicture: {
-        default: "",
+        default: '',
         key: 'profilePicture',
     },
     firstName: {
-        default: "",
+        default: '',
         key: 'firstName',
     },
     lastName: {
-        default: "",
+        default: '',
         key: 'lastName',
     },
     nickname: {
-        default: "",
+        default: '',
         key: 'nickname',
     },
     age: {
@@ -45,11 +45,11 @@ const settingsData = {
         key: 'vehicleType',
     },
     vehicleBrand: {
-        default: "",
+        default: '',
         key: 'vehicleBrand',
     },
     vehicleModel: {
-        default: "",
+        default: '',
         key: 'vehicleModel',
     },
     statOdometer: {
@@ -63,7 +63,7 @@ const settingsData = {
 };
 
 const useSettings = () => {
-    const languages = ["en", "fr"];
+    const languages = ['en', 'fr'];
 
     const [language, setLanguage] = useState(settingsData.language.default);
     const [speedometerMaxValue, setSpeedometerMaxValue] = useState(settingsData.speedometerMaxValue.default);

@@ -1,5 +1,5 @@
-import {useTranslation} from "react-i18next";
-import {useSettingsContext} from "../SettingsContext";
+import {useTranslation} from 'react-i18next';
+import {useSettingsContext} from '../SettingsContext';
 
 const useUnits = () => {
     const {t} = useTranslation();

@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import Colors from '../../assets/theme/colors';
-import normalize from '../../utils/normalizeUtils';
+import {normalize} from '../../utils/normalizeUtils';
 
 const SettingsDropDownList = ({label, options, selected, func}) => {
     const pickerItems = options.map((option, index) => ({

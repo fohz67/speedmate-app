@@ -1,13 +1,13 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import Colors from "../../assets/theme/colors";
-import normalize from "../../utils/normalizeUtils"
+import Colors from '../../assets/theme/colors';
+import {normalize} from '../../utils/normalizeUtils'
 
 const ProfileStatBox = ({label, value, unit}) => {
     return (
         <View style={styles.box}>
             <Text style={styles.label}>{label}</Text>
-            <Text style={styles.value}>{value}{unit ? unit + " " : ""}</Text>
+            <Text style={styles.value}>{value}{unit ? unit + ' ' : ''}</Text>
         </View>
     );
 };

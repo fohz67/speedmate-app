@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Colors from '../../assets/theme/colors';
-import normalize from "../../utils/normalizeUtils";
+import {normalize} from '../../utils/normalizeUtils';
 
 const SpeedometerStat = ({label, unit, value, little}) => {
     return (

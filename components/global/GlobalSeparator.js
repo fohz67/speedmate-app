@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import Colors from '../../assets/theme/colors';
-import normalize from "../../utils/normalizeUtils";
+import {normalize} from '../../utils/normalizeUtils';
 
 const GlobalSeparator = () => {
     return (

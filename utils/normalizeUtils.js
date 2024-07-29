@@ -1,18 +1,18 @@
 import {Dimensions} from 'react-native';
 
-const baseScreenWidth = 390;
-const baseScreenHeight = 844;
+const {
+    width,
+    height
+} = Dimensions.get('window');
 
-const {width: screenWidth, height: screenHeight} = Dimensions.get('window');
+const baseWidth = 390;
+const baseScale = 1.5;
 
-const scaleWidth = screenWidth / baseScreenWidth;
-
-const maxScale = 1.5;
+const isPortrait = width < height;
+const scaleWidth = (isPortrait ? width : height) / baseWidth;
 
 export const normalize = (size) => {
     const scaledSize = Math.round(size * scaleWidth);
 
-    return Math.min(scaledSize, size * maxScale);
+    return Math.min(scaledSize, size * baseScale);
 };
-
-export default normalize;

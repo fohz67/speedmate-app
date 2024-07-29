@@ -2,7 +2,7 @@ import Slider from '@react-native-community/slider';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import Colors from '../../assets/theme/colors';
-import normalize from '../../utils/normalizeUtils';
+import {normalize} from '../../utils/normalizeUtils';
 
 const SettingsSlider = ({label, value, func, min, max, step}) => {
     return (

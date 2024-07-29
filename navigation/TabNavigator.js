@@ -1,13 +1,13 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React, {useState} from 'react';
-import {useTranslation} from "react-i18next";
+import {useTranslation} from 'react-i18next';
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
-import Colors from "../assets/theme/colors";
+import Colors from '../assets/theme/colors';
 import GPSScreen from '../screens/GPSScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import SettingsScreen from '../screens/SettingsScreen';
-import {SettingsProvider} from "../SettingsContext";
-import normalize from "../utils/normalizeUtils";
+import {SettingsProvider} from '../SettingsContext';
+import {normalize} from '../utils/normalizeUtils';
 import screenOptions from './navigationConfig';
 
 const Tab = createBottomTabNavigator();
@@ -40,24 +40,24 @@ const TabNavigator = () => {
         <View style={styles.container}>
             <SettingsProvider>
                 <Tab.Navigator
-                    initialRouteName="GPSScreen"
+                    initialRouteName='GPSScreen'
                     screenOptions={screenOptions}
                     sceneContainerStyle={styles.navigatorScene}
                 >
                     <Tab.Screen
-                        name="GPS"
+                        name='GPS'
                         options={GPSScreenOptions(setModalVisible)}
                     >
                         {props => <GPSScreen {...props} modalVisible={modalVisible}
                                              setModalVisible={setModalVisible}/>}
                     </Tab.Screen>
                     <Tab.Screen
-                        name="Profile"
+                        name='Profile'
                         component={ProfileScreen}
                         options={{headerTitle: t('profile')}}
                     />
                     <Tab.Screen
-                        name="Settings"
+                        name='Settings'
                         component={SettingsScreen}
                         options={{headerTitle: t('settings')}}
                     />

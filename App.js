@@ -5,7 +5,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {useFonts} from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import React, {useEffect} from 'react';
-import {StatusBar} from "react-native";
+import {StatusBar} from 'react-native';
 import TabNavigator from './navigation/TabNavigator';
 import './i18n';
 
@@ -33,7 +33,7 @@ export default function App() {
 
     return (
         <NavigationContainer>
-            <StatusBar style="light"/>
+            <StatusBar style='light'/>
             <TabNavigator/>
         </NavigationContainer>
     );

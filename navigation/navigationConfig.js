@@ -1,19 +1,19 @@
 import {Image} from 'react-native';
-import Colors from "../assets/theme/colors";
-import normalize from "../utils/normalizeUtils";
+import Colors from '../assets/theme/colors';
+import {normalize} from '../utils/normalizeUtils';
 
 const icons = {
     GPS: {
-        fill: require("../assets/ic-house-fill.png"),
-        outline: require("../assets/ic-house-outline.png"),
+        fill: require('../assets/ic-house-fill.png'),
+        outline: require('../assets/ic-house-outline.png'),
     },
     Profile: {
-        fill: require("../assets/ic-user-fill.png"),
-        outline: require("../assets/ic-user-outline.png"),
+        fill: require('../assets/ic-user-fill.png'),
+        outline: require('../assets/ic-user-outline.png'),
     },
     Settings: {
-        fill: require("../assets/ic-settings-fill.png"),
-        outline: require("../assets/ic-settings-outline.png"),
+        fill: require('../assets/ic-settings-fill.png'),
+        outline: require('../assets/ic-settings-outline.png'),
     },
 };
 
