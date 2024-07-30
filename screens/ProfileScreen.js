@@ -12,9 +12,10 @@ import {SettingsInput} from '../components/settings/SettingsInput';
 import {SettingsSlider} from '../components/settings/SettingsSlider';
 import useOptions from '../hooks/useOptions';
 import useUnits from '../hooks/useUnits';
-import {useSettingsContext} from '../SettingsContext';
-import {convertSecondsToTime, convertToKmOrMiles} from '../utils/convertUtils';
+import {useSettingsContextService} from '../SettingsContext';
+import {convertToKmOrMiles} from '../utils/convertUtils';
 import {normalize} from '../utils/normalizeUtils';
+import {formatTime} from '../utils/timeFormatUtils';
 
 export default function ProfileScreen() {
     const [dialogVisible, setDialogVisible] = useState(false);
@@ -45,7 +46,7 @@ export default function ProfileScreen() {
         updateVehicleType,
         updateVehicleBrand,
         updateVehicleModel
-    } = useSettingsContext();
+    } = useSettingsContextService();
 
     const photo = profilePicture ? {uri: profilePicture} : require('../assets/default-picture.png');
 
@@ -128,7 +129,7 @@ export default function ProfileScreen() {
                     />
                     <ProfileStatisticsBox
                         label={t('totalTime')}
-                        value={convertSecondsToTime(statStoppedTime + statRideTime)}
+                        value={formatTime(statStoppedTime + statRideTime)}
                         unit=""
                         onPress={() => setDialogVisible(true)}
                     />

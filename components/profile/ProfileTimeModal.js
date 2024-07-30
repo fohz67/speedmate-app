@@ -2,8 +2,8 @@ import React from 'react';
 import {useTranslation} from 'react-i18next';
 import {StyleSheet, Text, View} from 'react-native';
 import {Colors} from '../../assets/styles/colors';
-import {convertSecondsToFullTime} from "../../utils/convertUtils";
 import {normalize} from "../../utils/normalizeUtils";
+import {formatFullTime} from "../../utils/timeFormatUtils";
 
 export const ProfileTimeModal = (
     {
@@ -13,31 +13,31 @@ export const ProfileTimeModal = (
 ) => {
     const {t} = useTranslation();
 
-    const fullTime = convertSecondsToFullTime(statStoppedTime + statRideTime);
-    const rideTime = convertSecondsToFullTime(statRideTime);
-    const stoppedTime = convertSecondsToFullTime(statStoppedTime);
+    const fullTime = formatFullTime(statStoppedTime + statRideTime);
+    const rideTime = formatFullTime(statRideTime);
+    const stoppedTime = formatFullTime(statStoppedTime);
 
     return (
         <View style={styles.container}>
             <View style={styles.timeSection}>
                 <Text style={styles.title}>{t('totalTime')}</Text>
-                <Text>{formatTime(fullTime)}</Text>
+                <Text>{formatTimer(fullTime)}</Text>
             </View>
 
             <View style={styles.timeSection}>
                 <Text style={styles.title}>{t('rideTime')}</Text>
-                <Text>{formatTime(rideTime)}</Text>
+                <Text>{formatTimer(rideTime)}</Text>
             </View>
 
             <View style={styles.timeSection}>
                 <Text style={styles.title}>{t('stoppedTime')}</Text>
-                <Text>{formatTime(stoppedTime)}</Text>
+                <Text>{formatTimer(stoppedTime)}</Text>
             </View>
         </View>
     );
 };
 
-const formatTime = (timeObject) => {
+const formatTimer = (timeObject) => {
     const {t} = useTranslation();
 
     const timeStrings = [];

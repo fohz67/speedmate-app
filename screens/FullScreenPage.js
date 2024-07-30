@@ -8,26 +8,31 @@ import {SpeedometerView} from '../components/speedometer/SpeedometerView';
 import {useBatteryPercentage, useCurrentTime} from "../hooks/usePhoneData";
 import {convertMsToKphOrMph, convertToKmOrFeet, convertToKmOrMiles} from '../utils/convertUtils';
 import {normalize} from '../utils/normalizeUtils';
-import {formatTime} from '../utils/timerUtils';
+import {formatTimer} from '../utils/timeFormatUtils';
 
-export default function FullScreenPage({
-                                           onClose,
-                                           speed,
-                                           altitude,
-                                           maxSpeed,
-                                           tripDistance,
-                                           time,
-                                           stopped,
-                                           averageSpeed,
-                                           unit
-                                       }) {
+export default function FullScreenPage(
+    {
+        onClose,
+        speed,
+        altitude,
+        maxSpeed,
+        tripDistance,
+        time,
+        stopped,
+        averageSpeed,
+        unit
+    }
+) {
     const [isPortrait, setIsPortrait] = useState(true);
 
     const currentTime = useCurrentTime();
     const batteryPercentage = useBatteryPercentage();
 
     const handleLayout = (event) => {
-        const {width, height} = event.nativeEvent.layout;
+        const {
+            width,
+            height
+        } = event.nativeEvent.layout;
 
         setIsPortrait(height > width);
     };
@@ -54,8 +59,8 @@ export default function FullScreenPage({
                 <SpeedometerView speed={convertMsToKphOrMph(speed, unit).toFixed(0)}/>
 
                 <SpeedometerPanel
-                    time={formatTime(time)}
-                    stopped={formatTime(stopped)}
+                    time={formatTimer(time)}
+                    stopped={formatTimer(stopped)}
                     altitude={convertToKmOrFeet(altitude, unit).toFixed(0)}
                     averageSpeed={convertMsToKphOrMph(averageSpeed, unit).toFixed(0)}
                     maxSpeed={convertMsToKphOrMph(maxSpeed, unit).toFixed(0)}

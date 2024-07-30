@@ -1,9 +1,9 @@
 import {useTranslation} from 'react-i18next';
-import {useSettingsContext} from '../SettingsContext';
+import {useSettingsContextService} from '../SettingsContext';
 
 const useUnits = () => {
     const {t} = useTranslation();
-    const {unit} = useSettingsContext();
+    const {unit} = useSettingsContextService();
 
     return [
         {

@@ -13,6 +13,6 @@ export const SettingsProvider = ({children}) => {
     );
 };
 
-export const useSettingsContext = () => {
+export const useSettingsContextService = () => {
     return useContext(SettingsContext);
 };

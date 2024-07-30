@@ -4,7 +4,7 @@ import {Arc, Progress} from 'react-native-cool-speedometer';
 import Speedometer from 'react-native-cool-speedometer/dist/Speedometer';
 import {Colors} from '../../assets/styles/colors';
 import useUnits from '../../hooks/useUnits';
-import {useSettingsContext} from '../../SettingsContext';
+import {useSettingsContextService} from '../../SettingsContext';
 import {normalize} from '../../utils/normalizeUtils';
 
 export const SpeedometerView = ({speed}) => {
@@ -19,7 +19,7 @@ export const SpeedometerView = ({speed}) => {
     const {
         arcWidth,
         speedometerMaxSpeed
-    } = useSettingsContext();
+    } = useSettingsContextService();
 
     const units = useUnits();
 

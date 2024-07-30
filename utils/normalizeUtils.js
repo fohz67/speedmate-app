@@ -7,12 +7,6 @@ const {
 
 const baseWidth = 390;
 const baseScale = 1.5;
+const scaleWidth = (width < height ? width : height) / baseWidth;
 
-const isPortrait = width < height;
-const scaleWidth = (isPortrait ? width : height) / baseWidth;
-
-export const normalize = (size) => {
-    const scaledSize = Math.round(size * scaleWidth);
-
-    return Math.min(scaledSize, size * baseScale);
-};
+export const normalize = (size) => Math.min(Math.round(size * scaleWidth), size * baseScale);

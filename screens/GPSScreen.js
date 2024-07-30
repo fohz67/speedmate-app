@@ -1,42 +1,45 @@
-import React, {useCallback} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Modal, StyleSheet, View} from 'react-native';
 import {SpeedometerPanel} from '../components/speedometer/SpeedometerPanel';
 import {SpeedometerView} from '../components/speedometer/SpeedometerView';
-import useGPS from '../hooks/useGPS';
-import useTimer from '../hooks/useTimer';
-import {useSettingsContext} from '../SettingsContext';
+import {startLocationUpdates} from "../services/LocationService";
+import {getSpeedometer, startSpeedometerLoop, stopSpeedometerLoop, subscribe} from "../services/SpeedometerService";
+import {useSettingsContextService} from '../SettingsContext';
 import {convertMsToKphOrMph, convertToKmOrFeet, convertToKmOrMiles} from '../utils/convertUtils';
-import {formatTime} from '../utils/timerUtils';
+import {formatTimer} from '../utils/timeFormatUtils';
 import FullScreenPage from './FullScreenPage';
 
 export default function GPSScreen({modalVisible, setModalVisible}) {
-    const {
-        speed,
-        altitude,
-        maxSpeed,
-        tripDistance
-    } = useGPS();
+    const [speedometer, setSpeedometer] = useState(getSpeedometer());
 
-    const getSpeed = useCallback(() => speed, [speed]);
+    useEffect(() => {
+        startLocationUpdates();
+        startSpeedometerLoop();
 
-    const {
-        time,
-        stopped,
-        averageSpeed
-    } = useTimer(getSpeed);
+        const unsubscribe = subscribe(() => {
+            setSpeedometer({...getSpeedometer()});
+        });
 
-    const {unit} = useSettingsContext();
+        return () => {
+            stopSpeedometerLoop();
+            unsubscribe();
+        };
+    }, []);
+
+    const {unit} = useSettingsContextService();
 
     return (
         <View style={styles.container}>
-            <SpeedometerView speed={convertMsToKphOrMph(speed, unit).toFixed(0)}/>
+            <SpeedometerView speed={convertMsToKphOrMph(speedometer.speed, unit).toFixed(0)}/>
 
-            <SpeedometerPanel time={formatTime(time)}
-                              stopped={formatTime(stopped)}
-                              altitude={convertToKmOrFeet(altitude, unit).toFixed(0)}
-                              averageSpeed={convertMsToKphOrMph(averageSpeed, unit).toFixed(0)}
-                              maxSpeed={convertMsToKphOrMph(maxSpeed, unit).toFixed(0)}
-                              tripDistance={convertToKmOrMiles(tripDistance, unit).toFixed(2)}/>
+            <SpeedometerPanel
+                time={formatTimer(speedometer.time)}
+                stopped={formatTimer(speedometer.stopped)}
+                altitude={convertToKmOrFeet(speedometer.altitude, unit).toFixed(0)}
+                averageSpeed={convertMsToKphOrMph(speedometer.averageSpeed, unit).toFixed(0)}
+                maxSpeed={convertMsToKphOrMph(speedometer.maxSpeed, unit).toFixed(0)}
+                tripDistance={convertToKmOrMiles(speedometer.distance, unit).toFixed(2)}
+            />
 
             <Modal
                 visible={modalVisible}
@@ -45,15 +48,17 @@ export default function GPSScreen({modalVisible, setModalVisible}) {
                 transparent={false}
                 onRequestClose={() => setModalVisible(false)}
             >
-                <FullScreenPage onClose={() => setModalVisible(false)}
-                                speed={speed}
-                                altitude={altitude}
-                                maxSpeed={maxSpeed}
-                                tripDistance={tripDistance}
-                                time={time}
-                                stopped={stopped}
-                                averageSpeed={averageSpeed}
-                                unit={unit}/>
+                <FullScreenPage
+                    onClose={() => setModalVisible(false)}
+                    speed={speedometer.speed}
+                    altitude={speedometer.altitude}
+                    maxSpeed={speedometer.maxSpeed}
+                    tripDistance={speedometer.distance}
+                    time={speedometer.time}
+                    stopped={speedometer.stopped}
+                    averageSpeed={speedometer.averageSpeed}
+                    unit={unit}
+                />
             </Modal>
         </View>
     );
