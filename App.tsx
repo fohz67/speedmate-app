@@ -5,12 +5,16 @@
  * @format
  */
 
+import './src/i18n.tsx';
+import 'react-native-gesture-handler';
+import 'react-native-reanimated';
+import 'intl-pluralrules';
 import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {StatusBar} from 'react-native';
 import {TabNavigator} from "./src/navigation/TabNavigator.tsx";
 
-export function App(): React.JSX.Element {
+function App(): React.JSX.Element {
     return (
         <NavigationContainer>
             <StatusBar barStyle="light-content"/>
@@ -18,3 +22,5 @@ export function App(): React.JSX.Element {
         </NavigationContainer>
     );
 }
+
+export default App;

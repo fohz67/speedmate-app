@@ -1,4 +1,4 @@
-export const __Colors = {
+export const __Colors: any = {
     background: '#000c18',
     categoryTitle: '#ffffff',
     defaultText: '#5c7c9f',

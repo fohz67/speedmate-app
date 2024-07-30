@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as ImagePicker from 'expo-image-picker';
 import {useEffect, useState} from 'react';
+import {ImagePickerResponse, launchImageLibrary} from 'react-native-image-picker';
 
 interface SettingsData {
     language: { default: number, key: string };
@@ -42,7 +42,7 @@ const settingsData: SettingsData = {
     statStoppedTime: {default: 50, key: 'statStoppedTime'},
 };
 
-interface SettingsState {
+export interface SettingsState {
     language: number;
     speedometerMaxValue: number;
     arcWidth: number;
@@ -82,14 +82,13 @@ const initialState: SettingsState = {
     statStoppedTime: settingsData.statStoppedTime.default,
 };
 
-const useSettings = () => {
+export const useSettings = () => {
     const [loading, setLoading] = useState(true);
     const [settings, setSettings] = useState<SettingsState>(initialState);
 
     const loadSetting = async <K extends keyof SettingsState>(key: K): Promise<void> => {
         try {
             const value: string | null = await AsyncStorage.getItem(settingsData[key].key);
-
             setSettings((prevState: SettingsState) => ({
                 ...prevState,
                 [key]: value !== null ? JSON.parse(value) : initialState[key],
@@ -101,9 +100,7 @@ const useSettings = () => {
 
     const loadSettings = async (): Promise<void> => {
         setLoading(true);
-        await Promise.all(
-            Object.keys(initialState).map((key: string) => loadSetting(key as keyof SettingsState))
-        );
+        await Promise.all(Object.keys(initialState).map((key: string) => loadSetting(key as keyof SettingsState)));
         setLoading(false);
     };
 
@@ -121,29 +118,22 @@ const useSettings = () => {
     };
 
     const pickImage = async (): Promise<void> => {
-        const {status} = await ImagePicker.requestMediaLibraryPermissionsAsync();
-
-        if (status !== 'granted') {
-            console.error(`🔴 [pickImage] ==> Permission not granted.`);
-            return;
-        }
-
-        let result: ImagePicker.ImagePickerResult = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            quality: 1,
+        const result: ImagePickerResponse = await launchImageLibrary({
+            mediaType: 'photo',
+            includeBase64: false,
+            maxHeight: 200,
+            maxWidth: 200,
         });
 
-        if (!result.canceled && result.assets && result.assets.length > 0) {
-            const uri: string | null = result.assets[0].uri;
-
+        if (result.assets && result.assets.length > 0) {
+            const uri: string | undefined = result.assets[0].uri;
             if (uri) {
                 await updateSetting('profilePicture', uri);
             }
         }
     };
 
-    useEffect(() => {
+    useEffect((): void => {
         loadSettings();
     }, []);
 
@@ -154,5 +144,3 @@ const useSettings = () => {
         pickImage,
     };
 };
-
-export default useSettings;

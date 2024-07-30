@@ -1,6 +1,6 @@
-import {getDeviceType} from "../../utils/deviceUtils";
+import {getDeviceType} from "../../utilitaries/device.tsx";
 
-export const __Sizes = [
+export const __Sizes: any = [
     {
         fullScreenPage_topBar_left: 15,
         fullScreenPage_topBar_right: 15,

@@ -1,7 +1,6 @@
-import {BottomTabBarProps} from '@react-navigation/bottom-tabs';
-import {StackNavigationOptions} from '@react-navigation/stack';
 import React from 'react';
-import {Image, ImageSourcePropType, TextStyle, ViewStyle} from 'react-native';
+import {useTranslation} from "react-i18next";
+import {Image, ImageSourcePropType, StyleSheet, TextStyle, TouchableOpacity, ViewStyle} from 'react-native';
 import {__Colors} from '../assets/misc/colors.tsx';
 import {__Sizes} from "../assets/misc/sizes";
 import {normalize} from '../utilitaries/normalize';
@@ -15,16 +14,16 @@ interface Icons {
 
 const icons: Icons = {
     GPS: {
-        fill: require('../assets/ic-house-fill.png'),
-        outline: require('../assets/ic-house-outline.png'),
+        fill: require('../assets/images/ic-house-fill.png'),
+        outline: require('../assets/images/ic-house-outline.png'),
     },
     Profile: {
-        fill: require('../assets/ic-user-fill.png'),
-        outline: require('../assets/ic-user-outline.png'),
+        fill: require('../assets/images/ic-user-fill.png'),
+        outline: require('../assets/images/ic-user-outline.png'),
     },
     Settings: {
-        fill: require('../assets/ic-settings-fill.png'),
-        outline: require('../assets/ic-settings-outline.png'),
+        fill: require('../assets/images/ic-settings-fill.png'),
+        outline: require('../assets/images/ic-settings-outline.png'),
     },
 };
 
@@ -34,15 +33,6 @@ interface TabBarIconProps {
     color: string;
     size: number;
 }
-
-const getTabBarIcon = ({routeName, focused, color, size}: TabBarIconProps) => {
-    return (
-        <Image
-            source={focused ? icons[routeName].fill : icons[routeName].outline}
-            style={{width: normalize(size + 3), height: normalize(size + 3), tintColor: color}}
-        />
-    );
-};
 
 interface ScreenOptionsProps {
     route: {
@@ -82,6 +72,35 @@ const __TabBarStyle: ViewStyle = {
     shadowOpacity: 0,
 } as ViewStyle;
 
+export const __GpsScreenOptions = (setModalVisible: any) => {
+    const {t} = useTranslation();
+
+    return {
+        headerTitle: t('gps'),
+        headerRight: () => (
+            <TouchableOpacity
+                style={styles.expandButton}
+                onPress={() => setModalVisible(true)}
+            >
+                <Image
+                    source={require('../assets/images/ic-expand.png')}
+                    style={styles.expandIcon}
+                    tintColor={__Colors.navigationTitle}
+                />
+            </TouchableOpacity>
+        ),
+    };
+};
+
+const getTabBarIcon = ({routeName, focused, color, size}: TabBarIconProps) => {
+    return (
+        <Image
+            source={focused ? icons[routeName].fill : icons[routeName].outline}
+            style={{width: normalize(size + 3), height: normalize(size + 3), tintColor: color}}
+        />
+    );
+};
+
 const __GetTabIconStyle = (routeName: string) => ({focused, color, size}: any) => getTabBarIcon({
     routeName: routeName,
     focused,
@@ -89,7 +108,7 @@ const __GetTabIconStyle = (routeName: string) => ({focused, color, size}: any) =
     size
 });
 
-export const screenOptions = ({route}: ScreenOptionsProps): StackNavigationOptions & BottomTabBarProps => ({
+export const screenOptions = ({route}: ScreenOptionsProps): any => ({
     headerShown: true,
     headerStyle: __HeaderStyle,
     headerTintColor: __Colors.headerBarTint,
@@ -100,4 +119,15 @@ export const screenOptions = ({route}: ScreenOptionsProps): StackNavigationOptio
     tabBarInactiveTintColor: __Colors.navigationUnselectedButton,
     tabBarShowLabel: false,
     tabBarStyle: __TabBarStyle,
+});
+
+const styles: any = StyleSheet.create({
+    expandButton: {
+        marginRight: normalize(30),
+        marginTop: normalize(0),
+    },
+    expandIcon: {
+        height: normalize(22),
+        width: normalize(22),
+    }
 });
