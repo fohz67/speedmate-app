@@ -8,7 +8,6 @@ import React, {useEffect} from 'react';
 import {StatusBar} from 'react-native';
 import TabNavigator from './navigation/TabNavigator';
 import './i18n';
-import {ERROR} from "./utils/logUtils";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -29,7 +28,6 @@ export default function App() {
     }, [loaded, error]);
 
     if (!loaded && !error) {
-        ERROR('Error while loading fonts.');
         return null;
     }
 
