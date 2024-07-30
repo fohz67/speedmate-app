@@ -1,46 +1,4 @@
 {
-  "expo": {
-    "android": {
-      "adaptiveIcon": {
-        "backgroundColor": "#000c18",
-        "foregroundImage": "./assets/adaptive-icon.png"
-      },
-      "package": "com.fohz.SpeedMate",
-      "versionCode": 3
-    },
-    "extra": {
-      "eas": {
-        "projectId": "52d70a71-553b-45e9-afdd-42ae9b95a8a5"
-      }
-    },
-    "icon": "./assets/icon.png",
-    "ios": {
-      "buildNumber": "20",
-      "bundleIdentifier": "com.fohz.SpeedMate",
-      "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false,
-        "NSLocationAlwaysUsageDescription": "Nous avons besoin de votre position pour vous fournir des fonctionnalités GPS.",
-        "NSLocationWhenInUseUsageDescription": "Nous avons besoin de votre position pour vous fournir des fonctionnalités GPS."
-      },
-      "supportsTablet": false
-    },
-    "name": "SpeedMate",
-    "orientation": "portrait",
-    "owner": "fohz",
-    "plugins": [
-      "expo-secure-store",
-      "expo-font"
-    ],
-    "slug": "SpeedMate",
-    "splash": {
-      "backgroundColor": "#000c18",
-      "image": "./assets/splash.png",
-      "resizeMode": "contain"
-    },
-    "userInterfaceStyle": "light",
-    "version": "1.1.2",
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
-  }
+  "name": "SpeedMate",
+  "displayName": "SpeedMate"
 }
