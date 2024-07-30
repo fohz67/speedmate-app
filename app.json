@@ -1,45 +1,46 @@
 {
   "expo": {
-    "name": "SpeedMate",
-    "slug": "SpeedMate",
-    "version": "1.0.5",
-    "orientation": "portrait",
-    "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
-    "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#000c18"
-    },
-    "ios": {
-      "buildNumber": "11",
-      "bundleIdentifier": "com.fohz.SpeedMate",
-      "infoPlist": {
-        "NSLocationWhenInUseUsageDescription": "Nous avons besoin de votre position pour vous fournir des fonctionnalités GPS.",
-        "NSLocationAlwaysUsageDescription": "Nous avons besoin de votre position pour vous fournir des fonctionnalités GPS."
-      },
-      "supportsTablet": false
-    },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#000c18"
+        "backgroundColor": "#000c18",
+        "foregroundImage": "./assets/adaptive-icon.png"
       },
-      "versionCode": 3,
-      "package": "com.fohz.SpeedMate"
+      "package": "com.fohz.SpeedMate",
+      "versionCode": 3
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      "expo-secure-store",
-      "expo-font"
-    ],
     "extra": {
       "eas": {
         "projectId": "52d70a71-553b-45e9-afdd-42ae9b95a8a5"
       }
     },
-    "owner": "fohz"
+    "icon": "./assets/icon.png",
+    "ios": {
+      "buildNumber": "11",
+      "bundleIdentifier": "com.fohz.SpeedMate",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSLocationAlwaysUsageDescription": "Nous avons besoin de votre position pour vous fournir des fonctionnalités GPS.",
+        "NSLocationWhenInUseUsageDescription": "Nous avons besoin de votre position pour vous fournir des fonctionnalités GPS."
+      },
+      "supportsTablet": false
+    },
+    "name": "SpeedMate",
+    "orientation": "portrait",
+    "owner": "fohz",
+    "plugins": [
+      "expo-secure-store",
+      "expo-font"
+    ],
+    "slug": "SpeedMate",
+    "splash": {
+      "backgroundColor": "#000c18",
+      "image": "./assets/splash.png",
+      "resizeMode": "contain"
+    },
+    "userInterfaceStyle": "light",
+    "version": "1.1",
+    "web": {
+      "favicon": "./assets/favicon.png"
+    }
   }
 }
