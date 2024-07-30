@@ -16,15 +16,20 @@ export const formatTime = (seconds) => {
     if (seconds < SECONDS_IN_A_MINUTE) {
         return `${seconds} sec`;
     } else if (seconds < SECONDS_IN_AN_HOUR) {
-        return `${Math.floor(seconds / SECONDS_IN_A_MINUTE)} min`;
+        const minutes = Math.floor(seconds / SECONDS_IN_A_MINUTE);
+        return `${minutes} min`;
     } else if (seconds < SECONDS_IN_A_DAY) {
-        return `${Math.floor(seconds / SECONDS_IN_AN_HOUR)} ${hours === 1 ? 'hour' : 'hours'}`;
+        const hours = Math.floor(seconds / SECONDS_IN_AN_HOUR);
+        return `${hours} ${hours === 1 ? 'hour' : 'hours'}`;
     } else if (seconds < SECONDS_IN_A_MONTH) {
-        return `${Math.floor(seconds / SECONDS_IN_A_DAY)} ${days === 1 ? 'day' : 'days'}`;
+        const days = Math.floor(seconds / SECONDS_IN_A_DAY);
+        return `${days} ${days === 1 ? 'day' : 'days'}`;
     } else if (seconds < SECONDS_IN_A_YEAR) {
-        return `${Math.floor(seconds / SECONDS_IN_A_MONTH)} ${months === 1 ? 'month' : 'months'}`;
+        const months = Math.floor(seconds / SECONDS_IN_A_MONTH);
+        return `${months} ${months === 1 ? 'month' : 'months'}`;
     } else {
-        return `${Math.floor(seconds / SECONDS_IN_A_YEAR)} ${years === 1 ? 'year' : 'years'}`;
+        const years = Math.floor(seconds / SECONDS_IN_A_YEAR);
+        return `${years} ${years === 1 ? 'year' : 'years'}`;
     }
 };
 

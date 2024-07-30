@@ -18,6 +18,7 @@ export default function GPSScreen(
     const [speedometer, setSpeedometer] = useState(getSpeedometer());
 
     const {
+        loading,
         unit,
         statRideTime,
         statStoppedTime,
@@ -28,26 +29,28 @@ export default function GPSScreen(
     } = useSettingsContext();
 
     useEffect(() => {
-        startLocationUpdates();
-        startSpeedometerLoop(
-            unit,
-            statRideTime,
-            statStoppedTime,
-            statOdometer,
-            updateStatRideTime,
-            updateStatStoppedTime,
-            updateStatOdometer,
-        );
+        if (!loading) {
+            startLocationUpdates();
+            startSpeedometerLoop(
+                unit,
+                statRideTime,
+                statStoppedTime,
+                statOdometer,
+                updateStatRideTime,
+                updateStatStoppedTime,
+                updateStatOdometer,
+            );
 
-        const unsubscribe = subscribe(() => {
-            setSpeedometer({...getSpeedometer()});
-        });
+            const unsubscribe = subscribe(() => {
+                setSpeedometer({...getSpeedometer()});
+            });
 
-        return () => {
-            stopSpeedometerLoop();
-            unsubscribe();
-        };
-    }, []);
+            return () => {
+                stopSpeedometerLoop();
+                unsubscribe();
+            };
+        }
+    }, [loading]);
 
     return (
         <View style={styles.container}>

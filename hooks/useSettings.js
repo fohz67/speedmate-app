@@ -50,7 +50,7 @@ const settingsData = {
         key: 'statRideTime',
     },
     statStoppedTime: {
-        default: 0,
+        default: 10000,
         key: 'statStoppedTime',
     },
     unit: {
@@ -78,6 +78,7 @@ const settingsData = {
 const useSettings = () => {
     const languages = ['en', 'fr'];
 
+    const [loading, setLoading] = useState(true);
     const [language, setLanguage] = useState(settingsData.language.default);
     const [speedometerMaxValue, setSpeedometerMaxValue] = useState(settingsData.speedometerMaxValue.default);
     const [arcWidth, setArcWidth] = useState(settingsData.arcWidth.default);
@@ -134,7 +135,9 @@ const useSettings = () => {
                 setStatTime(storedStatTime ? parseFloat(storedStatTime) : settingsData.statTime.default);
                 setStatRideTime(storedStatRideTime ? parseFloat(storedStatRideTime) : settingsData.statRideTime.default);
                 setStatStoppedTime(storedStatStoppedTime ? parseFloat(storedStatStoppedTime) : settingsData.statStoppedTime.default);
+
                 INFO('All settings have been updated.');
+                setLoading(false);
             } catch (error) {
                 ERROR('Failed to save all settings.');
             }
@@ -142,6 +145,15 @@ const useSettings = () => {
 
         loadSettings();
     }, []);
+
+    const updateLoading = async (newLoading) => {
+        try {
+            setLoading(newLoading);
+            INFO('Loading updated.');
+        } catch (error) {
+            ERROR('Failed to update loading.');
+        }
+    };
 
     const updateLanguage = async (newLanguage) => {
         try {
@@ -338,6 +350,7 @@ const useSettings = () => {
     };
 
     return {
+        loading,
         language,
         speedometerMaxValue,
         arcWidth,
@@ -355,6 +368,7 @@ const useSettings = () => {
         statTime,
         statRideTime,
         statStoppedTime,
+        updateLoading,
         updateLanguage,
         updateSpeedometerMaxValue,
         updateArcWidth,
