@@ -1,0 +1,33 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "assets/fonts/.gitkeep",
+      "sha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709"
+    },
+    {
+      "path": "assets/fonts/Universo-Black.ttf",
+      "sha1": "2855b92b024a538eca204c0184a85b533b3a9c2d"
+    },
+    {
+      "path": "assets/fonts/Universo-Bold.ttf",
+      "sha1": "afa6b88247f71ad043a610d6cf7341513477bdc4"
+    },
+    {
+      "path": "assets/fonts/Universo-Light.ttf",
+      "sha1": "2a150a67a1bf62ce74ed2b34946761e18737c4fe"
+    },
+    {
+      "path": "assets/fonts/Universo-Regular.ttf",
+      "sha1": "32807d5a9347b675c1a7d1f1ea3d672bb25f79c2"
+    },
+    {
+      "path": "assets/fonts/Universo-Stencil.ttf",
+      "sha1": "f17ae7c5e915a9bdd409d99cd16dfa15274e71f5"
+    },
+    {
+      "path": "assets/fonts/Universo-Thin.ttf",
+      "sha1": "cfa56e49da2c24d2a7ae8b4708a2622a7e776912"
+    }
+  ]
+}

@@ -1,8 +1,8 @@
 import React from 'react';
 import {useTranslation} from "react-i18next";
 import {Image, ImageSourcePropType, StyleSheet, TextStyle, TouchableOpacity, ViewStyle} from 'react-native';
-import {__Colors} from '../assets/misc/colors.tsx';
-import {__Sizes} from "../assets/misc/sizes";
+import {__Colors} from '../../assets/misc/colors.tsx';
+import {__Sizes} from "../../assets/misc/sizes";
 import {normalize} from '../utilitaries/normalize';
 
 interface Icons {
@@ -14,16 +14,16 @@ interface Icons {
 
 const icons: Icons = {
     GPS: {
-        fill: require('../assets/images/ic-house-fill.png'),
-        outline: require('../assets/images/ic-house-outline.png'),
+        fill: require('../../assets/images/ic-house-fill.png'),
+        outline: require('../../assets/images/ic-house-outline.png'),
     },
     Profile: {
-        fill: require('../assets/images/ic-user-fill.png'),
-        outline: require('../assets/images/ic-user-outline.png'),
+        fill: require('../../assets/images/ic-user-fill.png'),
+        outline: require('../../assets/images/ic-user-outline.png'),
     },
     Settings: {
-        fill: require('../assets/images/ic-settings-fill.png'),
-        outline: require('../assets/images/ic-settings-outline.png'),
+        fill: require('../../assets/images/ic-settings-fill.png'),
+        outline: require('../../assets/images/ic-settings-outline.png'),
     },
 };
 
@@ -51,7 +51,6 @@ const __HeaderStyle: ViewStyle = {
 const __HeaderTitleStyle: TextStyle = {
     fontFamily: 'Universo-Black',
     fontSize: normalize(30),
-    fontWeight: 'bold',
     marginLeft: normalize(__Sizes.navigationConfig_headerTitleStyle_marginLeft),
     marginTop: 0,
     textAlign: 'left',
@@ -83,7 +82,7 @@ export const __GpsScreenOptions = (setModalVisible: any) => {
                 onPress={() => setModalVisible(true)}
             >
                 <Image
-                    source={require('../assets/images/ic-expand.png')}
+                    source={require('../../assets/images/ic-expand.png')}
                     style={styles.expandIcon}
                     tintColor={__Colors.navigationTitle}
                 />

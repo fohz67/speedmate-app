@@ -1,4 +1,4 @@
-import {getDeviceType} from "../../utilitaries/device.tsx";
+import {getDeviceType} from "../../src/utilitaries/device.tsx";
 
 export const __Sizes: any = [
     {

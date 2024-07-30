@@ -2,7 +2,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import React, {useState} from 'react';
 import {useTranslation} from 'react-i18next';
 import {StyleSheet, View} from 'react-native';
-import {__Colors} from '../assets/misc/colors';
+import {__Colors} from '../../assets/misc/colors';
 import {SettingsProvider} from "../SettingsContext.tsx";
 import GPSScreen from './GPSScreen';
 import {__GpsScreenOptions, screenOptions} from './navigatorConfig';

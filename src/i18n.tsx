@@ -1,9 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import i18n from 'i18next';
 import {initReactI18next} from 'react-i18next';
-import enTranslations from './assets/locales/en/translation.json';
-import frTranslations from './assets/locales/fr/translation.json';
-import {__Languages} from "./assets/misc/language.tsx";
+import enTranslations from '../assets/locales/en/translation.json';
+import frTranslations from '../assets/locales/fr/translation.json';
+import {__Languages} from "../assets/misc/language.tsx";
 
 type Language = (typeof __Languages)[number];
 

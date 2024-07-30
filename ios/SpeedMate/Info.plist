@@ -31,10 +31,10 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>This app needs access to your location.</string>
-    <key>NSLocationAlwaysUsageDescription</key>
-    <string>This app needs access to your location.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This app needs access to your location.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>This app needs access to your location.</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -49,5 +49,14 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Universo-Black.ttf</string>
+		<string>Universo-Bold.ttf</string>
+		<string>Universo-Light.ttf</string>
+		<string>Universo-Regular.ttf</string>
+		<string>Universo-Stencil.ttf</string>
+		<string>Universo-Thin.ttf</string>
+	</array>
 </dict>
 </plist>
