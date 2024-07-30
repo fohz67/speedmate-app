@@ -15,7 +15,7 @@
     },
     "icon": "./assets/icon.png",
     "ios": {
-      "buildNumber": "19",
+      "buildNumber": "20",
       "bundleIdentifier": "com.fohz.SpeedMate",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
@@ -38,7 +38,7 @@
       "resizeMode": "contain"
     },
     "userInterfaceStyle": "light",
-    "version": "1.1.0",
+    "version": "1.1.2",
     "web": {
       "favicon": "./assets/favicon.png"
     }
