@@ -21,17 +21,22 @@ export default function GPSScreen(
         unit,
         statRideTime,
         statStoppedTime,
+        statOdometer,
         updateStatRideTime,
         updateStatStoppedTime,
+        updateStatOdometer,
     } = useSettingsContext();
 
     useEffect(() => {
         startLocationUpdates();
         startSpeedometerLoop(
+            unit,
             statRideTime,
             statStoppedTime,
+            statOdometer,
             updateStatRideTime,
-            updateStatStoppedTime
+            updateStatStoppedTime,
+            updateStatOdometer,
         );
 
         const unsubscribe = subscribe(() => {

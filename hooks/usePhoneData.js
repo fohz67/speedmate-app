@@ -47,7 +47,7 @@ export function useBatteryPercentage() {
 
         return () => {
             batterySubscription.remove();
-        }
+        };
     }, []);
 
     return batteryPercentage;
