@@ -1,14 +1,7 @@
 import React, {createContext, ReactNode, useContext} from 'react';
-import {SettingsState, useSettings} from './hooks/useSettings.tsx';
+import {Settings, useSettings} from './hooks/useSettings.tsx';
 
-interface SettingsContextType {
-    loading: boolean;
-    settings: SettingsState;
-    updateSetting: <K extends keyof SettingsState>(key: K, value: SettingsState[K]) => Promise<void>;
-    pickImage: () => Promise<void>;
-}
-
-const SettingsContext = createContext<SettingsContextType | undefined>(undefined);
+const SettingsContext = createContext<Settings | undefined>(undefined);
 
 interface SettingsProviderProps {
     children: ReactNode;
@@ -24,8 +17,8 @@ export const SettingsProvider = ({children}: SettingsProviderProps) => {
     );
 };
 
-export const useSettingsContext = (): SettingsContextType => {
-    const context: SettingsContextType | undefined = useContext(SettingsContext);
+export const useSettingsContext = (): Settings => {
+    const context: Settings | undefined = useContext(SettingsContext);
     if (context === undefined) {
         throw new Error('useSettingsContext must be used within a SettingsProvider');
     }

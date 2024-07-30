@@ -1,5 +1,4 @@
 import React from 'react';
-import {useTranslation} from "react-i18next";
 import {Image, ImageSourcePropType, StyleSheet, TextStyle, TouchableOpacity, ViewStyle} from 'react-native';
 import {__Colors} from '../../assets/misc/colors.tsx';
 import {__Sizes} from "../../assets/misc/sizes";
@@ -72,10 +71,8 @@ const __TabBarStyle: ViewStyle = {
 } as ViewStyle;
 
 export const __GpsScreenOptions = (setModalVisible: any) => {
-    const {t} = useTranslation();
-
     return {
-        headerTitle: t('gps'),
+        headerTitle: 'GPS',
         headerRight: () => (
             <TouchableOpacity
                 style={styles.expandButton}

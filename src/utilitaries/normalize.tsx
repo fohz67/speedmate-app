@@ -1,6 +1,8 @@
 import {Dimensions} from 'react-native';
 
-const {width, height} = Dimensions.get('window');
+export type DimensionsType = { width: number, height: number };
+
+const {width, height}: DimensionsType = Dimensions.get('window');
 const baseWidth: number = 390;
 const baseScale: number = 1.5;
 const isPortrait: boolean = width < height;

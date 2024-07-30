@@ -4,7 +4,7 @@ const special: string[] = [
     'i386', 'x86_64', 'arm64',
 ];
 
-const iPhoneWithoutNotch: string[] = [
+const iPhone: string[] = [
     'iPhone1,1', 'iPhone1,2',
     'iPhone2,1',
     'iPhone3,1', 'iPhone3,2',
@@ -19,7 +19,7 @@ const iPhoneWithoutNotch: string[] = [
     'iPhone14,6',
 ];
 
-const iPhoneWithNotch: string[] = [
+const iPhoneNotch: string[] = [
     'iPhone10,3', 'iPhone10,6',
     'iPhone11,2', 'iPhone11,4', 'iPhone11,6', 'iPhone11,8',
     'iPhone12,1', 'iPhone12,3', 'iPhone12,5',
@@ -27,7 +27,7 @@ const iPhoneWithNotch: string[] = [
     'iPhone14,2', 'iPhone14,3', 'iPhone14,4', 'iPhone14,5', 'iPhone14,7', 'iPhone14,8',
 ];
 
-const iPhoneWithDynamicIsland: string[] = [
+const iPhoneDynamicIsland: string[] = [
     'iPhone15,2', 'iPhone15,3', 'iPhone15,4', 'iPhone15,5',
     'iPhone16,1', 'iPhone16,2',
 ];
@@ -37,13 +37,15 @@ export const getDeviceType = (): number => {
 
     if (special.includes(deviceId)) {
         return 0;
-    } else if (iPhoneWithoutNotch.includes(deviceId)) {
+    } else if (iPhone.includes(deviceId)) {
         return 1;
-    } else if (iPhoneWithNotch.includes(deviceId)) {
+    } else if (iPhoneNotch.includes(deviceId)) {
         return 2;
-    } else if (iPhoneWithDynamicIsland.includes(deviceId)) {
+    } else if (iPhoneDynamicIsland.includes(deviceId)) {
         return 3;
     } else {
         return 4;
     }
 };
+
+export const getDeviceBattery = async (): Promise<number> => await DeviceInfo.getBatteryLevel();
