@@ -4,17 +4,35 @@ import {SpeedometerPanel} from '../components/speedometer/SpeedometerPanel';
 import {SpeedometerView} from '../components/speedometer/SpeedometerView';
 import {startLocationUpdates} from "../services/LocationService";
 import {getSpeedometer, startSpeedometerLoop, stopSpeedometerLoop, subscribe} from "../services/SpeedometerService";
-import {useSettingsContextService} from '../SettingsContext';
+import {useSettingsContext} from '../SettingsContext';
 import {convertMsToKphOrMph, convertToKmOrFeet, convertToKmOrMiles} from '../utils/convertUtils';
 import {formatTimer} from '../utils/timeFormatUtils';
 import FullScreenPage from './FullScreenPage';
 
-export default function GPSScreen({modalVisible, setModalVisible}) {
+export default function GPSScreen(
+    {
+        modalVisible,
+        setModalVisible
+    }
+) {
     const [speedometer, setSpeedometer] = useState(getSpeedometer());
+
+    const {
+        unit,
+        statRideTime,
+        statStoppedTime,
+        updateStatRideTime,
+        updateStatStoppedTime,
+    } = useSettingsContext();
 
     useEffect(() => {
         startLocationUpdates();
-        startSpeedometerLoop();
+        startSpeedometerLoop(
+            statRideTime,
+            statStoppedTime,
+            updateStatRideTime,
+            updateStatStoppedTime
+        );
 
         const unsubscribe = subscribe(() => {
             setSpeedometer({...getSpeedometer()});
@@ -25,8 +43,6 @@ export default function GPSScreen({modalVisible, setModalVisible}) {
             unsubscribe();
         };
     }, []);
-
-    const {unit} = useSettingsContextService();
 
     return (
         <View style={styles.container}>

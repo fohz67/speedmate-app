@@ -8,7 +8,7 @@ import {SettingsDropDownList} from '../components/settings/SettingsDropDownList'
 import {SettingsSlider} from '../components/settings/SettingsSlider';
 import useOptions from '../hooks/useOptions';
 import useUnits from "../hooks/useUnits";
-import {useSettingsContextService} from '../SettingsContext';
+import {useSettingsContext} from '../SettingsContext';
 import {normalize} from '../utils/normalizeUtils';
 
 export default function SettingsScreen() {
@@ -27,7 +27,7 @@ export default function SettingsScreen() {
         updateUnit,
         updateAccuracyThreshold,
         updateArcWidth,
-    } = useSettingsContextService();
+    } = useSettingsContext();
 
     return (
         <ScrollView contentContainerStyle={styles.container}>

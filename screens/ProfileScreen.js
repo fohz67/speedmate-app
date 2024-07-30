@@ -12,7 +12,7 @@ import {SettingsInput} from '../components/settings/SettingsInput';
 import {SettingsSlider} from '../components/settings/SettingsSlider';
 import useOptions from '../hooks/useOptions';
 import useUnits from '../hooks/useUnits';
-import {useSettingsContextService} from '../SettingsContext';
+import {useSettingsContext} from '../SettingsContext';
 import {convertToKmOrMiles} from '../utils/convertUtils';
 import {normalize} from '../utils/normalizeUtils';
 import {formatTime} from '../utils/timeFormatUtils';
@@ -46,7 +46,7 @@ export default function ProfileScreen() {
         updateVehicleType,
         updateVehicleBrand,
         updateVehicleModel
-    } = useSettingsContextService();
+    } = useSettingsContext();
 
     const photo = profilePicture ? {uri: profilePicture} : require('../assets/default-picture.png');
 

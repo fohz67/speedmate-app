@@ -14,7 +14,12 @@ const speedometerData = {
 let interval = null;
 let speeds = 0;
 
-const startSpeedometerLoop = async () => {
+const startSpeedometerLoop = async (
+    statRideTime,
+    statStoppedTime,
+    updateStatRideTime,
+    updateStatStoppedTime
+) => {
     interval = setInterval(() => {
         const location = getLocation();
 
@@ -22,6 +27,9 @@ const startSpeedometerLoop = async () => {
 
         if (convertMsToKphOrMph(location.speed) >= 1) {
             speedometerData.time++;
+            statRideTime++;
+            updateStatRideTime(statRideTime);
+
             speedometerData.speed = location.speed;
             speeds += location.speed;
             speedometerData.averageSpeed = speeds / speedometerData.time;
@@ -31,6 +39,9 @@ const startSpeedometerLoop = async () => {
             }
         } else {
             speedometerData.stopped++;
+            statStoppedTime++;
+            updateStatStoppedTime(statStoppedTime);
+
             speedometerData.speed = 0;
         }
 
