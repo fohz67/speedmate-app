@@ -1,89 +1,103 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped
-using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# SpeedMate
 
-# Getting Started
+## A brand-new GPS speedometer app
 
-> **Note**: Make sure you have completed
-> the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new
-> application" step, before proceeding.
+<div>
+    <img style="margin: 30px 0 0 10px" src="https://i.ibb.co/dcrbTtr/icon.png" alt="App Icon" width="50" height="50"/>
+</div>
 
-## Step 1: Start the Metro Server
+## Functionalities
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- Average and maximum speed
+- Distance traveled
+- Altitude
+- Travel and pause time
+- Access your statistics since downloading the app.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## Screenshots
+
+<div style="display: flex; gap: 10px">
+    <img src="https://i.ibb.co/0rkNQtp/0x0ss-2.png" alt="Screenshot 1" width="200"/>
+    <img src="https://i.ibb.co/dfQdfLK/0x0ss-3.png" alt="Screenshot 2" width="200"/>
+    <img src="https://i.ibb.co/LZThK4p/0x0ss.png" alt="Screenshot 3" width="200"/>
+</div>
+
+## Getting Started
+
+### Step 1: Clone the Repository
+
+First, clone the repository to your local machine:
 
 ```bash
-# using npm
+git clone git@github.com:fohz67/SpeedMate-App.git
+cd SpeedMate-App
+```
+
+### Step 2: Install Dependencies
+
+Install the required dependencies using npm:
+
+```bash
+npm install
+```
+
+### Step 3: Install Pods for iOS
+
+Navigate to the `ios` directory and install CocoaPods dependencies:
+
+```bash
+cd ios
+pod install
+cd ..
+```
+
+### Step 4: Start the Metro Server
+
+Start Metro, the JavaScript bundler:
+
+```bash
 npm start
-
-# OR using Yarn
-yarn start
 ```
 
-## Step 2: Start your Application
+### Step 5: Run the Application
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the
-following command to start your _Android_ or _iOS_ app:
+Open a new terminal and run the following commands to start your app:
 
-### For Android
+#### For Android
 
 ```bash
-# using npm
 npm run android
-
-# OR using Yarn
-yarn android
 ```
 
-### For iOS
+#### For iOS
 
 ```bash
-# using npm
 npm run ios
-
-# OR using Yarn
-yarn ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_
-shortly provided you have set up your emulator/simulator correctly.
+### Running the App in Xcode
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+1. Open the `ios/SpeedMate.xcworkspace` file in Xcode.
+2. Select your target device or simulator.
+3. Press the "Run" button or use the shortcut <kbd>Cmd ⌘</kbd> + <kbd>R</kbd>.
 
-## Step 3: Modifying your App
+### Running the App in Android Studio
 
-Now that you have successfully run the app, let's modify it.
+1. Open Android Studio.
+2. Click on "Open an existing project".
+3. Select the `SpeedMate-App` directory.
+4. Allow Android Studio to import the project and download any necessary dependencies.
+5. Once the project is loaded, select your target device or emulator.
+6. Press the "Run" button or use the shortcut <kbd>Shift</kbd> + <kbd>F10</kbd>.
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>
-   Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+## Shortcuts
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+- <kbd>Control</kbd> + <kbd>Command</kbd> + <kbd>W</kbd> for alphabetic order
+- <kbd>Control</kbd> + <kbd>Command</kbd> + <kbd>X</kbd> for JSON alphabetic order
+- <kbd>Control</kbd> + <kbd>Command</kbd> + <kbd>C</kbd> for double to single commas
+- <kbd>Option</kbd> + <kbd>Command</kbd> + <kbd>L</kbd> for code reformatting
 
-## Congratulations! :tada:
+## Informations
 
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out
-  the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out
-  the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your
-  environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for
-  React Native.
+- Founder: [Fohz67](https://github.com/Fohz67)
+- Started at July 2024
