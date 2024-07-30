@@ -1,4 +1,5 @@
 import {convertMsToKphOrMph} from "../utils/convertUtils";
+import {calculateDistance} from "../utils/distanceUtils";
 import {getLocation} from "./LocationService";
 
 const speedometerData = {
@@ -13,6 +14,8 @@ const speedometerData = {
 
 let interval = null;
 let speeds = 0;
+let prevCoords = null;
+const subscribers = [];
 
 const startSpeedometerLoop = async (
     statRideTime,
@@ -26,22 +29,11 @@ const startSpeedometerLoop = async (
         speedometerData.altitude = location.altitude;
 
         if (convertMsToKphOrMph(location.speed) >= 1) {
-            speedometerData.time++;
-            statRideTime++;
-            updateStatRideTime(statRideTime);
-
-            speedometerData.speed = location.speed;
-            speeds += location.speed;
-            speedometerData.averageSpeed = speeds / speedometerData.time;
-
-            if (location.speed > speedometerData.maxSpeed) {
-                speedometerData.speed = location.speed;
-            }
+            updateRideTime(statRideTime, updateStatRideTime);
+            updateSpeeds(location);
+            updateDistances();
         } else {
-            speedometerData.stopped++;
-            statStoppedTime++;
-            updateStatStoppedTime(statStoppedTime);
-
+            updateStoppedTime(statStoppedTime, updateStatStoppedTime);
             speedometerData.speed = 0;
         }
 
@@ -49,17 +41,50 @@ const startSpeedometerLoop = async (
     }, 1000);
 };
 
+const updateRideTime = (statRideTime, updateStatRideTime) => {
+    speedometerData.time++;
+    statRideTime++;
+    updateStatRideTime(statRideTime);
+};
+
+const updateSpeeds = (location) => {
+    speedometerData.speed = location.speed;
+    speeds += location.speed;
+    speedometerData.averageSpeed = speeds / speedometerData.time;
+
+    if (location.speed > speedometerData.maxSpeed) {
+        speedometerData.speed = location.speed;
+    }
+};
+
+const updateDistances = (location) => {
+    if (prevCoords && prevCoords.latitude && prevCoords.longitude) {
+        speedometerData.distance += calculateDistance(
+            prevCoords.latitude,
+            prevCoords.longitude,
+            location.latitude,
+            location.longitude
+        )
+    }
+
+    prevCoords = location;
+};
+
+const updateStoppedTime = (statStoppedTime, updateStatStoppedTime) => {
+    speedometerData.stopped++;
+    statStoppedTime++;
+    updateStatStoppedTime(statStoppedTime);
+};
+
 const stopSpeedometerLoop = () => {
     if (interval) {
         clearInterval(interval);
     }
-}
+};
 
 const getSpeedometer = () => {
     return speedometerData;
-}
-
-const subscribers = [];
+};
 
 const subscribe = (callback) => {
     subscribers.push(callback);

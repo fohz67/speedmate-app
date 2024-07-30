@@ -2,10 +2,12 @@ import * as Location from 'expo-location';
 import {ERROR} from "../utils/logUtils";
 
 let locationData = {
-    speed: 0,
+    accuracy: 0,
     altitude: 0,
+    altitudeAccuracy: 0,
     latitude: null,
     longitude: null,
+    speed: 0,
 };
 
 const startLocationUpdates = async () => {
@@ -19,16 +21,18 @@ const startLocationUpdates = async () => {
     await Location.watchPositionAsync(
         {
             accuracy: Location.Accuracy.BestForNavigation,
-            timeInterval: 1000,
             distanceInterval: 0,
+            timeInterval: 1000,
         },
         (location) => {
             if (location) {
                 locationData = {
-                    speed: location.coords.speed,
+                    accuracy: location.coords.accuracy,
                     altitude: location.coords.altitude,
+                    altitudeAccuracy: location.coords.altitudeAccuracy,
                     latitude: location.coords.latitude,
                     longitude: location.coords.longitude,
+                    speed: location.coords.speed,
                 };
             }
         }
