@@ -5,19 +5,16 @@
  * @format
  */
 
+import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StatusBar} from 'react-native';
+import {TabNavigator} from "./src/navigation/TabNavigator.tsx";
 
-function App(): React.JSX.Element {
+export function App(): React.JSX.Element {
     return (
-        <View>
-            <Text>
-                Test
-            </Text>
-        </View>
+        <NavigationContainer>
+            <StatusBar barStyle="light-content"/>
+            <TabNavigator/>
+        </NavigationContainer>
     );
 }
-
-const styles = StyleSheet.create({});
-
-export default App;
