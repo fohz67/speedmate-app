@@ -16,6 +16,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		39BFEA3ACD044B04B8594B68 /* Universo-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAC4DC7C143C4C3EA01B19BF /* Universo-Bold.ttf */; };
 		6101AE13F21F41AABE8772A2 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = 9338C5CF2ED74DE59BFE0E6E /* .gitkeep */; };
+		62DA235A2C59DC50004CE952 /* 000c18000c18000c18000c18#000c18#000c18#000c18.txt in Resources */ = {isa = PBXBuildFile; fileRef = 62DA23592C59DC50004CE952 /* 000c18000c18000c18000c18#000c18#000c18#000c18.txt */; };
 		7699B88040F8A987B510C191 /* libPods-SpeedMate-SpeedMateTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-SpeedMate-SpeedMateTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		95F546BDB3B047458EBF4074 /* Universo-Stencil.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E258CA00ADE242E199253D8B /* Universo-Stencil.ttf */; };
@@ -47,20 +48,21 @@
 		13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = PrivacyInfo.xcprivacy; path = SpeedMate/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		19F6CBCC0A4E27FBF8BF4A61 /* libPods-SpeedMate-SpeedMateTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SpeedMate-SpeedMateTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B4392A12AC88292D35C810B /* Pods-SpeedMate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpeedMate.debug.xcconfig"; path = "Target Support Files/Pods-SpeedMate/Pods-SpeedMate.debug.xcconfig"; sourceTree = "<group>"; };
-		4EB963BB25C94069B6B6B22E /* Universo-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Universo-Regular.ttf"; path = "../assets/fonts/Universo-Regular.ttf"; sourceTree = "<group>"; };
+		4EB963BB25C94069B6B6B22E /* Universo-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Universo-Regular.ttf"; path = "../assets/fonts/Universo-Regular.ttf"; sourceTree = "<group>"; };
 		5709B34CF0A7D63546082F79 /* Pods-SpeedMate.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpeedMate.release.xcconfig"; path = "Target Support Files/Pods-SpeedMate/Pods-SpeedMate.release.xcconfig"; sourceTree = "<group>"; };
 		5B7EB9410499542E8C5724F5 /* Pods-SpeedMate-SpeedMateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpeedMate-SpeedMateTests.debug.xcconfig"; path = "Target Support Files/Pods-SpeedMate-SpeedMateTests/Pods-SpeedMate-SpeedMateTests.debug.xcconfig"; sourceTree = "<group>"; };
 		5DCACB8F33CDC322A6C60F78 /* libPods-SpeedMate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SpeedMate.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		816B51FB917E425AB3EF31E8 /* Universo-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Universo-Black.ttf"; path = "../assets/fonts/Universo-Black.ttf"; sourceTree = "<group>"; };
+		62DA23592C59DC50004CE952 /* 000c18000c18000c18000c18#000c18#000c18#000c18.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "000c18000c18000c18000c18#000c18#000c18#000c18.txt"; sourceTree = "<group>"; };
+		816B51FB917E425AB3EF31E8 /* Universo-Black.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Universo-Black.ttf"; path = "../assets/fonts/Universo-Black.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = SpeedMate/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		88112AA0937EB9BD50097764 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = SpeedMate/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-SpeedMate-SpeedMateTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpeedMate-SpeedMateTests.release.xcconfig"; path = "Target Support Files/Pods-SpeedMate-SpeedMateTests/Pods-SpeedMate-SpeedMateTests.release.xcconfig"; sourceTree = "<group>"; };
-		9338C5CF2ED74DE59BFE0E6E /* .gitkeep */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = .gitkeep; path = ../assets/fonts/.gitkeep; sourceTree = "<group>"; };
-		9C3277FC1FA4485FB2C2AB84 /* Universo-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Universo-Light.ttf"; path = "../assets/fonts/Universo-Light.ttf"; sourceTree = "<group>"; };
-		C8FE1B3CD2F7456EAB7D923B /* Universo-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Universo-Thin.ttf"; path = "../assets/fonts/Universo-Thin.ttf"; sourceTree = "<group>"; };
-		E258CA00ADE242E199253D8B /* Universo-Stencil.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Universo-Stencil.ttf"; path = "../assets/fonts/Universo-Stencil.ttf"; sourceTree = "<group>"; };
+		9338C5CF2ED74DE59BFE0E6E /* .gitkeep */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = .gitkeep; path = ../assets/fonts/.gitkeep; sourceTree = "<group>"; };
+		9C3277FC1FA4485FB2C2AB84 /* Universo-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Universo-Light.ttf"; path = "../assets/fonts/Universo-Light.ttf"; sourceTree = "<group>"; };
+		C8FE1B3CD2F7456EAB7D923B /* Universo-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Universo-Thin.ttf"; path = "../assets/fonts/Universo-Thin.ttf"; sourceTree = "<group>"; };
+		E258CA00ADE242E199253D8B /* Universo-Stencil.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Universo-Stencil.ttf"; path = "../assets/fonts/Universo-Stencil.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
-		FAC4DC7C143C4C3EA01B19BF /* Universo-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Universo-Bold.ttf"; path = "../assets/fonts/Universo-Bold.ttf"; sourceTree = "<group>"; };
+		FAC4DC7C143C4C3EA01B19BF /* Universo-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Universo-Bold.ttf"; path = "../assets/fonts/Universo-Bold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +110,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
+				62DA23592C59DC50004CE952 /* 000c18000c18000c18000c18#000c18#000c18#000c18.txt */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				13B07FB81A68108700A75B9A /* PrivacyInfo.xcprivacy */,
 				88112AA0937EB9BD50097764 /* PrivacyInfo.xcprivacy */,
@@ -169,7 +172,6 @@
 				9338C5CF2ED74DE59BFE0E6E /* .gitkeep */,
 			);
 			name = Resources;
-			path = "";
 			sourceTree = "<group>";
 		};
 		BBD78D7AC51CEA395F1C20DB /* Pods */ = {
@@ -282,6 +284,7 @@
 				E17C461539DB4325A8D440C9 /* Universo-Black.ttf in Resources */,
 				39BFEA3ACD044B04B8594B68 /* Universo-Bold.ttf in Resources */,
 				E19BAC00712F41038D5FAF23 /* Universo-Light.ttf in Resources */,
+				62DA235A2C59DC50004CE952 /* 000c18000c18000c18000c18#000c18#000c18#000c18.txt in Resources */,
 				00B776369C6D4C90AD3847C9 /* Universo-Regular.ttf in Resources */,
 				95F546BDB3B047458EBF4074 /* Universo-Stencil.ttf in Resources */,
 				F8A0F53248CA4F418028E53C /* Universo-Thin.ttf in Resources */,
@@ -507,16 +510,20 @@
 			baseConfigurationReference = 3B4392A12AC88292D35C810B /* Pods-SpeedMate.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_TEAM = RGFBRHA3L2;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = SpeedMate/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SpeedMate;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -524,8 +531,13 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fohz.SpeedMate;
 				PRODUCT_NAME = SpeedMate;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -535,15 +547,19 @@
 			baseConfigurationReference = 5709B34CF0A7D63546082F79 /* Pods-SpeedMate.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_TEAM = RGFBRHA3L2;
 				INFOPLIST_FILE = SpeedMate/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SpeedMate;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.navigation";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -551,7 +567,12 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.fohz.SpeedMate;
 				PRODUCT_NAME = SpeedMate;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
