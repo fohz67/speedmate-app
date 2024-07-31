@@ -49,14 +49,14 @@ const styles: any = StyleSheet.create({
     },
     unit: {
         color: __Colors.statisticsUnit,
-        fontFamily: __Fonts.regular,
+        fontFamily: __Fonts.light,
         fontSize: normalize(20),
         marginLeft: normalize(5),
         textTransform: 'uppercase',
     },
     value: {
         color: __Colors.statisticsValue,
-        fontFamily: __Fonts.black,
+        fontFamily: __Fonts.regular,
         fontSize: normalize(30),
     },
     valueContainer: {
