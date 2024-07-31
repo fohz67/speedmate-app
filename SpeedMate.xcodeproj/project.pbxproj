@@ -37,10 +37,34 @@
 			);
 			target = 62DA23F12C5A0C3C004CE952 /* SpeedMate */;
 		};
+		62F50E112C5AF70D00C432AF /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Resources/Universo-Black.ttf",
+				"Resources/Universo-Bold.ttf",
+				"Resources/Universo-Light.ttf",
+				"Resources/Universo-Regular.ttf",
+				"Resources/Universo-Stencil.ttf",
+				"Resources/Universo-Thin.ttf",
+			);
+			target = 62DA24032C5A0C3F004CE952 /* SpeedMateTests */;
+		};
+		62F50E122C5AF70D00C432AF /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Resources/Universo-Black.ttf",
+				"Resources/Universo-Bold.ttf",
+				"Resources/Universo-Light.ttf",
+				"Resources/Universo-Regular.ttf",
+				"Resources/Universo-Stencil.ttf",
+				"Resources/Universo-Thin.ttf",
+			);
+			target = 62DA240D2C5A0C3F004CE952 /* SpeedMateUITests */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		62DA23F42C5A0C3C004CE952 /* SpeedMate */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (62DA24532C5A0D3F004CE952 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SpeedMate; sourceTree = "<group>"; };
+		62DA23F42C5A0C3C004CE952 /* SpeedMate */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (62DA24532C5A0D3F004CE952 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 62F50E112C5AF70D00C432AF /* PBXFileSystemSynchronizedBuildFileExceptionSet */, 62F50E122C5AF70D00C432AF /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = SpeedMate; sourceTree = "<group>"; };
 		62DA24072C5A0C3F004CE952 /* SpeedMateTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SpeedMateTests; sourceTree = "<group>"; };
 		62DA24112C5A0C3F004CE952 /* SpeedMateUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = SpeedMateUITests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -191,10 +215,6 @@
 			knownRegions = (
 				en,
 				Base,
-				fr,
-				it,
-				de,
-				es,
 			);
 			mainGroup = 62DA23E92C5A0C3C004CE952;
 			productRefGroup = 62DA23F32C5A0C3C004CE952 /* Products */;

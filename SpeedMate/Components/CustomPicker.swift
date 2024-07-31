@@ -35,8 +35,6 @@ struct CustomMenuPickerColor: View {
     }
 }
 
-import SwiftUI
-
 struct CustomSegmentedPicker: View {
     var icon: String
     var label: String
@@ -53,10 +51,6 @@ struct CustomPicker_Previews: PreviewProvider {
     
     static var previews: some View {
         Group {
-            CustomPickerBase(icon: "speedometer", label: "speedUnit", selection: $selection, options: ["Km/h", "Mph"], style: DefaultPickerStyle())
-                .previewLayout(.sizeThatFits)
-                .padding()
-            
             CustomPickerBase(icon: "speedometer", label: "speedUnit", selection: $selection, options: ["Km/h", "Mph"], style: MenuPickerStyle())
                 .previewLayout(.sizeThatFits)
                 .padding()

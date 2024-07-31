@@ -5,15 +5,26 @@ struct GPSView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(spacing: 20) {
-                Text("Current Speed: \(locationManager.speed, specifier: "%.2f") m/s")
-                Text("Max Speed: \(locationManager.maxSpeed, specifier: "%.2f") m/s")
-                Text("Average Speed: \(locationManager.averageSpeed, specifier: "%.2f") m/s")
-                Text("Altitude: \(locationManager.altitude, specifier: "%.2f") m")
-                Text("Ride Time: \(formattedTime(locationManager.rideTime))")
-                Text("Stopped Time: \(formattedTime(locationManager.stoppedTime))")
+            VStack {
+                Spacer()
+
+                HStack {
+                    VStack(alignment: .center, spacing: 30) {
+                        CustomInfoView(label: "VITESSE MOY.", value: String(format: "%.2f", locationManager.averageSpeed), unit: "KM/H")
+                        CustomInfoView(label: "DISTANCE", value: String(format: "%.2f", locationManager.totalDistance / 1000), unit: "KM")
+                        CustomInfoView(label: "DURÉE", value: formattedTime(locationManager.rideTime), unit: "")
+                    }
+                    VStack(alignment: .center, spacing: 30) {
+                        CustomInfoView(label: "VITESSE MAX", value: String(format: "%.0f", locationManager.maxSpeed), unit: "KM/H")
+                        CustomInfoView(label: "ALTITUDE", value: String(format: "%.0f", locationManager.altitude), unit: "M")
+                        CustomInfoView(label: "ARRÊTÉ", value: formattedTime(locationManager.stoppedTime), unit: "")
+                    }
+                }
+
+                Spacer()
             }
             .navigationTitle("GPS")
+            .font(.custom("Universo-Regular", size: 30))
         }
         .onAppear {
             let appearance = UINavigationBarAppearance()
