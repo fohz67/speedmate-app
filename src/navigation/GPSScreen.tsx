@@ -1,12 +1,19 @@
 import {useEffect, useState} from "react";
 import {useTranslation} from "react-i18next";
-import {View} from "react-native";
+import {Modal, StyleSheet, View} from "react-native";
+import {SpeedometerArc} from "../components/speedometer/SpeedometerArc.tsx";
+import {SpeedometerDashboard} from "../components/speedometer/SpeedometerDashboard.tsx";
+import {Settings} from '../hooks/useSettings.tsx';
 import {watchLocation} from "../services/LocationService.tsx";
 import {getSpeedometer, startSpeedometer, stopSpeedometer, subscribe} from "../services/SpeedometerService.tsx";
 import {useSettingsContext} from "../SettingsContext.tsx";
+import {convertMsToKphOrMph, convertToKmOrFeet, convertToKmOrMiles} from "../utilitaries/convertor.tsx";
+import {formatTimer} from "../utilitaries/time.tsx";
+import {GPSFullScreen} from "./GPSFullScreen.tsx";
 
 export default function GPSScreen({modalVisible, setModalVisible}: any): JSX.Element {
     const [speedometer, setSpeedometer] = useState(getSpeedometer());
+    const {t} = useTranslation();
 
     const {
         loading,
@@ -14,15 +21,13 @@ export default function GPSScreen({modalVisible, setModalVisible}: any): JSX.Ele
         statRideTime, updateStatRideTime,
         statStoppedTime, updateStatStoppedTime,
         statOdometer, updateStatOdometer,
-    } = useSettingsContext();
-
-    const {t} = useTranslation();
+    }: Settings = useSettingsContext();
 
     useEffect(() => {
         console.info('ℹ️ [GPSScreen] at useEffect ==> loading settings...');
 
         if (!loading) {
-            console.info('ℹ️ [GPSScreen] at useEffect ==> settings loaded ✅.');
+            console.info('✅ [GPSScreen] at useEffect ==> settings loaded ✅.');
 
             watchLocation({
                 title: t('locationPermissionTitle'),
@@ -48,29 +53,44 @@ export default function GPSScreen({modalVisible, setModalVisible}: any): JSX.Ele
         }
     }, [loading]);
 
-    console.log(`
-SETTINGS
----------
-Loading: ${loading}
-Unit: ${unit}
-Stat Ride Time: ${statRideTime}
-Stat Stopped Time: ${statStoppedTime}
-Stat Odometer: ${statOdometer}
-
-SPEEDOMETER
------------
-Speed: ${speedometer.speed}
-Max Speed: ${speedometer.maxSpeed}
-Average Speed: ${speedometer.averageSpeed}
-Distance: ${speedometer.distance}
-Altitude: ${speedometer.altitude}
-Altitude Accuracy: ${speedometer.altitudeAccuracy}
-Accuracy: ${speedometer.accuracy}
-Time: ${speedometer.time}
-Stopped: ${speedometer.stopped}
-`);
-
     return (
-        <View></View>
-    )
+        <View style={styles.container}>
+            <SpeedometerArc speed={convertMsToKphOrMph(speedometer.speed, unit)}/>
+            <SpeedometerDashboard
+                altitude={convertToKmOrFeet(speedometer.altitude, unit).toFixed(0)}
+                averageSpeed={convertMsToKphOrMph(speedometer.averageSpeed, unit).toFixed(0)}
+                distance={convertToKmOrMiles(speedometer.distance, unit).toFixed(2)}
+                maxSpeed={convertMsToKphOrMph(speedometer.maxSpeed, unit).toFixed(0)}
+                stopped={formatTimer(speedometer.stopped)}
+                time={formatTimer(speedometer.time)}
+            />
+            <Modal
+                visible={modalVisible}
+                animationType='slide'
+                supportedOrientations={['portrait', 'landscape']}
+                transparent={false}
+                onRequestClose={() => setModalVisible(false)}
+            >
+                <GPSFullScreen
+                    altitude={speedometer.altitude}
+                    averageSpeed={speedometer.averageSpeed}
+                    distance={speedometer.distance}
+                    maxSpeed={speedometer.maxSpeed}
+                    speed={speedometer.speed}
+                    stopped={speedometer.stopped}
+                    time={speedometer.time}
+                    unit={unit}
+                    onClose={() => setModalVisible(false)}
+                />
+            </Modal>
+        </View>
+    );
 };
+
+const styles: any = StyleSheet.create({
+    container: {
+        alignItems: 'center',
+        flex: 1,
+        justifyContent: 'center',
+    },
+});

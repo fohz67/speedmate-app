@@ -37,7 +37,7 @@ const startSpeedometer = async (
     statStoppedTime: number, updateStatStoppedTime: (value: number) => void,
     statOdometer: number, updateStatOdometer: (value: number) => void
 ): Promise<void> => {
-    interval = setInterval(() => {
+    interval = setInterval((): void => {
         const location: LocationData = getLocation();
 
         speedometerData.altitude = location.altitude || 0;

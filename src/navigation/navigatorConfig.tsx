@@ -1,6 +1,7 @@
 import React from 'react';
 import {Image, ImageSourcePropType, StyleSheet, TextStyle, TouchableOpacity, ViewStyle} from 'react-native';
 import {__Colors} from '../../assets/misc/colors.tsx';
+import {__Fonts} from "../../assets/misc/fonts.tsx";
 import {__Sizes} from "../../assets/misc/sizes";
 import {normalize} from '../utilitaries/normalize';
 
@@ -48,7 +49,7 @@ const __HeaderStyle: ViewStyle = {
 } as ViewStyle;
 
 const __HeaderTitleStyle: TextStyle = {
-    fontFamily: 'Universo-Black',
+    fontFamily: __Fonts.black,
     fontSize: normalize(30),
     marginLeft: normalize(__Sizes.navigationConfig_headerTitleStyle_marginLeft),
     marginTop: 0,

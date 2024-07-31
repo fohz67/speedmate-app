@@ -12,7 +12,7 @@ const getStoredLanguage = async (): Promise<Language> => {
     return __Languages[parseInt(storedLanguage || '0', 10)];
 };
 
-(async () => {
+(async (): Promise<void> => {
     const language: string = await getStoredLanguage();
 
     await i18n.use(initReactI18next).init({

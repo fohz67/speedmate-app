@@ -1,15 +1,14 @@
 import React, {createContext, ReactNode, useContext} from 'react';
 import {Settings, useSettings} from './hooks/useSettings.tsx';
 
-const SettingsContext = createContext<Settings | undefined>(undefined);
+const SettingsContext: React.Context<Settings | undefined> = createContext<Settings | undefined>(undefined);
 
 interface SettingsProviderProps {
     children: ReactNode;
 }
 
 export const SettingsProvider = ({children}: SettingsProviderProps) => {
-    const settings = useSettings();
-
+    const settings: Settings = useSettings();
     return (
         <SettingsContext.Provider value={settings}>
             {children}

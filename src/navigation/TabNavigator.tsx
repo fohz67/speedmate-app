@@ -18,8 +18,8 @@ type RootTabParamList = {
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
 export const TabNavigator = () => {
-    const {t} = useTranslation();
     const [modalVisible, setModalVisible] = useState(false);
+    const {t} = useTranslation();
 
     return (
         <View style={styles.container}>
@@ -59,5 +59,3 @@ const styles: any = StyleSheet.create({
         backgroundColor: __Colors.background,
     },
 });
-
-export default TabNavigator;

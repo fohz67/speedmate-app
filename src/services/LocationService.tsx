@@ -52,7 +52,7 @@ const requestLocationPermission = async (message: LocationMessage): Promise<bool
     }
 };
 
-const watchLocation = async (message: LocationMessage): Promise<void> => {
+export const watchLocation = async (message: LocationMessage): Promise<void> => {
     const hasPermission: boolean = await requestLocationPermission(message);
 
     if (!hasPermission) {
@@ -85,9 +85,4 @@ const watchLocation = async (message: LocationMessage): Promise<void> => {
     );
 };
 
-const getLocation = (): LocationData => locationData;
-
-export {
-    watchLocation,
-    getLocation
-};
+export const getLocation = (): LocationData => locationData;

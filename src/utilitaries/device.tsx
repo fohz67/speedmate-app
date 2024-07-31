@@ -47,5 +47,3 @@ export const getDeviceType = (): number => {
         return 4;
     }
 };
-
-export const getDeviceBattery = async (): Promise<number> => await DeviceInfo.getBatteryLevel();
