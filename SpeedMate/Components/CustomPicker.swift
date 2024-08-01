@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct CustomPickerBase<PickerStyleType: PickerStyle>: View {
+    @ObservedObject var settings: SettingsModel
     var icon: String
     var label: String
     @Binding var selection: String
@@ -21,7 +22,7 @@ struct CustomPickerBase<PickerStyleType: PickerStyle>: View {
                     Text(option).tag(option)
                 }
             }
-            .accentColor(.purple)
+            .accentColor(Color(getColor(for: settings.appTint)))
             .pickerStyle(style)
             .frame(width: frameWidth)
         }
@@ -29,23 +30,25 @@ struct CustomPickerBase<PickerStyleType: PickerStyle>: View {
 }
 
 struct CustomMenuPickerColor: View {
+    @ObservedObject var settings: SettingsModel
     var icon: String
     var label: String
     @Binding var selection: String
     var options: [String]
     
     var body: some View {
-        CustomPickerBase(icon: icon, label: label, selection: $selection, options: options, style: MenuPickerStyle(), frameWidth: 150)
+        CustomPickerBase(settings: settings, icon: icon, label: label, selection: $selection, options: options, style: MenuPickerStyle(), frameWidth: 150)
     }
 }
 
 struct CustomSegmentedPicker: View {
+    @ObservedObject var settings: SettingsModel
     var icon: String
     var label: String
     @Binding var selection: String
     var options: [String]
     
     var body: some View {
-        CustomPickerBase(icon: icon, label: label, selection: $selection, options: options, style: SegmentedPickerStyle(), frameWidth: 150)
+        CustomPickerBase(settings: settings, icon: icon, label: label, selection: $selection, options: options, style: SegmentedPickerStyle(), frameWidth: 150)
     }
 }

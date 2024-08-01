@@ -4,6 +4,10 @@ struct SettingsPersonalizationPage: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var settings: SettingsModel
     
+    var isColor: Bool {
+        settings.gaugeColorStyle == "Couleur"
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -11,38 +15,50 @@ struct SettingsPersonalizationPage: View {
                     Section(header: Text("Prévisualisation").font(.custom("Universo-Regular", size: 12)).padding(.top, 25)) {
                         HStack {
                             Spacer()
-                            CustomGauge(settings: settings, speed: 999.0, size: 160)
+                            CustomGauge(settings: settings, speed: (Double(settings.gaugeMaximumSpeed) ?? 999), size: 160)
                             Spacer()
                         }
                     }
                     
-                    Section(header: Text("Affichage").font(.custom("Universo-Regular", size: 12))) {
+                    Section(header: Text("Compteur").font(.custom("Universo-Regular", size: 12))) {
                         CustomToggle(settings: settings, icon: "speedometer", label: "Afficher le fond du compteur", isOn: $settings.showGaugeBackground)
                         CustomToggle(settings: settings, icon: "slowmo", label: "Afficher les indicateurs de vitesse", isOn: $settings.showGaugeSpeedIndicators)
                     }
                     
-                    Section(header: Text("Thème de la courbe").font(.custom("Universo-Regular", size: 12))) {
-                        CustomMenuPickerColor(icon: "scribble", label: "Finition", selection: $settings.gaugeStyleCorner, options: valuesGaugeStyleCorner)
-                        CustomMenuPickerColor(icon: "paintbrush.pointed", label: "Type de Remplissage", selection: $settings.gaugeColorStyle, options: valuesGaugeColorStyle)
-                        if settings.gaugeColorStyle == "Couleur" {
-                            CustomMenuPickerColor(icon: "paintpalette", label: "Couleur", selection: $settings.gaugeColor, options: valuesColorThemes)
-                        } else {
-                            CustomMenuPickerColor(icon: "paintpalette", label: "Dégradé", selection: $settings.gaugeGradiant, options: valuesGradientThemes)
+                    Section(header: Text("Courbe").font(.custom("Universo-Regular", size: 12))) {
+                        CustomToggle(settings: settings, icon: settings.showGaugeLine ? "lightswitch.on" : "lightswitch.off", label: "Afficher", isOn: $settings.showGaugeLine)
+                        if settings.showGaugeLine {
+                            CustomMenuPickerColor(settings: settings, icon: "hand.raised", label: "Vitesse maximale", selection: $settings.gaugeMaximumSpeed, options: valuesSpeeds)
+                            CustomMenuPickerColor(settings: settings, icon: "scribble", label: "Finition", selection: $settings.gaugeStyleCorner, options: valuesGaugeStyleCorner)
+                            if settings.appTintSync {
+                                CustomText(label: "Pour modifier la teinte de la courbe indépendamment de la teinte de l'app, veuillez désactiver la synchronisation des teintes dans les réglages.")
+                            } else {
+                                CustomMenuPickerColor(settings: settings, icon: "paintbrush.pointed", label: "Type de teinte", selection: $settings.gaugeColorStyle, options: valuesGaugeColorStyle)
+                                CustomMenuPickerColor(settings: settings, icon: "paintpalette", label: "Teinte", selection: isColor ? $settings.gaugeColor : $settings.gaugeGradiant, options: isColor ? valuesColorThemes : valuesGradientThemes)
+                            }
                         }
                     }
                     
-                    Section(header: Text("Informations d'affichage").font(.custom("Universo-Regular", size: 12))) {
-                        CustomMenuPickerColor(icon: "textformat.123", label: "Taille de la vitesse", selection: $settings.speedTextSize, options: valuesPercentageSizes)
-                        CustomMenuPickerColor(icon: "textformat.abc", label: "Taille de l'unité", selection: $settings.unitTextSize, options: valuesPercentageSizes)
-                        CustomMenuPickerColor(icon: "hand.raised", label: "Echelle de vitesse maximale", selection: $settings.gaugeMaximumSpeed, options: valuesSpeeds)
+                    Section(header: Text("Vitesse").font(.custom("Universo-Regular", size: 12))) {
+                        CustomToggle(settings: settings, icon: settings.showGaugeSpeed ? "lightswitch.on" : "lightswitch.off", label: "Afficher", isOn: $settings.showGaugeSpeed)
+                        if settings.showGaugeSpeed {
+                            CustomMenuPickerColor(settings: settings, icon: "arrow.down.forward.and.arrow.up.backward", label: "Taille", selection: $settings.speedTextSize, options: valuesPercentageSizes)
+                        }
+                    }
+                    
+                    Section(header: Text("Unité").font(.custom("Universo-Regular", size: 12))) {
+                        CustomToggle(settings: settings, icon: settings.showGaugeUnit ? "lightswitch.on" : "lightswitch.off", label: "Afficher", isOn: $settings.showGaugeUnit)
+                        if settings.showGaugeUnit {
+                            CustomMenuPickerColor(settings: settings, icon: "arrow.down.forward.and.arrow.up.backward", label: "Taille", selection: $settings.unitTextSize, options: valuesPercentageSizes)
+                        }
                     }
                     
                     Section(header: Text("Limite de vitesse").font(.custom("Universo-Regular", size: 12))) {
-                        CustomToggle(settings: settings, icon: "exclamationmark.triangle", label: "Activation", isOn: $settings.gaugeSpeedLimit)
+                        CustomToggle(settings: settings, icon: settings.gaugeSpeedLimit ? "lightswitch.on" : "lightswitch.off", label: "Afficher", isOn: $settings.gaugeSpeedLimit)
                         if settings.gaugeSpeedLimit {
-                            CustomMenuPickerColor(icon: "hand.raised", label: "Vitesse", selection: $settings.gaugeSpeedLimitNumber, options: valuesSpeeds)
-                            CustomToggle(settings: settings, icon: "exclamationmark.triangle", label: "Alerte visuelle", isOn: $settings.gaugeSpeedLimitFlash)
-                            CustomToggle(settings: settings, icon: "exclamationmark.triangle", label: "Alerte sonore", isOn: $settings.gaugeSpeedLimitSound)
+                            CustomMenuPickerColor(settings: settings, icon: "speedometer", label: "Vitesse", selection: $settings.gaugeSpeedLimitNumber, options: valuesSpeeds)
+                            CustomToggle(settings: settings, icon: settings.gaugeSpeedLimitFlash ? "bolt" : "bolt.slash", label: "Alerte visuelle", isOn: $settings.gaugeSpeedLimitFlash)
+                            CustomToggle(settings: settings, icon: settings.gaugeSpeedLimitSound ? "speaker.wave.3" : "speaker.slash", label: "Alerte sonore", isOn: $settings.gaugeSpeedLimitSound)
                         }
                     }
                 }
@@ -55,11 +71,5 @@ struct SettingsPersonalizationPage: View {
         .onAppear {
             getNavigationStyle()
         }
-    }
-}
-
-struct SettingsPersonalizationPage_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsPersonalizationPage(settings: SettingsModel())
     }
 }

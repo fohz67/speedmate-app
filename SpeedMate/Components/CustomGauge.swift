@@ -25,7 +25,7 @@ struct CustomGaugeStyle: GaugeStyle {
             
             Circle()
                 .trim(from: 0, to: 0.75 * configuration.value)
-                .stroke(settings.gaugeColorStyle == "Couleur" ? getGradientUnique(for: settings.gaugeGradiant) : getGradient(for: settings.gaugeColor), lineWidth: strokeWidth)
+                .stroke(settings.appTintSync ? getGradientUnique(for: settings.appTint) : settings.gaugeColorStyle == "Couleur" ? getGradientUnique(for: settings.gaugeColor) : getGradient(for: settings.gaugeGradiant), lineWidth: strokeWidth)
                 .rotationEffect(.degrees(135))
             
             if (settings.showGaugeSpeedIndicators) {
@@ -40,7 +40,7 @@ struct CustomGaugeStyle: GaugeStyle {
                     .font(.custom("Universo-Black", size: fontSize))
                 Text(settings.speedUnit.uppercased())
                     .font(.custom("Universo-Regular", size: unitFontSize))
-                    .foregroundColor(.gray)
+                    .foregroundColor(.secondary)
             }
             
         }
@@ -54,7 +54,7 @@ struct CustomGauge: View {
     var size: Double
     
     var body: some View {
-        Gauge(value: speed, in: 0...(Double(settings.gaugeMaximumSpeed) ?? 200)) {
+        Gauge(value: speed, in: 0...(Double(settings.gaugeMaximumSpeed) ?? 999)) {
             Image(systemName: "gauge.medium")
                 .font(.system(size: 50.0))
         } currentValueLabel: {

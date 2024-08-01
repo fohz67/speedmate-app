@@ -13,6 +13,7 @@ class SettingsModel: ObservableObject {
     
     // Application
     @AppStorage("appAppearance") var appAppearance = "Auto"
+    @AppStorage("appTintSync") var appTintSync = true
     @AppStorage("appTint") var appTint = "Violet"
 
     // Personnalisation
@@ -21,13 +22,16 @@ class SettingsModel: ObservableObject {
     @AppStorage("showGaugeSpeedIndicators") var showGaugeSpeedIndicators = true
 
     // Thème de la courbe
+    @AppStorage("showGaugeLine") var showGaugeLine = true
     @AppStorage("gaugeStyleCorner") var gaugeStyleCorner = "Arrondi"
     @AppStorage("gaugeColorStyle") var gaugeColorStyle = "Dégradé"
     @AppStorage("gaugeColor") var gaugeColor = "Violet"
     @AppStorage("gaugeGradiant") var gaugeGradiant = "Violet"
     
     // Informations d'affichage
+    @AppStorage("showGaugeSpeed") var showGaugeSpeed = true
     @AppStorage("speedTextSize") var speedTextSize = "90%"
+    @AppStorage("showGaugeUnit") var showGaugeUnit = true
     @AppStorage("unitTextSize") var unitTextSize = "20%"
     @AppStorage("gaugeMaximumSpeed") var gaugeMaximumSpeed = "200"
     
