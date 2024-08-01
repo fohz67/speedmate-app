@@ -11,6 +11,7 @@ struct CustomToggle: View {
                 .frame(width: 30, height: 45)
             Toggle(label, isOn: $isOn)
                 .toggleStyle(SwitchToggleStyle(tint: .purple))
+                .font(.custom("Universo-Regular", size: 14))
         }
     }
 }

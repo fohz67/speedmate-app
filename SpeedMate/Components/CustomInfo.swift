@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct CustomInfoView: View {
+struct CustomInfo: View {
     var label: String
     var value: String
     var unit: String
@@ -12,8 +12,7 @@ struct CustomInfoView: View {
                 .foregroundColor(.secondary)
             HStack {
                 Text(value)
-                    .font(.custom("Universo-Black", size: unit.isEmpty ? 24 : 30))
-                    .fontWeight(.bold)
+                    .font(.custom(unit.isEmpty ? "Universo-Bold" : "Universo-Black", size: unit.isEmpty ? 24 : 30))
                 Text(unit)
                     .font(.custom("Universo-Regular", size: 20))
                     .foregroundColor(.purple)

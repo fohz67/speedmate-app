@@ -2,7 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var settings = SettingsModel()
-
+    
     var body: some View {
         TabView {
             GPSView()
@@ -26,15 +26,15 @@ struct ContentView: View {
     }
     
     private func getColorScheme() -> ColorScheme? {
-            switch settings.appAppearance {
-            case "Clair":
-                return .light
-            case "Sombre":
-                return .dark
-            default:
-                return nil
-            }
+        switch settings.appAppearance {
+        case "Clair":
+            return .light
+        case "Sombre":
+            return .dark
+        default:
+            return nil
         }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {

@@ -32,7 +32,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
-        speed = location.speed
+        speed = 200//location.speed
         altitude = location.altitude
         updateMaxSpeed()
         updateTimers()

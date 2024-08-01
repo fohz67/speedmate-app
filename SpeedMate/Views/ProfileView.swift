@@ -18,12 +18,10 @@ struct ProfileView: View {
                     }
                 }
             }
-            .navigationTitle("Profil")
+            .navigationTitle("‎ Profil")
         }
         .onAppear {
-            let appearance = UINavigationBarAppearance()
-            appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
-            UINavigationBar.appearance().scrollEdgeAppearance = appearance
+            configureNavigationBarAppearance()
         }
     }
 }
