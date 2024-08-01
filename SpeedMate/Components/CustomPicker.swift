@@ -14,9 +14,14 @@ struct CustomPickerBase<PickerStyleType: PickerStyle>: View {
             Image(systemName: icon)
                 .frame(width: 30, height: 45)
                 .foregroundColor(.secondary)
+            
             Text(label)
-                .font(.custom("Universo-Regular", size: 14))
+                .font(
+                    .custom("Universo-Regular", size: 14)
+                )
+            
             Spacer()
+            
             Picker("", selection: $selection) {
                 ForEach(options, id: \.self) { option in
                     Text(option).tag(option)
@@ -37,7 +42,15 @@ struct CustomMenuPickerColor: View {
     var options: [String]
     
     var body: some View {
-        CustomPickerBase(settings: settings, icon: icon, label: label, selection: $selection, options: options, style: MenuPickerStyle(), frameWidth: 150)
+        CustomPickerBase(
+            settings: settings,
+            icon: icon,
+            label: label,
+            selection: $selection,
+            options: options,
+            style: MenuPickerStyle(),
+            frameWidth: 150
+        )
     }
 }
 
@@ -49,6 +62,14 @@ struct CustomSegmentedPicker: View {
     var options: [String]
     
     var body: some View {
-        CustomPickerBase(settings: settings, icon: icon, label: label, selection: $selection, options: options, style: SegmentedPickerStyle(), frameWidth: 150)
+        CustomPickerBase(
+            settings: settings,
+            icon: icon,
+            label: label,
+            selection: $selection,
+            options: options,
+            style: SegmentedPickerStyle(),
+            frameWidth: 150
+        )
     }
 }

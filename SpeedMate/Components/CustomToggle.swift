@@ -11,9 +11,16 @@ struct CustomToggle: View {
             Image(systemName: icon)
                 .frame(width: 30, height: 45)
                 .foregroundColor(.secondary)
+            
             Toggle(label, isOn: $isOn)
-                .toggleStyle(SwitchToggleStyle(tint: Color(getColor(for: settings.appTint))))
-                .font(.custom("Universo-Regular", size: 14))
+                .toggleStyle(
+                    SwitchToggleStyle(
+                        tint: Color(getColor(for: settings.appTint))
+                    )
+                )
+                .font(
+                    .custom("Universo-Regular", size: 14)
+                )
         }
     }
 }

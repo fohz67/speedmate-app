@@ -6,16 +6,28 @@ struct CustomInfo: View {
     var value: String
     var unit: String
     
+    var getFont: String {
+        unit.isEmpty ? "Universo-Bold" : "Universo-Black"
+    }
+    
     var body: some View {
         VStack(alignment: .center) {
             Text(label)
-                .font(.custom("Universo-Light", size: 17))
+                .font(
+                    .custom("Universo-Light", size: 17)
+                )
                 .foregroundColor(.secondary)
+            
             HStack {
                 Text(value)
-                    .font(.custom(unit.isEmpty ? "Universo-Bold" : "Universo-Black", size: unit.isEmpty ? 24 : 30))
+                    .font(
+                        .custom(getFont, size: unit.isEmpty ? 24 : 30)
+                    )
+                
                 Text(unit)
-                    .font(.custom("Universo-Regular", size: 20))
+                    .font(
+                        .custom("Universo-Regular", size: 20)
+                    )
                     .foregroundColor(Color(getColor(for: settings.appTint)))
             }
         }

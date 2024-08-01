@@ -3,6 +3,7 @@ import CoreLocation
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private var locationManager = CLLocationManager()
+
     @Published var speed: Double = 0.0
     @Published var altitude: Double = 0.0
     @Published var rideTime: TimeInterval = 0
