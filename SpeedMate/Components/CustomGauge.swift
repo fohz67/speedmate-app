@@ -25,19 +25,13 @@ struct CustomGaugeCircle: View {
     }
 }
 
-
 struct CustomGaugeSpeedIndicators: View {
     var size: Double
-    var innerStrokeWidth: Double
-    var dashSize: Double
-    
-    public init(size: Double) {
-        self.size = size
-        self.innerStrokeWidth = size / 30
-        self.dashSize = size / 10
-    }
     
     var body: some View {
+        var innerStrokeWidth: Double = size / 30
+        var dashSize: Double = size / 10
+
         Circle()
             .trim(from: 0, to: 0.75)
             .stroke(
@@ -61,18 +55,11 @@ struct CustomGaugeValues: View {
     var configuration: GaugeStyleConfiguration
     @ObservedObject var settings: SettingsModel
     var size: Double
-    var unitFontSize: Double
-    var fontSize: Double
-    
-    public init(configuration: GaugeStyleConfiguration, settings: SettingsModel, size: Double) {
-        self.configuration = configuration
-        self.settings = settings
-        self.size = size
-        self.unitFontSize = size / 15
-        self.fontSize = size / 3
-    }
     
     var body: some View {
+        var unitFontSize: Double = size / 15
+        var fontSize: Double = size / 3
+        
         VStack {
             configuration.currentValueLabel
                 .font(
