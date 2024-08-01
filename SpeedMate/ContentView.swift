@@ -5,35 +5,24 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            GPSView()
+            GPSView(settings: settings)
                 .tabItem {
                     Image(systemName: "location.fill")
                     Text("GPS")
                 }
-            ProfileView()
+            ProfileView(settings: settings)
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Profil")
                 }
-            SettingsView()
+            SettingsView(settings: settings)
                 .tabItem {
                     Image(systemName: "gearshape.fill")
                     Text("Réglages")
                 }
         }
-        .accentColor(.purple)
-        .preferredColorScheme(getColorScheme())
-    }
-    
-    private func getColorScheme() -> ColorScheme? {
-        switch settings.appAppearance {
-        case "Clair":
-            return .light
-        case "Sombre":
-            return .dark
-        default:
-            return nil
-        }
+        .accentColor(Color(getColor(for: settings.appTint)))
+        .preferredColorScheme(getColorScheme(for: settings.appAppearance))
     }
 }
 

@@ -12,6 +12,7 @@ struct CustomPickerBase<PickerStyleType: PickerStyle>: View {
         HStack {
             Image(systemName: icon)
                 .frame(width: 30, height: 45)
+                .foregroundColor(.secondary)
             Text(label)
                 .font(.custom("Universo-Regular", size: 14))
             Spacer()
@@ -34,7 +35,7 @@ struct CustomMenuPickerColor: View {
     var options: [String]
     
     var body: some View {
-        CustomPickerBase(icon: icon, label: label, selection: $selection, options: options, style: MenuPickerStyle(), frameWidth: 100)
+        CustomPickerBase(icon: icon, label: label, selection: $selection, options: options, style: MenuPickerStyle(), frameWidth: 150)
     }
 }
 
@@ -46,21 +47,5 @@ struct CustomSegmentedPicker: View {
     
     var body: some View {
         CustomPickerBase(icon: icon, label: label, selection: $selection, options: options, style: SegmentedPickerStyle(), frameWidth: 150)
-    }
-}
-
-struct CustomPicker_Previews: PreviewProvider {
-    @State static var selection = "Km/h"
-    
-    static var previews: some View {
-        Group {
-            CustomPickerBase(icon: "speedometer", label: "speedUnit", selection: $selection, options: ["Km/h", "Mph"], style: MenuPickerStyle(), frameWidth: 100)
-                .previewLayout(.sizeThatFits)
-                .padding()
-            
-            CustomPickerBase(icon: "speedometer", label: "speedUnit", selection: $selection, options: ["Km/h", "Mph"], style: SegmentedPickerStyle(), frameWidth: 150)
-                .previewLayout(.sizeThatFits)
-                .padding()
-        }
     }
 }

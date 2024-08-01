@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @ObservedObject var settings: SettingsModel
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -21,13 +23,7 @@ struct ProfileView: View {
             .navigationTitle("‎ Profil")
         }
         .onAppear {
-            configureNavigationBarAppearance()
+            getNavigationStyle()
         }
-    }
-}
-
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileView()
     }
 }

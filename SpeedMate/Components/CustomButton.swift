@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct CustomButton: View {
+    @ObservedObject var settings: SettingsModel
     var icon: String
     var label: String
     var action: () -> Void
@@ -10,19 +11,14 @@ struct CustomButton: View {
             HStack {
                 Image(systemName: icon)
                     .frame(width: 30, height: 40)
-                    .foregroundColor(.white)
+                    .foregroundColor(.secondary)
                 Text(label)
-                    .foregroundColor(.white)
+                    .font(.custom("Universo-Regular", size: 14))
+                    .foregroundColor(.primary)
                 Spacer()
                 Image(systemName: "chevron.right")
-                    .foregroundColor(.purple)
+                    .foregroundColor(Color(getColor(for: settings.appTint)))
             }
         }
-    }
-}
-
-struct CustomButton_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomButton(icon: "paintbrush", label: "Personnalisation", action: {})
     }
 }
