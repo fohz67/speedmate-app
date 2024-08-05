@@ -82,7 +82,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             return
         }
         
-        if convertSpeed(_SPEED_UNIT, speed) > 1 {
+        if convertSpeed(speedUnit: _SPEED_UNIT, speed: speed) > 1 {
             if stopTimer != nil {
                 stopTimer?.invalidate()
                 stopTimer = nil

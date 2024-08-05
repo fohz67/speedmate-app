@@ -1,55 +1,59 @@
-func metersPerSecondToKilometersPerHour(_ metersPerSecond: Double) -> Double {
+func metersPerSecondToKilometersPerHour(metersPerSecond: Double) -> Double {
     return metersPerSecond * 3.6
 }
 
-func metersPerSecondToMilesPerHour(_ metersPerSecond: Double) -> Double {
+func metersPerSecondToMilesPerHour(metersPerSecond: Double) -> Double {
     return metersPerSecond * 2.23694
 }
 
-func metersToKilometers(_ meters: Double) -> Double {
+func metersToKilometers(meters: Double) -> Double {
     return meters / 1000
 }
 
-func metersToMiles(_ meters: Double) -> Double {
+func metersToMiles(meters: Double) -> Double {
     return meters / 1609.344
 }
 
-func metersToFeet(_ meters: Double) -> Double {
+func metersToFeet(meters: Double) -> Double {
     return meters * 3.28084
 }
 
-func metersToYards(_ meters: Double) -> Double {
+func metersToYards(meters: Double) -> Double {
     return meters * 1.09361
 }
 
-func convertSpeed(_ speedUnit: String, _ speed: Double) -> Double {
-    if speedUnit == "Mph" {
-        return metersPerSecondToMilesPerHour(speed)
-    } else {
-        return metersPerSecondToKilometersPerHour(speed)
-    }
+func celsiusToFahrenheit(celsius: Double) -> Double {
+    return (celsius * 9/5) + 32
 }
 
 func convertSpeed(speedUnit: String, speed: Double) -> Double {
     if speedUnit == "Mph" {
-        return metersPerSecondToMilesPerHour(speed)
+        return metersPerSecondToMilesPerHour(metersPerSecond: speed)
     } else {
-        return metersPerSecondToKilometersPerHour(speed)
+        return metersPerSecondToKilometersPerHour(metersPerSecond: speed)
     }
 }
 
 func convertTotalDistance(distanceUnit: String, totalDistance: Double) -> Double {
     if distanceUnit == "Miles" {
-        return metersToMiles(totalDistance)
+        return metersToMiles(meters: totalDistance)
     } else {
-        return metersToKilometers(totalDistance)
+        return metersToKilometers(meters: totalDistance)
     }
 }
 
 func convertAltitude(altitudeUnit: String, altitude: Double) -> Double {
     if altitudeUnit == "Feet" {
-        return metersToFeet(altitude)
+        return metersToFeet(meters: altitude)
     } else {
         return altitude
+    }
+}
+
+func convertTemperature(temperatureUnit: String, temperature: Double) -> Double {
+    if temperatureUnit == "Celsius" {
+        return temperature
+    } else {
+        return celsiusToFahrenheit(celsius: temperature)
     }
 }

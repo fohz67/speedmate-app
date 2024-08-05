@@ -3,84 +3,84 @@ import SwiftUI
 struct CustomGaugeMetrics: View {
     @EnvironmentObject var settings: SettingsModel
     
-    var size: CGFloat
-    var gpsAccuracy: Double
-    var temperature: Double
-    
-    private var getGpsAccuracyText: String {
-        if settings.distanceUnit == "Km" {
-            return String(format: "%.2f", gpsAccuracy) + "M"
-        } else {
-            return String(format: "%.2f", metersToYards(gpsAccuracy)) + "Yd"
-        }
-    }
-    
-    private var getTemperatureText: String {
-        return String(format: "%.2f", temperature) + (settings.temperatureUnit == "Celsius" ? "°C" : "°F")
-    }
+    var size: Double
+    var metrics: [Metric]
     
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 HStack {
-                    HStack {
-                        Image(systemName: "")
-                            .frame(width: 30, height: 45)
-                            .foregroundColor(.secondary)
-                        
-                        Text(getGpsAccuracyText)
-                            .frame(width: geometry.size.width * 0.5, alignment: .leading)
-                            .padding(.bottom, 15)
-                            .padding(.leading, -25)
-                            .font(
-                                .custom("Universo-Regular", size: 14)
-                            )
-                            .foregroundColor(.secondary)
+                    if metrics.indices.contains(0) {
+                        MetricView(
+                            metric: metrics[0],
+                            geometry: geometry,
+                            alignmentHorizontal: .leading,
+                            alignmentVertical: .top
+                        )
                     }
                     
                     Spacer()
                     
-                    HStack {
-                        Image(systemName: "")
-                            .frame(width: 30, height: 45)
-                            .foregroundColor(.secondary)
-                        
-                        Text(getTemperatureText)
-                            .frame(width: geometry.size.width * 0.5, alignment: .trailing)
-                            .padding(.bottom, 15)
-                            .padding(.trailing, -25)
-                            .font(
-                                .custom("Universo-Regular", size: 14)
-                            )
-                            .foregroundColor(.secondary)
+                    if metrics.indices.contains(1) {
+                        MetricView(
+                            metric: metrics[1],
+                            geometry: geometry,
+                            alignmentHorizontal: .trailing,
+                            alignmentVertical: .top
+                        )
                     }
                 }
                 
                 Spacer()
                 
                 HStack {
-                    Text("")
-                        .frame(width: geometry.size.width * 0.5, alignment: .leading)
-                        .padding(.top, 15)
-                        .padding(.leading, -25)
-                        .font(
-                            .custom("Universo-Regular", size: 14)
+                    if metrics.indices.contains(2) {
+                        MetricView(
+                            metric: metrics[2],
+                            geometry: geometry,
+                            alignmentHorizontal: .leading,
+                            alignmentVertical: .bottom
                         )
-                        .foregroundColor(.secondary)
+                    }
                     
                     Spacer()
                     
-                    Text("")
-                        .frame(width: geometry.size.width * 0.5, alignment: .trailing)
-                        .padding(.top, 15)
-                        .padding(.trailing, -25)
-                        .font(
-                            .custom("Universo-Regular", size: 14)
-                        )
-                        .foregroundColor(.secondary)
+                    if metrics.indices.contains(3) {
+                        MetricView(
+                            metric: metrics[3],
+                            geometry: geometry,
+                            alignmentHorizontal: .trailing,
+                            alignmentVertical: .bottom)
+                    }
                 }
             }
         }
         .frame(width: size, height: size)
+    }
+}
+
+struct MetricView: View {
+    @EnvironmentObject var settings: SettingsModel
+
+    var metric: Metric
+    var geometry: GeometryProxy
+    var alignmentHorizontal: Alignment
+    var alignmentVertical: Alignment
+
+    var body: some View {
+        VStack(alignment: .center) {
+            Image(systemName: metric.icon)
+                .frame(width: 15, height: 15)
+                .foregroundColor(.secondary)
+            
+            Text(metric.getText(using: settings))
+                .font(
+                    .custom("Universo-Regular", size: 14)
+                )
+                .foregroundColor(.secondary)
+        }
+        .frame(width: geometry.size.width * 0.5, alignment: alignmentHorizontal)
+        .padding(alignmentVertical == .top ? .top : .bottom, -15)
+        .padding(alignmentHorizontal == .leading ? .leading : .trailing, -25)
     }
 }

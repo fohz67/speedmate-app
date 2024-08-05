@@ -8,7 +8,10 @@ struct CustomDashboardRightColumn: View {
         VStack(alignment: .center, spacing: 30) {
             CustomInfo(
                 label: "VITESSE MAX",
-                value: String(format: "%.0f", convertSpeed(settings.speedUnit, locationManager.maxSpeed)),
+                value: String(format: "%.0f", convertSpeed(
+                    speedUnit: settings.speedUnit,
+                    speed: locationManager.maxSpeed
+                )),
                 unit: settings.speedUnit.uppercased()
             )
             

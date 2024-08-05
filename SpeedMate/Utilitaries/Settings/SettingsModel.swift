@@ -1,7 +1,6 @@
 import SwiftUI
 
 var _SPEED_UNIT: String = "Km/h"
-var _TEMPERATURE_UNIT: String = "Celsius"
 var _NAVIGATION_STARTING_SPEED: Int = 15
 
 class SettingsModel: ObservableObject {
@@ -16,11 +15,7 @@ class SettingsModel: ObservableObject {
         }
     }
     @AppStorage("distanceUnit") var distanceUnit = "Km"
-    @AppStorage("temperatureUnit") var temperatureUnit = "Celsius" {
-        didSet {
-            _TEMPERATURE_UNIT = temperatureUnit
-        }
-    }
+    @AppStorage("temperatureUnit") var temperatureUnit = "Celsius"
     @AppStorage("altitudeUnit") var altitudeUnit = "M"
     
     // Navigation
@@ -32,7 +27,7 @@ class SettingsModel: ObservableObject {
     
     // Thème
     @AppStorage("appAppearance") var appAppearance = "Auto"
-    @AppStorage("appTint") var appTint = "Violet"
+    @AppStorage("appTint") var appTint = "Jaune"
     @AppStorage("appTintSync") var appTintSync = true
     
     // Application
@@ -50,8 +45,8 @@ class SettingsModel: ObservableObject {
     @AppStorage("gaugeMaximumSpeed") var gaugeMaximumSpeed = 200
     @AppStorage("gaugeStyleCorner") var gaugeStyleCorner = "Arrondi"
     @AppStorage("gaugeTintStyle") var gaugeTintStyle = "Dégradé"
-    @AppStorage("gaugeTintColor") var gaugeTintColor = "Violet"
-    @AppStorage("gaugeTintGradient") var gaugeTintGradient = "Violet"
+    @AppStorage("gaugeTintColor") var gaugeTintColor = "Jaune"
+    @AppStorage("gaugeTintGradient") var gaugeTintGradient = "Jaune"
     
     // Limitation de vitesse
     @AppStorage("showGaugeSpeedLimit") var showGaugeSpeedLimit = false

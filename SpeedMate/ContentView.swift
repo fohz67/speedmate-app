@@ -10,11 +10,13 @@ struct ContentView: View {
                     Image(systemName: "location.fill")
                     Text("GPS")
                 }
+
             ProfileView()
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Profil")
                 }
+
             SettingsView()
                 .tabItem {
                     Image(systemName: "gearshape.fill")

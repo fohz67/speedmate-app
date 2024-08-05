@@ -9,8 +9,8 @@ struct CustomDashboardLeftColumn: View {
             CustomInfo(
                 label: "VITESSE MOY.",
                 value: String(format: "%.0f", convertSpeed(
-                    settings.speedUnit,
-                    locationManager.averageSpeed
+                    speedUnit: settings.speedUnit,
+                    speed: locationManager.averageSpeed
                 )),
                 unit: settings.speedUnit.uppercased()
             )

@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct ProfileViewSectionVehicle: View {
-    @EnvironmentObject var settings: SettingsModel
+    @EnvironmentObject var profile: ProfileModel
     
     var body: some View {
         Section(
@@ -10,7 +10,25 @@ struct ProfileViewSectionVehicle: View {
                     .custom("Universo-Regular", size: 12)
                 )
         ) {
-            // @TODO
+            CustomPicker(
+                icon: "car",
+                label: "Type",
+                selection: $profile.vehicleType,
+                options: valuesVehicleTypes,
+                unit: ""
+            )
+            
+            CustomTextField(
+                icon: "star",
+                label: "Marque",
+                text: $profile.vehicleBrand
+            )
+            
+            CustomTextField(
+                icon: "doc.text.fill",
+                label: "Modèle",
+                text: $profile.vehicleModel
+            )
         }
     }
 }

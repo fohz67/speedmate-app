@@ -2,7 +2,7 @@ import SwiftUI
 
 private struct CustomGaugeStyle: GaugeStyle {
     @EnvironmentObject var settings: SettingsModel
-
+    
     var size: Double
     
     func makeBody(configuration: Configuration) -> some View {
@@ -30,7 +30,7 @@ private struct CustomGaugeStyle: GaugeStyle {
 
 struct CustomGauge: View {
     @EnvironmentObject var settings: SettingsModel
-
+    
     var speed: Double
     var gpsAccuracy: Double
     var temperature: Double
@@ -47,7 +47,13 @@ struct CustomGauge: View {
     var body: some View {
         ZStack {
             if gpsAccuracy != -67 && temperature != -67 {
-                CustomGaugeMetrics(size: CGFloat(size), gpsAccuracy: gpsAccuracy, temperature: temperature)
+                CustomGaugeMetrics(
+                    size: size,
+                    metrics: [
+                        MetricGPSAccuracy(gpsAccuracy: gpsAccuracy),
+                        MetricTemperature(temperature: temperature),
+                    ]
+                )
             }
             
             Gauge(value: getGaugeValue, in: 0...getMaxSpeed) {

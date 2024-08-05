@@ -27,7 +27,7 @@ struct CustomNumberSelector: View {
                     .custom("Universo-Bold", size: 14)
                 )
                 .foregroundColor(getAppTint(settings: settings))
-                .padding(.top, 4)
+                .padding(.top, 3)
                 .padding(.trailing, 8)
             
             Stepper("", value: $value, in: range, step: step)

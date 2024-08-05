@@ -18,15 +18,17 @@ struct ProfileViewSectionYou: View {
             )
             
             CustomTextField(
-                icon: "person.crop.rectangle",
+                icon: "person.crop.square.filled.and.at.rectangle",
                 label: "Nom de famille",
                 text: $profile.lastName
             )
             
-            CustomTextField(
-                icon: "person.crop.rectangle",
-                label: "Nom de famille",
-                text: $profile.lastName
+            CustomNumberSelector(
+                icon: "birthday.cake",
+                label: "Âge",
+                value: $profile.age,
+                range: 0...100,
+                step: 1
             )
         }
     }

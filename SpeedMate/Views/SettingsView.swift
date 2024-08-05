@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct SettingsView: View {    
+struct SettingsView: View {
     var body: some View {
         NavigationStack {
             VStack {

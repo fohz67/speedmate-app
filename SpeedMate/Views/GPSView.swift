@@ -1,9 +1,15 @@
 import SwiftUI
 
 struct GPSView: View {
+    @StateObject var locationManager = LocationManager()
+    @StateObject var weatherManager = WeatherManager()
     @EnvironmentObject var settings: SettingsModel
-    @EnvironmentObject var locationManager: LocationManager
-    @EnvironmentObject var weatherManager: WeatherManager
+    
+    private func fetchWeather() {
+        locationManager.requestInitialLocation { location in
+            weatherManager.fetchWeatherOnce(for: location)
+        }
+    }
     
     var body: some View {
         NavigationStack {
@@ -11,9 +17,15 @@ struct GPSView: View {
                 Spacer()
                 
                 CustomGauge(
-                    speed: convertSpeed(speedUnit: settings.speedUnit, speed: locationManager.speed),
+                    speed: convertSpeed(
+                        speedUnit: settings.speedUnit,
+                        speed: locationManager.speed
+                    ),
                     gpsAccuracy: locationManager.gpsAccuracy,
-                    temperature: weatherManager.temperature,
+                    temperature: convertTemperature(
+                        temperatureUnit: settings.temperatureUnit,
+                        temperature: weatherManager.temperature
+                    ),
                     size: 300
                 )
                 
@@ -23,6 +35,11 @@ struct GPSView: View {
                 
                 Spacer()
             }
+        }
+        .environmentObject(locationManager)
+        .environmentObject(weatherManager)
+        .onAppear() {
+            fetchWeather()
         }
     }
 }
