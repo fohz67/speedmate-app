@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct PersonalizationSheetSectionPreview: View {
-    @ObservedObject var settings: SettingsModel
+    @EnvironmentObject var settings: SettingsModel
     
     var body: some View {
         Section(
@@ -13,11 +13,14 @@ struct PersonalizationSheetSectionPreview: View {
         ) {
             HStack {
                 Spacer()
+                
                 CustomGauge(
-                    settings: settings,
                     speed: (Double(settings.gaugeMaximumSpeed) ?? 999),
+                    gpsAccuracy: -67,
+                    temperature: -67,
                     size: 160
                 )
+                
                 Spacer()
             }
         }
@@ -25,7 +28,7 @@ struct PersonalizationSheetSectionPreview: View {
 }
 
 struct PersonalizationSheetSectionGauge: View {
-    @ObservedObject var settings: SettingsModel
+    @EnvironmentObject var settings: SettingsModel
     
     var body: some View {
         Section(
@@ -35,14 +38,12 @@ struct PersonalizationSheetSectionGauge: View {
                 )
         ) {
             CustomToggle(
-                settings: settings,
-                icon: "speedometer",
+                icon: "circle.fill",
                 label: "Afficher le fond du compteur",
                 isOn: $settings.showGaugeBackground
             )
             
             CustomToggle(
-                settings: settings,
                 icon: "slowmo",
                 label: "Afficher les indicateurs de vitesse", isOn: $settings.showGaugeSpeedIndicators
             )
@@ -51,10 +52,9 @@ struct PersonalizationSheetSectionGauge: View {
 }
 
 struct PersonalizationSheetSectionLine: View {
-    @ObservedObject var settings: SettingsModel
+    @EnvironmentObject var settings: SettingsModel
     
-    
-    var isColor: Bool {
+    private var isColor: Bool {
         settings.gaugeTintStyle == "Couleur"
     }
     
@@ -66,40 +66,45 @@ struct PersonalizationSheetSectionLine: View {
                 )
         ) {
             CustomToggle(
-                settings: settings,
-                icon: settings.showGaugeLine ? "lightswitch.on" : "lightswitch.off", label: "Afficher",
+                icon: "circle",
+                label: "Afficher",
                 isOn: $settings.showGaugeLine
             )
             
             if settings.showGaugeLine {
-                CustomMenuPickerColor(
-                    settings: settings,
-                    icon: "hand.raised",
+                CustomPickerMenu(
+                    icon: "gauge",
                     label: "Vitesse maximale",
                     selection: $settings.gaugeMaximumSpeed,
-                    options: valuesSpeeds
+                    options: valuesSpeeds,
+                    unit: settings.speedUnit
                 )
                 
-                CustomMenuPickerColor(
-                    settings: settings,
+                CustomPickerMenu(
                     icon: "scribble",
                     label: "Finition",
                     selection: $settings.gaugeStyleCorner,
-                    options: valuesGaugeStyleCorner
+                    options: valuesGaugeStyleCorner,
+                    unit: ""
                 )
                 
                 if settings.appTintSync {
-                    CustomText(label: "Pour modifier la teinte de la courbe indépendamment de la teinte de l'app, veuillez désactiver la synchronisation des teintes dans les réglages.")
+                    CustomText(label: "Pour modifier l'apparence de la courbe indépendamment du compteur, veuillez désactiver l'option \"Synchroniser l'app et le compteur\".")
                 } else {
-                    CustomMenuPickerColor(
-                        settings: settings, icon: "paintbrush.pointed", label: "Type de teinte", selection: $settings.gaugeTintStyle, options: valuesgaugeTintStyle)
+                    CustomPickerMenu(
+                        icon: "paintbrush.pointed",
+                        label: "Type de teinte",
+                        selection: $settings.gaugeTintStyle,
+                        options: valuesgaugeTintStyle,
+                        unit: ""
+                    )
                     
-                    CustomMenuPickerColor(
-                        settings: settings,
+                    CustomPickerMenu(
                         icon: "paintpalette",
                         label: "Teinte",
                         selection: isColor ? $settings.gaugeTintColor : $settings.gaugeTintGradient,
-                        options: isColor ? valuesColorThemes : valuesGradientThemes
+                        options: isColor ? valuesColorThemes : valuesGradientThemes,
+                        unit: ""
                     )
                 }
             }
@@ -108,7 +113,7 @@ struct PersonalizationSheetSectionLine: View {
 }
 
 struct PersonalizationSheetSectionSpeedLimit: View {
-    @ObservedObject var settings: SettingsModel
+    @EnvironmentObject var settings: SettingsModel
     
     var body: some View {
         Section(
@@ -118,34 +123,35 @@ struct PersonalizationSheetSectionSpeedLimit: View {
                 )
         ) {
             CustomToggle(
-                settings: settings,
                 icon: settings.showGaugeSpeedLimit ? "lightswitch.on" : "lightswitch.off",
                 label: "Afficher",
                 isOn: $settings.showGaugeSpeedLimit
             )
+            .blur(radius: 4)
             
             if settings.showGaugeSpeedLimit {
-                CustomMenuPickerColor(
-                    settings: settings,
+                CustomPickerMenu(
                     icon: "speedometer",
                     label: "Vitesse",
                     selection: $settings.gaugeSpeedLimit,
-                    options: valuesSpeeds
+                    options: valuesSpeeds,
+                    unit: settings.speedUnit
                 )
+                .blur(radius: 4)
                 
                 CustomToggle(
-                    settings: settings,
                     icon: settings.showGaugeSpeedLimitFlash ? "bolt" : "bolt.slash",
                     label: "Alerte visuelle",
                     isOn: $settings.showGaugeSpeedLimitFlash
                 )
+                .blur(radius: 4)
                 
                 CustomToggle(
-                    settings: settings,
                     icon: settings.showGaugeSpeedLimitSound ? "speaker.wave.3" : "speaker.slash",
                     label: "Alerte sonore",
                     isOn: $settings.showGaugeSpeedLimitSound
                 )
+                .blur(radius: 4)
             }
         }
     }

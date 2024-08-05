@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct CustomToggle: View {
-    @ObservedObject var settings: SettingsModel
+    @EnvironmentObject var settings: SettingsModel
+
     var icon: String
     var label: String
     @Binding var isOn: Bool
@@ -10,12 +11,14 @@ struct CustomToggle: View {
         HStack {
             Image(systemName: icon)
                 .frame(width: 30, height: 45)
-                .foregroundColor(.secondary)
+                .foregroundColor(
+                    .secondary
+                )
             
             Toggle(label, isOn: $isOn)
                 .toggleStyle(
                     SwitchToggleStyle(
-                        tint: Color(getColor(for: settings.appTint))
+                        tint: Color(getColor(settings.appTint))
                     )
                 )
                 .font(

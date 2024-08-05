@@ -1,16 +1,33 @@
 import SwiftUI
 
 struct GPSView: View {
-    @ObservedObject var settings: SettingsModel
-    @ObservedObject var locationManager = LocationManager()
+    @EnvironmentObject var settings: SettingsModel
+    @EnvironmentObject var locationManager: LocationManager
     
+    private var convertSpeed: Double {
+        if settings.speedUnit == "Mph" {
+            return metersPerSecondToMilesPerHour(locationManager.speed)
+        } else {
+            return metersPerSecondToKilometersPerHour(locationManager.speed)
+        }
+    }
+
     var body: some View {
         NavigationStack {
             VStack {
                 Spacer()
-                CustomGauge(settings: settings, speed: locationManager.speed, size: 300)
+                
+                CustomGauge(
+                    speed: convertSpeed,
+                    gpsAccuracy: locationManager.gpsAccuracy,
+                    temperature: locationManager.temperature,
+                    size: 300
+                )
+                
                 Spacer()
-                CustomDashboard(settings: settings, locationManager: locationManager)
+                
+                CustomDashboard()
+                
                 Spacer()
             }
         }

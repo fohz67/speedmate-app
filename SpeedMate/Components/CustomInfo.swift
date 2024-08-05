@@ -1,34 +1,43 @@
 import SwiftUI
 
 struct CustomInfo: View {
-    @ObservedObject var settings: SettingsModel
+    @EnvironmentObject var settings: SettingsModel
+
     var label: String
     var value: String
     var unit: String
     
-    var getFont: String {
-        unit.isEmpty ? "Universo-Bold" : "Universo-Black"
+    private var getFont: String {
+        return unit.isEmpty ? "Universo-Bold" : "Universo-Black"
+    }
+    
+    private var getLabelSize: Double {
+        return unit.isEmpty ? 15 : 17
+    }
+    
+    private var getValueSize: Double {
+        return unit.isEmpty ? 22 : 30
     }
     
     var body: some View {
         VStack(alignment: .center) {
             Text(label)
                 .font(
-                    .custom("Universo-Light", size: 17)
+                    .custom("Universo-Light", size: getLabelSize)
                 )
                 .foregroundColor(.secondary)
             
             HStack {
                 Text(value)
                     .font(
-                        .custom(getFont, size: unit.isEmpty ? 24 : 30)
+                        .custom(getFont, size: getValueSize)
                     )
                 
                 Text(unit)
                     .font(
                         .custom("Universo-Regular", size: 20)
                     )
-                    .foregroundColor(Color(getColor(for: settings.appTint)))
+                    .foregroundColor(Color(getColor(settings.appTint)))
             }
         }
     }

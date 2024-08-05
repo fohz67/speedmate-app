@@ -1,6 +1,6 @@
 import SwiftUI
 
-func getGradient(for color: String) -> LinearGradient {
+func getGradient(_ color: String) -> LinearGradient {
     switch color {
     case "Rouge":
         return LinearGradient(
@@ -107,7 +107,7 @@ func getGradient(for color: String) -> LinearGradient {
     }
 }
 
-func getGradientUnique(for color: String) -> LinearGradient {
+func getGradientUnique(_ color: String) -> LinearGradient {
     switch color {
     case "Rouge":
         return LinearGradient(

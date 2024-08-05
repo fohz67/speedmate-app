@@ -1,15 +1,16 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @ObservedObject var settings: SettingsModel
+    @EnvironmentObject var settings: SettingsModel
     
     var body: some View {
         NavigationStack {
             VStack {
                 Form {
-                    SettingsViewSectionGauge(settings: settings)
-                    SettingsViewSectionUnits(settings: settings)
-                    SettingsViewSectionApplication(settings: settings)
+                    SettingsViewSectionGauge()
+                    SettingsViewSectionUnits()
+                    SettingsViewSectionTheming()
+                    SettingsViewSectionApplication()
                 }
             }
             .navigationTitle("‎‎ Réglages")

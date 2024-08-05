@@ -1,33 +1,28 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var settings = SettingsModel()
+    @EnvironmentObject var settings: SettingsModel
+    @EnvironmentObject var locationManager: LocationManager
     
     var body: some View {
         TabView {
-            GPSView(settings: settings)
+            GPSView()
                 .tabItem {
                     Image(systemName: "location.fill")
                     Text("GPS")
                 }
-            ProfileView(settings: settings)
+            ProfileView()
                 .tabItem {
                     Image(systemName: "person.fill")
                     Text("Profil")
                 }
-            SettingsView(settings: settings)
+            SettingsView()
                 .tabItem {
                     Image(systemName: "gearshape.fill")
                     Text("Réglages")
                 }
         }
-        .accentColor(Color(getColor(for: settings.appTint)))
-        .preferredColorScheme(getColorScheme(for: settings.appAppearance))
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        .accentColor(Color(getColor(settings.appTint)))
+        .preferredColorScheme(getColorScheme(settings.appAppearance))
     }
 }

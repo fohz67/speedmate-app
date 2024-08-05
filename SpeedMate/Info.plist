@@ -11,9 +11,5 @@
 		<string>Universo-Thin.ttf</string>
 		<string>Universo-Black.ttf</string>
 	</array>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>We need your location to provide GPS tracking.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We need your location to provide GPS tracking.</string>
 </dict>
 </plist>

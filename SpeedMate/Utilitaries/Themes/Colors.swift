@@ -30,7 +30,7 @@ extension Color {
     }
 }
 
-func getColor(for color: String) -> Color {
+func getColor(_ color: String) -> Color {
     switch color {
     case "Rouge":
         return Color(hex: "c21f3b")

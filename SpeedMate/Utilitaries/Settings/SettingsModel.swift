@@ -1,17 +1,38 @@
 import SwiftUI
 
+var _SPEED_UNIT: String = "Km/h"
+var _TEMPERATURE_UNIT: String = "Celsius"
+var _NAVIGATION_STARTING_SPEED: Double = 15
+
 class SettingsModel: ObservableObject {
     // Compteur de vitesse
     @AppStorage("showGPSPrecision") var showGPSPrecision = true
     @AppStorage("speedometerSide") var speedometerSide = "Gauche"
     
     // Unités
-    @AppStorage("speedUnit") var speedUnit = "Km/h"
+    @AppStorage("speedUnit") var speedUnit = "Km/h" {
+        didSet {
+            _SPEED_UNIT = speedUnit
+        }
+    }
     @AppStorage("distanceUnit") var distanceUnit = "Km"
-    @AppStorage("temperatureUnit") var temperatureUnit = "Celsius"
+    @AppStorage("temperatureUnit") var temperatureUnit = "Celsius" {
+        didSet {
+            _TEMPERATURE_UNIT = temperatureUnit
+        }
+    }
+    @AppStorage("altitudeUnit") var altitudeUnit = "M"
+    
+    // Navigation
+    @AppStorage("navigationStartingSpeed") var navigationStartingSpeed = "15" {
+        didSet {
+            _NAVIGATION_STARTING_SPEED = (Double(navigationStartingSpeed) ?? 15)
+        }
+    }
     
     // Application
     @AppStorage("appAppearance") var appAppearance = "Auto"
+    @AppStorage("antiWake") var antiWake = true
     @AppStorage("appTint") var appTint = "Violet"
     @AppStorage("appTintSync") var appTintSync = true
 

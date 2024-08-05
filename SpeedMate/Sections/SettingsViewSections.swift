@@ -1,51 +1,72 @@
 import SwiftUI
 
 struct SettingsViewSectionGauge: View {
-    @ObservedObject var settings: SettingsModel
+    @EnvironmentObject var settings: SettingsModel
+
     @State private var isShowingCustomization = false
 
     var body: some View {
         Section(
-            header: Text("Compteur de vitesse")
+            header: Text("Compteur")
                 .font(
                     .custom("Universo-Regular", size: 12)
                 )
                 .padding(.top, 25)
         ) {
             CustomToggle(
-                settings: settings,
                 icon: "location.circle",
                 label: "Afficher la précision GPS",
                 isOn: $settings.showGPSPrecision
             )
             
-            CustomSegmentedPicker(
-                settings: settings,
+            CustomPickerSegmented(
                 icon: "arrow.left.arrow.right",
                 label: "Côté du compteur",
                 selection: $settings.speedometerSide,
-                options: valuesSpeedometerSide
+                options: valuesSpeedometerSide,
+                unit: ""
             )
+            .blur(radius: 4)
             
             CustomText(label: "Lorsque l'application est en mode paysage.")
             
             CustomButton(
-                settings: settings,
                 icon: "paintbrush",
                 label: "Personnalisation"
             ) {
                 isShowingCustomization.toggle()
             }
             .sheet(isPresented: $isShowingCustomization) {
-                PersonalizationSheet(settings: settings)
+                PersonalizationSheet()
             }
-            .accentColor(Color(getColor(for: settings.appTint)))
+            .accentColor(Color(getColor(settings.appTint)))
+        }
+    }
+}
+
+struct SettingsViewSectionNavigation: View {
+    @EnvironmentObject var settings: SettingsModel
+    
+    var body: some View {
+        Section(
+            header: Text("Navigation")
+                .font(
+                    .custom("Universo-Regular", size: 12)
+                )
+        ) {
+            CustomPickerMenu(
+                icon: "navigation",
+                label: "Vitesse de mise en route",
+                selection: $settings.navigationStartingSpeed,
+                options: valuesStartingSpeed,
+                unit: settings.speedUnit
+            )
         }
     }
 }
 
 struct SettingsViewSectionUnits: View {
-    @ObservedObject var settings: SettingsModel
+    @EnvironmentObject var settings: SettingsModel
     
     var body: some View {
         Section(
@@ -54,35 +75,78 @@ struct SettingsViewSectionUnits: View {
                     .custom("Universo-Regular", size: 12)
                 )
         ) {
-            CustomSegmentedPicker(
-                settings: settings,
+            CustomPickerSegmented(
                 icon: "speedometer",
                 label: "Vitesse",
                 selection: $settings.speedUnit,
-                options: valuesSpeedUnit
+                options: valuesSpeedUnit,
+                unit: ""
             )
             
-            CustomSegmentedPicker(
-                settings: settings,
+            CustomPickerSegmented(
                 icon: "ruler",
                 label: "Distance",
                 selection: $settings.distanceUnit,
-                options: valuesDistanceUnit
+                options: valuesDistanceUnit,
+                unit: ""
             )
             
-            CustomMenuPickerColor(
-                settings: settings,
+            CustomPickerSegmented(
+                icon: "arrow.up",
+                label: "Altitude",
+                selection: $settings.altitudeUnit,
+                options: valuesAltitudeUnit,
+                unit: ""
+            )
+            
+            CustomPickerMenu(
                 icon: "thermometer",
                 label: "Température",
                 selection: $settings.temperatureUnit,
-                options: valuesTemperatureUnit
+                options: valuesTemperatureUnit,
+                unit: ""
+            )
+        }
+    }
+}
+
+struct SettingsViewSectionTheming: View {
+    @EnvironmentObject var settings: SettingsModel
+    
+    var body: some View {
+        Section(
+            header: Text("Thème")
+                .font(
+                    .custom("Universo-Regular", size: 12)
+                )
+        ) {
+            CustomPickerMenu(
+                icon: "iphone",
+                label: "Apparence",
+                selection: $settings.appAppearance,
+                options: valuesAppAppearance,
+                unit: ""
+            )
+            
+            CustomPickerMenu(
+                icon: "paintpalette",
+                label: "Teinte",
+                selection: $settings.appTint,
+                options: valuesColorThemes,
+                unit: ""
+            )
+            
+            CustomToggle(
+                icon: "arrow.triangle.2.circlepath",
+                label: "Synchroniser l'app et le compteur",
+                isOn: $settings.appTintSync
             )
         }
     }
 }
 
 struct SettingsViewSectionApplication: View {
-    @ObservedObject var settings: SettingsModel
+    @EnvironmentObject var settings: SettingsModel
     
     var body: some View {
         Section(
@@ -91,27 +155,10 @@ struct SettingsViewSectionApplication: View {
                     .custom("Universo-Regular", size: 12)
                 )
         ) {
-            CustomMenuPickerColor(
-                settings: settings,
-                icon: "paintbrush",
-                label: "Thème",
-                selection: $settings.appAppearance,
-                options: valuesAppAppearance
-            )
-            
-            CustomMenuPickerColor(
-                settings: settings,
-                icon: "paintpalette",
-                label: "Teinte de l'app",
-                selection: $settings.appTint,
-                options: valuesColorThemes
-            )
-            
             CustomToggle(
-                settings: settings,
-                icon: "arrow.triangle.2.circlepath",
-                label: "Synchroniser les teintes de l'app et du compteur",
-                isOn: $settings.appTintSync
+                icon: "moon",
+                label: "Empêcher la mise en veille",
+                isOn: $settings.antiWake
             )
         }
     }

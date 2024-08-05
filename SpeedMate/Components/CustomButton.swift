@@ -1,7 +1,8 @@
 import SwiftUI
 
 struct CustomButton: View {
-    @ObservedObject var settings: SettingsModel
+    @EnvironmentObject var settings: SettingsModel
+
     var icon: String
     var label: String
     var action: () -> Void
@@ -12,12 +13,17 @@ struct CustomButton: View {
                 Image(systemName: icon)
                     .frame(width: 30, height: 40)
                     .foregroundColor(.secondary)
+
                 Text(label)
-                    .font(.custom("Universo-Regular", size: 14))
+                    .font(
+                        .custom("Universo-Regular", size: 14)
+                    )
                     .foregroundColor(.primary)
+                
                 Spacer()
+
                 Image(systemName: "chevron.right")
-                    .foregroundColor(Color(getColor(for: settings.appTint)))
+                    .foregroundColor(Color(getColor(settings.appTint)))
             }
         }
     }
