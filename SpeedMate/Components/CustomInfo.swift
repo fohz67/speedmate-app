@@ -2,7 +2,7 @@ import SwiftUI
 
 struct CustomInfo: View {
     @EnvironmentObject var settings: SettingsModel
-
+    
     var label: String
     var value: String
     var unit: String
@@ -37,7 +37,7 @@ struct CustomInfo: View {
                     .font(
                         .custom("Universo-Regular", size: 20)
                     )
-                    .foregroundColor(Color(getColor(settings.appTint)))
+                    .foregroundColor(getAppTint(settings: settings))
             }
         }
     }

@@ -12,7 +12,7 @@ extension LocationManager {
 
 class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     private var locationManager = CLLocationManager()
-
+    
     @Published var speed: Double = 0.0
     @Published var altitude: Double = 0.0
     @Published var rideTime: TimeInterval = 0
@@ -47,10 +47,10 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         guard let location = locations.last else {
             return
         }
-
+        
         altitude = location.altitude
         gpsAccuracy = location.horizontalAccuracy
-
+        
         updateSpeed(location.speed)
         updateStart()
         updateMaxSpeed()
@@ -66,7 +66,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     private func updateStart() {
-        if !isStarted && speed >= _NAVIGATION_STARTING_SPEED {
+        if !isStarted && Int(speed) >= _NAVIGATION_STARTING_SPEED {
             isStarted = true
         }
     }
@@ -81,7 +81,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         if !isStarted {
             return
         }
-
+        
         if convertSpeed(_SPEED_UNIT, speed) > 1 {
             if stopTimer != nil {
                 stopTimer?.invalidate()
@@ -99,7 +99,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
                 rideTimer?.invalidate()
                 rideTimer = nil
             }
-
+            
             if stopTimer == nil {
                 stopTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
                     self.stoppedTime += 1

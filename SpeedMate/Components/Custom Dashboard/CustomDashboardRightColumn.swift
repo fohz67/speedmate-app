@@ -3,7 +3,7 @@ import SwiftUI
 struct CustomDashboardRightColumn: View {
     @EnvironmentObject var settings: SettingsModel
     @EnvironmentObject var locationManager: LocationManager
-
+    
     var body: some View {
         VStack(alignment: .center, spacing: 30) {
             CustomInfo(
@@ -14,7 +14,10 @@ struct CustomDashboardRightColumn: View {
             
             CustomInfo(
                 label: "ALTITUDE",
-                value: String(format: "%.0f", convertAltitude(settings.altitudeUnit, locationManager.altitude)),
+                value: String(format: "%.0f", convertAltitude(
+                    altitudeUnit: settings.altitudeUnit,
+                    altitude: locationManager.altitude
+                )),
                 unit: settings.altitudeUnit.uppercased()
             )
         }

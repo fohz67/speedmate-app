@@ -1,6 +1,6 @@
 import SwiftUI
 
-func getColorScheme(_ appAppearance: String) -> ColorScheme? {
+func getColorScheme(appAppearance: String) -> ColorScheme? {
     switch appAppearance {
     case "Clair":
         return .light

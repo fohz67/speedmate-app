@@ -4,11 +4,11 @@ extension Color {
     init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         let a, r, g, b: UInt64
-
+        
         var int: UInt64 = 0
-
+        
         Scanner(string: hex).scanHexInt64(&int)
-                
+        
         switch hex.count {
         case 3:
             (a, r, g, b) = (255, (int >> 8 * 17) & 0xFF, (int >> 4 * 17) & 0xFF, (int * 17) & 0xFF)
@@ -30,7 +30,7 @@ extension Color {
     }
 }
 
-func getColor(_ color: String) -> Color {
+func getColor(color: String) -> Color {
     switch color {
     case "Rouge":
         return Color(hex: "c21f3b")
@@ -61,4 +61,8 @@ func getColor(_ color: String) -> Color {
     default:
         return Color(hex: "8042d8")
     }
+}
+
+func getAppTint(settings: SettingsModel) -> Color {
+    return Color(getColor(color: settings.appTint))
 }

@@ -1,8 +1,6 @@
 import SwiftUI
 
-struct SettingsView: View {
-    @EnvironmentObject var settings: SettingsModel
-    
+struct SettingsView: View {    
     var body: some View {
         NavigationStack {
             VStack {

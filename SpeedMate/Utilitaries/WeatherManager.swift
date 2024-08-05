@@ -7,20 +7,18 @@ class WeatherManager: ObservableObject {
     
     let weatherService = WeatherService.shared
     var hasFetchedWeather = false
-
+    
     func fetchWeatherOnce(for location: CLLocation) {
         guard !hasFetchedWeather else {
             return
         }
-
-        let temperatureUnit = _TEMPERATURE_UNIT == "Celsius" ? UnitTemperature.celsius : UnitTemperature.fahrenheit
         
         Task {
             do {
                 let weather = try await weatherService.weather(for: location)
-
+                
                 DispatchQueue.main.async {
-                    self.temperature = weather.currentWeather.temperature.converted(to: temperatureUnit).value
+                    self.temperature = weather.currentWeather.temperature.converted(to: .celsius).value
                     self.hasFetchedWeather = true
                 }
             } catch {

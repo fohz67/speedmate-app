@@ -16,7 +16,7 @@ struct CustomGaugeMetrics: View {
     }
     
     private var getTemperatureText: String {
-        return String(format: "%.2f", temperature) + settings.temperatureUnit == "Celsius" ? "°C" : "°F"
+        return String(format: "%.2f", temperature) + (settings.temperatureUnit == "Celsius" ? "°C" : "°F")
     }
     
     var body: some View {
@@ -25,8 +25,8 @@ struct CustomGaugeMetrics: View {
                 HStack {
                     Text(getGpsAccuracyText)
                         .frame(width: geometry.size.width * 0.5, alignment: .leading)
-                        .padding(.bottom, 5)
-                        .padding(.trailing, 5)
+                        .padding(.bottom, 15)
+                        .padding(.leading, -25)
                         .font(
                             .custom("Universo-Regular", size: 18)
                         )
@@ -36,8 +36,8 @@ struct CustomGaugeMetrics: View {
                     
                     Text(getTemperatureText)
                         .frame(width: geometry.size.width * 0.5, alignment: .trailing)
-                        .padding(.bottom, 5)
-                        .padding(.leading, 5)
+                        .padding(.bottom, 15)
+                        .padding(.trailing, -25)
                         .font(
                             .custom("Universo-Regular", size: 18)
                         )
@@ -47,21 +47,21 @@ struct CustomGaugeMetrics: View {
                 Spacer()
                 
                 HStack {
-                    Text("Test3")
+                    Text("")
                         .frame(width: geometry.size.width * 0.5, alignment: .leading)
-                        .padding(.top, 5)
-                        .padding(.trailing, 5)
+                        .padding(.top, 15)
+                        .padding(.leading, -25)
                         .font(
                             .custom("Universo-Regular", size: 18)
                         )
                         .foregroundColor(.secondary)
-                    
+
                     Spacer()
                     
-                    Text("Test4")
+                    Text("")
                         .frame(width: geometry.size.width * 0.5, alignment: .trailing)
-                        .padding(.top, 5)
-                        .padding(.leading, 5)
+                        .padding(.top, 15)
+                        .padding(.trailing, -25)
                         .font(
                             .custom("Universo-Regular", size: 20)
                         )

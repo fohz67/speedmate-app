@@ -19,7 +19,6 @@ struct CustomDashboard: View {
             }
             
             CustomDashboardTimeBox()
-
         }
     }
 }

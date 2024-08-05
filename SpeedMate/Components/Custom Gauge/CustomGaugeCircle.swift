@@ -8,11 +8,11 @@ struct CustomGaugeCircle: View {
     
     private var getTint: LinearGradient {
         if settings.appTintSync {
-            return getGradientUnique(settings.appTint)
+            return getGradientUnique(color:  settings.appTint)
         } else if settings.gaugeTintStyle == "Couleur" {
-            return getGradientUnique(settings.gaugeTintColor)
+            return getGradientUnique(color: settings.gaugeTintColor)
         } else {
-            return getGradient(settings.gaugeTintGradient)
+            return getGradient(color: settings.gaugeTintGradient)
         }
     }
     

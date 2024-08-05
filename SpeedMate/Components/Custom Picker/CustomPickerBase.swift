@@ -33,7 +33,7 @@ struct CustomPickerBase<PickerStyleType: PickerStyle>: View {
                     Text(getText(for: option)).tag(option)
                 }
             }
-            .accentColor(Color(getColor(settings.appTint)))
+            .accentColor(getAppTint(settings: settings))
             .pickerStyle(style)
             .frame(width: frameWidth)
         }

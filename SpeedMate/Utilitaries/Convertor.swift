@@ -30,7 +30,15 @@ func convertSpeed(_ speedUnit: String, _ speed: Double) -> Double {
     }
 }
 
-func convertTotalDistance(_ distanceUnit: String, _ totalDistance: Double) -> Double {
+func convertSpeed(speedUnit: String, speed: Double) -> Double {
+    if speedUnit == "Mph" {
+        return metersPerSecondToMilesPerHour(speed)
+    } else {
+        return metersPerSecondToKilometersPerHour(speed)
+    }
+}
+
+func convertTotalDistance(distanceUnit: String, totalDistance: Double) -> Double {
     if distanceUnit == "Miles" {
         return metersToMiles(totalDistance)
     } else {
@@ -38,12 +46,10 @@ func convertTotalDistance(_ distanceUnit: String, _ totalDistance: Double) -> Do
     }
 }
 
-func convertAltitude(_ altitudeUnit: String, _ altitude: Double) -> Double {
+func convertAltitude(altitudeUnit: String, altitude: Double) -> Double {
     if altitudeUnit == "Feet" {
         return metersToFeet(altitude)
     } else {
         return altitude
     }
 }
-
-

@@ -1,11 +1,13 @@
 import SwiftUI
 
-struct CustomToggle: View {
+struct CustomNumberSelector: View {
     @EnvironmentObject var settings: SettingsModel
     
     var icon: String
     var label: String
-    @Binding var isOn: Bool
+    @Binding var value: Int
+    var range: ClosedRange<Int>
+    var step: Int
     
     var body: some View {
         HStack {
@@ -13,14 +15,18 @@ struct CustomToggle: View {
                 .frame(width: 30, height: 45)
                 .foregroundColor(.secondary)
             
-            Toggle(label, isOn: $isOn)
-                .toggleStyle(
-                    SwitchToggleStyle(
-                        tint: getAppTint(settings: settings)
-                    )
-                )
+            Text(label)
                 .font(
                     .custom("Universo-Regular", size: 14)
+                )
+            
+            Stepper(value: $value, in: range, step: step) {
+                EmptyView()
+            }
+            
+            Text(String(value))
+                .font(
+                    .custom("Universo-Bold", size: 14)
                 )
         }
     }

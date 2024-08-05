@@ -2,7 +2,6 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject var settings: SettingsModel
-    @EnvironmentObject var locationManager: LocationManager
     
     var body: some View {
         TabView {
@@ -22,7 +21,7 @@ struct ContentView: View {
                     Text("Réglages")
                 }
         }
-        .accentColor(Color(getColor(settings.appTint)))
-        .preferredColorScheme(getColorScheme(settings.appAppearance))
+        .accentColor(getAppTint(settings: settings))
+        .preferredColorScheme(getColorScheme(appAppearance: settings.appAppearance))
     }
 }

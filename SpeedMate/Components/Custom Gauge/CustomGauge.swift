@@ -37,7 +37,7 @@ struct CustomGauge: View {
     var size: Double
     
     private var getMaxSpeed: Double {
-        return (Double(settings.gaugeMaximumSpeed) ?? 999)
+        return (Double(settings.gaugeMaximumSpeed))
     }
     
     private var getGaugeValue: Double {

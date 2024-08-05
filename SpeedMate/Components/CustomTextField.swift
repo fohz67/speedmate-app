@@ -1,11 +1,11 @@
 import SwiftUI
 
-struct CustomToggle: View {
+struct CustomTextField: View {
     @EnvironmentObject var settings: SettingsModel
     
     var icon: String
     var label: String
-    @Binding var isOn: Bool
+    @Binding var text: String
     
     var body: some View {
         HStack {
@@ -13,12 +13,8 @@ struct CustomToggle: View {
                 .frame(width: 30, height: 45)
                 .foregroundColor(.secondary)
             
-            Toggle(label, isOn: $isOn)
-                .toggleStyle(
-                    SwitchToggleStyle(
-                        tint: getAppTint(settings: settings)
-                    )
-                )
+            TextField(label, text: $text)
+                .textFieldStyle(PlainTextFieldStyle())
                 .font(
                     .custom("Universo-Regular", size: 14)
                 )

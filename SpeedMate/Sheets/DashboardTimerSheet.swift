@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct PersonalizationSheet: View {
+struct DashboardTimerSheet: View {
     @EnvironmentObject var settings: SettingsModel
     
     var body: some View {
@@ -12,10 +12,7 @@ struct PersonalizationSheet: View {
                 .foregroundColor(.gray)
             
             Form {
-                PersonalizationSheetSectionPreview()
-                PersonalizationSheetSectionGauge()
-                PersonalizationSheetSectionLine()
-                PersonalizationSheetSectionSpeedLimit()
+                CustomText(label: "Soon")
             }
         }
     }

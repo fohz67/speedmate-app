@@ -3,24 +3,17 @@ import SwiftUI
 struct GPSView: View {
     @EnvironmentObject var settings: SettingsModel
     @EnvironmentObject var locationManager: LocationManager
+    @EnvironmentObject var weatherManager: WeatherManager
     
-    private var convertSpeed: Double {
-        if settings.speedUnit == "Mph" {
-            return metersPerSecondToMilesPerHour(locationManager.speed)
-        } else {
-            return metersPerSecondToKilometersPerHour(locationManager.speed)
-        }
-    }
-
     var body: some View {
         NavigationStack {
             VStack {
                 Spacer()
                 
                 CustomGauge(
-                    speed: convertSpeed,
+                    speed: convertSpeed(speedUnit: settings.speedUnit, speed: locationManager.speed),
                     gpsAccuracy: locationManager.gpsAccuracy,
-                    temperature: locationManager.temperature,
+                    temperature: weatherManager.temperature,
                     size: 300
                 )
                 

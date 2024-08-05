@@ -4,17 +4,21 @@ import SwiftUI
 struct SpeedMateApp: App {
     @StateObject var locationManager = LocationManager()
     @StateObject var settings = SettingsModel()
+    @StateObject var profile = ProfileModel()
     @StateObject var weatherManager = WeatherManager()
-    
+
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environmentObject(locationManager)
                 .environmentObject(settings)
+                .environmentObject(profile)
                 .environmentObject(weatherManager)
                 .onAppear {
-                    UIApplication.shared.isIdleTimerDisabled = true
-                    fetchInitialData()
+                    if settings.antiWake {
+                        UIApplication.shared.isIdleTimerDisabled = true
+                    }
+                    fetchWeather()
                 }
                 .onDisappear {
                     UIApplication.shared.isIdleTimerDisabled = false
@@ -22,7 +26,7 @@ struct SpeedMateApp: App {
         }
     }
     
-    private func fetchInitialData() {
+    private func fetchWeather() {
         locationManager.requestInitialLocation { location in
             weatherManager.fetchWeatherOnce(for: location)
         }
