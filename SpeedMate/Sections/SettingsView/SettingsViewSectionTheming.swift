@@ -10,7 +10,7 @@ struct SettingsViewSectionTheming: View {
                     .custom("Universo-Regular", size: 12)
                 )
         ) {
-            CustomPickerMenu(
+            CustomPicker(
                 icon: "iphone",
                 label: "Apparence",
                 selection: $settings.appAppearance,
@@ -18,7 +18,7 @@ struct SettingsViewSectionTheming: View {
                 unit: ""
             )
             
-            CustomPickerMenu(
+            CustomPicker(
                 icon: "paintpalette",
                 label: "Teinte",
                 selection: $settings.appTint,

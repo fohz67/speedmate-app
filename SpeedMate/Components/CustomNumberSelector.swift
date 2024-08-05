@@ -20,14 +20,18 @@ struct CustomNumberSelector: View {
                     .custom("Universo-Regular", size: 14)
                 )
             
-            Stepper(value: $value, in: range, step: step) {
-                EmptyView()
-            }
+            Spacer()
             
             Text(String(value))
                 .font(
                     .custom("Universo-Bold", size: 14)
                 )
+                .foregroundColor(getAppTint(settings: settings))
+                .padding(.top, 4)
+                .padding(.trailing, 8)
+            
+            Stepper("", value: $value, in: range, step: step)
+                .labelsHidden()
         }
     }
 }

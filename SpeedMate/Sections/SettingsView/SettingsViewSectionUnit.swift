@@ -10,7 +10,7 @@ struct SettingsViewSectionUnits: View {
                     .custom("Universo-Regular", size: 12)
                 )
         ) {
-            CustomPickerSegmented(
+            CustomPicker(
                 icon: "speedometer",
                 label: "Vitesse",
                 selection: $settings.speedUnit,
@@ -18,7 +18,7 @@ struct SettingsViewSectionUnits: View {
                 unit: ""
             )
             
-            CustomPickerSegmented(
+            CustomPicker(
                 icon: "ruler",
                 label: "Distance",
                 selection: $settings.distanceUnit,
@@ -26,7 +26,7 @@ struct SettingsViewSectionUnits: View {
                 unit: ""
             )
             
-            CustomPickerSegmented(
+            CustomPicker(
                 icon: "arrow.up",
                 label: "Altitude",
                 selection: $settings.altitudeUnit,
@@ -34,7 +34,7 @@ struct SettingsViewSectionUnits: View {
                 unit: ""
             )
             
-            CustomPickerMenu(
+            CustomPicker(
                 icon: "thermometer",
                 label: "Température",
                 selection: $settings.temperatureUnit,

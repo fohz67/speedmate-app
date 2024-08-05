@@ -29,7 +29,7 @@ struct PersonalizationSheetSectionLine: View {
                     step: 5
                 )
                 
-                CustomPickerMenu(
+                CustomPicker(
                     icon: "scribble",
                     label: "Finition",
                     selection: $settings.gaugeStyleCorner,
@@ -40,7 +40,7 @@ struct PersonalizationSheetSectionLine: View {
                 if settings.appTintSync {
                     CustomText(label: "Pour modifier l'apparence de la courbe indépendamment du compteur, veuillez désactiver l'option \"Synchroniser l'app et le compteur\".")
                 } else {
-                    CustomPickerMenu(
+                    CustomPicker(
                         icon: "paintbrush.pointed",
                         label: "Type de teinte",
                         selection: $settings.gaugeTintStyle,
@@ -48,7 +48,7 @@ struct PersonalizationSheetSectionLine: View {
                         unit: ""
                     )
                     
-                    CustomPickerMenu(
+                    CustomPicker(
                         icon: "paintpalette",
                         label: "Teinte",
                         selection: isColor ? $settings.gaugeTintColor : $settings.gaugeTintGradient,

@@ -19,7 +19,7 @@ struct SettingsViewSectionGauge: View {
                 isOn: $settings.showGPSPrecision
             )
             
-            CustomPickerSegmented(
+            CustomPicker(
                 icon: "arrow.left.arrow.right",
                 label: "Côté du compteur",
                 selection: $settings.speedometerSide,

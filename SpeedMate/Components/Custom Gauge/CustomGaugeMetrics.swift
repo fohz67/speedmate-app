@@ -2,7 +2,7 @@ import SwiftUI
 
 struct CustomGaugeMetrics: View {
     @EnvironmentObject var settings: SettingsModel
-
+    
     var size: CGFloat
     var gpsAccuracy: Double
     var temperature: Double
@@ -23,25 +23,37 @@ struct CustomGaugeMetrics: View {
         GeometryReader { geometry in
             VStack {
                 HStack {
-                    Text(getGpsAccuracyText)
-                        .frame(width: geometry.size.width * 0.5, alignment: .leading)
-                        .padding(.bottom, 15)
-                        .padding(.leading, -25)
-                        .font(
-                            .custom("Universo-Regular", size: 18)
-                        )
-                        .foregroundColor(.secondary)
+                    HStack {
+                        Image(systemName: "")
+                            .frame(width: 30, height: 45)
+                            .foregroundColor(.secondary)
+                        
+                        Text(getGpsAccuracyText)
+                            .frame(width: geometry.size.width * 0.5, alignment: .leading)
+                            .padding(.bottom, 15)
+                            .padding(.leading, -25)
+                            .font(
+                                .custom("Universo-Regular", size: 14)
+                            )
+                            .foregroundColor(.secondary)
+                    }
                     
                     Spacer()
                     
-                    Text(getTemperatureText)
-                        .frame(width: geometry.size.width * 0.5, alignment: .trailing)
-                        .padding(.bottom, 15)
-                        .padding(.trailing, -25)
-                        .font(
-                            .custom("Universo-Regular", size: 18)
-                        )
-                        .foregroundColor(.secondary)
+                    HStack {
+                        Image(systemName: "")
+                            .frame(width: 30, height: 45)
+                            .foregroundColor(.secondary)
+                        
+                        Text(getTemperatureText)
+                            .frame(width: geometry.size.width * 0.5, alignment: .trailing)
+                            .padding(.bottom, 15)
+                            .padding(.trailing, -25)
+                            .font(
+                                .custom("Universo-Regular", size: 14)
+                            )
+                            .foregroundColor(.secondary)
+                    }
                 }
                 
                 Spacer()
@@ -52,10 +64,10 @@ struct CustomGaugeMetrics: View {
                         .padding(.top, 15)
                         .padding(.leading, -25)
                         .font(
-                            .custom("Universo-Regular", size: 18)
+                            .custom("Universo-Regular", size: 14)
                         )
                         .foregroundColor(.secondary)
-
+                    
                     Spacer()
                     
                     Text("")
@@ -63,7 +75,7 @@ struct CustomGaugeMetrics: View {
                         .padding(.top, 15)
                         .padding(.trailing, -25)
                         .font(
-                            .custom("Universo-Regular", size: 20)
+                            .custom("Universo-Regular", size: 14)
                         )
                         .foregroundColor(.secondary)
                 }

@@ -14,7 +14,7 @@ struct PersonalizationSheetSectionPreview: View {
                 Spacer()
                 
                 CustomGauge(
-                    speed: (Double(settings.gaugeMaximumSpeed) ?? 999),
+                    speed: Double(settings.gaugeMaximumSpeed),
                     gpsAccuracy: -67,
                     temperature: -67,
                     size: 160
