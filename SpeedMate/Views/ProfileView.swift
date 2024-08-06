@@ -7,7 +7,7 @@ struct ProfileView: View {
                 Form {
                     ProfileViewSectionYou()
                     ProfileViewSectionVehicle()
-                    ProfileViewSectionStatistics()
+                    //ProfileViewSectionStatistics()
                 }
             }
             .navigationTitle("‎ Profil")

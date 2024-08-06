@@ -7,18 +7,6 @@ struct CustomInfo: View {
     var value: String
     var unit: String
     
-    private var getFont: String {
-        return unit.isEmpty ? "Universo-Bold" : "Universo-Black"
-    }
-    
-    private var getLabelSize: Double {
-        return unit.isEmpty ? 15 : 17
-    }
-    
-    private var getValueSize: Double {
-        return unit.isEmpty ? 22 : 30
-    }
-    
     var body: some View {
         VStack(alignment: .center) {
             Text(label)
@@ -40,5 +28,17 @@ struct CustomInfo: View {
                     .foregroundColor(getAppTint(settings: settings))
             }
         }
+    }
+    
+    private var getFont: String {
+        return unit.isEmpty ? "Universo-Bold" : "Universo-Black"
+    }
+    
+    private var getLabelSize: Double {
+        return unit.isEmpty ? 15 : 17
+    }
+    
+    private var getValueSize: Double {
+        return unit.isEmpty ? 22 : 30
     }
 }

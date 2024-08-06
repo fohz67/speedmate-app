@@ -13,22 +13,15 @@ struct SettingsViewSectionGauge: View {
                 )
                 .padding(.top, 25)
         ) {
-            CustomToggle(
-                icon: "location.circle",
-                label: "Afficher la précision GPS",
-                isOn: $settings.showGPSPrecision
-            )
-            
-            CustomPicker(
+            /*CustomPicker(
                 icon: "arrow.left.arrow.right",
                 label: "Côté du compteur",
                 selection: $settings.speedometerSide,
                 options: valuesSpeedometerSide,
                 unit: ""
             )
-            .blur(radius: 4)
             
-            CustomText(label: "Lorsque l'application est en mode paysage.")
+            CustomText(label: "Lorsque l'application est en mode paysage.")*/
             
             CustomButton(
                 icon: "paintbrush",

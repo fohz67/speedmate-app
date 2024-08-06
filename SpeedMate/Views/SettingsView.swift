@@ -6,6 +6,7 @@ struct SettingsView: View {
             VStack {
                 Form {
                     SettingsViewSectionGauge()
+                    SettingsViewSectionMetrics()
                     SettingsViewSectionUnits()
                     SettingsViewSectionTheming()
                     SettingsViewSectionApplication()

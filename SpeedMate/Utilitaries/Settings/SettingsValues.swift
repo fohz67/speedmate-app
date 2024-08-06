@@ -3,6 +3,14 @@ var valuesSpeedometerSide = [
     "Droite"
 ]
 
+var valuesPosition = [
+    "Ne pas afficher",
+    "En haut à gauche",
+    "En haut à droite",
+    "En bas à gauche",
+    "En bas à droite"
+]
+
 var valuesSpeedUnit = [
     "Km/h",
     "Mph"

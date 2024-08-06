@@ -13,12 +13,23 @@ struct CustomTextField: View {
                 .frame(width: 30, height: 45)
                 .foregroundColor(.secondary)
             
-            TextField(label, text: $text)
-                .textFieldStyle(PlainTextFieldStyle())
+            Text(label)
+                .font(
+                    .custom("Universo-Bold", size: 14)
+                )
+                .padding(.top, 2)
+            
+            Spacer()
+            
+            TextField("Aa", text: $text)
                 .font(
                     .custom("Universo-Regular", size: 14)
                 )
+                .foregroundColor(getAppTint(settings: settings))
                 .padding(.top, 2)
+                .multilineTextAlignment(.trailing)
+                .frame(maxWidth: 200)
+                .textFieldStyle(PlainTextFieldStyle())
         }
     }
 }

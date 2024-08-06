@@ -18,6 +18,7 @@ struct CustomButton: View {
                     .font(
                         .custom("Universo-Regular", size: 14)
                     )
+                    .padding(.top, 2)
                     .foregroundColor(.primary)
                 
                 Spacer()

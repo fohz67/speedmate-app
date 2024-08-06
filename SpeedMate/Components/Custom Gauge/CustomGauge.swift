@@ -36,23 +36,12 @@ struct CustomGauge: View {
     var temperature: Double
     var size: Double
     
-    private var getMaxSpeed: Double {
-        return (Double(settings.gaugeMaximumSpeed))
-    }
-    
-    private var getGaugeValue: Double {
-        return speed > getMaxSpeed ? getMaxSpeed : speed
-    }
-    
     var body: some View {
         ZStack {
             if gpsAccuracy != -67 && temperature != -67 {
                 CustomGaugeMetrics(
                     size: size,
-                    metrics: [
-                        MetricGPSAccuracy(gpsAccuracy: gpsAccuracy),
-                        MetricTemperature(temperature: temperature),
-                    ]
+                    metrics: metrics
                 )
             }
             
@@ -69,5 +58,53 @@ struct CustomGauge: View {
             .gaugeStyle(CustomGaugeStyle(size: size))
         }
         .frame(width: size, height: size)
+    }
+    
+    private var getMaxSpeed: Double {
+        return (Double(settings.gaugeMaximumSpeed))
+    }
+    
+    private var getGaugeValue: Double {
+        return speed > getMaxSpeed ? getMaxSpeed : speed
+    }
+    
+    private var metrics: [Metric?] {
+        var metricsArray: [Metric?] = Array(repeating: nil, count: 4)
+        
+        func positionIndex(for position: String) -> Int {
+            switch position {
+            case "En haut à gauche":
+                return 0
+            case "En haut à droite":
+                return 1
+            case "En bas à gauche":
+                return 2
+            case "En bas à droite":
+                return 3
+            default:
+                return -1
+            }
+        }
+        
+        let positions = [
+            settings.GPSPrecisionPosition,
+            settings.temperaturePosition,
+        ]
+        
+        let metricsToInsert: [Metric?] = [
+            MetricGPSAccuracy(gpsAccuracy: gpsAccuracy),
+            MetricTemperature(temperature: temperature),
+            nil,
+            nil,
+        ]
+        
+        for (index, position) in positions.enumerated() {
+            let posIndex = positionIndex(for: position)
+            if posIndex != -1 {
+                metricsArray[posIndex] = metricsToInsert[index]
+            }
+        }
+        
+        return metricsArray
     }
 }

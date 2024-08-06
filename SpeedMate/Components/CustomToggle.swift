@@ -14,13 +14,13 @@ struct CustomToggle: View {
                 .foregroundColor(.secondary)
             
             Toggle(label, isOn: $isOn)
+                .font(
+                    .custom("Universo-Regular", size: 14)
+                )
                 .toggleStyle(
                     SwitchToggleStyle(
                         tint: getAppTint(settings: settings)
                     )
-                )
-                .font(
-                    .custom("Universo-Regular", size: 14)
                 )
         }
     }

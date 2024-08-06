@@ -12,7 +12,7 @@ struct DashboardTimerSheet: View {
                 .foregroundColor(.gray)
             
             Form {
-                CustomText(label: "Soon")
+                CustomText(label: "Bientôt.")
             }
         }
     }

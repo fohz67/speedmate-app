@@ -5,9 +5,12 @@ var _NAVIGATION_STARTING_SPEED: Int = 15
 
 class SettingsModel: ObservableObject {
     // Compteur de vitesse
-    @AppStorage("showGPSPrecision") var showGPSPrecision = true
     @AppStorage("speedometerSide") var speedometerSide = "Gauche"
     
+    // Métriques
+    @AppStorage("GPSPrecisionPosition") var GPSPrecisionPosition = "En haut à gauche"
+    @AppStorage("temperaturePosition") var temperaturePosition = "En haut à droite"
+
     // Unités
     @AppStorage("speedUnit") var speedUnit = "Km/h" {
         didSet {

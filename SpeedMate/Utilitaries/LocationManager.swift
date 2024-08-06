@@ -59,9 +59,9 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     
     private func updateSpeed(_ locationSpeed: Double) {
         if locationSpeed < 0 {
-            speed = 200 + 0
+            speed = 0
         } else {
-            speed = 200 + locationSpeed
+            speed = locationSpeed
         }
     }
     

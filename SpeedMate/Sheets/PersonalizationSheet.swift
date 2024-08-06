@@ -15,7 +15,7 @@ struct PersonalizationSheet: View {
                 PersonalizationSheetSectionPreview()
                 PersonalizationSheetSectionGauge()
                 PersonalizationSheetSectionLine()
-                PersonalizationSheetSectionSpeedLimit()
+                //PersonalizationSheetSectionSpeedLimit()
             }
         }
     }

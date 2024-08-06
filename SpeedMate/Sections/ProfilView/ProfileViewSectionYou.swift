@@ -23,6 +23,12 @@ struct ProfileViewSectionYou: View {
                 text: $profile.lastName
             )
             
+            CustomTextField(
+                icon: "person.crop.circle",
+                label: "Pseudo",
+                text: $profile.nickname
+            )
+            
             CustomNumberSelector(
                 icon: "birthday.cake",
                 label: "Âge",

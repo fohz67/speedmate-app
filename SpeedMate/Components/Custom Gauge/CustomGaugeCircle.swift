@@ -6,20 +6,6 @@ struct CustomGaugeCircle: View {
     var configuration: GaugeStyleConfiguration
     var size: Double
     
-    private var getTint: LinearGradient {
-        if settings.appTintSync {
-            return getGradientUnique(color:  settings.appTint)
-        } else if settings.gaugeTintStyle == "Couleur" {
-            return getGradientUnique(color: settings.gaugeTintColor)
-        } else {
-            return getGradient(color: settings.gaugeTintGradient)
-        }
-    }
-    
-    private var getLineCap: CGLineCap {
-        return settings.gaugeStyleCorner == "Arrondi" ? .round : .square
-    }
-    
     var body: some View {
         let strokeWidth = size / 15
         
@@ -34,5 +20,19 @@ struct CustomGaugeCircle: View {
             .rotationEffect(
                 .degrees(135)
             )
+    }
+    
+    private var getTint: LinearGradient {
+        if settings.appTintSync {
+            return getGradientUnique(color:  settings.appTint)
+        } else if settings.gaugeTintStyle == "Couleur" {
+            return getGradientUnique(color: settings.gaugeTintColor)
+        } else {
+            return getGradient(color: settings.gaugeTintGradient)
+        }
+    }
+    
+    private var getLineCap: CGLineCap {
+        return settings.gaugeStyleCorner == "Arrondi" ? .round : .square
     }
 }

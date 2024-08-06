@@ -41,8 +41,11 @@ struct CustomPicker: View {
                     .foregroundColor(.secondary)
                 
                 Text(label)
-                    .font(.custom("Universo-Regular", size: 14))
-                
+                    .font(
+                        .custom("Universo-Regular", size: 14)
+                    )
+                    .padding(.top, 2)
+
                 Spacer()
                 
                 Picker("", selection: $selection) {
@@ -61,7 +64,7 @@ struct CustomPicker: View {
                     }
                 }
                 .pickerStyle(MenuPickerStyle())
-                .frame(width: 150)
+                .frame(width: 200)
             }
             
             HStack {
@@ -69,9 +72,11 @@ struct CustomPicker: View {
                 
                 HStack {
                     Text(selection)
-                        .font(.custom("Universo-Bold", size: 14))
-                        .foregroundColor(getAppTint(settings: settings))
+                        .font(
+                            .custom("Universo-Regular", size: 14)
+                        )
                         .padding(.top, 2)
+                        .foregroundColor(getAppTint(settings: settings))
                     
                     Image(systemName: "chevron.right")
                         .foregroundColor(getAppTint(settings: settings))
