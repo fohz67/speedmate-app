@@ -25,6 +25,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var gForce: Double = 0.0
     
     private var previousSpeed: Double = 0.0
+    private var convertedSpeed: Double = 0.0
     private var previousTime: Date = Date()
     
     private var rideTimer: Timer?
@@ -72,10 +73,12 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         altitude = location.altitude
         gpsAccuracy = location.horizontalAccuracy
         speed = max(0, location.speed)
+        maxSpeed = max(speed, maxSpeed)
+
+        convertedSpeed = convertSpeed(speedUnit: _SPEED_UNIT, speed: speed)
 
         updateGForce()
         updateStart()
-        updateMaxSpeed()
         updateTimers()
     }
     
@@ -94,14 +97,8 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     }
     
     private func updateStart() {
-        if !isStarted && Int(convertSpeed(speedUnit: _SPEED_UNIT, speed: speed)) >= _NAVIGATION_STARTING_SPEED {
+        if !isStarted && convertedSpeed >= Double(_NAVIGATION_STARTING_SPEED) {
             isStarted = true
-        }
-    }
-    
-    private func updateMaxSpeed() {
-        if speed > maxSpeed {
-            maxSpeed = speed
         }
     }
     
@@ -110,7 +107,7 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             return
         }
         
-        if convertSpeed(speedUnit: _SPEED_UNIT, speed: speed) > 1 {
+        if convertedSpeed > 1 {
             if stopTimer != nil {
                 stopTimer?.invalidate()
                 stopTimer = nil

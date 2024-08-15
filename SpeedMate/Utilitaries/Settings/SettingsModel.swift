@@ -11,7 +11,7 @@ class SettingsModel: ObservableObject {
     @AppStorage("GPSPrecisionPosition") var GPSPrecisionPosition = "En haut à gauche"
     @AppStorage("temperaturePosition") var temperaturePosition = "En haut à droite"
     @AppStorage("gForcePosition") var gForcePosition = "En bas à droite"
-
+    
     // Unités
     @AppStorage("speedUnit") var speedUnit = "Km/h" {
         didSet {
@@ -36,7 +36,7 @@ class SettingsModel: ObservableObject {
     
     // Application
     @AppStorage("antiWake") var antiWake = true
-
+    
     
     // Personnalisation
     
@@ -57,4 +57,9 @@ class SettingsModel: ObservableObject {
     @AppStorage("gaugeSpeedLimit") var gaugeSpeedLimit = 100
     @AppStorage("showGaugeSpeedLimitFlash") var showGaugeSpeedLimitFlash = false
     @AppStorage("showGaugeSpeedLimitSound") var showGaugeSpeedLimitSound = false
+    
+    init() {
+        _SPEED_UNIT = speedUnit
+        _NAVIGATION_STARTING_SPEED = navigationStartingSpeed
+    }
 }
