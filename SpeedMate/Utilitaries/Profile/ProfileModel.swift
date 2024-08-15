@@ -14,5 +14,8 @@ class ProfileModel: ObservableObject {
     @AppStorage("vehicleModel") var vehicleModel = ""
     
     // Statistiques
-    @AppStorage("odometer") var odometer = 0
+    @AppStorage("odometer") var odometer = 0.0
+    @AppStorage("rideTime") var rideTime = 0.0
+    @AppStorage("stoppedTime") var stoppedTime = 0.0
+
 }

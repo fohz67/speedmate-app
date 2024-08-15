@@ -17,6 +17,7 @@ struct PersonalizationSheetSectionPreview: View {
                     speed: Double(settings.gaugeMaximumSpeed),
                     gpsAccuracy: -67,
                     temperature: -67,
+                    gForce: -67,
                     size: 160
                 )
                 

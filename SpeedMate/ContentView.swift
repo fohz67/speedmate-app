@@ -10,6 +10,12 @@ struct ContentView: View {
                     Image(systemName: "location.fill")
                     Text("GPS")
                 }
+            
+            /*DragyView()
+                .tabItem {
+                    Image(systemName: "timer")
+                    Text("Dragy")
+                }*/
 
             ProfileView()
                 .tabItem {

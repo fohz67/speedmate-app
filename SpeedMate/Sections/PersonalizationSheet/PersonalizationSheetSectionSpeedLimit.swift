@@ -22,7 +22,8 @@ struct PersonalizationSheetSectionSpeedLimit: View {
                     label: "Vitesse",
                     value: $settings.gaugeSpeedLimit,
                     range: 5...1000,
-                    step: 5
+                    step: 5,
+                    unit: settings.speedUnit
                 )
                 
                 CustomToggle(

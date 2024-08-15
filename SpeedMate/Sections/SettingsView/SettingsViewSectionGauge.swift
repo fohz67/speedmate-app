@@ -23,6 +23,15 @@ struct SettingsViewSectionGauge: View {
             
             CustomText(label: "Lorsque l'application est en mode paysage.")*/
             
+            CustomNumberSelector(
+                icon: "chevron.right.2",
+                label: "Vitesse de mise en route",
+                value: $settings.navigationStartingSpeed,
+                range: 1...30,
+                step: 1,
+                unit: settings.speedUnit
+            )
+            
             CustomButton(
                 icon: "paintbrush",
                 label: "Personnalisation"

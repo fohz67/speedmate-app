@@ -1,11 +1,11 @@
 import SwiftUI
 
-struct CustomTextField: View {
+struct CustomTextLabel: View {
     @EnvironmentObject var settings: SettingsModel
     
     var icon: String
     var label: String
-    @Binding var text: String
+    var text: String
     
     var body: some View {
         HStack {
@@ -21,15 +21,13 @@ struct CustomTextField: View {
             
             Spacer()
             
-            TextField("Aa", text: $text)
+            Text(text)
                 .font(
-                    .custom("Universo-Regular", size: 14)
+                    .custom("Universo-Bold", size: 14)
                 )
                 .foregroundColor(getAppTint(settings: settings))
                 .padding(.top, 2)
                 .multilineTextAlignment(.trailing)
-                .frame(maxWidth: 200)
-                .textFieldStyle(PlainTextFieldStyle())
         }
     }
 }

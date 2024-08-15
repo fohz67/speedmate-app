@@ -34,7 +34,8 @@ struct ProfileViewSectionYou: View {
                 label: "Âge",
                 value: $profile.age,
                 range: 0...100,
-                step: 1
+                step: 1,
+                unit: "ans"
             )
         }
     }

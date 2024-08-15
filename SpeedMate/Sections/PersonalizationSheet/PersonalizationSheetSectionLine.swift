@@ -26,7 +26,8 @@ struct PersonalizationSheetSectionLine: View {
                     label: "Vitesse maximale",
                     value: $settings.gaugeMaximumSpeed,
                     range: 5...1000,
-                    step: 5
+                    step: 5,
+                    unit: settings.speedUnit
                 )
                 
                 CustomPicker(

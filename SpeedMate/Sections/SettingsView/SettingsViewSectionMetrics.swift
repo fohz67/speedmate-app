@@ -46,6 +46,11 @@ struct SettingsViewSectionMetrics: View {
                 icon: "thermometer",
                 selection: $settings.temperaturePosition
             ),
+            PickerInfo(
+                label: "Force G",
+                icon: "arrow.up.right.circle",
+                selection: $settings.gForcePosition
+            ),
         ]
     }
 }

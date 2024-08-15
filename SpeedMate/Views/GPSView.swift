@@ -26,6 +26,7 @@ struct GPSView: View {
                         temperatureUnit: settings.temperatureUnit,
                         temperature: weatherManager.temperature
                     ),
+                    gForce: locationManager.gForce,
                     size: 300
                 )
                 

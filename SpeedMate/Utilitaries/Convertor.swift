@@ -1,3 +1,5 @@
+import SwiftUI
+
 func metersPerSecondToKilometersPerHour(metersPerSecond: Double) -> Double {
     return metersPerSecond * 3.6
 }
@@ -56,4 +58,21 @@ func convertTemperature(temperatureUnit: String, temperature: Double) -> Double 
     } else {
         return celsiusToFahrenheit(celsius: temperature)
     }
+}
+
+func formattedDuration(_ totalSeconds: TimeInterval) -> String {
+    let days = Int(totalSeconds) / 86400
+    let hours = (Int(totalSeconds) % 86400) / 3600
+    let minutes = (Int(totalSeconds) % 3600) / 60
+    let seconds = Int(totalSeconds) % 60
+    
+    return String(format: "%02dj %02dh %02dm %02ds", days, hours, minutes, seconds)
+}
+
+func formattedTime(_ totalSeconds: TimeInterval) -> String {
+    let hours = Int(totalSeconds) / 3600
+    let minutes = Int(totalSeconds) % 3600 / 60
+    let seconds = Int(totalSeconds) % 60
+    
+    return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
 }

@@ -34,11 +34,12 @@ struct CustomGauge: View {
     var speed: Double
     var gpsAccuracy: Double
     var temperature: Double
+    var gForce: Double
     var size: Double
     
     var body: some View {
         ZStack {
-            if gpsAccuracy != -67 && temperature != -67 {
+            if gpsAccuracy != -67 && temperature != -67 && gForce != -67 {
                 CustomGaugeMetrics(
                     size: size,
                     metrics: metrics
@@ -69,42 +70,11 @@ struct CustomGauge: View {
     }
     
     private var metrics: [Metric?] {
-        var metricsArray: [Metric?] = Array(repeating: nil, count: 4)
-        
-        func positionIndex(for position: String) -> Int {
-            switch position {
-            case "En haut à gauche":
-                return 0
-            case "En haut à droite":
-                return 1
-            case "En bas à gauche":
-                return 2
-            case "En bas à droite":
-                return 3
-            default:
-                return -1
-            }
-        }
-        
-        let positions = [
-            settings.GPSPrecisionPosition,
-            settings.temperaturePosition,
-        ]
-        
-        let metricsToInsert: [Metric?] = [
-            MetricGPSAccuracy(gpsAccuracy: gpsAccuracy),
-            MetricTemperature(temperature: temperature),
-            nil,
-            nil,
-        ]
-        
-        for (index, position) in positions.enumerated() {
-            let posIndex = positionIndex(for: position)
-            if posIndex != -1 {
-                metricsArray[posIndex] = metricsToInsert[index]
-            }
-        }
-        
-        return metricsArray
+        let positionManager = MetricPositionManager(settings: settings)
+        return positionManager.getMetricsArray(
+            gpsAccuracy: gpsAccuracy,
+            temperature: temperature,
+            gForce: gForce
+        )
     }
 }

@@ -1,7 +1,7 @@
 import SwiftUI
 
 var _SPEED_UNIT: String = "Km/h"
-var _NAVIGATION_STARTING_SPEED: Int = 15
+var _NAVIGATION_STARTING_SPEED: Int = 5
 
 class SettingsModel: ObservableObject {
     // Compteur de vitesse
@@ -10,6 +10,7 @@ class SettingsModel: ObservableObject {
     // Métriques
     @AppStorage("GPSPrecisionPosition") var GPSPrecisionPosition = "En haut à gauche"
     @AppStorage("temperaturePosition") var temperaturePosition = "En haut à droite"
+    @AppStorage("gForcePosition") var gForcePosition = "En bas à droite"
 
     // Unités
     @AppStorage("speedUnit") var speedUnit = "Km/h" {
@@ -22,7 +23,7 @@ class SettingsModel: ObservableObject {
     @AppStorage("altitudeUnit") var altitudeUnit = "M"
     
     // Navigation
-    @AppStorage("navigationStartingSpeed") var navigationStartingSpeed = 15 {
+    @AppStorage("navigationStartingSpeed") var navigationStartingSpeed = 5 {
         didSet {
             _NAVIGATION_STARTING_SPEED = navigationStartingSpeed
         }

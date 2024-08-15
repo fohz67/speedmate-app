@@ -22,6 +22,10 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
     @Published var gpsAccuracy: Double = 0.0
     @Published var temperature: Double = 0.0
     @Published var isStarted: Bool = false
+    @Published var gForce: Double = 0.0
+    
+    private var previousSpeed: Double = 0.0
+    private var previousTime: Date = Date()
     
     private var rideTimer: Timer?
     private var stopTimer: Timer?
@@ -32,6 +36,23 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
+
+        initializeUserDefaults()
+    }
+    
+    private func initializeUserDefaults() {
+        DispatchQueue.main.async {
+            let defaults = UserDefaults.standard
+            if defaults.object(forKey: "odometer") == nil {
+                defaults.set(0.0, forKey: "odometer")
+            }
+            if defaults.object(forKey: "rideTime") == nil {
+                defaults.set(0.0, forKey: "rideTime")
+            }
+            if defaults.object(forKey: "stoppedTime") == nil {
+                defaults.set(0.0, forKey: "stoppedTime")
+            }
+        }
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -50,23 +71,30 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
         
         altitude = location.altitude
         gpsAccuracy = location.horizontalAccuracy
-        
-        updateSpeed(location.speed)
+        speed = max(0, location.speed)
+
+        updateGForce()
         updateStart()
         updateMaxSpeed()
         updateTimers()
     }
     
-    private func updateSpeed(_ locationSpeed: Double) {
-        if locationSpeed < 0 {
-            speed = 0
-        } else {
-            speed = locationSpeed
+    private func updateGForce() {
+        let currentTime = Date()
+        let timeDifference = currentTime.timeIntervalSince(previousTime)
+        
+        if timeDifference > 0 {
+            let speedDifference = speed - previousSpeed
+            let acceleration = speedDifference / timeDifference
+            
+            gForce = acceleration / 9.8
+            previousSpeed = speed
+            previousTime = currentTime
         }
     }
     
     private func updateStart() {
-        if !isStarted && Int(speed) >= _NAVIGATION_STARTING_SPEED {
+        if !isStarted && Int(convertSpeed(speedUnit: _SPEED_UNIT, speed: speed)) >= _NAVIGATION_STARTING_SPEED {
             isStarted = true
         }
     }
@@ -89,9 +117,20 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             }
             
             if rideTimer == nil {
-                rideTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                rideTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+                    guard let self = self else { return }
+                    
                     self.rideTime += 1
                     self.totalDistance += self.speed
+                    
+                    DispatchQueue.main.async {
+                        let defaults = UserDefaults.standard
+                        let newOdometer = defaults.double(forKey: "odometer") + self.speed
+                        let newRideTime = defaults.double(forKey: "rideTime") + 1
+                        
+                        defaults.set(newOdometer, forKey: "odometer")
+                        defaults.set(newRideTime, forKey: "rideTime")
+                    }
                 }
             }
         } else {
@@ -101,8 +140,17 @@ class LocationManager: NSObject, ObservableObject, CLLocationManagerDelegate {
             }
             
             if stopTimer == nil {
-                stopTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+                stopTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+                    guard let self = self else { return }
+                    
                     self.stoppedTime += 1
+                    
+                    DispatchQueue.main.async {
+                        let defaults = UserDefaults.standard
+                        let newStoppedTime = defaults.double(forKey: "stoppedTime") + 1
+                        
+                        defaults.set(newStoppedTime, forKey: "stoppedTime")
+                    }
                 }
             }
         }

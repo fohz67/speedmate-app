@@ -12,7 +12,7 @@ struct SettingsView: View {
                     SettingsViewSectionApplication()
                 }
             }
-            .navigationTitle("‎‎ Réglages")
+            .navigationTitle("‎‎Réglages")
         }
         .onAppear {
             getNavigationStyle()

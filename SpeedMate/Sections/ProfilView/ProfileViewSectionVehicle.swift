@@ -25,7 +25,7 @@ struct ProfileViewSectionVehicle: View {
             )
             
             CustomTextField(
-                icon: "doc.text.fill",
+                icon: "doc.plaintext",
                 label: "Modèle",
                 text: $profile.vehicleModel
             )

@@ -1,13 +1,11 @@
 import SwiftUI
 
-struct CustomNumberSelector: View {
+struct CustomTextField: View {
     @EnvironmentObject var settings: SettingsModel
     
     var icon: String
     var label: String
-    @Binding var value: Int
-    var range: ClosedRange<Int>
-    var step: Int
+    @Binding var text: String
     
     var body: some View {
         HStack {
@@ -17,22 +15,20 @@ struct CustomNumberSelector: View {
             
             Text(label)
                 .font(
-                    .custom("Universo-Regular", size: 14)
+                    .custom("Universo-Bold", size: 14)
                 )
                 .padding(.top, 2)
             
             Spacer()
             
-            Text(String(value))
+            TextField("Aa", text: $text)
                 .font(
-                    .custom("Universo-Bold", size: 14)
+                    .custom("Universo-Regular", size: 14)
                 )
                 .foregroundColor(getAppTint(settings: settings))
-                .padding(.top, 3)
-                .padding(.trailing, 8)
-            
-            Stepper("", value: $value, in: range, step: step)
-                .labelsHidden()
+                .padding(.top, 2)
+                .multilineTextAlignment(.trailing)
+                .textFieldStyle(PlainTextFieldStyle())
         }
     }
 }
